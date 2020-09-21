@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 5ddd00fe234efc34faed97b82d7be42c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - hotspotPositionCanvasPrefab: {fileID: 8492499262948718656, guid: 89b9f1a6b6135624aacc29d68c18a5d7,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

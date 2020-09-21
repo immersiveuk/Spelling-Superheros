@@ -1,0 +1,50 @@
+﻿/* Copyright (C) Immersive Interactive, Ltd - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Luke Bissell <luke@immersive.co.uk>, July 2019
+ */
+
+using System.Collections;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+namespace Com.Immersive.Cameras
+{
+    public class MoveRightTrigger : EventTrigger
+    {
+        [HideInInspector]
+        public AbstractImmersiveCamera immersiveCamera;
+        [HideInInspector]
+        public RotationButtonController rotationButtonsController;
+
+
+        private const float disabledDuration = 0.2f;
+        private bool IsEnabled => Time.time > disabledUntilTime;
+        private float disabledUntilTime = 0;
+
+        public override void OnPointerClick(PointerEventData eventData)
+        {
+
+            if (!IsEnabled)
+                return;
+
+            DisableTemporarily();
+
+            if (immersiveCamera != null)
+            {
+                immersiveCamera.RotateCameraRight();
+            }
+            if (rotationButtonsController != null)
+            {
+                rotationButtonsController.RotateCameraRight();
+                rotationButtonsController.EnableDisableRotationButtons();
+         
+            }
+        }
+
+        private void DisableTemporarily()
+        {
+            disabledUntilTime = Time.time + disabledDuration;
+        }
+    }
+}

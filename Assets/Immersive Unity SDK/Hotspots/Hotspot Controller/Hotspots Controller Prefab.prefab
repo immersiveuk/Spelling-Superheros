@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7246901462672305307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 404934715459326937}
+  - component: {fileID: 7218992175494341702}
+  - component: {fileID: 403448657889546742}
+  - component: {fileID: 3910022712168832839}
+  - component: {fileID: 8596469186513404972}
+  m_Layer: 0
+  m_Name: Hotspots Controller Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &404934715459326937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246901462672305307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7218992175494341702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246901462672305307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2a4420809ad414eace86d515f0ab76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &403448657889546742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246901462672305307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40e362f1493d13409839c02a69cc782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeButton:
+    imageUrl: 
+    sprite: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    type: 0
+  hotspotEffects: 0
+  hotspotGlowSettings:
+    pulseDuration: 3
+    colour: {r: 1, g: 1, b: 1, a: 1}
+    minAlpha: 0
+    maxAlpha: 1
+    maintainGlobalSync: 1
+  revealType: 0
+  singlePopUpOpenAtOnce: 0
+  highlightColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  highlightWidth: 8
+  blurAndDesaturate: 0
+  blurInDuration: 0
+  blurOutDuration: 0
+  batchPrefab: {fileID: 906983754334930971, guid: 6f5f3f3b9d9df534d91ecb1a427fe596,
+    type: 3}
+  baseHotspotPrefab: {fileID: 1321620828550561820, guid: 670ba88191cc79242b1507228eb5b242,
+    type: 3}
+  imageHotspotPrefab: {fileID: 4617837352575005658, guid: bf8da236924bbab4b9a9a5b40d807940,
+    type: 3}
+  invisibleHotspotPrefab: {fileID: 1321620828550561820, guid: 5bd68585edde5004cb91b678b7d7f3df,
+    type: 3}
+  multiHotspotPrefab: {fileID: 5275561926891600087, guid: 368661515b3af344289065e61e966f33,
+    type: 3}
+  textHotspotPrefab: {fileID: 544652150336608877, guid: dc3f4403435ca4e50835580571b17fe7,
+    type: 3}
+  regionHotspotPrefab: {fileID: 2871375634920579166, guid: 36428ec19e3cf4425b0bd02b0b6641b9,
+    type: 3}
+--- !u!114 &3910022712168832839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246901462672305307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7e6c9fa670b2546bac7938f43af279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8596469186513404972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246901462672305307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddd00fe234efc34faed97b82d7be42c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hotspotPositionCanvasPrefab: {fileID: 8492499262948718656, guid: 89b9f1a6b6135624aacc29d68c18a5d7,
+    type: 3}

@@ -1,0 +1,679 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &956461487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956461488}
+  - component: {fileID: 956461490}
+  - component: {fileID: 956461489}
+  m_Layer: 0
+  m_Name: LineRenderer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &956461488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956461487}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: -0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 2871375634920579167}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &956461490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956461487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2a4420809ad414eace86d515f0ab76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!120 &956461489
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956461487}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: -5, y: 5, z: 0}
+  - {x: 5, y: 5, z: 0}
+  - {x: 5, y: -5, z: 0}
+  - {x: -5, y: -5, z: 0}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 90
+    numCapVertices: 90
+    alignment: 1
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 0
+  m_Loop: 1
+--- !u!1 &2871375634920579166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2871375634920579167}
+  - component: {fileID: 2871375634920579155}
+  - component: {fileID: 2132175627023484141}
+  - component: {fileID: 2871375634920579154}
+  - component: {fileID: 2871375634920579153}
+  - component: {fileID: 2871375634920579152}
+  m_Layer: 0
+  m_Name: Region Hotspot Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2871375634920579167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871375634920579166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children:
+  - {fileID: 956461488}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2871375634920579155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871375634920579166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2a4420809ad414eace86d515f0ab76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2132175627023484141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871375634920579166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5910cf2cea2c541bd49ae4b2c42a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hotspotDataModel:
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    actionType: 0
+    clickAction: 1
+    hotspotType: 0
+    playAudioOnAction: 0
+    clickAudio:
+      audioUrl: 
+      audioClip: {fileID: 0}
+      audioVolume: 1
+  imagePopUpDataModel:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0, z: 0}
+      overrideDefaultCloseButton: 0
+      closeButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      sizeOption: 0
+      size: {x: 400, y: 300, z: 0}
+      percentage: 50
+      padding:
+        m_Left: 0
+        m_Right: 0
+        m_Top: 0
+        m_Bottom: 0
+      background:
+        imageUrl: 
+        sprite: {fileID: 21300000, guid: b4dde062ac51b4b48a59e266732df6b9, type: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      border:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      maintainAspectRatio: 1
+  imageSequencePopUpDataModel:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0, z: 0}
+      overrideDefaultCloseButton: 0
+      closeButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      sizeOption: 0
+      size: {x: 500, y: 500, z: 1}
+      percentage: 50
+      padding:
+        m_Left: 0
+        m_Right: 0
+        m_Top: 0
+        m_Bottom: 0
+      border:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      backgroundSprites:
+      - imageUrl: 
+        sprite: {fileID: 21300000, guid: b4dde062ac51b4b48a59e266732df6b9, type: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      customButtons: 0
+      controlPanelStyle: 0
+      nextButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      previousButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+  videoPopUpDataModel:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0, z: 0}
+      overrideDefaultCloseButton: 0
+      closeButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      sizeOption: 0
+      size: {x: 500, y: 500, z: 1}
+      percentage: 50
+      padding:
+        m_Left: 0
+        m_Right: 0
+        m_Top: 0
+        m_Bottom: 0
+      video:
+        videoSource: 0
+        videoURL: 
+        videoClip: {fileID: 32900000, guid: 42cb1f58bee273841becbce0ae294e7c, type: 3}
+      closeAfterPlay: 0
+      loop: 0
+      controlPanelStyle: 0
+  textPopUpDataModel:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0, z: 0}
+      overrideDefaultCloseButton: 0
+      closeButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      sizeOption: 0
+      size: {x: 500, y: 500, z: 1}
+      percentage: 50
+      padding:
+        m_Left: 40
+        m_Right: 40
+        m_Top: 40
+        m_Bottom: 40
+      title:
+        text: Default Text
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        size: 50
+      body:
+        text: 'Default Text
+
+          Default Text
+
+          Default Text'
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        size: 50
+      background:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+  quizPopUpDataModel:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0, z: 0}
+      overrideDefaultCloseButton: 0
+      closeButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      sizeOption: 0
+      size: {x: 500, y: 500, z: 1}
+      percentage: 50
+      padding:
+        m_Left: 40
+        m_Right: 40
+        m_Top: 40
+        m_Bottom: 40
+      question:
+        text: What is the question?
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        size: 50
+      background:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      options:
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        size: 0
+        options:
+        - Answer 1
+        - Answer 2
+        correctAnswer: Answer 1
+      result:
+        correctAnswer:
+          text: Well Done
+          fontName: 
+          font: {fileID: 0}
+          color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+          size: 50
+        incorrectAnswer:
+          text: Incorrect
+          fontName: 
+          font: {fileID: 0}
+          color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+          size: 50
+        correctAudio: {fileID: 0}
+        correctAudioURL: 
+        incorrectAudio: {fileID: 0}
+        incorrectAudioURL: 
+  audioPopUpDataModel:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0, z: 0}
+      overrideDefaultCloseButton: 0
+      closeButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      sizeOption: 0
+      size: {x: 500, y: 500, z: 1}
+      percentage: 0
+      padding:
+        m_Left: 0
+        m_Right: 0
+        m_Top: 0
+        m_Bottom: 0
+      audioClipURL: 
+      audioClip: {fileID: 0}
+      useThumbnail: 0
+      thumbnail:
+        imageUrl: 
+        sprite: {fileID: 21300000, guid: 7110b76fcc2d013469643062ca218ce7, type: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      closeAfterPlay: 0
+      loop: 0
+      controlPanelStyle: 0
+  sceneLinkDataModel:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0, z: 0}
+      overrideDefaultCloseButton: 0
+      closeButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      sizeOption: 0
+      size: {x: 500, y: 500, z: 1}
+      percentage: 0
+      padding:
+        m_Left: 0
+        m_Right: 0
+        m_Top: 0
+        m_Bottom: 0
+      linkName: 
+      fadeOut: 0
+      fadeOutDuration: 3
+      fadeColor: {r: 0, g: 0, b: 0, a: 1}
+      fadeOutAudio: 1
+  splitPopupDataModel:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0, z: 0}
+      overrideDefaultCloseButton: 0
+      closeButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      sizeOption: 0
+      size: {x: 500, y: 500, z: 1}
+      percentage: 0
+      padding:
+        m_Left: 0
+        m_Right: 0
+        m_Top: 0
+        m_Bottom: 0
+      title:
+        text: Default Text
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        size: 50
+      body:
+        text: Default Text
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        size: 50
+      textBackground:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      mediaType: 0
+      image:
+        imageUrl: 
+        sprite: {fileID: 21300000, guid: b4dde062ac51b4b48a59e266732df6b9, type: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      video:
+        videoSource: 0
+        videoURL: 
+        videoClip: {fileID: 0}
+      loopVideo: 1
+      fixedPopupSizeImageOffset: 0
+      separation: 0
+      mediaPosition: 0
+  objectsToHide:
+  - {fileID: 0}
+  objectsToReveal:
+  - {fileID: 0}
+  videoPopUpPrefab: {fileID: 3780994360810749212, guid: d69104669f3a943c5852062a0c02d0e5,
+    type: 3}
+  imagePopUpPrefab: {fileID: 3323182103187656857, guid: 88fcc62294739ea49aff4d47c1a5d268,
+    type: 3}
+  imageSequencePopUpPrefab: {fileID: 2506837459398516144, guid: 2559ccebc6ea4aa449cd70bb69ab48d5,
+    type: 3}
+  textPopUpPrefab: {fileID: 2537701427795128780, guid: 01d062483dc6b4765994b54f64af0fde,
+    type: 3}
+  qAndAPopUpPrefab: {fileID: 6134863459216385418, guid: ecefdb46cd422da44b851acc46c79755,
+    type: 3}
+  audioPopUpPrefab: {fileID: 473562725366449742, guid: bdbfa00b68c3a4ba391cedf3a46d60ea,
+    type: 3}
+  splitPopupPrefab: {fileID: 5257635607679965786, guid: 73910849afdf59a4ebbf2b663a4041c2,
+    type: 3}
+--- !u!33 &2871375634920579154
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871375634920579166}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &2871375634920579153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871375634920579166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.01}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2871375634920579152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871375634920579166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d57cc2c1fd4d47a783853dcfd8a6bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 956461489}
+  lineThikness: 1
+  lineType: 0
+  lineColor: {r: 1, g: 1, b: 1, a: 1}
+  lineColorGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  dotTexture: {fileID: 2800000, guid: b9f4bb0379d5e44fb91963357a77b170, type: 3}
+  SolidMaterial: {fileID: 0}
+  DottedMaterial: {fileID: 0}
+  boxCollider: {fileID: 2871375634920579153}

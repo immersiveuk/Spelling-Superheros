@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3417308728540994889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5218801301399625707}
+  - component: {fileID: 5882327172426959693}
+  - component: {fileID: 1503368341561759461}
+  m_Layer: 0
+  m_Name: Stage Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5218801301399625707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417308728540994889}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5882327172426959693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417308728540994889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1400a9ee0fc85429e55d347af3c64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hotspotControllerPrefab: {fileID: 403448657889546742, guid: af4144a4291bd034c8a0d618665a2e5f,
+    type: 3}
+  videoPlayerPrefab: {fileID: 4387612283383616819, guid: a219ff5ae5428c24bb2e188f564442fc,
+    type: 3}
+  splitBackgroundPrefab: {fileID: 3523730662242845245, guid: 9ca7279d425169143806914bfed06cce,
+    type: 3}
+  introSequencePrefab: {fileID: 4177982756128502073, guid: c4af0dcb2ab636c4281cbbfc58bd7f92,
+    type: 3}
+  scatterSystemPrefab: {fileID: 917282435106080556, guid: 1add69d35db12f64cacda5083d4dea40,
+    type: 3}
+  wipeToRevealPrefab: {fileID: 5406009302178076304, guid: 20c600610f7294507a88a80d28a41f8f,
+    type: 3}
+--- !u!114 &1503368341561759461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417308728540994889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b14608156aad4c508d54d0ea2d19d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listDefaultImage:
+  - imageEnum: 1
+    sprite: {fileID: 21300000, guid: dbc8003ca5136304e9a5896d8c1f4b9f, type: 3}
+  - imageEnum: 2
+    sprite: {fileID: 21300000, guid: a8fcdeb8fa6f3694b814529762f23979, type: 3}
+  - imageEnum: 3
+    sprite: {fileID: 21300000, guid: 2a78cd8ce76be8d48bcc81af31818d62, type: 3}
+  - imageEnum: 4
+    sprite: {fileID: 0}
+  - imageEnum: 5
+    sprite: {fileID: 21300000, guid: 65b6e72c49b0156488a290c4f1dd183a, type: 3}
+  - imageEnum: 6
+    sprite: {fileID: 21300000, guid: 72e7bcf4877dc4c0cb64f6633322845e, type: 3}
+  - imageEnum: 7
+    sprite: {fileID: 21300000, guid: 474f2c0963d6748b8885d8d48df2dcee, type: 3}
+  - imageEnum: 8
+    sprite: {fileID: 21300000, guid: 88d135cbc2f174e0a90d82415a6f443f, type: 3}
+  - imageEnum: 9
+    sprite: {fileID: 21300000, guid: 83ff40ddd1e099640b6e64d6e3c28648, type: 3}
+  - imageEnum: 10
+    sprite: {fileID: 21300000, guid: 3efff7ab51e6e01489b7560b27840ae3, type: 3}
+  fontList:
+  - fontName: LiberationSans SDF
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

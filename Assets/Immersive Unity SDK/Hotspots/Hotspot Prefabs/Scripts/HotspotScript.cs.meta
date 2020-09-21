@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 2a5910cf2cea2c541bd49ae4b2c42a91
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - popUpSprite: {instanceID: 0}
+  - popUpVideoClip: {instanceID: 0}
+  - fadeToBlackPrefab: {fileID: 8801089684596684352, guid: 4c27af45abc35424e817cdf9567f4e3f,
+      type: 3}
+  - videoPopUpPrefab: {instanceID: 0}
+  - imagePopUpPrefab: {instanceID: 0}
+  - imageSequencePopUpPrefab: {instanceID: 0}
+  - textPopUpPrefab: {instanceID: 0}
+  - qAndAPopUpPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

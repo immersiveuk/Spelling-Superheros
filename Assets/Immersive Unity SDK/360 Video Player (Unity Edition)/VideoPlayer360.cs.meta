@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 50207cd2ba7a58a419e3f4a87ed2187b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - skyboxMaterial: {fileID: 2100000, guid: cdf0f90ebf5ca1a4290b99ac8cba34f5, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

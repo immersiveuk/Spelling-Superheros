@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e30445bf69f244dbd886aa3a1255e5d4, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -545,6 +545,11 @@ MonoBehaviour:
         videoSource: 0
         videoURL: 
         videoClip: {fileID: 0}
+      mediaMask:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
       loopVideo: 1
       fixedPopupSizeImageOffset: 0
       separation: 0
@@ -588,7 +593,7 @@ MonoBehaviour:
   textProperty:
     text: Text
     fontName: 
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    font: {fileID: 0}
     color: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
     size: 1
   margine: 20
@@ -770,7 +775,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19797125, y: 0.087361924, z: 0}
+  m_Size: {x: 0.18484738, y: 0.072674416, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6662714138811275302
 GameObject:
@@ -1051,7 +1056,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 35c3d031e896b4a8db9f1d0ed5195a0f, type: 2}
+  - {fileID: 2100000, guid: 232754633c0ecab4fbbdd24c17191021, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1094,9 +1099,9 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_spriteAsset: {fileID: 0}
   m_material: {fileID: 0}
-  m_sharedMaterial: {fileID: 2100000, guid: 35c3d031e896b4a8db9f1d0ed5195a0f, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 232754633c0ecab4fbbdd24c17191021, type: 2}
   m_isDefaultMaterial: 0
-  m_padding: 7.55
+  m_padding: 1.25
   m_renderer: {fileID: 354124601618581860}
   m_meshFilter: {fileID: 8577666297173319743}
   m_TextComponent: {fileID: 4004215047573004342}

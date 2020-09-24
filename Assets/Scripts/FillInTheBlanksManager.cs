@@ -28,10 +28,11 @@ public class FillInTheBlanksManager : MonoBehaviour
     void Start()
     {
         spellings = new List<Spelling>();
-        RandomiseOptions();
+        var options = GetRandomisedOptions();
+        CreateGamePanel(options);
     }
 
-    void RandomiseOptions()
+    List<string> GetRandomisedOptions()
     {
         List<string> options = new List<string>();
 
@@ -41,8 +42,7 @@ public class FillInTheBlanksManager : MonoBehaviour
         }
 
         IListExtensions.Shuffle(options);
-
-        CreateGamePanel(options);
+        return options;
     }
 
     void CreateGamePanel(List<string> options)
@@ -59,7 +59,7 @@ public class FillInTheBlanksManager : MonoBehaviour
         }
 
         DisableLayout();
-        SelectSpeling();
+        SelectNextSpelling();
     }
 
     void DisableLayout()
@@ -77,7 +77,7 @@ public class FillInTheBlanksManager : MonoBehaviour
         OptionPanel.GetComponent<VerticalLayoutGroup>().enabled = false;
     }
 
-    public void SelectSpeling()
+    public void SelectNextSpelling()
     {
         foreach (var obj in spellings)
         {

@@ -70,7 +70,7 @@ public class Option : MonoBehaviour, IInteractableObject
     IEnumerator OnCorrectAnswer()
     {
         yield return new WaitForSeconds(1);
-        FindObjectOfType<FillInTheBlanksManager>().SelectSpeling();
+        FindObjectOfType<FillInTheBlanksManager>().SelectNextSpelling();
         selectedSpelling.OnCorrectAnswer();
     }
 }

@@ -1450,7 +1450,7 @@ MonoBehaviour:
   fillInTheBlanksData:
   - spelling: rain
     startIndex: 1
-    endIndex: 2
+    endIndex: 3
   - spelling: soil
     startIndex: 1
     endIndex: 2
@@ -1460,6 +1460,8 @@ MonoBehaviour:
   - spelling: boy
     startIndex: 1
     endIndex: 2
+  positiveClip: {fileID: 8300000, guid: 61a9bcd5f62618c4a8e11605870159c4, type: 3}
+  negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}
 --- !u!1001 &1820115051
 PrefabInstance:
   m_ObjectHideFlags: 0

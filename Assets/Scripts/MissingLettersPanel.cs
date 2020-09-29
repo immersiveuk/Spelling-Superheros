@@ -1,23 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Immersive.FillInTgeBlank.FillInTheBlankMissingLetters;
 
 namespace Immersive.FillInTgeBlank
 {
     public class MissingLettersPanel : MonoBehaviour
     {
-        public void SetPanel(List<FillInTheBlanksData> fillInTheBlanksData)
+        public static MissingLettersStats missingLettersStats = MissingLettersStats.CanPlace;
+
+        System.Action<bool> resultAction;
+
+        /// <summary>
+        /// Assign Missing Letter to th Child object Textmesh pro
+        /// </summary>
+        /// <param name="fillInTheBlanksData"></param>
+        /// <param name="resultAction"></param>
+        public void SetPanel(List<FillInTheBlanksData> fillInTheBlanksData, System.Action<bool> resultAction)
         {
+            this.resultAction = resultAction;
             var options = GetRandomisedOptions(fillInTheBlanksData);
 
             FillInTheBlankMissingLetters[] textMissingLetters = GetComponentsInChildren<FillInTheBlankMissingLetters>();
 
             for (int i = 0; i < textMissingLetters.Length; i++)
             {
-                textMissingLetters[i].SetText(options[i]);
+                textMissingLetters[i].SetText(options[i], OnResultAction);
+            }
+
+            Highlight();
+        }
+
+        /// <summary>
+        /// Callback of Missing Letter click action with result
+        /// </summary>
+        /// <param name="resultValue"></param>
+        void OnResultAction(bool resultValue)
+        {
+            missingLettersStats = MissingLettersStats.CanPlace;
+            resultAction(resultValue);
+            Highlight();
+        }
+
+        /// <summary>
+        /// To Highlight all the available missing letters
+        /// </summary>
+        void Highlight()
+        {
+            foreach (var letter in GetComponentsInChildren<FillInTheBlankMissingLetters>())
+            {
+                letter.OnSelect();
             }
         }
 
+        /// <summary>
+        /// It Randomise all missing letters given into <FillInTheBlanksData>
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         List<string> GetRandomisedOptions(List<FillInTheBlanksData> data)
         {
             List<string> options = new List<string>();

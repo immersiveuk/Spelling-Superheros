@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Com.Immersive.Cameras;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,15 +32,36 @@ namespace Immersive.FillInTgeBlank
             SetLayout();
         }
 
+        /// <summary>
+        /// Set Layout of Spelling and Missing Layout based on <FillInTheBlanksData>
+        /// </summary>
         void SetLayout()
         {
-            missingLettersPanel.SetPanel(fillInTheBlanksData);
+            missingLettersPanel.SetPanel(fillInTheBlanksData, OnResultAction);
             spellings = spellingPanel.SetPanel(fillInTheBlanksData).ToList();
             
 
             SelectNextSpelling();
         }
 
+        /// <summary>
+        /// Callback after click on Missing Letter with result
+        /// </summary>
+        /// <param name="result"></param>
+        void OnResultAction(bool result)
+        {
+            if (result)
+            {
+                SelectNextSpelling();
+                AbstractImmersiveCamera.PlayAudio(positiveClip);
+            }
+            else
+                AbstractImmersiveCamera.PlayAudio(negativeClip);
+        }
+
+        /// <summary>
+        /// Select next Spelling after correct answer
+        /// </summary>
         public void SelectNextSpelling()
         {
             foreach (var obj in spellings)

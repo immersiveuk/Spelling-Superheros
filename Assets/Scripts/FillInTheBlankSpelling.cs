@@ -5,15 +5,18 @@ using UnityEngine;
 
 namespace Immersive.FillInTgeBlank
 {
-    public class FillInTheBlankSpelling : MonoBehaviour
+    public class FillInTheBlankSpelling : Highlighter
     {
-        public TextMeshPro textSpelling, textGlow;
-        public SpriteRenderer background;
+        public TextMeshPro textSpelling;
         public Transform missingLetterPosition;
          
         [HideInInspector]
         public FillInTheBlanksData spellingData;
 
+        /// <summary>
+        /// It is to set "Spelling" text value to TextMesh pro and Highlighter Text after replacing "Missing Letters" with "_".
+        /// </summary>
+        /// <param name="data"></param>
         public void SetText(FillInTheBlanksData data)
         {
             this.spellingData = data;
@@ -27,9 +30,13 @@ namespace Immersive.FillInTgeBlank
             }
 
             textSpelling.text = spelling;
-            textGlow.text = spelling;
+
+            SetText(spelling);
         }
 
+        /// <summary>
+        /// It is to replace "_" with correct "Missing Letters" on correct answer
+        /// </summary>
         public void OnCorrectAnswer()
         {
             char[] optionChar = spellingData.missingLetters.ToCharArray();
@@ -42,17 +49,20 @@ namespace Immersive.FillInTgeBlank
             }
         }
 
-        public void OnSelect()
+        /// <summary>
+        /// Callback for Selected Spelling to Highlight the spelling.
+        /// </summary>
+        public new void OnSelect()
         {
-            textGlow.enabled = true;
-            textGlow.gameObject.AddComponent<PulseAnimation>();
-            background.enabled = true;
+            base.OnSelect();
         }
 
-        public void OnDeselect()
+        /// <summary>
+        /// Callback for Selected Spelling to remove Highlight
+        /// </summary>
+        public new void OnDeselect()
         {
-            textGlow.enabled = false;
-            background.enabled = false;
+            base.OnDeselect();
         }
     }
 }

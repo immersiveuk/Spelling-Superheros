@@ -1,4 +1,5 @@
 ﻿using Com.Immersive.Cameras;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,17 @@ using UnityEngine;
 
 namespace Immersive.FillInTgeBlank
 {
-    public class FillInTheBlankMissingLetters : MonoBehaviour, IInteractableObject
+    
+    public class FillInTheBlankMissingLetters : Highlighter, IInteractableObject
     {
-        enum MissingLettersStats{ NotPlace, Placing, Placed }
+        public enum MissingLettersStats {NotPlace, Placing, Placed, CanPlace }
 
-        public TextMeshPro textOption, textGlow;
-        private FillInTheBlankSpelling selectedSpelling;
+        public TextMeshPro textOption;
 
-        MissingLettersStats LetterStats = MissingLettersStats.NotPlace;
+        FillInTheBlankSpelling selectedSpelling;
+        MissingLettersStats letterStats = MissingLettersStats.NotPlace;
+
+        Action<bool> resultAction;
 
         private void Awake()
         {
@@ -26,9 +30,16 @@ namespace Immersive.FillInTgeBlank
             FillInTheBlanksManager.OnSpellingSelected -= OnSpellingSelected;
         }
 
-        public void SetText(string option)
+        /// <summary>
+        /// It is to set "Missing Letter" text value to TextMesh pro and Highlighter Text.
+        /// </summary>
+        /// <param name="data"></param>
+        public void SetText(string option, Action<bool> resultAction)
         {
             textOption.text = option;
+            this.resultAction = resultAction;
+
+            SetText(option);
         }
 
         private void OnSpellingSelected(FillInTheBlankSpelling spelling)
@@ -38,12 +49,15 @@ namespace Immersive.FillInTgeBlank
 
         public void OnPress()
         {
-            if (LetterStats != MissingLettersStats.NotPlace)
+            if (MissingLettersPanel.missingLettersStats != MissingLettersStats.CanPlace || letterStats != MissingLettersStats.NotPlace)
                 return;
 
-            LetterStats = MissingLettersStats.Placing;
+            letterStats = MissingLettersStats.Placing;
+            MissingLettersPanel.missingLettersStats = MissingLettersStats.Placing;
 
-            selectedSpelling.missingLetterPosition.localPosition = GetMissingLetterPosition(selectedSpelling.textSpelling.textInfo);
+            selectedSpelling.missingLetterPosition.localPosition = GetCenterPositionOfCharacters(selectedSpelling.textSpelling.textInfo);
+
+            OnDeselect();
 
             if (selectedSpelling.spellingData.missingLetters.Equals(textOption.text))
             {
@@ -60,7 +74,7 @@ namespace Immersive.FillInTgeBlank
             iTween.MoveTo(textOption.gameObject, iTween.Hash("x", targetPosition.x, "y", targetPosition.y, "z", -0.2f, "islocal", false,
                      "time", 0.7f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 0, "oncomplete", (System.Action<object>)(newValue =>
                      {
-                         LetterStats = MissingLettersStats.Placed;
+                         letterStats = MissingLettersStats.Placed;
                          StartCoroutine(OnCorrectAnswerWait());
                      })));
         }
@@ -69,7 +83,7 @@ namespace Immersive.FillInTgeBlank
         {
             yield return new WaitForSeconds(1);
             selectedSpelling.OnCorrectAnswer();
-            FindObjectOfType<FillInTheBlanksManager>().SelectNextSpelling();
+            resultAction(true);
         }
 
         void OnIncorrectAnswer(Vector2 targetPosition)
@@ -80,9 +94,10 @@ namespace Immersive.FillInTgeBlank
                      "time", 0.7f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 0, "oncomplete", (System.Action<object>)(newValue =>
                      {
                          iTween.MoveTo(textOption.gameObject, iTween.Hash("x", startPos.x, "y", startPos.y, "z", -0.2f, "islocal", false,
-                             "time", 0.7f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 1, "oncomplete", (System.Action<object>)(newNewValue =>
+                             "time", 0.5f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 1, "oncomplete", (System.Action<object>)(newNewValue =>
                              {
-                                 LetterStats = MissingLettersStats.NotPlace;
+                                 letterStats = MissingLettersStats.NotPlace;
+                                 resultAction(false);
                              })));
 
                      })));
@@ -103,16 +118,40 @@ namespace Immersive.FillInTgeBlank
 
         }
 
-        Vector3 GetMissingLetterPosition(TMP_TextInfo textInfo)
+        /// <summary>
+        /// It gives center local position of given characters info
+        /// </summary>
+        /// <param name="textInfo"></param>
+        /// <returns></returns>
+        Vector2 GetCenterPositionOfCharacters(TMP_TextInfo textInfo)
         {
-            Vector2 firstPos = GetPos(textInfo, textInfo.characterInfo.ToList().FindIndex(obj => obj.character == '_'));
-            Vector2 secondPos = GetPos(textInfo, textInfo.characterInfo.ToList().FindLastIndex(obj => obj.character == '_'));
+            List<TMP_CharacterInfo> characterInfos = textInfo.characterInfo.ToList();
+            List<Vector2> characterPosition = new List<Vector2>();
+            Vector2 centerPosition = Vector2.zero;
 
-            Vector3 centerPosition = new Vector3((firstPos.x + secondPos.x) / 2, 0);
+            for (int i=0; i<characterInfos.Count; i++)
+            {
+                if (characterInfos[i].character == '_')
+                    characterPosition.Add(GetPositionOfCharacter(textInfo, i));
+            }
+
+            for (int i=0; i<characterPosition.Count; i++)
+            {
+                centerPosition += characterPosition[i];
+            }
+
+            centerPosition = new Vector2(centerPosition.x / characterPosition.Count, 0);
+
             return centerPosition;
         }
 
-        Vector2 GetPos(TMP_TextInfo textInfo, int index)
+        /// <summary>
+        /// It calculates the center position of Missing Letters
+        /// </summary>
+        /// <param name="textInfo"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        Vector2 GetPositionOfCharacter(TMP_TextInfo textInfo, int index)
         {
             int materialIndex = textInfo.characterInfo[index].materialReferenceIndex;
 
@@ -128,15 +167,23 @@ namespace Immersive.FillInTgeBlank
             return charMidBasline;
         }
 
-        public void OnSelect()
+        /// <summary>
+        /// Callback for Missing Letter to Highlight it.
+        /// </summary>
+        public new void OnSelect()
         {
-            textGlow.enabled = true;
-            textGlow.gameObject.AddComponent<PulseAnimation>();        
+            if (letterStats == MissingLettersStats.NotPlace)
+            {
+                base.OnSelect();
+            }
         }
 
-        public void OnDeselect()
+        /// <summary>
+        /// Callback for Missing Letter to remove the Highlight.
+        /// </summary>
+        public new void OnDeselect()
         {
-            textGlow.enabled = false;
+            base.OnDeselect();
         }
     }
 }

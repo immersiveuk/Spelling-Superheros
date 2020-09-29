@@ -6,6 +6,11 @@ namespace Immersive.FillInTgeBlank
 {
     public class SpellingPanel : MonoBehaviour
     {
+        /// <summary>
+        /// Assign Spelling to the child object TextMesh pro
+        /// </summary>
+        /// <param name="fillInTheBlanksData"></param>
+        /// <returns></returns>
         public FillInTheBlankSpelling[] SetPanel(List<FillInTheBlanksData> fillInTheBlanksData)
         {
             FillInTheBlankSpelling[] textSpelling = GetComponentsInChildren<FillInTheBlankSpelling>();

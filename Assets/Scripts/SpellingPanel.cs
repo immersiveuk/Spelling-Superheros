@@ -11,9 +11,9 @@ namespace Immersive.FillInTgeBlank
         /// </summary>
         /// <param name="fillInTheBlanksData"></param>
         /// <returns></returns>
-        public FillInTheBlankSpelling[] SetPanel(List<FillInTheBlanksData> fillInTheBlanksData)
+        public FillInTheBlanksSpelling[] SetPanel(List<FillInTheBlanksData> fillInTheBlanksData)
         {
-            FillInTheBlankSpelling[] textSpelling = GetComponentsInChildren<FillInTheBlankSpelling>();
+            FillInTheBlanksSpelling[] textSpelling = GetComponentsInChildren<FillInTheBlanksSpelling>();
 
             for (int i = 0; i < textSpelling.Length; i++)
             {

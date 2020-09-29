@@ -10,7 +10,7 @@ namespace Immersive.FillInTgeBlank
 {
     public class FillInTheBlanksManager : MonoBehaviour
     {
-        public delegate void SpellingSelected(FillInTheBlankSpelling fillInTheBlanksData);
+        public delegate void SpellingSelected(FillInTheBlanksSpelling fillInTheBlanksData);
         public static event SpellingSelected OnSpellingSelected;
 
         public SpellingPanel spellingPanel;
@@ -22,13 +22,13 @@ namespace Immersive.FillInTgeBlank
         public AudioClip positiveClip;
         public AudioClip negativeClip;
 
-        List<FillInTheBlankSpelling> spellings;
+        List<FillInTheBlanksSpelling> spellings;
 
         private int questionNo = 0;
 
         void Start()
         {
-            spellings = new List<FillInTheBlankSpelling>();
+            spellings = new List<FillInTheBlanksSpelling>();
             SetLayout();
         }
 
@@ -85,6 +85,7 @@ namespace Immersive.FillInTgeBlank
         public string spelling;
         public int startIndex;
         public int endIndex;
+
         [NonSerialized]
         public string missingLetters;
     }

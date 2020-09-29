@@ -9,13 +9,13 @@ using UnityEngine;
 namespace Immersive.FillInTgeBlank
 {
     
-    public class FillInTheBlankMissingLetters : Highlighter, IInteractableObject
+    public class FillInTheBlanksMissingLetters : Highlighter, IInteractableObject
     {
         public enum MissingLettersStats {NotPlace, Placing, Placed, CanPlace }
 
         public TextMeshPro textOption;
 
-        FillInTheBlankSpelling selectedSpelling;
+        FillInTheBlanksSpelling selectedSpelling;
         MissingLettersStats letterStats = MissingLettersStats.NotPlace;
 
         Action<bool> resultAction;
@@ -42,7 +42,7 @@ namespace Immersive.FillInTgeBlank
             SetText(option);
         }
 
-        private void OnSpellingSelected(FillInTheBlankSpelling spelling)
+        private void OnSpellingSelected(FillInTheBlanksSpelling spelling)
         {
             selectedSpelling = spelling;
         }

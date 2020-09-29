@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Immersive.FillInTgeBlank.FillInTheBlankMissingLetters;
+using static Immersive.FillInTgeBlank.FillInTheBlanksMissingLetters;
 
 namespace Immersive.FillInTgeBlank
 {
@@ -21,7 +21,7 @@ namespace Immersive.FillInTgeBlank
             this.resultAction = resultAction;
             var options = GetRandomisedOptions(fillInTheBlanksData);
 
-            FillInTheBlankMissingLetters[] textMissingLetters = GetComponentsInChildren<FillInTheBlankMissingLetters>();
+            FillInTheBlanksMissingLetters[] textMissingLetters = GetComponentsInChildren<FillInTheBlanksMissingLetters>();
 
             for (int i = 0; i < textMissingLetters.Length; i++)
             {
@@ -47,7 +47,7 @@ namespace Immersive.FillInTgeBlank
         /// </summary>
         void Highlight()
         {
-            foreach (var letter in GetComponentsInChildren<FillInTheBlankMissingLetters>())
+            foreach (var letter in GetComponentsInChildren<FillInTheBlanksMissingLetters>())
             {
                 letter.OnSelect();
             }

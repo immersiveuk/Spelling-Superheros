@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Immersive.FillInTgeBlank
 {
-    public class FillInTheBlankSpelling : Highlighter
+    public class FillInTheBlanksSpelling : Highlighter
     {
         public TextMeshPro textSpelling;
         public Transform missingLetterPosition;

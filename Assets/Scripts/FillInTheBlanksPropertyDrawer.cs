@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Immersive.FillInTgeBlank
+namespace Immersive.FillInTheBlank
 {
     [CustomPropertyDrawer(typeof(FillInTheBlanksData))]
     public class FillInTheBlanksPropertyDrawer : PropertyDrawer
@@ -19,10 +19,13 @@ namespace Immersive.FillInTgeBlank
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            var indent = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
+
             verticalSpace = EditorGUI.GetPropertyHeight(property.FindPropertyRelative("spelling"));
 
-            var labelRect = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
-            EditorGUI.LabelField(labelRect, property.displayName);
+            //var labelRect = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
+            //EditorGUI.LabelField(labelRect, property.displayName);
 
             var textRect = new Rect(EditorGUIUtility.labelWidth, position.y, position.width - EditorGUIUtility.labelWidth, EditorGUI.GetPropertyHeight(property.FindPropertyRelative("spelling")));
             EditorGUI.PropertyField(textRect, property.FindPropertyRelative("spelling"), GUIContent.none, true);
@@ -40,6 +43,22 @@ namespace Immersive.FillInTgeBlank
 
             sizeRect.x += 80; sizeRect.width = contentWidth / 4;
             DrawDropDown(property, "endIndex", spelling, sizeRect, startChoinceIndex, ref endChoinceIndex);
+
+            string preview = spelling;
+
+            int startIndex = property.FindPropertyRelative("startIndex").intValue;
+            int endIndex = property.FindPropertyRelative("endIndex").intValue;
+
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                preview = preview.Remove(i, 1);
+                preview = preview.Insert(i, "_");
+            }
+
+            var previewSizeRect = new Rect(EditorGUIUtility.labelWidth,sizeRect.y + verticalSpace + 5, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
+            EditorGUI.LabelField(previewSizeRect, "Preview: "+preview);
+
+            EditorGUI.indentLevel = indent;
         }
 
         void DrawDropDown(SerializedProperty property, string propertyKey, string stringValue, Rect position, int startIndex, ref int ChoinceIndex)
@@ -54,8 +73,10 @@ namespace Immersive.FillInTgeBlank
                 }
 
                 ChoinceIndex = options.IndexOf(""+property.FindPropertyRelative(propertyKey).intValue);
+
                 if (ChoinceIndex < 0)
                     ChoinceIndex = 0;
+
                 ChoinceIndex = EditorGUI.Popup(position, ChoinceIndex, options.ToArray());
 
                 property.FindPropertyRelative(propertyKey).intValue = int.Parse(options[ChoinceIndex]);

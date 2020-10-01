@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Immersive.FillInTgeBlank
+namespace Immersive.FillInTheBlank
 {
-    public class FillInTheBlanksSpelling : Highlighter
+    public class FillInTheBlanksSpelling : MonoBehaviour
     {
         public TextMeshPro textSpelling;
         public Transform missingLetterPosition;
-         
+
+       
+        protected virtual void Highlight()
+        {
+
+        }
+
+        protected virtual void Unhighlight()
+        {
+
+        }
+
         [HideInInspector]
         public FillInTheBlanksData spellingData;
 
@@ -22,16 +33,18 @@ namespace Immersive.FillInTgeBlank
             this.spellingData = data;
 
             string spelling = data.spelling;
-            char[] optionChar = data.missingLetters.ToCharArray();
+            
+            spelling = spelling.Replace(data.missingLetters,"<#00000000>"+ data.missingLetters+"</color>");
 
-            for (int i = 0; i < optionChar.Length; i++)
-            {
-                spelling = spelling.Replace(optionChar[i], '_');
-            }
+            //char[] optionChar = data.missingLetters.ToCharArray();
+
+            //for (int i = 0; i < optionChar.Length; i++)
+            //{
+            //    spelling = spelling.Replace(optionChar[i], '_');
+            //}
 
             textSpelling.text = spelling;
 
-            SetText(spelling);
         }
 
         /// <summary>
@@ -39,30 +52,31 @@ namespace Immersive.FillInTgeBlank
         /// </summary>
         public void OnCorrectAnswer()
         {
-            char[] optionChar = spellingData.missingLetters.ToCharArray();
+            textSpelling.text = spellingData.spelling;
+            //char[] optionChar = spellingData.missingLetters.ToCharArray();
 
-            for (int i = 0; i < optionChar.Length; i++)
-            {             
-                int index = textSpelling.text.IndexOf('_');
-                textSpelling.text = textSpelling.text.Remove(index, 1);
-                textSpelling.text = textSpelling.text.Insert(index, optionChar[i].ToString());
-            }
+            //for (int i = 0; i < optionChar.Length; i++)
+            //{             
+            //    int index = textSpelling.text.IndexOf('_');
+            //    textSpelling.text = textSpelling.text.Remove(index, 1);
+            //    textSpelling.text = textSpelling.text.Insert(index, optionChar[i].ToString());
+            //}
         }
 
         /// <summary>
         /// Callback for Selected Spelling to Highlight the spelling.
         /// </summary>
-        public new void OnSelect()
+        public void OnSelect()
         {
-            base.OnSelect();
+            Highlight();
         }
 
         /// <summary>
         /// Callback for Selected Spelling to remove Highlight
         /// </summary>
-        public new void OnDeselect()
+        public void OnDeselect()
         {
-            base.OnDeselect();
+            Unhighlight();
         }
     }
 }

@@ -34,8 +34,8 @@ RectTransform:
   m_Father: {fileID: 1936429873395105292}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -212,8 +212,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1936429873395105292}
   - component: {fileID: 2471721739442275340}
-  - component: {fileID: 6993266031751711572}
   - component: {fileID: 2474389370076581223}
+  - component: {fileID: 4642325266701174795}
   m_Layer: 0
   m_Name: Option Prefab
   m_TagString: Untagged
@@ -285,20 +285,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6993266031751711572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3304509611616110830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6166d1f6051bf3a4d86178d951848f94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textOption: {fileID: 256575725237420526}
-  textGlow: {fileID: 5071302952809194799}
 --- !u!65 &2474389370076581223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -312,6 +298,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 3, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4642325266701174795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3304509611616110830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b29e83f7fda1d41b4e99787ced5ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textOption: {fileID: 256575725237420526}
+  textGlow: {fileID: 5071302952809194799}
 --- !u!1 &6633411162394062835
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,8 +346,8 @@ RectTransform:
   m_Father: {fileID: 1936429873395105292}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}

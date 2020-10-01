@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Immersive.FillInTgeBlank
+namespace Immersive.FillInTheBlank
 {
-    public class Highlighter : MonoBehaviour
+    public class SpellingHighligher : FillInTheBlanksSpelling
     {
         public TextMeshPro textGlow;
         public SpriteRenderer background;
 
-        public void SetText(string textValue)
-        {
-            textGlow.text = textValue;
-        }
 
-        public void OnSelect()
+        protected override void Highlight()
         {
+            textGlow.text = textSpelling.text;
+
             if (textGlow)
             {
                 textGlow.enabled = true;
@@ -27,7 +25,7 @@ namespace Immersive.FillInTgeBlank
                 background.enabled = true;
         }
 
-        public void OnDeselect()
+        protected override void Unhighlight()
         {
             if (textGlow)
                 textGlow.enabled = false;

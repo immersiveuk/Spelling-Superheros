@@ -6,17 +6,21 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-namespace Immersive.FillInTgeBlank
+namespace Immersive.FillInTheBlank
 {
-    
-    public class FillInTheBlanksMissingLetters : Highlighter, IInteractableObject
+    public class FillInTheBlanksMissingLetter : MonoBehaviour, IInteractableObject
     {
+        protected virtual void Highlight() {}
+
+        protected virtual void Unhighlight() {}
+
         public enum MissingLettersStats {NotPlace, Placing, Placed, CanPlace }
+        MissingLettersStats letterStats = MissingLettersStats.NotPlace;
 
         public TextMeshPro textOption;
 
         FillInTheBlanksSpelling selectedSpelling;
-        MissingLettersStats letterStats = MissingLettersStats.NotPlace;
+        
 
         Action<bool> resultAction;
 
@@ -39,7 +43,7 @@ namespace Immersive.FillInTgeBlank
             textOption.text = option;
             this.resultAction = resultAction;
 
-            SetText(option);
+            OnSelect();
         }
 
         private void OnSpellingSelected(FillInTheBlanksSpelling spelling)
@@ -49,13 +53,13 @@ namespace Immersive.FillInTgeBlank
 
         public void OnPress()
         {
-            if (MissingLettersPanel.missingLettersStats != MissingLettersStats.CanPlace || letterStats != MissingLettersStats.NotPlace)
+            if (FillInTheBlanksManager.missingLettersStats != MissingLettersStats.CanPlace || letterStats != MissingLettersStats.NotPlace)
                 return;
 
             letterStats = MissingLettersStats.Placing;
-            MissingLettersPanel.missingLettersStats = MissingLettersStats.Placing;
+            FillInTheBlanksManager.missingLettersStats = MissingLettersStats.Placing;
 
-            selectedSpelling.missingLetterPosition.localPosition = GetCenterPositionOfCharacters(selectedSpelling.textSpelling.textInfo);
+            selectedSpelling.missingLetterPosition.localPosition = GetPosition(selectedSpelling.textSpelling.textInfo);
 
             OnDeselect();
 
@@ -118,6 +122,22 @@ namespace Immersive.FillInTgeBlank
 
         }
 
+        Vector2 GetPosition(TMP_TextInfo textInfo)
+        {
+            Vector2 centerPosition;
+
+            Vector3 bottomLeft = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.startIndex, true);
+            Vector3 bottomRight = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.endIndex, false);
+
+            centerPosition = (bottomLeft + bottomRight) / 2;
+            centerPosition = new Vector2(centerPosition.x, 0);
+
+            Debug.Log(centerPosition);
+
+            return centerPosition;
+        }
+
+        /*
         /// <summary>
         /// It gives center local position of given characters info
         /// </summary>
@@ -131,8 +151,10 @@ namespace Immersive.FillInTgeBlank
 
             for (int i=0; i<characterInfos.Count; i++)
             {
-                if (characterInfos[i].character == '_')
+                if (i >= selectedSpelling.spellingData.startIndex && i <= selectedSpelling.spellingData.endIndex)
+                {
                     characterPosition.Add(GetPositionOfCharacter(textInfo, i));
+                }
             }
 
             for (int i=0; i<characterPosition.Count; i++)
@@ -165,25 +187,52 @@ namespace Immersive.FillInTgeBlank
             Vector2 charMidBasline = (vertices[vertexIndex + 0] + vertices[vertexIndex + 2]) / 2;
 
             return charMidBasline;
+        }*/
+
+        Vector2 GetPositionOfCharacter(TMP_TextInfo textInfo, int index, bool isLeft)
+        {
+            int materialIndex = textInfo.characterInfo[index].materialReferenceIndex;
+
+            // Get the index of the first vertex of the selected character.
+            int vertexIndex = textInfo.characterInfo[index].vertexIndex;
+
+            // Get a reference to the vertices array.
+            Vector3[] vertices = textInfo.meshInfo[materialIndex].vertices;
+
+            // Determine the center point of the character.
+            Vector2 charMidBasline;
+
+            if (isLeft)
+            {
+                charMidBasline = vertices[vertexIndex + 0];
+                //Debug.Log("Left "+vertices[vertexIndex + 0]);
+            }
+            else
+            {
+                charMidBasline = vertices[vertexIndex + 2];
+                //Debug.Log("Right    "+vertices[vertexIndex + 2]);
+            }
+
+            return charMidBasline;
         }
 
         /// <summary>
         /// Callback for Missing Letter to Highlight it.
         /// </summary>
-        public new void OnSelect()
+        public void OnSelect()
         {
             if (letterStats == MissingLettersStats.NotPlace)
             {
-                base.OnSelect();
+                Highlight();
             }
         }
 
         /// <summary>
         /// Callback for Missing Letter to remove the Highlight.
         /// </summary>
-        public new void OnDeselect()
+        public void OnDeselect()
         {
-            base.OnDeselect();
+            Unhighlight();
         }
     }
 }

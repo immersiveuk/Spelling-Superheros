@@ -26,12 +26,11 @@ namespace Immersive.FillInTheBlank
 
             //var labelRect = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
             //EditorGUI.LabelField(labelRect, property.displayName);
-
-            var textRect = new Rect(EditorGUIUtility.labelWidth, position.y, position.width - EditorGUIUtility.labelWidth, EditorGUI.GetPropertyHeight(property.FindPropertyRelative("spelling")));
+            var textRect = new Rect(position.x + EditorGUIUtility.labelWidth, position.y, position.width - EditorGUIUtility.labelWidth, EditorGUI.GetPropertyHeight(property.FindPropertyRelative("spelling")));
             EditorGUI.PropertyField(textRect, property.FindPropertyRelative("spelling"), GUIContent.none, true);
 
             float contentWidth = position.width / 2;
-            var sizeRect = new Rect(EditorGUIUtility.labelWidth, position.y + verticalSpace + 5, 90, EditorGUIUtility.singleLineHeight);
+            var sizeRect = new Rect(position.x + EditorGUIUtility.labelWidth, position.y + verticalSpace + 5, 90, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(sizeRect, "Start Index");
 
             sizeRect.x += 80; sizeRect.width = contentWidth / 4;
@@ -55,7 +54,7 @@ namespace Immersive.FillInTheBlank
                 preview = preview.Insert(i, "_");
             }
 
-            var previewSizeRect = new Rect(EditorGUIUtility.labelWidth,sizeRect.y + verticalSpace + 5, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
+            var previewSizeRect = new Rect(position.x + EditorGUIUtility.labelWidth,sizeRect.y + verticalSpace + 5, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(previewSizeRect, "Preview: "+preview);
 
             EditorGUI.indentLevel = indent;

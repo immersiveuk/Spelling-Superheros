@@ -47,7 +47,7 @@ namespace Immersive.FillInTheBlank
         {
             for (int i = 0; i < spellings.Count; i++)
             {
-                fillInTheBlanksData[i].missingLetters = fillInTheBlanksData[i].spelling.Substring(fillInTheBlanksData[i].startIndex, fillInTheBlanksData[i].endIndex - fillInTheBlanksData[i].startIndex + 1);
+                //fillInTheBlanksData[i].missingLetters = fillInTheBlanksData[i].spelling.Substring(fillInTheBlanksData[i].startIndex, fillInTheBlanksData[i].endIndex - fillInTheBlanksData[i].startIndex + 1);
                 spellings[i].SetText(fillInTheBlanksData[i]);
             }
         }
@@ -60,7 +60,7 @@ namespace Immersive.FillInTheBlank
 
             for (int i = 0; i < missingLetters.Count; i++)
             {  
-                missingLetters[i].SetText(lettrsToShuffle[i].missingLetters, OnResultAction);
+                missingLetters[i].SetText(lettrsToShuffle[i], OnResultAction);
             }
         }
 

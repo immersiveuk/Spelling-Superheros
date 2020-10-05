@@ -10,6 +10,19 @@ namespace Immersive.FillInTheBlank
 {
     public class FillInTheBlanksMissingLetter : MonoBehaviour, IInteractableObject
     {
+        [System.Serializable]
+        public class SpellingParts
+        {
+            public string type;
+            public string value;
+
+            public SpellingParts(string type, string value)
+            {
+                this.type = type;
+                this.value = value;
+            }
+        }
+
         protected virtual void Highlight() {}
 
         protected virtual void Unhighlight() {}
@@ -38,8 +51,39 @@ namespace Immersive.FillInTheBlank
         /// It is to set "Missing Letter" text value to TextMesh pro and Highlighter Text.
         /// </summary>
         /// <param name="data"></param>
-        public void SetText(string option, Action<bool> resultAction)
+        public void SetText(FillInTheBlanksData data, Action<bool> resultAction)
         {
+            string option = "";
+
+            List<SpellingParts> spellingParts = new List<SpellingParts>();
+
+            for (int i = 0; i < data.missingPairs; i++)
+            {
+                if (i == 0 && data.indexs[i].x > 0)
+                    spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(0, data.indexs[i].x)));
+
+                spellingParts.Add(new SpellingParts("Option", data.spelling.Substring(data.indexs[i].x, data.indexs[i].y - data.indexs[i].x + 1)));
+
+                if (i < data.missingPairs - 1)
+                    spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(data.indexs[i].y + 1, data.indexs[i + 1].x - data.indexs[i].y - 1)));
+            }
+
+            spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(data.indexs[data.indexs.Length - 1].y + 1, data.spelling.Length - data.indexs[data.indexs.Length - 1].y-1)));
+
+            foreach (var obj in spellingParts)
+            {
+                if (!string.IsNullOrEmpty(obj.value))
+                {
+                    if (obj.type.Contains("Spelling"))
+                    {
+                        option += "<#00000000>" + obj.value + "</color>";
+                    }
+                    else
+                        option += obj.value;
+                }
+            }
+
+            data.missingLetters = option;
             textOption.text = option;
             this.resultAction = resultAction;
 
@@ -59,7 +103,7 @@ namespace Immersive.FillInTheBlank
             letterStats = MissingLettersStats.Placing;
             FillInTheBlanksManager.missingLettersStats = MissingLettersStats.Placing;
 
-            selectedSpelling.missingLetterPosition.localPosition = GetPosition(selectedSpelling.textSpelling.textInfo);
+            //selectedSpelling.missingLetterPosition.localPosition = GetPosition(selectedSpelling.textSpelling.textInfo);
 
             OnDeselect();
 
@@ -126,69 +170,19 @@ namespace Immersive.FillInTheBlank
         {
             Vector2 centerPosition;
 
-            Vector3 bottomLeft = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.startIndex, true);
-            Vector3 bottomRight = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.endIndex, false);
+            Vector3 bottomLeft = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.indexs[0].x, true);
+            Vector3 bottomRight = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.indexs[selectedSpelling.spellingData.indexs.Length-1].y, false);
 
             centerPosition = (bottomLeft + bottomRight) / 2;
-            centerPosition = new Vector2(centerPosition.x, 0);
+
+            centerPosition = new Vector2(selectedSpelling.textSpelling.transform.position.x, 0);
 
             Debug.Log(centerPosition);
 
             return centerPosition;
         }
 
-        /*
-        /// <summary>
-        /// It gives center local position of given characters info
-        /// </summary>
-        /// <param name="textInfo"></param>
-        /// <returns></returns>
-        Vector2 GetCenterPositionOfCharacters(TMP_TextInfo textInfo)
-        {
-            List<TMP_CharacterInfo> characterInfos = textInfo.characterInfo.ToList();
-            List<Vector2> characterPosition = new List<Vector2>();
-            Vector2 centerPosition = Vector2.zero;
-
-            for (int i=0; i<characterInfos.Count; i++)
-            {
-                if (i >= selectedSpelling.spellingData.startIndex && i <= selectedSpelling.spellingData.endIndex)
-                {
-                    characterPosition.Add(GetPositionOfCharacter(textInfo, i));
-                }
-            }
-
-            for (int i=0; i<characterPosition.Count; i++)
-            {
-                centerPosition += characterPosition[i];
-            }
-
-            centerPosition = new Vector2(centerPosition.x / characterPosition.Count, 0);
-
-            return centerPosition;
-        }
-
-        /// <summary>
-        /// It calculates the center position of Missing Letters
-        /// </summary>
-        /// <param name="textInfo"></param>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        Vector2 GetPositionOfCharacter(TMP_TextInfo textInfo, int index)
-        {
-            int materialIndex = textInfo.characterInfo[index].materialReferenceIndex;
-
-            // Get the index of the first vertex of the selected character.
-            int vertexIndex = textInfo.characterInfo[index].vertexIndex;
-
-            // Get a reference to the vertices array.
-            Vector3[] vertices = textInfo.meshInfo[materialIndex].vertices;
-
-            // Determine the center point of the character.
-            Vector2 charMidBasline = (vertices[vertexIndex + 0] + vertices[vertexIndex + 2]) / 2;
-
-            return charMidBasline;
-        }*/
-
+   
         Vector2 GetPositionOfCharacter(TMP_TextInfo textInfo, int index, bool isLeft)
         {
             int materialIndex = textInfo.characterInfo[index].materialReferenceIndex;

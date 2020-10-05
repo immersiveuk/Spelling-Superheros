@@ -9,10 +9,12 @@ namespace Immersive.FillInTheBlank
     public class FillInTheBlanksData
     {
         public string spelling;
-        public int startIndex;
-        public int endIndex;
+        public Vector2Int[] indexs;
 
         [NonSerialized]
         public string missingLetters;
+
+        [Range(1, 5)]
+        public int missingPairs = 1;
     }
 }

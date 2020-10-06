@@ -1023,9 +1023,11 @@ MonoBehaviour:
   fillInTheBlanksData:
   - spelling: RAIN
     indexs:
-    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 1, y: 1}
     - {x: 2, y: 2}
-    missingPairs: 2
+    - {x: 3, y: 3}
+    missingPairs: 4
   positiveClip: {fileID: 8300000, guid: 61a9bcd5f62618c4a8e11605870159c4, type: 3}
   negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}
   spellings:

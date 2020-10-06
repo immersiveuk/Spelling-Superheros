@@ -9,8 +9,7 @@ namespace Immersive.FillInTheBlank
     public class FillInTheBlanksPropertyDrawer : PropertyDrawer
     {
         private float verticalSpace = 0;
-        //int startChoinceIndex, endChoinceIndex;
-        Vector2Int[] missingIndexs;
+        Vector2Int[] missingIndexs = new Vector2Int[1];
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -23,6 +22,23 @@ namespace Immersive.FillInTheBlank
             var indent = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
 
+            string spelling = property.FindPropertyRelative("spelling").stringValue;
+            string preview = spelling;
+
+            int missingPairs = property.FindPropertyRelative("missingPairs").intValue;
+
+            if ( missingIndexs.Length > 0)
+            {
+                for (int i = 1; i < missingIndexs.Length; i++)
+                {
+                    if (missingIndexs[i - 1].y + 1 >= spelling.Length)
+                    {
+                        property.FindPropertyRelative("missingPairs").intValue = i;
+                        break;
+                    }
+                }
+            }
+
             missingIndexs = new Vector2Int[property.FindPropertyRelative("missingPairs").intValue];
             property.FindPropertyRelative("indexs").arraySize = missingIndexs.Length;
 
@@ -33,8 +49,7 @@ namespace Immersive.FillInTheBlank
             EditorGUI.PropertyField(missingPairsSizeRect, property.FindPropertyRelative("missingPairs"), new GUIContent("Missing Pairs:"));
 
             float contentWidth = position.width / 2;
-            string spelling = property.FindPropertyRelative("spelling").stringValue;
-            string preview = spelling;
+            
 
             for (int i = 0; i < missingIndexs.Length; i++)
             {
@@ -99,7 +114,7 @@ namespace Immersive.FillInTheBlank
         */
         void DrawDropDown_X(SerializedProperty property, string stringValue, Rect position, int index)
         {
-            if (stringValue.Length > 0)
+            if (stringValue.Length > 0 && missingIndexs[index].x<stringValue.Length)
             {
                 List<string> options = new List<string>();
 
@@ -107,13 +122,16 @@ namespace Immersive.FillInTheBlank
 
                 if (index > 0)
                 {
-                    temp = missingIndexs[index - 1].y+1;
+                    temp = missingIndexs[index - 1].y + 1;
                 }
 
                 for (int i = 0 + temp; i < stringValue.Length; i++)
                 {
                     options.Add("" + i);
                 }
+
+                if (options.Count <= 0)
+                    return;
 
                 int choice = options.IndexOf("" + property.vector2IntValue.x);
                 if (choice < 0)
@@ -132,7 +150,7 @@ namespace Immersive.FillInTheBlank
 
         void DrawDropDown_Y(SerializedProperty property, string stringValue, Rect position, int index)
         {
-            if (stringValue.Length > 0)
+            if (stringValue.Length > 0 && missingIndexs[index].x < stringValue.Length)
             {
                 List<string> options = new List<string>();
 

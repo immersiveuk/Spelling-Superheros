@@ -9,12 +9,12 @@ namespace Immersive.FillInTheBlank
     public class FillInTheBlanksPropertyDrawer : PropertyDrawer
     {
         private float verticalSpace = 0;
-        Vector2Int[] missingIndexs = new Vector2Int[1];
+        Vector2Int[] missingIndexs = new Vector2Int[0];
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             verticalSpace = EditorGUIUtility.singleLineHeight * property.FindPropertyRelative("indexs").arraySize;// EditorGUI.GetPropertyHeight(property.FindPropertyRelative("indexs"));
-            return 4* EditorGUIUtility.singleLineHeight + verticalSpace;
+            return 5* EditorGUIUtility.singleLineHeight + verticalSpace;
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -25,37 +25,35 @@ namespace Immersive.FillInTheBlank
             string spelling = property.FindPropertyRelative("spelling").stringValue;
             string preview = spelling;
 
-            int missingPairs = property.FindPropertyRelative("missingPairs").intValue;
+            var spellingRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+            EditorGUI.PropertyField(spellingRect, property.FindPropertyRelative("spelling"), GUIContent.none);
 
-            if ( missingIndexs.Length > 0)
+            var missingPairsSizeRect = new Rect(position.x, spellingRect.y + EditorGUIUtility.singleLineHeight + 5, position.width, EditorGUIUtility.singleLineHeight);
+            EditorGUI.PropertyField(missingPairsSizeRect, property.FindPropertyRelative("missingPairs"), new GUIContent("Missing Pairs:"));
+
+            if (property.FindPropertyRelative("missingPairs").intValue > spelling.Length /2)
+                property.FindPropertyRelative("missingPairs").intValue = spelling.Length /2;
+
+            for (int i = 0; i < missingIndexs.Length; i++)
             {
-                for (int i = 1; i < missingIndexs.Length; i++)
+                if (missingIndexs[i].y + 1 >= spelling.Length)
                 {
-                    if (missingIndexs[i - 1].y + 1 >= spelling.Length)
-                    {
-                        property.FindPropertyRelative("missingPairs").intValue = i;
-                        break;
-                    }
+                    if (property.FindPropertyRelative("missingPairs").intValue > i + 1)
+                        property.FindPropertyRelative("missingPairs").intValue = i + 1;
+                    break;
                 }
             }
 
             missingIndexs = new Vector2Int[property.FindPropertyRelative("missingPairs").intValue];
             property.FindPropertyRelative("indexs").arraySize = missingIndexs.Length;
 
-            var textRect = new Rect(position.x + EditorGUIUtility.labelWidth, position.y, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
-            EditorGUI.PropertyField(textRect, property.FindPropertyRelative("spelling"), GUIContent.none);
-
-            var missingPairsSizeRect = new Rect(position.x + EditorGUIUtility.labelWidth, textRect.y + EditorGUIUtility.singleLineHeight + 5, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
-            EditorGUI.PropertyField(missingPairsSizeRect, property.FindPropertyRelative("missingPairs"), new GUIContent("Missing Pairs:"));
-
             float contentWidth = position.width / 2;
             
-
             for (int i = 0; i < missingIndexs.Length; i++)
             {
                 SerializedProperty indexProperty = property.FindPropertyRelative("indexs").GetArrayElementAtIndex(i);
 
-                var sizeRect = new Rect(position.x + EditorGUIUtility.labelWidth, missingPairsSizeRect.y + EditorGUIUtility.singleLineHeight*(i+1) + 5, 90, EditorGUIUtility.singleLineHeight);
+                var sizeRect = new Rect(position.x, missingPairsSizeRect.y + EditorGUIUtility.singleLineHeight*(i+1) + 5, 90, EditorGUIUtility.singleLineHeight);
                 EditorGUI.LabelField(sizeRect, "Start Index");
 
                 sizeRect.x += 80; sizeRect.width = contentWidth / 4;
@@ -78,40 +76,12 @@ namespace Immersive.FillInTheBlank
                 }
             }
 
-            var previewSizeRect = new Rect(position.x + EditorGUIUtility.labelWidth, missingPairsSizeRect.y + EditorGUIUtility.singleLineHeight + verticalSpace + 5, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
+            var previewSizeRect = new Rect(position.x, missingPairsSizeRect.y + EditorGUIUtility.singleLineHeight + verticalSpace + 5, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
             EditorGUI.LabelField(previewSizeRect, "Preview: " + preview);
 
             EditorGUI.indentLevel = indent;
         }
 
-        /*
-        void DrawDropDown(SerializedProperty property, string propertyKey, string stringValue, Rect position, int startIndex, ref int ChoinceIndex)
-        {
-            if (stringValue.Length > 0 && startIndex < stringValue.Length)
-            {
-                List<string> options = new List<string>();
-
-                for (int i = startIndex; i < stringValue.Length; i++)
-                {
-                    options.Add("" + i);
-                }
-
-                ChoinceIndex = options.IndexOf("" + property.FindPropertyRelative(propertyKey).intValue);
-
-                if (ChoinceIndex < 0)
-                    ChoinceIndex = 0;
-
-                ChoinceIndex = EditorGUI.Popup(position, ChoinceIndex, options.ToArray());
-
-                property.FindPropertyRelative(propertyKey).intValue = int.Parse(options[ChoinceIndex]);
-            }
-            else
-            {
-                startChoinceIndex = 0;
-                endChoinceIndex = 0;
-            }
-        }
-        */
         void DrawDropDown_X(SerializedProperty property, string stringValue, Rect position, int index)
         {
             if (stringValue.Length > 0 && missingIndexs[index].x<stringValue.Length)

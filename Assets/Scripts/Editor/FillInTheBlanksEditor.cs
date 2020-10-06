@@ -15,7 +15,7 @@ namespace Immersive.FillInTheBlank
 
         private void OnEnable()
         {
-            fillInTheBlanks = serializedObject.FindProperty("fillInTheBlanks");
+            fillInTheBlanks = serializedObject.FindProperty("fillInTheBlanksData");
             spellings = serializedObject.FindProperty("spellings");
             missingLetters = serializedObject.FindProperty("missingLetters");
         }

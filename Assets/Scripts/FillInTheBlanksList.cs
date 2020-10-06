@@ -7,7 +7,7 @@ namespace Immersive.FillInTheBlank
 {
     public class FillInTheBlanksList : MonoBehaviour
     {
-        public List<FillInTheBlanksData> fillInTheBlanks;
+        public List<FillInTheBlanksData> fillInTheBlanksData;
         public List<FillInTheBlanksSpelling> spellings;
         public List<FillInTheBlanksMissingLetter> missingLetters;
     }

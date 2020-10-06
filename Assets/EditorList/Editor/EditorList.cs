@@ -109,7 +109,6 @@ public static class EditorList
 		}
 		if (GUILayout.Button(duplicateButtonContent, EditorStyles.miniButtonMid, miniButtonWidth))
 		{
-			Debug.Log("Add");
 			list.InsertArrayElementAtIndex(index);
 			FillInTheBlanksEditor.InsertArrayElementAtIndex(index);
 		}

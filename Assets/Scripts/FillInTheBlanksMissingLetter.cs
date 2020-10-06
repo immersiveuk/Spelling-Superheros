@@ -39,20 +39,22 @@ namespace Immersive.FillInTheBlank
 
         private void Awake()
         {
-            FillInTheBlanksManager.OnSpellingSelected += OnSpellingSelected;
+            //FillInTheBlanksManager.OnSpellingSelected += OnSpellingSelected;
         }
 
         private void OnDestroy()
         {
-            FillInTheBlanksManager.OnSpellingSelected -= OnSpellingSelected;
+            //FillInTheBlanksManager.OnSpellingSelected -= OnSpellingSelected;
         }
 
         /// <summary>
         /// It is to set "Missing Letter" text value to TextMesh pro and Highlighter Text.
         /// </summary>
         /// <param name="data"></param>
-        public void SetText(FillInTheBlanksData data, Action<bool> resultAction)
+        public void SetText(FillInTheBlanksData data, FillInTheBlanksManager manager, Action<bool> resultAction)
         {
+            manager.OnSpellingSelected += OnSpellingSelected;
+
             string option = "";
 
             List<SpellingParts> spellingParts = new List<SpellingParts>();
@@ -166,6 +168,7 @@ namespace Immersive.FillInTheBlank
 
         }
 
+        /*
         Vector2 GetPosition(TMP_TextInfo textInfo)
         {
             Vector2 centerPosition;
@@ -209,7 +212,7 @@ namespace Immersive.FillInTheBlank
 
             return charMidBasline;
         }
-
+        */
         /// <summary>
         /// Callback for Missing Letter to Highlight it.
         /// </summary>

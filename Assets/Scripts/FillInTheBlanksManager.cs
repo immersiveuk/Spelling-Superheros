@@ -12,16 +12,17 @@ namespace Immersive.FillInTheBlank
     public class FillInTheBlanksManager : MonoBehaviour
     {
         public delegate void SpellingSelected(FillInTheBlanksSpelling fillInTheBlanksData);
-        public static event SpellingSelected OnSpellingSelected;
+        public event SpellingSelected OnSpellingSelected;
 
-        public List<FillInTheBlanksData> fillInTheBlanksData;
+        public FillInTheBlanksList fillInTheBlanksList;
+        //public List<FillInTheBlanksData> fillInTheBlanksData;
 
         [Header("Sounds")]
         public AudioClip positiveClip;
         public AudioClip negativeClip;
 
-        public List<FillInTheBlanksSpelling> spellings;
-        public List<FillInTheBlanksMissingLetter> missingLetters;
+        //public List<FillInTheBlanksSpelling> spellings;
+        //public List<FillInTheBlanksMissingLetter> missingLetters;
 
         private int questionNo = 0;
 
@@ -45,22 +46,21 @@ namespace Immersive.FillInTheBlank
 
         void SetSpellings()
         {
-            for (int i = 0; i < spellings.Count; i++)
+            for (int i = 0; i < fillInTheBlanksList.spellings.Count; i++)
             {
-                //fillInTheBlanksData[i].missingLetters = fillInTheBlanksData[i].spelling.Substring(fillInTheBlanksData[i].startIndex, fillInTheBlanksData[i].endIndex - fillInTheBlanksData[i].startIndex + 1);
-                spellings[i].SetText(fillInTheBlanksData[i]);
+                fillInTheBlanksList.spellings[i].SetText(fillInTheBlanksList.fillInTheBlanksData[i]);
             }
         }
 
         void SetMissingLetters()
         {
             List<FillInTheBlanksData> lettrsToShuffle = new List<FillInTheBlanksData>();
-            lettrsToShuffle.AddRange(fillInTheBlanksData);
+            lettrsToShuffle.AddRange(fillInTheBlanksList.fillInTheBlanksData);
             lettrsToShuffle.Shuffle();
 
-            for (int i = 0; i < missingLetters.Count; i++)
-            {  
-                missingLetters[i].SetText(lettrsToShuffle[i], OnResultAction);
+            for (int i = 0; i < fillInTheBlanksList.missingLetters.Count; i++)
+            {
+                fillInTheBlanksList.missingLetters[i].SetText(lettrsToShuffle[i], this, OnResultAction);
             }
         }
 
@@ -86,16 +86,17 @@ namespace Immersive.FillInTheBlank
         /// </summary>
         public void SelectNextSpelling()
         {
-            foreach (var obj in spellings)
+            foreach (var obj in fillInTheBlanksList.spellings)
             {
                 obj.OnDeselect();
             }
 
-            if (questionNo >= spellings.Count)
+            if (questionNo >= fillInTheBlanksList.spellings.Count)
                 return;
 
-            spellings[questionNo].OnSelect();
-            OnSpellingSelected(spellings[questionNo]);
+            fillInTheBlanksList.spellings[questionNo].OnSelect();
+
+            OnSpellingSelected(fillInTheBlanksList.spellings[questionNo]);
 
             questionNo++;
         }

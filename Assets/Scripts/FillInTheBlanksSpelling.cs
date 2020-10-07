@@ -23,32 +23,46 @@ namespace Immersive.FillInTheBlank
         }
 
         [HideInInspector]
-        public FillInTheBlanksData spellingData;
+        public FillInTheBlanksModel spellingData;
 
         /// <summary>
         /// It is to set "Spelling" text value to TextMesh pro and Highlighter Text after replacing "Missing Letters" with "_".
         /// </summary>
         /// <param name="data"></param>
-        public void SetText(FillInTheBlanksData data)
+        public void SetText(FillInTheBlanksModel data)
         {
             this.spellingData = data;
 
-            string spelling = "";
+            string spelling = SplitSpelling(data.spelling, data.missingLettersPosition);
 
+            textSpelling.text = spelling;
+        }
+
+        string SplitSpelling(string spelling, Vector2Int[] missingLettersPosition)
+        {
             List<SpellingParts> spellingParts = new List<SpellingParts>();
 
-            for (int i = 0; i < data.missingPairs; i++)
+            for (int i = 0; i < missingLettersPosition.Length; i++)
             {
-                if (i == 0 && data.indexs[i].x > 0)
-                    spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(0, data.indexs[i].x)));
+                Vector2Int position = missingLettersPosition[i];
 
-                spellingParts.Add(new SpellingParts("Option", data.spelling.Substring(data.indexs[i].x, data.indexs[i].y - data.indexs[i].x + 1)));
+                if (i == 0 && position.x > 0)
+                    spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(0, position.x)));
 
-                if (i < data.missingPairs - 1)
-                    spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(data.indexs[i].y + 1, data.indexs[i + 1].x - data.indexs[i].y - 1)));
+                spellingParts.Add(new SpellingParts("Option", spelling.Substring(position.x, position.y - position.x + 1)));
+
+                if (i < missingLettersPosition.Length - 1)
+                    spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(position.y + 1, missingLettersPosition[i + 1].x - position.y - 1)));
             }
 
-            spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(data.indexs[data.indexs.Length - 1].y + 1, data.spelling.Length - data.indexs[data.indexs.Length - 1].y - 1)));
+            spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(missingLettersPosition[missingLettersPosition.Length - 1].y + 1, spelling.Length - missingLettersPosition[missingLettersPosition.Length - 1].y - 1)));
+
+            return ApplyTransperancy(spellingParts);
+        }
+
+        string ApplyTransperancy(List<SpellingParts> spellingParts)
+        {
+            string spelling = "";
 
             foreach (var obj in spellingParts)
             {
@@ -63,38 +77,7 @@ namespace Immersive.FillInTheBlank
                 }
             }
 
-            /*
-            int startIndex = -1;
-            int endIndex = -1;
-
-            for (int i = 0; i < data.missingPairs; i++)
-            {
-                int offset = 0;
-
-                if (startIndex != data.indexs[i].x)
-                {
-                    startIndex = data.indexs[i].x;
-
-                    if (spelling.Contains(">"))
-                    {
-                        offset = spelling.LastIndexOf('>') + data.indexs[i].x - endIndex;
-                    }
-
-                    spelling = spelling.Insert(offset , "<u><#00000000>");
-                }
-
-                if (endIndex != data.indexs[i].y)
-                {
-                    endIndex = data.indexs[i].y;
-                    offset = spelling.LastIndexOf('>') + 1;
-                    
-                    int charLength = data.indexs[i].y - data.indexs[i].x + 1;
-                    
-                    spelling = spelling.Insert(offset + charLength, "</color></u>");
-                }
-            }
-            */
-            textSpelling.text = spelling;
+            return spelling;
         }
 
         /// <summary>
@@ -103,14 +86,6 @@ namespace Immersive.FillInTheBlank
         public void OnCorrectAnswer()
         {
             textSpelling.text = spellingData.spelling;
-            //char[] optionChar = spellingData.missingLetters.ToCharArray();
-
-            //for (int i = 0; i < optionChar.Length; i++)
-            //{             
-            //    int index = textSpelling.text.IndexOf('_');
-            //    textSpelling.text = textSpelling.text.Remove(index, 1);
-            //    textSpelling.text = textSpelling.text.Insert(index, optionChar[i].ToString());
-            //}
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Immersive.FillInTheBlank
 {
-    [CustomEditor(typeof(FillInTheBlanksList)), CanEditMultipleObjects]
+    [CustomEditor(typeof(FillInTheBlanksData)), CanEditMultipleObjects]
     public class FillInTheBlanksEditor : Editor
     {
         static SerializedProperty fillInTheBlanks;
@@ -15,7 +15,7 @@ namespace Immersive.FillInTheBlank
 
         private void OnEnable()
         {
-            fillInTheBlanks = serializedObject.FindProperty("fillInTheBlanksData");
+            fillInTheBlanks = serializedObject.FindProperty("fillInTheBlanksList");
             spellings = serializedObject.FindProperty("spellings");
             missingLetters = serializedObject.FindProperty("missingLetters");
         }

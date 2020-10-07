@@ -33,44 +33,62 @@ namespace Immersive.FillInTheBlank
         public TextMeshPro textOption;
 
         FillInTheBlanksSpelling selectedSpelling;
-        
+        FillInTheBlanksData fillInTheBlanksController;
 
         Action<bool> resultAction;
 
         private void Awake()
         {
-            //FillInTheBlanksManager.OnSpellingSelected += OnSpellingSelected;
+            
         }
 
         private void OnDestroy()
         {
-            //FillInTheBlanksManager.OnSpellingSelected -= OnSpellingSelected;
+           
         }
 
         /// <summary>
         /// It is to set "Missing Letter" text value to TextMesh pro and Highlighter Text.
         /// </summary>
         /// <param name="data"></param>
-        public void SetText(FillInTheBlanksData data, FillInTheBlanksManager manager, Action<bool> resultAction)
+        public void SetText(FillInTheBlanksModel data, FillInTheBlanksData controller, Action<bool> resultAction)
         {
-            manager.OnSpellingSelected += OnSpellingSelected;
+            fillInTheBlanksController = controller;
+            controller.OnSpellingSelected += OnSpellingSelected;
 
-            string option = "";
+            string option = SplitSpelling(data.spelling, data.missingLettersPosition);
 
+            this.resultAction = resultAction;
+            data.missingLetters = option;
+            textOption.text = option;
+            OnSelect();
+        }
+
+        string SplitSpelling(string spelling, Vector2Int[] missingLettersPosition)
+        {
             List<SpellingParts> spellingParts = new List<SpellingParts>();
 
-            for (int i = 0; i < data.missingPairs; i++)
+            for (int i = 0; i < missingLettersPosition.Length; i++)
             {
-                if (i == 0 && data.indexs[i].x > 0)
-                    spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(0, data.indexs[i].x)));
+                Vector2Int position = missingLettersPosition[i];
 
-                spellingParts.Add(new SpellingParts("Option", data.spelling.Substring(data.indexs[i].x, data.indexs[i].y - data.indexs[i].x + 1)));
+                if (i == 0 && position.x > 0)
+                    spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(0, position.x)));
 
-                if (i < data.missingPairs - 1)
-                    spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(data.indexs[i].y + 1, data.indexs[i + 1].x - data.indexs[i].y - 1)));
+                spellingParts.Add(new SpellingParts("Option", spelling.Substring(position.x, position.y - position.x + 1)));
+
+                if (i < missingLettersPosition.Length - 1)
+                    spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(position.y + 1, missingLettersPosition[i + 1].x - position.y - 1)));
             }
 
-            spellingParts.Add(new SpellingParts("Spelling", data.spelling.Substring(data.indexs[data.indexs.Length - 1].y + 1, data.spelling.Length - data.indexs[data.indexs.Length - 1].y-1)));
+            spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(missingLettersPosition[missingLettersPosition.Length - 1].y + 1, spelling.Length - missingLettersPosition[missingLettersPosition.Length - 1].y - 1)));
+
+            return ApplyTransperancy(spellingParts);
+        }
+
+        string ApplyTransperancy(List<SpellingParts> spellingParts)
+        {
+            string option = "";
 
             foreach (var obj in spellingParts)
             {
@@ -85,11 +103,7 @@ namespace Immersive.FillInTheBlank
                 }
             }
 
-            data.missingLetters = option;
-            textOption.text = option;
-            this.resultAction = resultAction;
-
-            OnSelect();
+            return option;
         }
 
         private void OnSpellingSelected(FillInTheBlanksSpelling spelling)
@@ -99,11 +113,11 @@ namespace Immersive.FillInTheBlank
 
         public void OnPress()
         {
-            if (FillInTheBlanksManager.missingLettersStats != MissingLettersStats.CanPlace || letterStats != MissingLettersStats.NotPlace)
+            if (fillInTheBlanksController.missingLettersStats != MissingLettersStats.CanPlace || letterStats != MissingLettersStats.NotPlace)
                 return;
 
             letterStats = MissingLettersStats.Placing;
-            FillInTheBlanksManager.missingLettersStats = MissingLettersStats.Placing;
+            fillInTheBlanksController.missingLettersStats = MissingLettersStats.Placing;
 
             //selectedSpelling.missingLetterPosition.localPosition = GetPosition(selectedSpelling.textSpelling.textInfo);
 

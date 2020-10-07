@@ -6,61 +6,35 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Immersive.FillInTheBlank
 {
     public class FillInTheBlanksManager : MonoBehaviour
     {
-        public delegate void SpellingSelected(FillInTheBlanksSpelling fillInTheBlanksData);
-        public event SpellingSelected OnSpellingSelected;
-
-        public FillInTheBlanksList fillInTheBlanksList;
-        //public List<FillInTheBlanksData> fillInTheBlanksData;
-
         [Header("Sounds")]
         public AudioClip positiveClip;
         public AudioClip negativeClip;
 
-        //public List<FillInTheBlanksSpelling> spellings;
-        //public List<FillInTheBlanksMissingLetter> missingLetters;
+        public string sceneName;
 
-        private int questionNo = 0;
+        int totalQuestions = 0;
+        int answerCount = 0;
 
-        public static FillInTheBlanksMissingLetter.MissingLettersStats missingLettersStats = FillInTheBlanksMissingLetter.MissingLettersStats.CanPlace;
-
-        void Start()
+        private void Start()
         {
-            SetLayout();
-        }
-
-        /// <summary>
-        /// Set Layout of Spelling and Missing Layout based on <FillInTheBlanksData>
-        /// </summary>
-        void SetLayout()
-        {
-            SetSpellings();
-            SetMissingLetters();
-
-            SelectNextSpelling();
-        }
-
-        void SetSpellings()
-        {
-            for (int i = 0; i < fillInTheBlanksList.spellings.Count; i++)
+            foreach (var obj in FindObjectsOfType<FillInTheBlanksData>())
             {
-                fillInTheBlanksList.spellings[i].SetText(fillInTheBlanksList.fillInTheBlanksData[i]);
+                totalQuestions += obj.fillInTheBlanksList.Count;
+                obj.OnResultAction += OnResultAction;
             }
         }
 
-        void SetMissingLetters()
+        private void OnDestroy()
         {
-            List<FillInTheBlanksData> lettrsToShuffle = new List<FillInTheBlanksData>();
-            lettrsToShuffle.AddRange(fillInTheBlanksList.fillInTheBlanksData);
-            lettrsToShuffle.Shuffle();
-
-            for (int i = 0; i < fillInTheBlanksList.missingLetters.Count; i++)
+            foreach (var obj in FindObjectsOfType<FillInTheBlanksData>())
             {
-                fillInTheBlanksList.missingLetters[i].SetText(lettrsToShuffle[i], this, OnResultAction);
+                obj.OnResultAction -= OnResultAction;
             }
         }
 
@@ -70,35 +44,19 @@ namespace Immersive.FillInTheBlank
         /// <param name="result"></param>
         void OnResultAction(bool result)
         {
-            missingLettersStats = FillInTheBlanksMissingLetter.MissingLettersStats.CanPlace;
-
             if (result)
             {
-                SelectNextSpelling();
+                answerCount++;
                 AbstractImmersiveCamera.PlayAudio(positiveClip);
             }
             else
                 AbstractImmersiveCamera.PlayAudio(negativeClip);
-        }
 
-        /// <summary>
-        /// Select next Spelling after correct answer
-        /// </summary>
-        public void SelectNextSpelling()
-        {
-            foreach (var obj in fillInTheBlanksList.spellings)
+            if (answerCount >= totalQuestions && !string.IsNullOrEmpty(sceneName))
             {
-                obj.OnDeselect();
+                Debug.Log("All questions answered");
+                SceneManager.LoadScene(sceneName);
             }
-
-            if (questionNo >= fillInTheBlanksList.spellings.Count)
-                return;
-
-            fillInTheBlanksList.spellings[questionNo].OnSelect();
-
-            OnSpellingSelected(fillInTheBlanksList.spellings[questionNo]);
-
-            questionNo++;
         }
     }
 }

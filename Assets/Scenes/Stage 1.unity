@@ -406,6 +406,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41485fa8d1224ae419e306df5b8f5cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &264719168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 264719169}
+  - component: {fileID: 264719170}
+  m_Layer: 0
+  m_Name: Fill in the Blanks Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &264719169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264719168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1625291989}
+  - {fileID: 1631350093}
+  - {fileID: 702628322}
+  m_Father: {fileID: 181524804}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &264719170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264719168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c180a53be36b964ba03cb6628ad00ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positiveClip: {fileID: 8300000, guid: 61a9bcd5f62618c4a8e11605870159c4, type: 3}
+  negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}
+  sceneName: Stage 2
 --- !u!1001 &308982481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -698,6 +747,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Option Prefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058357588925804255, guid: 7a4382405ec897846afe30894c258e3c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a4382405ec897846afe30894c258e3c, type: 3}
@@ -1319,7 +1373,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 702628322}
-  - component: {fileID: 702628324}
   - component: {fileID: 702628323}
   m_Layer: 0
   m_Name: Right
@@ -1335,14 +1388,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702628321}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.7, y: 0, z: 0}
   m_LocalScale: {x: 0.04, y: 0.04, z: 1}
   m_Children:
   - {fileID: 1277015907}
   - {fileID: 1596551263}
-  m_Father: {fileID: 181524804}
-  m_RootOrder: 3
+  m_Father: {fileID: 264719169}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &702628323
 MonoBehaviour:
@@ -1356,24 +1409,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b5098d7136ccc4ea5f27836841008c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillInTheBlanksData:
+  fillInTheBlanksList:
   - spelling: JUNE
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 1}
     - {x: 3, y: 3}
-    missingPairs: 2
+    missingLettersPairs: 2
   - spelling: CAR
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 2}
-    missingPairs: 1
+    missingLettersPairs: 1
   - spelling: TREE
-    indexs:
+    missingLettersPosition:
     - {x: 2, y: 3}
-    missingPairs: 1
+    missingLettersPairs: 1
   - spelling: MEAT
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 2}
-    missingPairs: 1
+    missingLettersPairs: 1
   spellings:
   - {fileID: 1182820921}
   - {fileID: 552582479}
@@ -1384,21 +1437,7 @@ MonoBehaviour:
   - {fileID: 949581113}
   - {fileID: 918612535}
   - {fileID: 655983570}
---- !u!114 &702628324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702628321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c180a53be36b964ba03cb6628ad00ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fillInTheBlanksList: {fileID: 702628323}
-  positiveClip: {fileID: 8300000, guid: 61a9bcd5f62618c4a8e11605870159c4, type: 3}
-  negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}
+  missingLettersStats: 3
 --- !u!1 &706405466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,6 +2296,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Option Prefab (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4058357588925804255, guid: 7a4382405ec897846afe30894c258e3c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a4382405ec897846afe30894c258e3c, type: 3}
 --- !u!4 &1137519610 stripped
@@ -2992,6 +3036,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Option Prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4058357588925804255, guid: 7a4382405ec897846afe30894c258e3c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a4382405ec897846afe30894c258e3c, type: 3}
 --- !u!4 &1428702828 stripped
@@ -3134,7 +3183,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1625291989}
-  - component: {fileID: 1625291991}
   - component: {fileID: 1625291990}
   m_Layer: 0
   m_Name: Left
@@ -3150,14 +3198,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625291988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.7, y: 0, z: 0}
   m_LocalScale: {x: 0.04, y: 0.04, z: 1}
   m_Children:
   - {fileID: 538160533}
   - {fileID: 706405467}
-  m_Father: {fileID: 181524804}
-  m_RootOrder: 1
+  m_Father: {fileID: 264719169}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1625291990
 MonoBehaviour:
@@ -3171,23 +3219,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b5098d7136ccc4ea5f27836841008c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillInTheBlanksData:
+  fillInTheBlanksList:
   - spelling: RAIN
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 2}
-    missingPairs: 1
+    missingLettersPairs: 1
   - spelling: SOIL
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 2}
-    missingPairs: 1
+    missingLettersPairs: 1
   - spelling: DAY
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 2}
-    missingPairs: 1
+    missingLettersPairs: 1
   - spelling: BOY
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 2}
-    missingPairs: 1
+    missingLettersPairs: 1
   spellings:
   - {fileID: 185642212}
   - {fileID: 1820896907}
@@ -3198,21 +3246,7 @@ MonoBehaviour:
   - {fileID: 1417426931}
   - {fileID: 1085366085}
   - {fileID: 587637303}
---- !u!114 &1625291991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625291988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c180a53be36b964ba03cb6628ad00ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fillInTheBlanksList: {fileID: 1625291990}
-  positiveClip: {fileID: 8300000, guid: 61a9bcd5f62618c4a8e11605870159c4, type: 3}
-  negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}
+  missingLettersStats: 3
 --- !u!1 &1631350092
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,7 +3256,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1631350093}
-  - component: {fileID: 1631350094}
   - component: {fileID: 1631350095}
   m_Layer: 0
   m_Name: Center
@@ -3238,30 +3271,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631350092}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.04, y: 0.04, z: 1}
   m_Children:
   - {fileID: 2077647898}
   - {fileID: 1102472953}
-  m_Father: {fileID: 181524804}
-  m_RootOrder: 2
+  m_Father: {fileID: 264719169}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1631350094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631350092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c180a53be36b964ba03cb6628ad00ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fillInTheBlanksList: {fileID: 1631350095}
-  positiveClip: {fileID: 8300000, guid: 61a9bcd5f62618c4a8e11605870159c4, type: 3}
-  negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}
 --- !u!114 &1631350095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3274,27 +3292,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b5098d7136ccc4ea5f27836841008c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillInTheBlanksData:
+  fillInTheBlanksList:
   - spelling: HOME
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 1}
     - {x: 3, y: 3}
-    missingPairs: 2
+    missingLettersPairs: 2
   - spelling: MADE
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 1}
     - {x: 3, y: 3}
-    missingPairs: 2
+    missingLettersPairs: 2
   - spelling: THESE
-    indexs:
+    missingLettersPosition:
     - {x: 2, y: 2}
     - {x: 4, y: 4}
-    missingPairs: 2
+    missingLettersPairs: 2
   - spelling: FIVE
-    indexs:
+    missingLettersPosition:
     - {x: 1, y: 1}
     - {x: 3, y: 3}
-    missingPairs: 2
+    missingLettersPairs: 2
   spellings:
   - {fileID: 28711561}
   - {fileID: 855515563}
@@ -3305,6 +3323,7 @@ MonoBehaviour:
   - {fileID: 1428702829}
   - {fileID: 500962579}
   - {fileID: 1137519611}
+  missingLettersStats: 3
 --- !u!1001 &1778847179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4518,6 +4537,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Option Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058357588925804255, guid: 7a4382405ec897846afe30894c258e3c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a4382405ec897846afe30894c258e3c, type: 3}

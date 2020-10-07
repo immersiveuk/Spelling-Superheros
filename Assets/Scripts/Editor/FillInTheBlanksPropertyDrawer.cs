@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,9 +10,9 @@ namespace Immersive.FillInTheBlank
     public class FillInTheBlanksPropertyDrawer : PropertyDrawer
     {
         private float verticalSpace = 0;
-        Vector2Int[] missingLettersPosition = new Vector2Int[0];
+        //Vector2Int[] missingLettersPosition = new Vector2Int[0];
 
-        SerializedProperty missingLettersPairs;
+        SerializedProperty missingLettersPairs, missingLettersPosition;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -22,6 +23,7 @@ namespace Immersive.FillInTheBlank
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             missingLettersPairs = property.FindPropertyRelative("missingLettersPairs");
+            missingLettersPosition = property.FindPropertyRelative("missingLettersPosition"); ;
 
             var indent = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
@@ -38,9 +40,10 @@ namespace Immersive.FillInTheBlank
             if (missingLettersPairs.intValue > spelling.Length /2)
                 missingLettersPairs.intValue = spelling.Length /2;
 
-            for (int i = 0; i < missingLettersPosition.Length; i++)
+            for (int i = 0; i < missingLettersPosition.arraySize; i++)
             {
-                if (missingLettersPosition[i].y + 1 >= spelling.Length)
+                //Debug.Log(missingLettersPosition.Length);
+                if (missingLettersPosition.GetArrayElementAtIndex(i).vector2IntValue.y + 1 >= spelling.Length)
                 {
                     if (missingLettersPairs.intValue > i + 1)
                         missingLettersPairs.intValue = i + 1;
@@ -48,20 +51,20 @@ namespace Immersive.FillInTheBlank
                 }
             }
 
-            missingLettersPosition = new Vector2Int[missingLettersPairs.intValue];
-            property.FindPropertyRelative("missingLettersPosition").arraySize = missingLettersPairs.intValue;
+            //missingLettersPosition = new Vector2Int[missingLettersPairs.intValue];
+            missingLettersPosition.arraySize = missingLettersPairs.intValue;
 
             float contentWidth = position.width / 2;
             
             for (int i = 0; i < missingLettersPairs.intValue; i++)
             {
-                SerializedProperty indexProperty = property.FindPropertyRelative("missingLettersPosition").GetArrayElementAtIndex(i);
+                SerializedProperty indexProperty = missingLettersPosition.GetArrayElementAtIndex(i);
 
                 var sizeRect = new Rect(position.x, missingPairsSizeRect.y + EditorGUIUtility.singleLineHeight*(i+1) + 5, 90, EditorGUIUtility.singleLineHeight);
                 EditorGUI.LabelField(sizeRect, "Start Index");
 
                 sizeRect.x += 80; sizeRect.width = contentWidth / 4;
-                DrawDropDown_X(indexProperty, spelling, sizeRect, i);
+                DrawDropDown_X(missingLettersPosition, indexProperty, spelling, sizeRect, i);
 
                 sizeRect.x += sizeRect.width+50; sizeRect.width = EditorGUIUtility.labelWidth;
                 EditorGUI.LabelField(sizeRect, "End Index");
@@ -71,9 +74,9 @@ namespace Immersive.FillInTheBlank
             }
 
 
-            for (int j = 0; j < missingLettersPosition.Length; j++)
+            for (int j = 0; j < missingLettersPosition.arraySize; j++)
             {
-                for (int i = missingLettersPosition[j].x; i <= missingLettersPosition[j].y; i++)
+                for (int i = missingLettersPosition.GetArrayElementAtIndex(j).vector2IntValue.x; i <= missingLettersPosition.GetArrayElementAtIndex(j).vector2IntValue.y; i++)
                 {
                     preview = preview.Remove(i, 1);
                     preview = preview.Insert(i, "_");
@@ -86,9 +89,9 @@ namespace Immersive.FillInTheBlank
             EditorGUI.indentLevel = indent;
         }
 
-        void DrawDropDown_X(SerializedProperty property, string stringValue, Rect position, int index)
+        void DrawDropDown_X(SerializedProperty parentProperty,SerializedProperty property, string stringValue, Rect position, int index)
         {
-            if (stringValue.Length > 0 && missingLettersPosition[index].x < stringValue.Length)
+            if (stringValue.Length > 0 && property.vector2IntValue.x < stringValue.Length)
             {
                 List<string> options = new List<string>();
 
@@ -96,7 +99,7 @@ namespace Immersive.FillInTheBlank
 
                 if (index > 0)
                 {
-                    temp = missingLettersPosition[index - 1].y + 1;
+                    temp = parentProperty.GetArrayElementAtIndex(index - 1).vector2IntValue.y + 1;// missingLettersPosition[index - 1].y + 1;
                 }
 
                 for (int i = 0 + temp; i < stringValue.Length; i++)
@@ -114,21 +117,21 @@ namespace Immersive.FillInTheBlank
                 choice = EditorGUI.Popup(position, choice, options.ToArray());
 
                 property.vector2IntValue = new Vector2Int(int.Parse(options[choice]), property.vector2IntValue.y);
-                missingLettersPosition[index] = property.vector2IntValue;
+                //missingLettersPosition[index] = property.vector2IntValue;
             }
             else
             {
-                missingLettersPosition[index] = Vector2Int.zero;
+                //missingLettersPosition[index] = Vector2Int.zero;
             }
         }
 
         void DrawDropDown_Y(SerializedProperty property, string stringValue, Rect position, int index)
         {
-            if (stringValue.Length > 0 && missingLettersPosition[index].x < stringValue.Length)
+            if (stringValue.Length > 0 && property.vector2IntValue.x < stringValue.Length)
             {
                 List<string> options = new List<string>();
 
-                for (int i = missingLettersPosition[index].x; i < stringValue.Length; i++)
+                for (int i = property.vector2IntValue.x; i < stringValue.Length; i++)
                 {
                     options.Add("" + i);
                 }
@@ -141,11 +144,11 @@ namespace Immersive.FillInTheBlank
                 choice = EditorGUI.Popup(position, choice, options.ToArray());
 
                 property.vector2IntValue = new Vector2Int(property.vector2IntValue.x, int.Parse(options[choice]));
-                missingLettersPosition[index] = property.vector2IntValue;
+                //missingLettersPosition[index] = property.vector2IntValue;
             }
             else
             {
-                missingLettersPosition[index] = Vector2Int.zero;
+                //missingLettersPosition[index] = Vector2Int.zero;
             }
         }
     }

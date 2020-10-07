@@ -47,8 +47,16 @@ namespace Immersive.FillInTheBlank
 
         public static void DeleteArrayElementAtIndex(int index)
         {
+
+            int oldSize = spellings.arraySize;
             spellings.DeleteArrayElementAtIndex(index);
             missingLetters.DeleteArrayElementAtIndex(index);
+
+            if (spellings.arraySize == oldSize)
+            {
+                spellings.DeleteArrayElementAtIndex(index);
+                missingLetters.DeleteArrayElementAtIndex(index);
+            }
         }
     }
 }

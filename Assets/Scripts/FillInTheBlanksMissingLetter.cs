@@ -199,8 +199,6 @@ namespace Immersive.FillInTheBlank
 
             centerPosition = new Vector2(centerPosition.x, 0);
 
-            Debug.Log(centerPosition);
-
             return centerPosition;
         }
 

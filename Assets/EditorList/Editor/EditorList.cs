@@ -18,6 +18,15 @@ public enum EditorListOption {
 public static class EditorList
 {
 
+	public delegate void MoveArrayElement(int from, int to);
+	public static event MoveArrayElement OnMoveArrayElement;
+
+	public delegate void InsertArrayElement(int index);
+	public static event InsertArrayElement OnInsertArrayElement;
+
+	public delegate void DeleteArrayElement(int index);
+	public static event DeleteArrayElement OnDeleteArrayElement;
+
 	private static GUIContent
 		moveButtonContent = new GUIContent("\u21b4", "move down"),
 		duplicateButtonContent = new GUIContent("+", "duplicate"),
@@ -94,7 +103,9 @@ public static class EditorList
 		}
 		if (showButtons && list.arraySize == 0 && GUILayout.Button(addButtonContent, EditorStyles.miniButton))
 		{
-			FillInTheBlanksEditor.InsertArrayElementAtIndex(0);
+			//FillInTheBlanksEditor.InsertArrayElementAtIndex(0);
+			if (OnInsertArrayElement != null)
+				OnInsertArrayElement(0);
 			list.arraySize += 1;
 		}
 	}
@@ -104,19 +115,28 @@ public static class EditorList
 		if (GUILayout.Button(moveButtonContent, EditorStyles.miniButtonLeft, miniButtonWidth))
 		{
 			list.MoveArrayElement(index, index + 1);
-			FillInTheBlanksEditor.MoveArrayElement(index, index + 1);
+			//FillInTheBlanksEditor.MoveArrayElement(index, index + 1);
 
+			if (OnMoveArrayElement != null)
+				OnMoveArrayElement(index, index+1);
 		}
+
 		if (GUILayout.Button(duplicateButtonContent, EditorStyles.miniButtonMid, miniButtonWidth))
 		{
 			list.InsertArrayElementAtIndex(index);
-			FillInTheBlanksEditor.InsertArrayElementAtIndex(index);
+			//FillInTheBlanksEditor.InsertArrayElementAtIndex(index);
+			if (OnInsertArrayElement != null)
+				OnInsertArrayElement(index);
 		}
+
 		if (GUILayout.Button(deleteButtonContent, EditorStyles.miniButtonRight, miniButtonWidth))
 		{
 			int oldSize = list.arraySize;
 			list.DeleteArrayElementAtIndex(index);
-			FillInTheBlanksEditor.DeleteArrayElementAtIndex(index);
+
+			//FillInTheBlanksEditor.DeleteArrayElementAtIndex(index);
+			if (OnDeleteArrayElement != null)
+				OnDeleteArrayElement(index);
 
 			if (list.arraySize == oldSize)
 			{

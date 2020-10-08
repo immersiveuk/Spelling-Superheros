@@ -18,6 +18,17 @@ namespace Immersive.FillInTheBlank
             fillInTheBlanks = serializedObject.FindProperty("fillInTheBlanksList");
             spellings = serializedObject.FindProperty("spellings");
             missingLetters = serializedObject.FindProperty("missingLetters");
+
+            EditorList.OnMoveArrayElement += MoveArrayElement;
+            EditorList.OnInsertArrayElement += InsertArrayElementAtIndex;
+            EditorList.OnDeleteArrayElement += DeleteArrayElementAtIndex;
+        }
+
+        private void OnDisable()
+        {
+            EditorList.OnMoveArrayElement -= MoveArrayElement;
+            EditorList.OnInsertArrayElement -= InsertArrayElementAtIndex;
+            EditorList.OnDeleteArrayElement -= DeleteArrayElementAtIndex;
         }
 
         public override void OnInspectorGUI()
@@ -33,19 +44,19 @@ namespace Immersive.FillInTheBlank
             serializedObject.ApplyModifiedProperties();
         }
 
-        public static void MoveArrayElement(int from, int to)
+        static void MoveArrayElement(int from, int to)
         {
             spellings.MoveArrayElement(from,to);
             missingLetters.MoveArrayElement(from, to);
         }
 
-        public static void InsertArrayElementAtIndex(int index)
+        void InsertArrayElementAtIndex(int index)
         {
             spellings.InsertArrayElementAtIndex(index);
             missingLetters.InsertArrayElementAtIndex(index);
         }
 
-        public static void DeleteArrayElementAtIndex(int index)
+        void DeleteArrayElementAtIndex(int index)
         {
 
             int oldSize = spellings.arraySize;

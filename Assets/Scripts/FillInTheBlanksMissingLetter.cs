@@ -90,16 +90,21 @@ namespace Immersive.FillInTheBlank
         {
             string option = "";
 
-            foreach (var obj in spellingParts)
+            for (int i = 0; i < spellingParts.Count; i++)
             {
-                if (!string.IsNullOrEmpty(obj.value))
+                if (!string.IsNullOrEmpty(spellingParts[i].value))
                 {
-                    if (obj.type.Contains("Spelling"))
+                    if (i == 0 && spellingParts[0].type.Contains("Spelling") || i == spellingParts.Count - 1 && spellingParts[spellingParts.Count - 1].type.Contains("Spelling"))
+                        continue;
+
+                    if (spellingParts[i].type.Contains("Spelling"))
                     {
-                        option += "<#00000000>" + obj.value + "</color>";
+                        option += "<#00000000>" + spellingParts[i].value + "</color>";
                     }
                     else
-                        option += obj.value;
+                    {
+                        option += spellingParts[i].value;
+                    }
                 }
             }
 
@@ -119,7 +124,7 @@ namespace Immersive.FillInTheBlank
             letterStats = MissingLettersStats.Placing;
             fillInTheBlanksController.missingLettersStats = MissingLettersStats.Placing;
 
-            //selectedSpelling.missingLetterPosition.localPosition = GetPosition(selectedSpelling.textSpelling.textInfo);
+            selectedSpelling.missingLetterPosition.localPosition = GetPosition(selectedSpelling.textSpelling.textInfo);
 
             OnDeselect();
 
@@ -182,17 +187,17 @@ namespace Immersive.FillInTheBlank
 
         }
 
-        /*
+        
         Vector2 GetPosition(TMP_TextInfo textInfo)
         {
             Vector2 centerPosition;
 
-            Vector3 bottomLeft = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.indexs[0].x, true);
-            Vector3 bottomRight = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.indexs[selectedSpelling.spellingData.indexs.Length-1].y, false);
+            Vector3 bottomLeft = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.missingLettersPosition[0].x, true);
+            Vector3 bottomRight = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.missingLettersPosition[selectedSpelling.spellingData.missingLettersPosition.Length-1].y, false);
 
             centerPosition = (bottomLeft + bottomRight) / 2;
 
-            centerPosition = new Vector2(selectedSpelling.textSpelling.transform.position.x, 0);
+            centerPosition = new Vector2(centerPosition.x, 0);
 
             Debug.Log(centerPosition);
 
@@ -226,7 +231,7 @@ namespace Immersive.FillInTheBlank
 
             return charMidBasline;
         }
-        */
+        
         /// <summary>
         /// Callback for Missing Letter to Highlight it.
         /// </summary>

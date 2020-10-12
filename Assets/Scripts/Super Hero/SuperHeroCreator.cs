@@ -18,7 +18,7 @@ namespace Immersive.SuperHero
         void Start()
         {
             transitionTime = 1.0f;
-            gapValue = 0.3f;
+            gapValue = 0.35f;
 
             this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
             CreateSuperHeroParts(superHero.superHeroHeads, headsPanel.transform);
@@ -33,7 +33,7 @@ namespace Immersive.SuperHero
                 SpriteRenderer objPart = Instantiate(prefabSprite, parent, false);
                 objPart.sprite = superHeroParts[i].creatorSprite;
 
-                objPart.transform.localPosition = new Vector3(i * gapValue, 0, superHeroParts[i].front == true ? -0.01f : 0);
+                objPart.transform.localPosition = new Vector3(i * gapValue, 0, 0);
             }
         }
 

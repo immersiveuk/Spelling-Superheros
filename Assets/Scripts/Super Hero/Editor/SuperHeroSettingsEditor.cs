@@ -5,14 +5,6 @@ using UnityEngine;
 
 namespace Immersive.SuperHero
 {
-    [CreateAssetMenu(fileName = "New Super Hero Settings", menuName = "Super Hero/ Settings", order = 1)]
-    public class SuperHeroSettings : ScriptableObject
-    {
-        public List<SuperHeroParts> superHeroHeads;
-        public List<SuperHeroParts> superHeroBodies;
-        public List<SuperHeroParts> superHeroLegs;
-    }
-
     [CustomEditor(typeof(SuperHeroSettings)), CanEditMultipleObjects]
     public class SuperHeroSettingsEditor : Editor
     {
@@ -22,22 +14,14 @@ namespace Immersive.SuperHero
 
         private void OnEnable()
         {
-            Debug.Log("OnEnable");
             superHeroHeadsProperty = serializedObject.FindProperty("superHeroHeads");
             superHeroBodiesProperty = serializedObject.FindProperty("superHeroBodies");
             superHeroLegsProperty = serializedObject.FindProperty("superHeroLegs");
-
-            EditorList.OnMoveArrayElement += MoveArrayElement;
-            EditorList.OnInsertArrayElement += InsertArrayElementAtIndex;
-            EditorList.OnDeleteArrayElement += DeleteArrayElementAtIndex;
         }
 
         private void OnDisable()
         {
-            Debug.Log("OnDisable");
-            EditorList.OnMoveArrayElement -= MoveArrayElement;
-            EditorList.OnInsertArrayElement -= InsertArrayElementAtIndex;
-            EditorList.OnDeleteArrayElement -= DeleteArrayElementAtIndex;
+
         }
 
         public override void OnInspectorGUI()
@@ -53,7 +37,7 @@ namespace Immersive.SuperHero
 
         void MoveArrayElement(int from, int to)
         {
-            
+
             superHeroHeadsProperty.MoveArrayElement(from, to);
             superHeroBodiesProperty.MoveArrayElement(from, to);
             superHeroLegsProperty.MoveArrayElement(from, to);

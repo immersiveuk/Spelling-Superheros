@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d43a6a9f578670b4c92c7b770545196a, type: 3}
-  m_Name: Leg 6
+  m_Name: Leg 2
   m_EditorClassIdentifier: 
-  creatorSprite: {fileID: 21300000, guid: b32cbc6a7013b7c4599d814b64888eae, type: 3}
-  gameSprite: {fileID: 21300000, guid: b32cbc6a7013b7c4599d814b64888eae, type: 3}
+  creatorSprite: {fileID: 21300000, guid: 8e57f4f5a167ab440939d53325a2e89b, type: 3}
+  gameSprite: {fileID: 21300000, guid: 8e57f4f5a167ab440939d53325a2e89b, type: 3}
+  front: 1

@@ -10,5 +10,6 @@ namespace Immersive.SuperHero
     {
         public Sprite creatorSprite;
         public Sprite gameSprite;
+        public bool front;
     }
 }

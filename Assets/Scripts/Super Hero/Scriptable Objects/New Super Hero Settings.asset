@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20a82aeb6a936a4eae1cba09bd98012, type: 3}
+  m_Name: New Super Hero Settings
+  m_EditorClassIdentifier: 
+  superHeroHeads:
+  - {fileID: 11400000, guid: 5b7d9f5a8e47c2a40ab321eace2d2514, type: 2}
+  - {fileID: 11400000, guid: 678d168a4e7e88948bd1276221dba52d, type: 2}
+  - {fileID: 11400000, guid: fe32980ecff0aa340a08aa11746ba930, type: 2}
+  - {fileID: 11400000, guid: 56f9bc29fa4134a499f7aaf6dbc434da, type: 2}
+  - {fileID: 11400000, guid: 1a5057dfedd2c9b449fa38b2e22833b3, type: 2}
+  superHeroBodies:
+  - {fileID: 11400000, guid: d29861c29bd135a48b7d7648d44ef349, type: 2}
+  - {fileID: 11400000, guid: 7b7a02a7dcb3b3c4495c09f049e8327c, type: 2}
+  - {fileID: 11400000, guid: 4215eb9ed6fd1ec4b813b27eb3ef38ba, type: 2}
+  - {fileID: 11400000, guid: c3cf8283dbda5f1469a30e6267d550c7, type: 2}
+  - {fileID: 11400000, guid: f7ed345ce71d70c4099d2fa6dc81c09c, type: 2}
+  superHeroLegs:
+  - {fileID: 11400000, guid: 00fb16bca509ced44ae2e20adbb67f02, type: 2}
+  - {fileID: 11400000, guid: 22035099df022a54d971642668f5dd54, type: 2}
+  - {fileID: 11400000, guid: 0bb63f9242f801a43b00879a80acf7e4, type: 2}
+  - {fileID: 11400000, guid: 115c631d317d0754a98adcbd2066da3e, type: 2}
+  - {fileID: 11400000, guid: 472fab638e56eed499f385b00b0a931d, type: 2}

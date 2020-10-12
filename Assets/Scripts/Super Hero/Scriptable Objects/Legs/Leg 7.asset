@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c20a82aeb6a936a4eae1cba09bd98012, type: 3}
-  m_Name: New Super Hero Settings
+  m_Script: {fileID: 11500000, guid: d43a6a9f578670b4c92c7b770545196a, type: 3}
+  m_Name: Leg 7
   m_EditorClassIdentifier: 
-  superHeroHeads: []
-  superHeroBodies: []
-  superHeroLegs: []
+  creatorSprite: {fileID: 21300000, guid: 63a44a859e255f7438014d8b3dfe1167, type: 3}
+  gameSprite: {fileID: 21300000, guid: 63a44a859e255f7438014d8b3dfe1167, type: 3}
+  front: 1

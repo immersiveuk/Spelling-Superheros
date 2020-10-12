@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Immersive.SuperHero
@@ -10,6 +9,5 @@ namespace Immersive.SuperHero
     {
         public Sprite creatorSprite;
         public Sprite gameSprite;
-        //public bool front;
     }
 }

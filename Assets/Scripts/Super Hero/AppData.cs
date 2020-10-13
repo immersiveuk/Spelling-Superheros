@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class AppData : Singleton<AppData>
 {
-    public SuperHeroParts head, body, leg;
+    public SuperHeroSettings superHero_CenterWall;
 
     public void SetSuperHeroParts(SuperHeroParts head, SuperHeroParts body, SuperHeroParts leg)
     {
-        this.head = head;
-        this.body = body;
-        this.leg = leg;
+        //superHero_CenterWall.superHeroHeads.Add(head);
+        //superHero_CenterWall.superHeroBodies.Add(body);
+        //superHero_CenterWall.superHeroLegs.Add(leg);
     }
 }

@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 230898753}
   - component: {fileID: 230898754}
   m_Layer: 0
-  m_Name: SuperHero Creator (2)
+  m_Name: SuperHero Creator Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -927,6 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2994d6f0442e44ebb41c899949b954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallType: 2
   superHero: {fileID: 11400000, guid: 969732384c5021641a9927422715e3b4, type: 2}
   headsPanel: {fileID: 499819348}
   bodiesPanel: {fileID: 125455110}
@@ -1634,7 +1635,7 @@ GameObject:
   - component: {fileID: 483158574}
   - component: {fileID: 483158575}
   m_Layer: 0
-  m_Name: SuperHero Creator
+  m_Name: SuperHero Creator Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1671,6 +1672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2994d6f0442e44ebb41c899949b954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallType: 1
   superHero: {fileID: 11400000, guid: 969732384c5021641a9927422715e3b4, type: 2}
   headsPanel: {fileID: 763910868}
   bodiesPanel: {fileID: 2038256274}
@@ -1812,6 +1814,7 @@ GameObject:
   - component: {fileID: 548769740}
   - component: {fileID: 548769739}
   - component: {fileID: 548769738}
+  - component: {fileID: 548769741}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1899,6 +1902,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &548769741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548769736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9865d7cf400194d8735ade04ed2a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &711499104
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,8 +2690,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 483158575}
-        m_MethodName: ButtonLoadGame
+      - m_Target: {fileID: 548769741}
+        m_MethodName: GameButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4072,7 +4087,7 @@ GameObject:
   - component: {fileID: 1561171999}
   - component: {fileID: 1561172000}
   m_Layer: 0
-  m_Name: SuperHero Creator (1)
+  m_Name: SuperHero Creator Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4109,6 +4124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2994d6f0442e44ebb41c899949b954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallType: 0
   superHero: {fileID: 11400000, guid: 969732384c5021641a9927422715e3b4, type: 2}
   headsPanel: {fileID: 1208877363}
   bodiesPanel: {fileID: 1926550604}

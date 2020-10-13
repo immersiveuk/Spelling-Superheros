@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20a82aeb6a936a4eae1cba09bd98012, type: 3}
   m_Name: New Super Hero Settings
   m_EditorClassIdentifier: 
-  superHeroHeads:
+  heads:
   - {fileID: 11400000, guid: 05e2937fe93f6604588e71279d5ef4f8, type: 2}
   - {fileID: 11400000, guid: 8f8eb575ae1809a4d93eab254b5ba4e5, type: 2}
   - {fileID: 11400000, guid: 5b4cba4c3a00bb44899568f6057640bc, type: 2}
   - {fileID: 11400000, guid: ca76ec507377e8e4b9732b28048babe9, type: 2}
   - {fileID: 11400000, guid: f9d73994b84312e4eb4325a12ad70e81, type: 2}
-  superHeroBodies:
+  - {fileID: 11400000, guid: 25be056dcfeed9d4b85d3e06b256d229, type: 2}
+  bodies:
   - {fileID: 11400000, guid: edbf4fe5d2e865440bfadf68a8dffb00, type: 2}
   - {fileID: 11400000, guid: 63c16d4e91ea7a84e906e9440b7f7f4d, type: 2}
   - {fileID: 11400000, guid: b088d7c6fa4579948a8f50ae065e2e6e, type: 2}
   - {fileID: 11400000, guid: 6216bffcdf52f2647a106ae3ae87ba1e, type: 2}
   - {fileID: 11400000, guid: b5cf7de4f824f2347b2e3868d704ffa2, type: 2}
-  superHeroLegs:
+  legs:
   - {fileID: 11400000, guid: 99edb72aa421f5148821e541ca34a780, type: 2}
   - {fileID: 11400000, guid: 230c3ae70113f974493e56e470db9e8b, type: 2}
   - {fileID: 11400000, guid: 4145e1a1b5edc91449034d65b556cd55, type: 2}
   - {fileID: 11400000, guid: aec4cc883c94d8243940a5ee8c2f45e9, type: 2}
-  - {fileID: 11400000, guid: 0fc1037e912070e499b7f48ed90f7a4d, type: 2}

@@ -8,15 +8,15 @@ namespace Immersive.SuperHero
     [CustomEditor(typeof(SuperHeroSettings)), CanEditMultipleObjects]
     public class SuperHeroSettingsEditor : Editor
     {
-        SerializedProperty superHeroHeadsProperty;
-        SerializedProperty superHeroBodiesProperty;
-        SerializedProperty superHeroLegsProperty;
+        SerializedProperty headsProperty;
+        SerializedProperty bodiesProperty;
+        SerializedProperty legsProperty;
 
         private void OnEnable()
         {
-            superHeroHeadsProperty = serializedObject.FindProperty("superHeroHeads");
-            superHeroBodiesProperty = serializedObject.FindProperty("superHeroBodies");
-            superHeroLegsProperty = serializedObject.FindProperty("superHeroLegs");
+            headsProperty = serializedObject.FindProperty("heads");
+            bodiesProperty = serializedObject.FindProperty("bodies");
+            legsProperty = serializedObject.FindProperty("legs");
         }
 
         private void OnDisable()
@@ -28,9 +28,9 @@ namespace Immersive.SuperHero
         {
             serializedObject.Update();
 
-            EditorList.Show(superHeroHeadsProperty, EditorListOption.Buttons | EditorListOption.ListLabel);
-            EditorList.Show(superHeroBodiesProperty, EditorListOption.Buttons | EditorListOption.ListLabel);
-            EditorList.Show(superHeroLegsProperty, EditorListOption.Buttons | EditorListOption.ListLabel);
+            EditorList.Show(headsProperty, EditorListOption.Buttons | EditorListOption.ListLabel);
+            EditorList.Show(bodiesProperty, EditorListOption.Buttons | EditorListOption.ListLabel);
+            EditorList.Show(legsProperty, EditorListOption.Buttons | EditorListOption.ListLabel);
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -38,42 +38,42 @@ namespace Immersive.SuperHero
         void MoveArrayElement(int from, int to)
         {
 
-            superHeroHeadsProperty.MoveArrayElement(from, to);
-            superHeroBodiesProperty.MoveArrayElement(from, to);
-            superHeroLegsProperty.MoveArrayElement(from, to);
+            headsProperty.MoveArrayElement(from, to);
+            bodiesProperty.MoveArrayElement(from, to);
+            legsProperty.MoveArrayElement(from, to);
         }
 
         void InsertArrayElementAtIndex(int index)
         {
             Debug.Log("Add");
-            superHeroHeadsProperty.InsertArrayElementAtIndex(index);
-            superHeroBodiesProperty.InsertArrayElementAtIndex(index);
-            superHeroLegsProperty.InsertArrayElementAtIndex(index);
+            headsProperty.InsertArrayElementAtIndex(index);
+            bodiesProperty.InsertArrayElementAtIndex(index);
+            legsProperty.InsertArrayElementAtIndex(index);
         }
 
         void DeleteArrayElementAtIndex(int index)
         {
-            int oldSizeHeads = superHeroHeadsProperty.arraySize;
-            int oldSizeBodies = superHeroBodiesProperty.arraySize;
-            int oldSizeLegs = superHeroLegsProperty.arraySize;
+            int oldSizeHeads = headsProperty.arraySize;
+            int oldSizeBodies = bodiesProperty.arraySize;
+            int oldSizeLegs = legsProperty.arraySize;
 
-            superHeroHeadsProperty.DeleteArrayElementAtIndex(index);
-            superHeroBodiesProperty.DeleteArrayElementAtIndex(index);
-            superHeroLegsProperty.DeleteArrayElementAtIndex(index);
+            headsProperty.DeleteArrayElementAtIndex(index);
+            bodiesProperty.DeleteArrayElementAtIndex(index);
+            legsProperty.DeleteArrayElementAtIndex(index);
 
-            if (superHeroHeadsProperty.arraySize == oldSizeHeads)
+            if (headsProperty.arraySize == oldSizeHeads)
             {
-                superHeroHeadsProperty.DeleteArrayElementAtIndex(index);
+                headsProperty.DeleteArrayElementAtIndex(index);
             }
 
-            if (superHeroBodiesProperty.arraySize == oldSizeBodies)
+            if (bodiesProperty.arraySize == oldSizeBodies)
             {
-                superHeroBodiesProperty.DeleteArrayElementAtIndex(index);
+                bodiesProperty.DeleteArrayElementAtIndex(index);
             }
 
-            if (superHeroLegsProperty.arraySize == oldSizeLegs)
+            if (legsProperty.arraySize == oldSizeLegs)
             {
-                superHeroLegsProperty.DeleteArrayElementAtIndex(index);
+                legsProperty.DeleteArrayElementAtIndex(index);
             }
         }
     }

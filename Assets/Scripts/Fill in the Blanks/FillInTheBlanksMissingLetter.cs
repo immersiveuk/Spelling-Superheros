@@ -164,9 +164,10 @@ namespace Immersive.FillInTheBlank
                      {
                          iTween.MoveTo(textOption.gameObject, iTween.Hash("x", startPos.x, "y", startPos.y, "z", -0.2f, "islocal", false,
                              "time", 0.5f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 1, "oncomplete", (System.Action<object>)(newNewValue =>
-                             {
+                             {                                
                                  letterStats = MissingLettersStats.NotPlace;
                                  resultAction(false);
+                                 OnSelect();
                              })));
 
                      })));

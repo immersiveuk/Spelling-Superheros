@@ -85,7 +85,7 @@ namespace Immersive.FillInTheBlank
         /// </summary>
         public void OnCorrectAnswer()
         {
-            textSpelling.text = spellingData.spelling;
+            //textSpelling.text = spellingData.spelling;
         }
 
         /// <summary>

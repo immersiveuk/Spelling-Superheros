@@ -41,8 +41,13 @@ namespace Immersive.SuperHero
             }
         }
 
+        bool scrolling;
+
         public void MoveNext()
         {
+            if (scrolling)
+                return;
+
             partIndex++;
             spriteIndex++;
 
@@ -51,6 +56,9 @@ namespace Immersive.SuperHero
 
         public void MovePrevious()
         {
+            if (scrolling)
+                return;
+
             partIndex--;
             spriteIndex--;
 
@@ -59,6 +67,8 @@ namespace Immersive.SuperHero
 
         void Scroll(int direction)
         {
+            scrolling = true;
+
             if (spriteIndex >= superHeroParts.Count)
                 spriteIndex = 0;
 
@@ -69,12 +79,13 @@ namespace Immersive.SuperHero
             parts[1].localPosition = new Vector3(partIndex * gapValue, 0, 0);
 
             iTween.MoveBy(this.gameObject, iTween.Hash("x", direction * gapValue, "y", 0, "z", 0, "islocal", false, "time", transitionTime,
-                "easetype", iTween.EaseType.easeInOutQuad, "oncomplete", (System.Action<object>)(newValue =>
+                "easetype", iTween.EaseType.easeOutQuad, "oncomplete", (System.Action<object>)(newValue =>
                 {
                     Transform temp = parts[0];
                     parts.Remove(temp);
                     parts.Add(temp);
 
+                    scrolling = false;
                 })));
         }
 

@@ -8,19 +8,19 @@ namespace Immersive.SuperHero
 {
     public class HorizontalScroll : MonoBehaviour
     {
-        public SpriteRenderer prefabSprite;
+        //public SpriteRenderer prefabSprite;
         int partIndex = 0;
         int spriteIndex;
 
         List<Transform> parts = new List<Transform>();
         List<SuperHeroParts> superHeroParts;
 
-        public static float gapValue;
+        float gapValue;
         float transitionTime;
 
         //public WallType wallType;
 
-        private void Start()
+        private void Awake()
         {
             transitionTime = 1.0f;
             gapValue = 0.35f;
@@ -33,7 +33,7 @@ namespace Immersive.SuperHero
 
             for (int i = 0; i < 2; i++)
             {
-                SpriteRenderer objPart = Instantiate(prefabSprite, this.transform, false);
+                SpriteRenderer objPart = Instantiate(SuperHeroManager.Instance.prefabSprite, this.transform, false);
                 objPart.sprite = superHeroParts[i].creatorSprite;
                 objPart.transform.localPosition = new Vector3(i * gapValue, 0, 0);
 

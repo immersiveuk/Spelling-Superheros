@@ -7,7 +7,11 @@ namespace Immersive.SuperHero
 {
     public class SuperHeroManager : Singleton<SuperHeroManager>
     {
-        Dictionary<WallType, SuperHeroSettings> createdSuperHeros;
+        public SpriteRenderer prefabSprite;
+
+        public List<Sprite> explosionSprites;
+
+        Dictionary<WallType, SuperHeroSettings> createdSuperHeros = new Dictionary<WallType, SuperHeroSettings>();
 
         public void GameButton()
         {
@@ -27,7 +31,10 @@ namespace Immersive.SuperHero
 
         public SuperHeroSettings GetSuperHero(WallType wallType)
         {
-            return createdSuperHeros[wallType];
+            if (createdSuperHeros.Count > 0)
+                return createdSuperHeros[wallType];
+            else
+                return null;
         }
     }
 }

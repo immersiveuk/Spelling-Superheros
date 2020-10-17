@@ -11,6 +11,19 @@ namespace Immersive.SuperHero
 
         bool isSet = false;
 
+        public void MoveTrail(Vector2 p1, Vector2 p2, Vector2 p3)
+        {
+            float transitionTime = Vector3.Distance(p1, p3);
+
+            cube.transform.localEulerAngles = new Vector3(0, 0, Utils.AngleInDeg(p1, p2) - 90);
+
+            iTween.MoveTo(trail.gameObject, iTween.Hash("x", p3.x, "y", p3.y, "z", 0, "islocal", false,
+                "time", transitionTime, "easetype", iTween.EaseType.linear, "oncomplete", (System.Action<object>)(newValue =>
+                {
+                    Destroy(trail.gameObject);
+                })));
+        }
+
         void Update()
         {
             int count = trail.positionCount;
@@ -28,7 +41,8 @@ namespace Immersive.SuperHero
 
         private void OnTriggerEnter(Collider other)
         {
-            CreateExplosion(other);
+            if (other.GetComponent<Enemy>())
+                CreateExplosion(other);
         }
 
         void CreateExplosion(Collider other)

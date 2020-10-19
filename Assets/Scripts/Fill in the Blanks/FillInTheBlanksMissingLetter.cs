@@ -61,6 +61,12 @@ namespace Immersive.FillInTheBlank
             this.resultAction = resultAction;
             data.missingLetters = option;
             textOption.text = option;
+
+            if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
+                textOption.fontSize = 15;
+            else
+                textOption.fontSize = 25;
+
             OnSelect();
         }
 
@@ -206,6 +212,9 @@ namespace Immersive.FillInTheBlank
    
         Vector2 GetPositionOfCharacter(TMP_TextInfo textInfo, int index, bool isLeft)
         {
+            if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
+                index += selectedSpelling.spellingData.spelling.Length + 3;
+
             int materialIndex = textInfo.characterInfo[index].materialReferenceIndex;
 
             // Get the index of the first vertex of the selected character.

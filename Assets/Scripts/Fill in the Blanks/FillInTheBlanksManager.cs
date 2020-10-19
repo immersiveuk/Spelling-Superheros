@@ -13,6 +13,11 @@ namespace Immersive.FillInTheBlank
 {
     public class FillInTheBlanksManager : MonoBehaviour
     {
+        public static FillInTheBlanksManager Instance;
+
+        public enum GameMode { Simple,Advanced}
+        public GameMode gameMode;
+
         public FillInTheBlankStages stage;
 
         [Header("Sounds")]
@@ -22,7 +27,11 @@ namespace Immersive.FillInTheBlank
         int totalQuestions = 0;
         int answerCount = 0;
 
-        
+        private void Awake()
+        {
+            Instance = this;
+        }
+
 
         private void Start()
         {
@@ -55,7 +64,7 @@ namespace Immersive.FillInTheBlank
             else
                 AbstractImmersiveCamera.PlayAudio(negativeClip);
 
-            if (answerCount >= 1)// totalQuestions)
+            if (answerCount >= totalQuestions)
             {
                 SuperHeroManager.Instance.currentStage = stage;
                 Debug.Log(stage+" "+SuperHeroManager.Instance.currentStage);

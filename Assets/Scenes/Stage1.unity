@@ -491,6 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c180a53be36b964ba03cb6628ad00ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMode: 0
   stage: 0
   positiveClip: {fileID: 8300000, guid: 61a9bcd5f62618c4a8e11605870159c4, type: 3}
   negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}
@@ -799,12 +800,12 @@ PrefabInstance:
     - target: {fileID: 256575725237420526, guid: 7a4382405ec897846afe30894c258e3c,
         type: 3}
       propertyPath: m_fontSize
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 256575725237420526, guid: 7a4382405ec897846afe30894c258e3c,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 256575725237420526, guid: 7a4382405ec897846afe30894c258e3c,
         type: 3}
@@ -884,12 +885,12 @@ PrefabInstance:
     - target: {fileID: 5071302952809194799, guid: 7a4382405ec897846afe30894c258e3c,
         type: 3}
       propertyPath: m_fontSize
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5071302952809194799, guid: 7a4382405ec897846afe30894c258e3c,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a4382405ec897846afe30894c258e3c, type: 3}
@@ -5055,12 +5056,12 @@ PrefabInstance:
     - target: {fileID: 7405000301345114409, guid: a8e19e655b0b7cf46a68a3e928d3207e,
         type: 3}
       propertyPath: m_fontSize
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7405000301345114409, guid: a8e19e655b0b7cf46a68a3e928d3207e,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7405000301345114409, guid: a8e19e655b0b7cf46a68a3e928d3207e,
         type: 3}
@@ -5125,12 +5126,12 @@ PrefabInstance:
     - target: {fileID: 8773023535431721775, guid: a8e19e655b0b7cf46a68a3e928d3207e,
         type: 3}
       propertyPath: m_fontSize
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8773023535431721775, guid: a8e19e655b0b7cf46a68a3e928d3207e,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8773023535431721777, guid: a8e19e655b0b7cf46a68a3e928d3207e,
         type: 3}

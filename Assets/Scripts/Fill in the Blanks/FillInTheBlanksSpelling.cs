@@ -35,7 +35,16 @@ namespace Immersive.FillInTheBlank
 
             string spelling = SplitSpelling(data.spelling, data.missingLettersPosition);
 
-            textSpelling.text = spelling;
+            if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
+            {
+                textSpelling.fontSize = 15;
+                textSpelling.text = spellingData.spelling + " - " + spelling;
+            }
+            else
+            {
+                textSpelling.fontSize = 25;
+                textSpelling.text = spelling;
+            }
         }
 
         string SplitSpelling(string spelling, Vector2Int[] missingLettersPosition)

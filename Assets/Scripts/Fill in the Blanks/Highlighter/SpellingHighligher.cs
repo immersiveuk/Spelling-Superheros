@@ -10,7 +10,13 @@ namespace Immersive.FillInTheBlank
         public TextMeshPro textGlow;
         public SpriteRenderer background;
 
-
+        private void Start()
+        {
+            if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
+                textGlow.fontSize = 15;
+            else
+                textGlow.fontSize = 25;
+        }
         protected override void Highlight()
         {
             textGlow.text = textSpelling.text;

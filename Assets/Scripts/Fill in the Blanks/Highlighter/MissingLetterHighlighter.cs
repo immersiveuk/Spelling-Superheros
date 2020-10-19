@@ -9,6 +9,14 @@ namespace Immersive.FillInTheBlank
     {
         public TextMeshPro textGlow;
 
+        private void Start()
+        {
+            if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
+                textGlow.fontSize = 15;
+            else
+                textGlow.fontSize = 25;
+        }
+
         protected override void Highlight()
         {
             textGlow.text = textOption.text;

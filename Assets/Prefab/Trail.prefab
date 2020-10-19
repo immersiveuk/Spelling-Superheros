@@ -250,3 +250,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trail: {fileID: 6126229740200554569}
   cube: {fileID: 8836530180289292946}
+  prefabSprite: {fileID: 0}
+  explosionSprites:
+  - {fileID: 21300000, guid: d0900ae8a901bbc429cd871bef774b14, type: 3}
+  - {fileID: 21300000, guid: 38418d2d43d7bfa49bba54d5d3545417, type: 3}
+  - {fileID: 21300000, guid: ff71658d5c9b10e4fb11406c7c1851d1, type: 3}
+  - {fileID: 21300000, guid: 2f928c28751c5b24198ed3f3c50a3539, type: 3}
+  - {fileID: 21300000, guid: ad0062d6b0760bc459e31a694d93e877, type: 3}
+  - {fileID: 21300000, guid: fadb683fd89e01945aecfea2e60f53ae, type: 3}

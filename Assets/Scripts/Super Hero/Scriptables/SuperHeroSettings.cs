@@ -12,4 +12,11 @@ namespace Immersive.SuperHero
         public List<SuperHeroParts> bodies = new List<SuperHeroParts>();
         public List<SuperHeroParts> legs = new List<SuperHeroParts>();
     }
+
+    public class SelectedSuperHero
+    {
+        public SuperHeroParts head;
+        public SuperHeroParts body;
+        public SuperHeroParts leg;
+    }
 }

@@ -16,25 +16,78 @@ namespace Immersive.SuperHero
         public SuperHeroSettings superHero;
 
         [Header("Body Parts Scroll")]
-        public HorizontalScroll headsPanel, bodiesPanel, legsPanel;
+        public HorizontalScroll headsPanel;
+        public HorizontalScroll bodiesPanel;
+        public HorizontalScroll legsPanel;
+
+        public SpriteRenderer continueButton;
+
+        SelectedSuperHero selectedSuperHero;
 
         void Start()
         {
             this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
 
-            headsPanel.SetScroll(superHero.heads);
-            bodiesPanel.SetScroll(superHero.bodies);
-            legsPanel.SetScroll(superHero.legs);
+            selectedSuperHero = SuperHeroManager.Instance.GetSuperHero(wallType);
+
+            SetSuperHero();
+            SetPosition();
         }
 
-        public (WallType, SuperHeroSettings) GetSelectedSuperHero()
+        void SetSuperHero()
         {
-            SuperHeroSettings selectedSuperHero = new SuperHeroSettings();
-            selectedSuperHero.heads.Add(headsPanel.GetSelectedPart());
-            selectedSuperHero.bodies.Add(bodiesPanel.GetSelectedPart());
-            selectedSuperHero.legs.Add(legsPanel.GetSelectedPart());
+            switch (SuperHeroManager.Instance.currentStage)
+            {
+                case FillInTheBlankStages.Stage1:
+                    headsPanel.SetScroll(superHero.heads, OnScroll);
+                    break;
 
-            return (wallType, selectedSuperHero);
+                case FillInTheBlankStages.Stage2:
+                    headsPanel.SetSelectedSprite(selectedSuperHero.head);
+                    bodiesPanel.SetScroll(superHero.bodies, OnScroll);                    
+                    break;
+
+                case FillInTheBlankStages.Stage3:
+                    headsPanel.SetSelectedSprite(selectedSuperHero.head);
+                    bodiesPanel.SetSelectedSprite(selectedSuperHero.body);
+                    legsPanel.SetScroll(superHero.legs, OnScroll);                    
+                    break;
+            }
+
+            SuperHeroManager.Instance.ResetWallSelected();
+        }
+
+        void OnScroll()
+        {
+            SuperHeroManager.Instance.selectedWalls[wallType] = false;
+            continueButton.color = Color.white;
+        }
+
+        void SetPosition() 
+        {
+            this.transform.position = new Vector3(AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[(int)wallType].transform.position.x, 0, 0);
+        }
+
+        public void ContinueButton()
+        {
+            continueButton.color = Color.green;
+
+            switch (SuperHeroManager.Instance.currentStage)
+            {
+                case FillInTheBlankStages.Stage1:
+                    selectedSuperHero.head = headsPanel.GetSelectedPart();
+                    break;
+
+                case FillInTheBlankStages.Stage2:
+                    selectedSuperHero.body = bodiesPanel.GetSelectedPart();
+                    break;
+
+                case FillInTheBlankStages.Stage3:
+                    selectedSuperHero.leg = legsPanel.GetSelectedPart();
+                    break;
+            }
+
+            SuperHeroManager.Instance.SetSuperHeroData(wallType, selectedSuperHero);
         }
     }
 }

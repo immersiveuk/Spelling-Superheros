@@ -1,4 +1,5 @@
 ﻿using Com.Immersive.Cameras;
+using Immersive.SuperHero;
 using Mono.Options;
 using System;
 using System.Collections;
@@ -12,14 +13,16 @@ namespace Immersive.FillInTheBlank
 {
     public class FillInTheBlanksManager : MonoBehaviour
     {
+        public FillInTheBlankStages stage;
+
         [Header("Sounds")]
         public AudioClip positiveClip;
         public AudioClip negativeClip;
 
-        public string sceneName;
-
         int totalQuestions = 0;
         int answerCount = 0;
+
+        
 
         private void Start()
         {
@@ -52,10 +55,11 @@ namespace Immersive.FillInTheBlank
             else
                 AbstractImmersiveCamera.PlayAudio(negativeClip);
 
-            if (answerCount >= totalQuestions && !string.IsNullOrEmpty(sceneName))
+            if (answerCount >= 1)// totalQuestions)
             {
-                Debug.Log("All questions answered");
-                SceneManager.LoadScene(sceneName);
+                SuperHeroManager.Instance.currentStage = stage;
+                Debug.Log(stage+" "+SuperHeroManager.Instance.currentStage);
+                SuperHeroManager.Instance.LoadScene("Super Hero Creator");
             }
         }
     }

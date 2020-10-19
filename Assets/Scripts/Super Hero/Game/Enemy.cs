@@ -9,13 +9,6 @@ namespace Immersive.SuperHero
         Vector3 moveAround;
         bool hover;
 
-        //public Transform center;
-        //public Vector3 axis = Vector3.forward;
-        //public Vector3 desiredPosition;
-        //public float radius = 2.0f;
-        //public float radiusSpeed = 0.5f;
-        //public float rotationSpeed = 80.0f;
-
         public float xSpread;
         public float zSpread;
         public float yOffset;
@@ -35,12 +28,11 @@ namespace Immersive.SuperHero
         {
             this.GetComponent<SpriteRenderer>().sprite = enemySprite;
 
-            float transitionTime = Vector2.Distance(this.transform.localPosition, endPosition);
+            float transitionTime = Vector2.Distance(this.transform.localPosition, endPosition) * 5;
 
             iTween.MoveTo(this.gameObject, iTween.Hash("x", endPosition.x, "y", endPosition.y, "z", 0, "islocal", true,
-              "time", transitionTime * 5, "easetype", iTween.EaseType.linear, "oncomplete", (System.Action<object>)(newValue =>
+              "time", transitionTime, "easetype", iTween.EaseType.linear, "oncomplete", (System.Action<object>)(newValue =>
               {
-                  Debug.Log(transform.position);
                   moveAround = this.transform.position + new Vector3(0.1f, 0);
                   hover = true;
               })));

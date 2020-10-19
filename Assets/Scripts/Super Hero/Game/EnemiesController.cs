@@ -13,24 +13,48 @@ namespace Immersive.SuperHero
         public Enemy prefabEnemy;
 
         float enemyRange;
+        int enemyIndex;
+        int totalEnemy;
 
         new void Start()
         {
             base.Start();
-            enemyRange = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[0].aspect / 2.5f;
 
+            totalEnemy = enemies.EnemyList.Count;
+            enemyRange = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[0].aspect / 3.0f;
+            
             CreateEnemy();
+
+            Invoke("CreateEnemy", 2.0f);
         }
 
         void CreateEnemy()
         {
-            Vector3 startPosition = new Vector3(Random.Range(-enemyRange, enemyRange), 1, 0);
+            Vector3 startPosition = new Vector3(Random.Range(-enemyRange, enemyRange), 1.5f, 0);
             Vector3 endPosition = new Vector3(Random.Range(-enemyRange, enemyRange), Random.Range(0.2f, 0.4f), 0);
 
             Enemy objEnemy = Instantiate(prefabEnemy, enemyParent, false);
             objEnemy.transform.localPosition = startPosition;
 
-            objEnemy.Init(enemies.EnemyList[0], endPosition);
+            objEnemy.Init(enemies.EnemyList[enemyIndex], endPosition);
+
+            enemyIndex++;        
+        }
+
+        protected override void OnEnemyDestory()
+        {
+            
+            if (enemyIndex < enemies.EnemyList.Count)
+            {
+                CreateEnemy();
+            }
+
+            totalEnemy--;
+
+            if (totalEnemy <= 0)
+            {
+                SuperHeroManager.Instance.OnAllEnemiesDestroyedOfWall();
+            }
         }
     }
 }

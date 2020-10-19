@@ -18,21 +18,25 @@ namespace Immersive.SuperHero
         public TrailRenderer prefabTrail;
         public Transform laserStartPoint;
 
+        protected virtual void OnEnemyDestory() { }
+
         public void Start()
         {
+            this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
+           
             SetWallTouchEvent();
             SetHero();
         }
 
         void SetHero()
         {
-            SuperHeroSettings superHero = SuperHeroManager.Instance.GetSuperHero(wallType);
+            SelectedSuperHero superHero = SuperHeroManager.Instance.GetSuperHero(wallType);
 
             if (superHero != null)
             {
-                head.sprite = superHero.heads[0].gameSprite;
-                body.sprite = superHero.bodies[0].gameSprite;
-                leg.sprite = superHero.legs[0].gameSprite;
+                head.sprite = superHero.head?.gameSprite;
+                body.sprite = superHero.body?.gameSprite;
+                leg.sprite = superHero.leg?.gameSprite;
             }
         }
 
@@ -41,7 +45,7 @@ namespace Immersive.SuperHero
             switch (wallType)
             {
                 case WallType.Left:
-                    AbstractImmersiveCamera.LeftScreenTouched.AddListener(WallTouched);
+                    AbstractImmersiveCamera.LeftScreenTouched.AddListener(WallTouched);                   
                     break;
 
                 case WallType.Center:
@@ -52,6 +56,8 @@ namespace Immersive.SuperHero
                     AbstractImmersiveCamera.RightScreenTouched.AddListener(WallTouched);
                     break;
             }
+
+            this.transform.position = new Vector3(AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[(int)wallType].transform.position.x, 0, 0);
         }
 
         private void WallTouched(Vector2 screenPosition, int cameraIndex, TouchPhase phase, int index)
@@ -82,7 +88,12 @@ namespace Immersive.SuperHero
 
             Vector2 p3 = Utils.GetNewPoint(p1, p2);
 
-            trail.GetComponentInChildren<LaserTrail>().MoveTrail(p1, p2, p3);
+            trail.GetComponentInChildren<LaserTrail>().MoveTrail(p1, p2, p3, OnEnemyDestoryCallback);
+        }
+
+        void OnEnemyDestoryCallback()
+        {
+            OnEnemyDestory();
         }
     }
 }

@@ -578,8 +578,8 @@ namespace Com.Immersive.Cameras
             }
             catch (SocketException socketException)
             {
-                print("Could Not Connect to Touch Sensor on Port " + port);
-                print(socketException);
+                //print("Could Not Connect to Touch Sensor on Port " + port);
+                //print(socketException);
             }
         }
 

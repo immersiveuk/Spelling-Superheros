@@ -28,4 +28,14 @@ public class Utils
 
         return p3;
     }
+
+    public static SpriteRenderer GetSpriteRenderer(Transform parent)
+    {
+        GameObject obj = new GameObject();
+        obj.transform.SetParent(parent, false);
+
+        SpriteRenderer objSprite = obj.AddComponent<SpriteRenderer>();
+
+        return objSprite;
+    }
 }

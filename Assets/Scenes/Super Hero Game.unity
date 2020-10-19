@@ -879,6 +879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 544457328}
+  - component: {fileID: 544457329}
   m_Layer: 0
   m_Name: SuperHero
   m_TagString: Untagged
@@ -904,6 +905,22 @@ Transform:
   m_Father: {fileID: 1247665898}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &544457329
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544457327}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: e9de3e557d53246479d23a5e4c75bb9b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: e9de3e557d53246479d23a5e4c75bb9b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &612481748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1039081434}
+  - component: {fileID: 1039081435}
   m_Layer: 0
   m_Name: SuperHero
   m_TagString: Untagged
@@ -1205,6 +1223,22 @@ Transform:
   m_Father: {fileID: 1606193266}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &1039081435
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039081433}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: e9de3e557d53246479d23a5e4c75bb9b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: e9de3e557d53246479d23a5e4c75bb9b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1099614718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,7 +1491,7 @@ Transform:
   - {fileID: 544457328}
   - {fileID: 487078842}
   m_Father: {fileID: 1290508026}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1247665900
 MonoBehaviour:
@@ -1510,8 +1544,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1370246481}
   - {fileID: 1247665898}
+  - {fileID: 1370246481}
   - {fileID: 1606193266}
   - {fileID: 1175944997}
   m_Father: {fileID: 181524804}
@@ -1678,7 +1712,7 @@ Transform:
   - {fileID: 1755035151}
   - {fileID: 31006321}
   m_Father: {fileID: 1290508026}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1370246483
 MonoBehaviour:
@@ -2114,6 +2148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1755035151}
+  - component: {fileID: 1755035152}
   m_Layer: 0
   m_Name: SuperHero
   m_TagString: Untagged
@@ -2139,6 +2174,22 @@ Transform:
   m_Father: {fileID: 1370246481}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &1755035152
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755035150}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: e9de3e557d53246479d23a5e4c75bb9b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: e9de3e557d53246479d23a5e4c75bb9b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &2012789265
 PrefabInstance:
   m_ObjectHideFlags: 0

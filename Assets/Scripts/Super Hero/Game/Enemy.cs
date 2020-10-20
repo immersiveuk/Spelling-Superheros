@@ -19,7 +19,7 @@ namespace Immersive.SuperHero
 
         float timer = 0;
 
-        private void Start()
+        private void Awake()
         {
             rotateClockwise = Random.Range(0, 100) > 50 ? true : false;
         }
@@ -30,10 +30,13 @@ namespace Immersive.SuperHero
 
             float transitionTime = Vector2.Distance(this.transform.localPosition, endPosition) * 5;
 
-            iTween.MoveTo(this.gameObject, iTween.Hash("x", endPosition.x, "y", endPosition.y, "z", 0, "islocal", true,
+            moveAround = endPosition;
+            Vector3 pos = GetPosition() + endPosition;
+
+            iTween.MoveTo(this.gameObject, iTween.Hash("x", pos.x, "y", pos.y, "z", 0, "islocal", true,
               "time", transitionTime, "easetype", iTween.EaseType.linear, "oncomplete", (System.Action<object>)(newValue =>
               {
-                  moveAround = this.transform.position + new Vector3(0.1f, 0);
+                  timer = 0;
                   hover = true;
               })));
         }
@@ -63,6 +66,26 @@ namespace Immersive.SuperHero
                 Vector3 pos = new Vector3(x, z, 0);
                 transform.position = pos + moveAround;
             }
+        }
+
+        Vector3 GetPosition()
+        {
+            Vector3 pos;
+
+            if (rotateClockwise)
+            {
+                float x = -Mathf.Cos(0) * xSpread;
+                float z = Mathf.Sin(0) * zSpread;
+                pos = new Vector3(x, z, 0);                
+            }
+            else
+            {
+                float x = Mathf.Cos(0) * xSpread;
+                float z = Mathf.Sin(0) * zSpread;
+                pos = new Vector3(x, z, 0);                
+            }
+
+            return pos;
         }
     }
 }

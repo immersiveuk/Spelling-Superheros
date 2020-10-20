@@ -1,6 +1,7 @@
 ﻿using Com.Immersive.Cameras;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Immersive.SuperHero
@@ -11,6 +12,7 @@ namespace Immersive.SuperHero
         public Transform enemyParent;
         public Enemies enemies;
         public Enemy prefabEnemy;
+        public TextMeshPro textEnemy;
 
         float enemyRange;
         int enemyIndex;
@@ -50,6 +52,8 @@ namespace Immersive.SuperHero
             }
 
             totalEnemy--;
+
+            textEnemy.text = "Enemy: " + (enemies.EnemyList.Count - totalEnemy);
 
             if (totalEnemy <= 0)
             {

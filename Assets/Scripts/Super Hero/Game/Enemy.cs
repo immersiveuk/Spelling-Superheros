@@ -57,14 +57,14 @@ namespace Immersive.SuperHero
                 float x = -Mathf.Cos(timer) * xSpread;
                 float z = Mathf.Sin(timer) * zSpread;
                 Vector3 pos = new Vector3(x, z, 0);
-                transform.position = pos + moveAround;
+                transform.localPosition = pos + moveAround;
             }
             else
             {
                 float x = Mathf.Cos(timer) * xSpread;
                 float z = Mathf.Sin(timer) * zSpread;
                 Vector3 pos = new Vector3(x, z, 0);
-                transform.position = pos + moveAround;
+                transform.localPosition = pos + moveAround;
             }
         }
 

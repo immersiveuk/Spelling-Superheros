@@ -94,7 +94,7 @@ namespace Immersive.FillInTheBlank
         /// </summary>
         public void OnCorrectAnswer()
         {
-            //textSpelling.text = spellingData.spelling;
+            textSpelling.text = textSpelling.text.Replace("<u>", "").Replace("</u>", "");
         }
 
         /// <summary>

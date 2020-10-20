@@ -14,6 +14,14 @@ namespace Immersive.SuperHero
 
         public FillInTheBlankStages currentStage;
 
+        public void ResetManager()
+        {
+            wallCompleted = 0;
+            currentStage = FillInTheBlankStages.Stage1;
+            createdSuperHeros.Clear();
+            selectedWalls.Clear();
+        }
+
         void Inisialize()
         {
             createdSuperHeros.Add(WallType.Left, new SelectedSuperHero());
@@ -77,6 +85,11 @@ namespace Immersive.SuperHero
         public void LoadScene(string sceneName)
         {
             SceneManager.LoadScene(sceneName);
+        }
+
+        private void OnApplicationQuit()
+        {
+            PlayerPrefs.SetInt("GameMode", -1);
         }
     }
 }

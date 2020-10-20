@@ -14,14 +14,14 @@ namespace Immersive.SuperHero
 
         System.Action onAnemyDestroy;
 
-        public void MoveTrail(Vector2 p1, Vector2 p2, Vector2 p3, System.Action action)
+        public void MoveTrail(Vector3 p1, Vector2 p2, Vector2 p3, System.Action action)
         {
             onAnemyDestroy = action;
             float transitionTime = Vector3.Distance(p1, p3);
 
             cube.transform.localEulerAngles = new Vector3(0, 0, Utils.AngleInDeg(p1, p2) - 90);
 
-            iTween.MoveTo(trail.gameObject, iTween.Hash("x", p3.x, "y", p3.y, "z", -1.6f, "islocal", false,
+            iTween.MoveTo(trail.gameObject, iTween.Hash("x", p3.x, "y", p3.y, "z", p1.z, "islocal", false,
                 "time", transitionTime, "easetype", iTween.EaseType.linear, "oncomplete", (System.Action<object>)(newValue =>
                 {
                     Destroy(trail.gameObject);
@@ -38,7 +38,7 @@ namespace Immersive.SuperHero
                 Vector3 start = trail.GetPosition(0);
                 Vector3 end = trail.GetPosition(count - 1);
 
-                cube.transform.localScale = new Vector3(0.01f, Vector3.Distance(end, start)/1.1f, 0.01f);
+                cube.transform.localScale = new Vector3(0.01f, Vector3.Distance(end, start)/2f, 0.01f);
                 cube.transform.position = (start + end) / 2;
             }
         }

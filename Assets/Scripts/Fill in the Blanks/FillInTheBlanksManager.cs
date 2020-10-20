@@ -30,11 +30,19 @@ namespace Immersive.FillInTheBlank
         private void Awake()
         {
             Instance = this;
+            if (PlayerPrefs.GetInt("GameMode", -1) != -1)
+            {
+                gameMode = (GameMode)PlayerPrefs.GetInt("GameMode");
+            }
+            else
+            {
+                gameMode = GameMode.Simple;
+            }
         }
-
 
         private void Start()
         {
+
             foreach (var obj in FindObjectsOfType<FillInTheBlanksData>())
             {
                 totalQuestions += obj.fillInTheBlanksList.Count;
@@ -67,7 +75,6 @@ namespace Immersive.FillInTheBlank
             if (answerCount >= totalQuestions)
             {
                 SuperHeroManager.Instance.currentStage = stage;
-                Debug.Log(stage+" "+SuperHeroManager.Instance.currentStage);
                 SuperHeroManager.Instance.LoadScene("Super Hero Creator");
             }
         }

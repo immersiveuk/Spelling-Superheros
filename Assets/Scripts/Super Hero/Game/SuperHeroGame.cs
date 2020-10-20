@@ -81,7 +81,7 @@ namespace Immersive.SuperHero
             Vector2 p1 = laserStartPoint.position;
 
             Camera cam = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex];
-            var p2 = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, 0));
+            var p2 = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -0.1f));
 
             TrailRenderer trail = Instantiate(prefabTrail, this.transform, false);
             trail.transform.position = p1;

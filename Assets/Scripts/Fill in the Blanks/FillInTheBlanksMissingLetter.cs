@@ -130,7 +130,7 @@ namespace Immersive.FillInTheBlank
             letterStats = MissingLettersStats.Placing;
             fillInTheBlanksController.missingLettersStats = MissingLettersStats.Placing;
 
-            selectedSpelling.missingLetterPosition.localPosition = GetPosition(selectedSpelling.textSpelling.textInfo);
+            selectedSpelling.missingLetterPosition.localPosition = GetPosition(selectedSpelling.textSpelling);
 
             OnDeselect();
 
@@ -195,8 +195,10 @@ namespace Immersive.FillInTheBlank
         }
 
         
-        Vector2 GetPosition(TMP_TextInfo textInfo)
+        Vector2 GetPosition(TextMeshPro textMeshPro)
         {
+            TMP_TextInfo textInfo = textMeshPro.textInfo;
+
             Vector2 centerPosition;
 
             Vector3 bottomLeft = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.missingLettersPosition[0].x, true);
@@ -204,7 +206,7 @@ namespace Immersive.FillInTheBlank
 
             centerPosition = (bottomLeft + bottomRight) / 2;
 
-            centerPosition = new Vector2(centerPosition.x, 0);
+            centerPosition = new Vector2(centerPosition.x, -(textInfo.lineCount - 1) * textMeshPro.textBounds.extents.y / 2);
 
             return centerPosition;
         }

@@ -3464,6 +3464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c180a53be36b964ba03cb6628ad00ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMode: 0
   stage: 1
   positiveClip: {fileID: 8300000, guid: 61a9bcd5f62618c4a8e11605870159c4, type: 3}
   negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}

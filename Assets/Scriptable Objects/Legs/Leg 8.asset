@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Leg 8
   m_EditorClassIdentifier: 
   creatorSprite: {fileID: 21300000, guid: b1d94c624bc3d7947af91fe1ba96d127, type: 3}
-  gameSprite: {fileID: 21300000, guid: b1d94c624bc3d7947af91fe1ba96d127, type: 3}
+  gameSprites:
+  - {fileID: 21300000, guid: b1d94c624bc3d7947af91fe1ba96d127, type: 3}

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4593c5bb0d5c9f844ba40b108f9384b2, type: 3}
   m_Name: Head 4
   m_EditorClassIdentifier: 
-  creatorSprite: {fileID: 21300000, guid: 6eaec7f8e29453247a7c18d471adfdbd, type: 3}
-  gameSprite: {fileID: 21300000, guid: 6eaec7f8e29453247a7c18d471adfdbd, type: 3}
+  creatorSprite: {fileID: 21300000, guid: c74ecedf48dedfe47b5feea68b91a0aa, type: 3}
+  gameSprites:
+  - {fileID: 21300000, guid: c74ecedf48dedfe47b5feea68b91a0aa, type: 3}
+  - {fileID: 21300000, guid: 2dfd67e752f65a04aa132b01259074c0, type: 3}

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Body 7
   m_EditorClassIdentifier: 
   creatorSprite: {fileID: 21300000, guid: b06eab85669718a46ad846705eac71b0, type: 3}
-  gameSprite: {fileID: 21300000, guid: b06eab85669718a46ad846705eac71b0, type: 3}
+  gameSprites:
+  - {fileID: 21300000, guid: b06eab85669718a46ad846705eac71b0, type: 3}

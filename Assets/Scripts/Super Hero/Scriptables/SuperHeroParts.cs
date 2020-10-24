@@ -8,6 +8,6 @@ namespace Immersive.SuperHero
     public class SuperHeroParts : ScriptableObject
     {
         public Sprite creatorSprite;
-        public Sprite gameSprite;
+        public Sprite[] gameSprites;
     }
 }

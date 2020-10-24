@@ -37,6 +37,7 @@ namespace Immersive.SuperHero
 
             Enemy objEnemy = Instantiate(prefabEnemy, enemyParent, false);
             objEnemy.transform.localPosition = startPosition;
+            objEnemy.transform.localScale = Vector3.one * 0.3f;
 
             objEnemy.Init(enemies.EnemyList[enemyIndex], endPosition);
 

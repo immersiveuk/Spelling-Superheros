@@ -27,16 +27,16 @@ namespace Immersive.FillInTheBlank
         int totalQuestions = 0;
         int answerCount = 0;
 
+        public int fontSizeSimpleMode = 12;
+        public int fotSizeAdvancedMode = 20;
+
         private void Awake()
         {
             Instance = this;
             if (PlayerPrefs.GetInt("GameMode", -1) != -1)
             {
+                Debug.Log("game Mode");
                 gameMode = (GameMode)PlayerPrefs.GetInt("GameMode");
-            }
-            else
-            {
-                gameMode = GameMode.Simple;
             }
         }
 
@@ -77,6 +77,11 @@ namespace Immersive.FillInTheBlank
                 SuperHeroManager.Instance.currentStage = stage;
                 SuperHeroManager.Instance.LoadScene("Super Hero Creator");
             }
+        }
+
+        private void OnApplicationQuit()
+        {
+            PlayerPrefs.SetInt("GameMode", -1);
         }
     }
 }

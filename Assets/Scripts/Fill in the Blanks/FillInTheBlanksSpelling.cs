@@ -10,7 +10,6 @@ namespace Immersive.FillInTheBlank
     {
         public TextMeshPro textSpelling;
         public Transform missingLetterPosition;
-
        
         protected virtual void Highlight()
         {
@@ -37,12 +36,12 @@ namespace Immersive.FillInTheBlank
 
             if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
             {
-                textSpelling.fontSize = 15;
+                textSpelling.fontSize = FillInTheBlanksManager.Instance.fontSizeSimpleMode;
                 textSpelling.text = spellingData.spelling + " - " + spelling;
             }
             else
             {
-                textSpelling.fontSize = 25;
+                textSpelling.fontSize = FillInTheBlanksManager.Instance.fotSizeAdvancedMode;
                 textSpelling.text = spelling;
             }
         }

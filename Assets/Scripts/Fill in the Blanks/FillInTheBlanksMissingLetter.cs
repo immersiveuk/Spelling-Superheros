@@ -63,9 +63,9 @@ namespace Immersive.FillInTheBlank
             textOption.text = option;
 
             if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
-                textOption.fontSize = 15;
+                textOption.fontSize = FillInTheBlanksManager.Instance.fontSizeSimpleMode;
             else
-                textOption.fontSize = 25;
+                textOption.fontSize = FillInTheBlanksManager.Instance.fotSizeAdvancedMode;
 
             OnSelect();
         }

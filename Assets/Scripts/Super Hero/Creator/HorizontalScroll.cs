@@ -13,7 +13,7 @@ namespace Immersive.SuperHero
         int spriteIndex = -1;
 
         List<Transform> parts = new List<Transform>();
-        List<SuperHeroParts> superHeroParts;
+        List<SuperHeroParts> superHeroParts = new List<SuperHeroParts>();
         SuperHeroParts selectedPart;
 
         float gapValue;
@@ -40,16 +40,19 @@ namespace Immersive.SuperHero
             default_Selected_Sprite.gameObject.SetActive(false);
 
             spriteIndex = 0;
-            this.superHeroParts = superHeroParts;
+            this.superHeroParts.AddRange(superHeroParts);
+            IListExtensions.Shuffle(this.superHeroParts);
 
             for (int i = 0; i < 2; i++)
             {
                 SpriteRenderer objPart = Utils.GetSpriteRenderer(this.transform);
                 objPart.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                 objPart.transform.localScale = Vector3.one * 0.8f;
-                objPart.sprite = superHeroParts[i].creatorSprite;
                 objPart.transform.localPosition = new Vector3(i * gapValue, 0, 0);
 
+                objPart.gameObject.AddComponent<AnimationScript>();
+                objPart.GetComponent<AnimationScript>().Init(0.5f, superHeroParts[i].gameSprites);
+                //objPart.sprite = superHeroParts[i].creatorSprite;
                 parts.Add(objPart.transform);
             }
         }
@@ -101,7 +104,8 @@ namespace Immersive.SuperHero
             if (spriteIndex < 0)
                 spriteIndex = superHeroParts.Count - 1;
 
-            parts[1].GetComponent<SpriteRenderer>().sprite = superHeroParts[spriteIndex].creatorSprite;
+            parts[1].GetComponent<AnimationScript>().Init(0.12f, superHeroParts[spriteIndex].gameSprites);
+            //parts[1].GetComponent<SpriteRenderer>().sprite = superHeroParts[spriteIndex].creatorSprite;
             parts[1].localPosition = new Vector3(partIndex * gapValue, 0, 0);
 
             iTween.MoveBy(this.gameObject, iTween.Hash("x", direction * gapValue, "y", 0, "z", 0, "islocal", false, "time", transitionTime,

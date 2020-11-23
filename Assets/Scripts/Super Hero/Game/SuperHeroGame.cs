@@ -34,10 +34,9 @@ namespace Immersive.SuperHero
 
             if (superHero != null)
             {
-                if(superHero.head)
-                head.GetComponent<AnimationScript>().Init(0.12f,superHero.head.gameSprites);
+                if (superHero.head)
+                    head.GetComponent<AnimationScript>().Init(0.12f, superHero.head.gameSprites);
 
-                //head.sprite = superHero.head?.gameSprites[0];
                 if (superHero.body)
                     body.sprite = superHero.body?.gameSprites[0];
 

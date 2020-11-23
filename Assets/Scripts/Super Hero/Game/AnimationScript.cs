@@ -19,7 +19,7 @@ public class AnimationScript : MonoBehaviour
     {
         animationSpeed = speed;
         frames = sprites;
-
+        StopAllCoroutines();
         Play();
     }
 
@@ -32,17 +32,20 @@ public class AnimationScript : MonoBehaviour
     {
         currentFrame = 0;
 
-        while (currentFrame < frames.Length)
-        {
-            spriteRenderer.sprite = frames[currentFrame];
-            currentFrame++;
+        //while (currentFrame < frames.Length)
+        //{
+        //    spriteRenderer.sprite = frames[currentFrame];
+        //    currentFrame++;
 
-            yield return new WaitForSeconds(animationSpeed);
-        }
+        //    yield return new WaitForSeconds(2);
+        //}
+        spriteRenderer.sprite = frames[0];
+        yield return new WaitForSeconds(Random.Range(1.5f, 2.5f));
+        spriteRenderer.sprite = frames[1];
 
         if (loop)
         {
-            yield return new WaitForSeconds(animationSpeed);
+            yield return new WaitForSeconds(0.1f);
             StartCoroutine(PlayAnim());
         }
     }

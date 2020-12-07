@@ -21,6 +21,8 @@ namespace Immersive.SuperHero
         public HorizontalScroll legsPanel;
 
         public SpriteRenderer continueButton;
+        public Sprite goSprite;
+        public GameObject startButton;
 
         SelectedSuperHero selectedSuperHero;
 
@@ -36,6 +38,9 @@ namespace Immersive.SuperHero
 
         void SetSuperHero()
         {
+            if (SuperHeroManager.Instance.currentStage != FillInTheBlankStages.None)
+                startButton.SetActive(false);
+
             switch (SuperHeroManager.Instance.currentStage)
             {
                 case FillInTheBlankStages.Stage1:
@@ -50,7 +55,9 @@ namespace Immersive.SuperHero
                 case FillInTheBlankStages.Stage3:
                     headsPanel.SetSelectedSprite(selectedSuperHero.head);
                     bodiesPanel.SetSelectedSprite(selectedSuperHero.body);
-                    legsPanel.SetScroll(superHero.legs, OnScroll);                    
+                    legsPanel.SetScroll(superHero.legs, OnScroll);
+
+                    continueButton.sprite = goSprite;
                     break;
             }
 
@@ -61,6 +68,7 @@ namespace Immersive.SuperHero
         {
             SuperHeroManager.Instance.selectedWalls[wallType] = false;
             continueButton.color = Color.white;
+            continueButton.gameObject.SetActive(true);
         }
 
         void SetPosition() 
@@ -70,7 +78,7 @@ namespace Immersive.SuperHero
 
         public void ContinueButton()
         {
-            continueButton.color = Color.green;
+            continueButton.color = Color.black;
 
             switch (SuperHeroManager.Instance.currentStage)
             {
@@ -88,6 +96,11 @@ namespace Immersive.SuperHero
             }
 
             SuperHeroManager.Instance.SetSuperHeroData(wallType, selectedSuperHero);
+        }
+
+        public void LoadFillInTheBlank()
+        {            
+            SuperHeroManager.Instance.LoadScene("Stage1");
         }
     }
 }

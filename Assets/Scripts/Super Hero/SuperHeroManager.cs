@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum FillInTheBlankStages { Stage1, Stage2, Stage3 }
+public enum FillInTheBlankStages { Stage1, Stage2, Stage3, None }
 
 namespace Immersive.SuperHero
 {

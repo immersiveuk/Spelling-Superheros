@@ -21,6 +21,7 @@ public class IntroScene : MonoBehaviour
 
     public void ContinueButton()
     {
-        SuperHeroManager.Instance.LoadScene("Stage1");
+        SuperHeroManager.Instance.currentStage = FillInTheBlankStages.None;
+        SuperHeroManager.Instance.LoadScene("Super Hero Creator");
     }
 }

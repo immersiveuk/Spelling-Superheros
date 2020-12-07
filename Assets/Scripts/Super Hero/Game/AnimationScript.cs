@@ -20,7 +20,11 @@ public class AnimationScript : MonoBehaviour
         animationSpeed = speed;
         frames = sprites;
         StopAllCoroutines();
-        Play();
+
+        spriteRenderer.sprite = frames[0];
+
+        if (sprites.Length > 1)
+            Play();
     }
 
     void Play()
@@ -39,6 +43,7 @@ public class AnimationScript : MonoBehaviour
 
         //    yield return new WaitForSeconds(2);
         //}
+
         spriteRenderer.sprite = frames[0];
         yield return new WaitForSeconds(Random.Range(1.5f, 2.5f));
         spriteRenderer.sprite = frames[1];

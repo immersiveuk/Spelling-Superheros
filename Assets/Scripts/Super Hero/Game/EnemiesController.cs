@@ -18,6 +18,8 @@ namespace Immersive.SuperHero
         int enemyIndex;
         int totalEnemy;
 
+        public AudioClip superheroReadyClip;
+
         new void Start()
         {
             base.Start();
@@ -28,6 +30,9 @@ namespace Immersive.SuperHero
             CreateEnemy();
 
             Invoke("CreateEnemy", 2.0f);
+
+            if (superheroReadyClip)
+                AbstractImmersiveCamera.PlayAudio(superheroReadyClip, 1);
         }
 
         void CreateEnemy()

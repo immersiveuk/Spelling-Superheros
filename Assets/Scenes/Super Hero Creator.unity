@@ -1247,6 +1247,9 @@ MonoBehaviour:
   continueButton: {fileID: 211112533}
   goSprite: {fileID: 21300000, guid: a3736689ffe42464690cc10d560431f1, type: 3}
   startButton: {fileID: 1995686020}
+  chooseHeadClip: {fileID: 0}
+  chooseBodyClip: {fileID: 0}
+  chooseLegClip: {fileID: 0}
 --- !u!1 &232664399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,6 +2002,9 @@ MonoBehaviour:
   continueButton: {fileID: 1212262860}
   goSprite: {fileID: 21300000, guid: a3736689ffe42464690cc10d560431f1, type: 3}
   startButton: {fileID: 2089248950}
+  chooseHeadClip: {fileID: 8300000, guid: 6fbf40a788e530749be2cb6fd6536281, type: 3}
+  chooseBodyClip: {fileID: 8300000, guid: 6b4d2740c1b0b674092446a31d2ddbaa, type: 3}
+  chooseLegClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
 --- !u!1 &499819346
 GameObject:
   m_ObjectHideFlags: 0
@@ -5598,6 +5604,9 @@ MonoBehaviour:
   continueButton: {fileID: 1434924207}
   goSprite: {fileID: 21300000, guid: a3736689ffe42464690cc10d560431f1, type: 3}
   startButton: {fileID: 970286236}
+  chooseHeadClip: {fileID: 0}
+  chooseBodyClip: {fileID: 0}
+  chooseLegClip: {fileID: 0}
 --- !u!1 &1589306591
 GameObject:
   m_ObjectHideFlags: 0

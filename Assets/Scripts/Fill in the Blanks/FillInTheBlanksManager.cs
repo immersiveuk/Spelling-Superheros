@@ -30,6 +30,8 @@ namespace Immersive.FillInTheBlank
         public int fontSizeSimpleMode = 12;
         public int fotSizeAdvancedMode = 20;
 
+        public AudioClip introClip;
+
         private void Awake()
         {
             Instance = this;
@@ -48,6 +50,9 @@ namespace Immersive.FillInTheBlank
                 totalQuestions += obj.fillInTheBlanksList.Count;
                 obj.OnResultAction += OnResultAction;
             }
+
+            if (SuperHeroManager.Instance.currentStage == FillInTheBlankStages.Stage1)
+                AbstractImmersiveCamera.PlayAudio(introClip, 1);
         }
 
         private void OnDestroy()

@@ -15,7 +15,7 @@ namespace Immersive.SuperHero
         List<Transform> parts = new List<Transform>();
         List<SuperHeroParts> superHeroParts = new List<SuperHeroParts>();
         SuperHeroParts selectedPart;
-
+         
         float gapValue;
         float transitionTime;
 
@@ -33,14 +33,14 @@ namespace Immersive.SuperHero
             partIndex = 0;
         }
 
-        public void SetScroll(List<SuperHeroParts> superHeroParts, Action action)
+        public void SetScroll(List<SuperHeroParts> superHeroPart, Action action)
         {
             onScroll = action;
             buttonsParent.SetActive(true);
             default_Selected_Sprite.gameObject.SetActive(false);
 
             spriteIndex = 0;
-            this.superHeroParts.AddRange(superHeroParts);
+            this.superHeroParts.AddRange(superHeroPart);
             IListExtensions.Shuffle(this.superHeroParts);
 
             for (int i = 0; i < 2; i++)

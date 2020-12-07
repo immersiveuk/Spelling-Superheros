@@ -587,6 +587,7 @@ MonoBehaviour:
   negativeClip: {fileID: 8300000, guid: 376dbcbabc051d848bcb9281027c2748, type: 3}
   fontSizeSimpleMode: 12
   fotSizeAdvancedMode: 20
+  introClip: {fileID: 8300000, guid: d8da0187dfd99924db854cc815538a04, type: 3}
 --- !u!1001 &308982481
 PrefabInstance:
   m_ObjectHideFlags: 0

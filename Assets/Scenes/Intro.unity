@@ -1938,6 +1938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   introSprite: {fileID: 1367283695}
   buttonConitnue: {fileID: 455055792}
+  introClip: {fileID: 8300000, guid: 00fa9d111bf30e44bba2a793a9e5e32f, type: 3}
 --- !u!1 &516427016
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,8 @@ namespace Immersive.SuperHero
 
         SelectedSuperHero selectedSuperHero;
 
+        public AudioClip chooseHeadClip, chooseBodyClip, chooseLegClip;
+
         void Start()
         {
             this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
@@ -45,11 +47,17 @@ namespace Immersive.SuperHero
             {
                 case FillInTheBlankStages.Stage1:
                     headsPanel.SetScroll(superHero.heads, OnScroll);
+
+                    if (chooseHeadClip)
+                        AbstractImmersiveCamera.PlayAudio(chooseHeadClip, 1);
                     break;
 
                 case FillInTheBlankStages.Stage2:
                     headsPanel.SetSelectedSprite(selectedSuperHero.head);
-                    bodiesPanel.SetScroll(superHero.bodies, OnScroll);                    
+                    bodiesPanel.SetScroll(superHero.bodies, OnScroll);
+
+                    if (chooseBodyClip)
+                        AbstractImmersiveCamera.PlayAudio(chooseBodyClip, 1);
                     break;
 
                 case FillInTheBlankStages.Stage3:
@@ -58,6 +66,9 @@ namespace Immersive.SuperHero
                     legsPanel.SetScroll(superHero.legs, OnScroll);
 
                     continueButton.sprite = goSprite;
+
+                    if (chooseLegClip)
+                        AbstractImmersiveCamera.PlayAudio(chooseLegClip, 1);
                     break;
             }
 
@@ -99,7 +110,8 @@ namespace Immersive.SuperHero
         }
 
         public void LoadFillInTheBlank()
-        {            
+        {
+            SuperHeroManager.Instance.currentStage = FillInTheBlankStages.Stage1;
             SuperHeroManager.Instance.LoadScene("Stage1");
         }
     }

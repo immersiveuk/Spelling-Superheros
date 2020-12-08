@@ -206,6 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6796977e08ba7aa4cbcc2fea87c8bfa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryClip: {fileID: 8300000, guid: bb1863e77275ae840b17705dece39d7e, type: 3}
+  victoryMusicClip: {fileID: 8300000, guid: b6b7917221bcb40449457a13b1ec151a, type: 3}
 --- !u!1001 &181524803
 PrefabInstance:
   m_ObjectHideFlags: 0

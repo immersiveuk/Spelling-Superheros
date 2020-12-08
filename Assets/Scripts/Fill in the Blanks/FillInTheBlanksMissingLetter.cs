@@ -127,6 +127,8 @@ namespace Immersive.FillInTheBlank
             if (fillInTheBlanksController.missingLettersStats != MissingLettersStats.CanPlace || letterStats != MissingLettersStats.NotPlace)
                 return;
 
+            FillInTheBlanksManager.Instance.PlaySelect();
+
             letterStats = MissingLettersStats.Placing;
             fillInTheBlanksController.missingLettersStats = MissingLettersStats.Placing;
 
@@ -134,13 +136,22 @@ namespace Immersive.FillInTheBlank
 
             OnDeselect();
 
+            StartCoroutine(MoveLetters());
+        }
+
+        IEnumerator MoveLetters()
+        {            
+            yield return new WaitForSeconds(0.3f);
+
+            FillInTheBlanksManager.Instance.PlayMove();
+
             if (selectedSpelling.spellingData.missingLetters.Equals(textOption.text))
             {
                 OnCorrectAnswer(selectedSpelling.missingLetterPosition.position);
             }
             else
             {
-                OnIncorrectAnswer(selectedSpelling.missingLetterPosition.position);  
+                OnIncorrectAnswer(selectedSpelling.missingLetterPosition.position);
             }
         }
 
@@ -168,15 +179,24 @@ namespace Immersive.FillInTheBlank
             iTween.MoveTo(textOption.gameObject, iTween.Hash("x", targetPosition.x, "y", targetPosition.y, "z", -0.2f, "islocal", false,
                      "time", 0.7f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 0, "oncomplete", (System.Action<object>)(newValue =>
                      {
+                         StartCoroutine(OnIncorrectAnswerWait());
                          iTween.MoveTo(textOption.gameObject, iTween.Hash("x", startPos.x, "y", startPos.y, "z", -0.2f, "islocal", false,
-                             "time", 0.5f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 1, "oncomplete", (System.Action<object>)(newNewValue =>
+                             "time", 0.5f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 1.5f, "oncomplete", (System.Action<object>)(newNewValue =>
                              {                                
-                                 letterStats = MissingLettersStats.NotPlace;
-                                 resultAction(false);
+                                 letterStats = MissingLettersStats.NotPlace;                                 
                                  OnSelect();
                              })));
 
                      })));
+        }
+
+        IEnumerator OnIncorrectAnswerWait()
+        {
+            yield return new WaitForSeconds(1.0f);
+            resultAction(false);
+            yield return new WaitForSeconds(0.5f);
+
+            FillInTheBlanksManager.Instance.PlayMoveBack();
         }
 
         public void OnRelease()

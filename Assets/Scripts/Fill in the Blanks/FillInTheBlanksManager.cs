@@ -23,6 +23,12 @@ namespace Immersive.FillInTheBlank
         [Header("Sounds")]
         public AudioClip positiveClip;
         public AudioClip negativeClip;
+        public AudioClip selectClip;
+        public AudioClip moveClip;
+        public AudioClip moveBackClip;
+
+        [Header("Music")]
+        public AudioClip introClip;
 
         int totalQuestions = 0;
         int answerCount = 0;
@@ -30,7 +36,7 @@ namespace Immersive.FillInTheBlank
         public int fontSizeSimpleMode = 12;
         public int fotSizeAdvancedMode = 20;
 
-        public AudioClip introClip;
+        
 
         private void Awake()
         {
@@ -82,6 +88,21 @@ namespace Immersive.FillInTheBlank
                 SuperHeroManager.Instance.currentStage = stage;
                 SuperHeroManager.Instance.LoadScene("Super Hero Creator");
             }
+        }
+
+        public void PlaySelect()
+        {
+            AbstractImmersiveCamera.PlayAudio(selectClip);
+        }
+
+        public void PlayMove()
+        {
+            AbstractImmersiveCamera.PlayAudio(moveClip);
+        }
+
+        public void PlayMoveBack()
+        {
+            AbstractImmersiveCamera.PlayAudio(moveBackClip);
         }
 
         private void OnApplicationQuit()

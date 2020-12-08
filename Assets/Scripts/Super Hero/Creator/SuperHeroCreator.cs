@@ -36,6 +36,11 @@ namespace Immersive.SuperHero
 
             SetSuperHero();
             SetPosition();
+
+            if (wallType == WallType.Center)
+            {
+                SuperHeroManager.Instance.PlaySuperHeroLabMusic();
+            }
         }
 
         void SetSuperHero()

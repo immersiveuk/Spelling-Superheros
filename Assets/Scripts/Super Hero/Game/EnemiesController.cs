@@ -18,7 +18,7 @@ namespace Immersive.SuperHero
         int enemyIndex;
         int totalEnemy;
 
-        public AudioClip superheroReadyClip;
+        
 
         new void Start()
         {
@@ -31,8 +31,15 @@ namespace Immersive.SuperHero
 
             Invoke("CreateEnemy", 2.0f);
 
-            if (superheroReadyClip)
-                AbstractImmersiveCamera.PlayAudio(superheroReadyClip, 1);
+            PlayAudio();
+        }
+
+        void PlayAudio()
+        {
+            if (wallType == WallType.Center)
+            {
+                AbstractImmersiveCamera.PlayAudio(SuperHeroManager.Instance.superheroReadyClip, 1);
+            }
         }
 
         void CreateEnemy()
@@ -50,8 +57,7 @@ namespace Immersive.SuperHero
         }
 
         protected override void OnEnemyDestory()
-        {
-            
+        {            
             if (enemyIndex < enemies.EnemyList.Count)
             {
                 CreateEnemy();

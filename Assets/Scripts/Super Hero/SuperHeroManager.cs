@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Com.Immersive.Cameras;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,16 @@ namespace Immersive.SuperHero
         public Dictionary<WallType, bool> selectedWalls = new Dictionary<WallType, bool>();
 
         public FillInTheBlankStages currentStage;
+
+        [Header("SFX")]
+        public AudioClip superheroReadyClip;
+
+        [Header("Music")]
+        public AudioClip headMusicClip;
+        public AudioClip bodyMusicClip;
+        public AudioClip legMusicClip;
+
+        public AudioSource audioSource;
 
         public void ResetManager()
         {
@@ -84,8 +95,41 @@ namespace Immersive.SuperHero
 
         public void LoadScene(string sceneName)
         {
+            if (audioSource)
+                audioSource.Stop();
+
             SceneManager.LoadScene(sceneName);
         }
+
+        IEnumerator LoadSceneCo(string sceneName, float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+            SceneManager.LoadScene(sceneName);
+        }
+
+        public void PlaySuperHeroLabMusic()
+        {
+            AudioClip music = null;
+
+            switch (currentStage)
+            {
+                case FillInTheBlankStages.Stage1:
+                    music = headMusicClip;
+                    break;
+
+                case FillInTheBlankStages.Stage2:
+                    music = bodyMusicClip;
+                    break;
+
+                case FillInTheBlankStages.Stage3:
+                    music = legMusicClip;
+                    break;
+            }
+
+            audioSource.clip = music;
+            audioSource.Play();
+        }
+
 
         private void OnApplicationQuit()
         {

@@ -18,6 +18,10 @@ namespace Immersive.SuperHero
         public TrailRenderer prefabTrail;
         public Transform laserStartPoint;
 
+        [Header("SFX")]
+        public AudioClip laserBlastClip;
+        public AudioClip explosionClip;
+
         protected virtual void OnEnemyDestory() { }
 
         public void Start()
@@ -83,6 +87,8 @@ namespace Immersive.SuperHero
 
         void CreateLaser(Vector2 screenPosition, int cameraIndex)
         {
+            AbstractImmersiveCamera.PlayAudio(laserBlastClip, 1);
+
             Vector2 p1 = laserStartPoint.position;
 
             Camera cam = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex];
@@ -98,6 +104,7 @@ namespace Immersive.SuperHero
 
         void OnEnemyDestoryCallback()
         {
+            AbstractImmersiveCamera.PlayAudio(explosionClip, 1);
             OnEnemyDestory();
         }
     }

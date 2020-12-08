@@ -111,11 +111,13 @@ namespace Immersive.SuperHero
                     break;
             }
 
+            SuperHeroManager.Instance.PlaySelect();
             SuperHeroManager.Instance.SetSuperHeroData(wallType, selectedSuperHero);
         }
 
         public void LoadFillInTheBlank()
         {
+            SuperHeroManager.Instance.PlaySelect();
             SuperHeroManager.Instance.currentStage = FillInTheBlankStages.Stage1;
             SuperHeroManager.Instance.LoadScene("Stage1");
         }

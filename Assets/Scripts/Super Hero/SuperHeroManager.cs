@@ -17,6 +17,8 @@ namespace Immersive.SuperHero
 
         [Header("SFX")]
         public AudioClip superheroReadyClip;
+        public AudioClip selectClip;
+        public AudioClip switchClip;
 
         [Header("Music")]
         public AudioClip headMusicClip;
@@ -130,6 +132,15 @@ namespace Immersive.SuperHero
             audioSource.Play();
         }
 
+        public void PlaySelect()
+        {
+            AbstractImmersiveCamera.PlayAudio(selectClip);
+        }
+
+        public void PlaySwitch()
+        {
+            AbstractImmersiveCamera.PlayAudio(switchClip);
+        }
 
         private void OnApplicationQuit()
         {

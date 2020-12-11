@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 namespace Immersive.SuperHero
 {
     public enum WallType { Left, Center, Right }
+    public enum SuperHeroPart { Head, Body, Leg }
 
     public class SuperHeroCreator : MonoBehaviour
     {

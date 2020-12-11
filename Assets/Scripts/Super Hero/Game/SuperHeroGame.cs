@@ -23,6 +23,7 @@ namespace Immersive.SuperHero
         public AudioClip explosionClip;
 
         protected virtual void OnEnemyDestory() { }
+        SelectedSuperHero superHero;
 
         public void Start()
         {
@@ -34,7 +35,7 @@ namespace Immersive.SuperHero
 
         void SetHero()
         {
-            SelectedSuperHero superHero = SuperHeroManager.Instance.GetSuperHero(wallType);
+            superHero = SuperHeroManager.Instance.GetSuperHero(wallType);
 
             if (superHero != null)
             {
@@ -89,10 +90,26 @@ namespace Immersive.SuperHero
         {
             AbstractImmersiveCamera.PlayAudio(laserBlastClip, 1);
 
-            Vector2 p1 = laserStartPoint.position;
+                 
 
             Camera cam = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex];
             var p2 = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -0.1f));
+
+            float direction = p2.x - body.transform.position.x;
+            
+            if (direction > 0)
+            {
+
+                body.sprite = superHero.body?.gameSprites[2];
+                laserStartPoint.localPosition = new Vector3(0.1f,0.375f,-0.1f);
+            }
+            else
+            {
+                body.sprite = superHero.body?.gameSprites[1];
+                laserStartPoint.localPosition = new Vector3(-0.1f, 0.375f, -0.1f);
+            }
+
+            Vector2 p1 = laserStartPoint.position;
 
             TrailRenderer trail = Instantiate(prefabTrail, this.transform, false);
             trail.transform.position = p1;

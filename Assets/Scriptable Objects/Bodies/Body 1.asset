@@ -15,3 +15,5 @@ MonoBehaviour:
   creatorSprite: {fileID: 21300000, guid: 5257d03d383af5a43bacd4a91ab57b0a, type: 3}
   gameSprites:
   - {fileID: 21300000, guid: 5257d03d383af5a43bacd4a91ab57b0a, type: 3}
+  - {fileID: 21300000, guid: 6b28f87c10c871b468f594aaf3d44fa8, type: 3}
+  - {fileID: 21300000, guid: f03fb25983fafb047b364e34555fb354, type: 3}

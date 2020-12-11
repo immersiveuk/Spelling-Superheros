@@ -19,6 +19,7 @@ namespace Immersive.SuperHero
         float gapValue;
         float transitionTime;
 
+        public SuperHeroPart part;
         public GameObject buttonsParent;
         public SpriteRenderer default_Selected_Sprite;
 
@@ -51,8 +52,12 @@ namespace Immersive.SuperHero
                 objPart.transform.localPosition = new Vector3(i * gapValue, 0, 0);
 
                 objPart.gameObject.AddComponent<AnimationScript>();
-                objPart.GetComponent<AnimationScript>().Init(0.5f, superHeroParts[i].gameSprites);
-                //objPart.sprite = superHeroParts[i].creatorSprite;
+
+                if (part == SuperHeroPart.Head)
+                    objPart.GetComponent<AnimationScript>().Init(0.5f, superHeroParts[i].gameSprites);
+                else
+                    objPart.sprite = superHeroParts[i].creatorSprite;
+
                 parts.Add(objPart.transform);
             }
         }
@@ -106,7 +111,11 @@ namespace Immersive.SuperHero
             if (spriteIndex < 0)
                 spriteIndex = superHeroParts.Count - 1;
 
-            parts[1].GetComponent<AnimationScript>().Init(0.12f, superHeroParts[spriteIndex].gameSprites);
+            if (part == SuperHeroPart.Head)
+                parts[1].GetComponent<AnimationScript>().Init(0.12f, superHeroParts[spriteIndex].gameSprites);
+            else
+                parts[1].GetComponent<SpriteRenderer>().sprite = superHeroParts[spriteIndex].creatorSprite;
+
             //parts[1].GetComponent<SpriteRenderer>().sprite = superHeroParts[spriteIndex].creatorSprite;
             parts[1].localPosition = new Vector3(partIndex * gapValue, 0, 0);
 

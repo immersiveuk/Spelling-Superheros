@@ -21,7 +21,8 @@ namespace Immersive.SuperHero
 
         public SuperHeroPart part;
         public GameObject buttonsParent;
-        public SpriteRenderer default_Selected_Sprite;
+
+        public SpriteRenderer selected_Sprite;
 
         Action onScroll;
 
@@ -38,7 +39,7 @@ namespace Immersive.SuperHero
         {
             onScroll = action;
             buttonsParent.SetActive(true);
-            default_Selected_Sprite.gameObject.SetActive(false);
+            selected_Sprite.gameObject.SetActive(false);
 
             spriteIndex = 0;
             this.superHeroParts.AddRange(superHeroPart);
@@ -69,7 +70,8 @@ namespace Immersive.SuperHero
             if (selectedSprite != null)
             {
                 spriteIndex = 0;
-                default_Selected_Sprite.sprite = selectedSprite.creatorSprite;
+                selected_Sprite.enabled = true;
+                selected_Sprite.sprite = selectedSprite.creatorSprite;
             }
         }
 

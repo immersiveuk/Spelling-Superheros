@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 namespace Immersive.SuperHero
 {
@@ -29,6 +30,9 @@ namespace Immersive.SuperHero
 
         public AudioClip chooseHeadClip, chooseBodyClip, chooseLegClip;
 
+        public VideoPlayer videoPlayer;
+        public VideoClip clip1, clip2;
+
         void Start()
         {
             this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
@@ -54,6 +58,8 @@ namespace Immersive.SuperHero
                 case FillInTheBlankStages.Stage1:
                     headsPanel.SetScroll(superHero.heads, OnScroll);
 
+                    PlayVideo(clip1);                   
+
                     if (chooseHeadClip)
                         AbstractImmersiveCamera.PlayAudio(chooseHeadClip, 1);
                     break;
@@ -61,6 +67,8 @@ namespace Immersive.SuperHero
                 case FillInTheBlankStages.Stage2:
                     headsPanel.SetSelectedSprite(selectedSuperHero.head);
                     bodiesPanel.SetScroll(superHero.bodies, OnScroll);
+
+                    PlayVideo(clip2);
 
                     if (chooseBodyClip)
                         AbstractImmersiveCamera.PlayAudio(chooseBodyClip, 1);
@@ -72,6 +80,8 @@ namespace Immersive.SuperHero
                     legsPanel.SetScroll(superHero.legs, OnScroll);
 
                     continueButton.sprite = goSprite;
+
+                    PlayVideo(null);
 
                     if (chooseLegClip)
                         AbstractImmersiveCamera.PlayAudio(chooseLegClip, 1);
@@ -121,6 +131,19 @@ namespace Immersive.SuperHero
             SuperHeroManager.Instance.PlaySelect();
             SuperHeroManager.Instance.currentStage = FillInTheBlankStages.Stage1;
             SuperHeroManager.Instance.LoadScene("Stage1");
+        }
+
+        void PlayVideo(VideoClip clip)
+        {
+            videoPlayer.Stop();
+            videoPlayer.gameObject.SetActive(false);
+
+            if (clip == null)
+                return;
+
+            videoPlayer.gameObject.SetActive(true);
+            videoPlayer.clip = clip;
+            videoPlayer.Play();
         }
     }
 }

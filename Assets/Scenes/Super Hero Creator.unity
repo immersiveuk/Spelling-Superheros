@@ -578,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 1
   buttonsParent: {fileID: 627564002}
-  default_Selected_Sprite: {fileID: 2114055211}
+  selected_Sprite: {fileID: 2114055211}
 --- !u!1 &143933597
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,8 +637,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145748294}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.005, y: 0.006, z: -0.041}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01, y: 0.007, z: -0.041}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 187173279}
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 2
   buttonsParent: {fileID: 1814359248}
-  default_Selected_Sprite: {fileID: 2009770286}
+  selected_Sprite: {fileID: 2009770286}
 --- !u!1001 &181524803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1399,6 +1399,9 @@ MonoBehaviour:
   chooseHeadClip: {fileID: 0}
   chooseBodyClip: {fileID: 0}
   chooseLegClip: {fileID: 0}
+  videoPlayer: {fileID: 145748296}
+  clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
+  clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
 --- !u!1 &232664399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,6 +2194,9 @@ MonoBehaviour:
   chooseHeadClip: {fileID: 8300000, guid: 6fbf40a788e530749be2cb6fd6536281, type: 3}
   chooseBodyClip: {fileID: 8300000, guid: 6b4d2740c1b0b674092446a31d2ddbaa, type: 3}
   chooseLegClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
+  videoPlayer: {fileID: 1268519617}
+  clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
+  clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
 --- !u!1 &499819346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,7 +2243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 143933597}
-  default_Selected_Sprite: {fileID: 1950227981}
+  selected_Sprite: {fileID: 1950227981}
 --- !u!1 &501016364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,7 +2648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 1913184714}
-  default_Selected_Sprite: {fileID: 414088648}
+  selected_Sprite: {fileID: 414088648}
 --- !u!1 &789519458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,7 +3332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 2
   buttonsParent: {fileID: 815687526}
-  default_Selected_Sprite: {fileID: 1459005528}
+  selected_Sprite: {fileID: 1459005528}
 --- !u!1 &1075084522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,7 +3696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141951369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.005, y: 0.006, z: -0.041}
+  m_LocalPosition: {x: -0.01, y: 0.007, z: -0.041}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2115379097}
@@ -3936,7 +3942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 1826327287}
-  default_Selected_Sprite: {fileID: 436680768}
+  selected_Sprite: {fileID: 436680768}
 --- !u!1 &1212262858
 GameObject:
   m_ObjectHideFlags: 0
@@ -4221,8 +4227,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268519615}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.005, y: 0.006, z: -0.041}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01, y: 0.007, z: -0.041}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2098710615}
@@ -6131,6 +6137,9 @@ MonoBehaviour:
   chooseHeadClip: {fileID: 0}
   chooseBodyClip: {fileID: 0}
   chooseLegClip: {fileID: 0}
+  videoPlayer: {fileID: 1141951371}
+  clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
+  clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
 --- !u!1 &1589306591
 GameObject:
   m_ObjectHideFlags: 0
@@ -7266,7 +7275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 1
   buttonsParent: {fileID: 1502744534}
-  default_Selected_Sprite: {fileID: 1606504978}
+  selected_Sprite: {fileID: 1606504978}
 --- !u!1 &1940208561
 GameObject:
   m_ObjectHideFlags: 0
@@ -7749,7 +7758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 2
   buttonsParent: {fileID: 201330735}
-  default_Selected_Sprite: {fileID: 1369625058}
+  selected_Sprite: {fileID: 1369625058}
 --- !u!1 &2038256272
 GameObject:
   m_ObjectHideFlags: 0
@@ -7796,7 +7805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 1
   buttonsParent: {fileID: 838344493}
-  default_Selected_Sprite: {fileID: 1734484299}
+  selected_Sprite: {fileID: 1734484299}
 --- !u!1 &2089248950
 GameObject:
   m_ObjectHideFlags: 0

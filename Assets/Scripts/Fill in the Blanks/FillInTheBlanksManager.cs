@@ -83,7 +83,8 @@ namespace Immersive.FillInTheBlank
             else
                 AbstractImmersiveCamera.PlayAudio(negativeClip);
 
-            if (answerCount >= totalQuestions)
+            if (answerCount >= 1)
+            //if (answerCount >= totalQuestions)
             {
                 SuperHeroManager.Instance.currentStage = stage;
                 SuperHeroManager.Instance.LoadScene("Super Hero Creator");

@@ -90,23 +90,21 @@ namespace Immersive.SuperHero
         {
             AbstractImmersiveCamera.PlayAudio(laserBlastClip, 1);
 
-                 
-
             Camera cam = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex];
             var p2 = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -0.1f));
 
             float direction = p2.x - body.transform.position.x;
-            
+            Vector2 laserStartPosition = CheckSize(superHero.body?.gameSprites[2], body.transform);
+
             if (direction > 0)
             {
-
-                body.sprite = superHero.body?.gameSprites[2];
-                laserStartPoint.localPosition = new Vector3(0.1f,0.375f,-0.1f);
+                body.sprite = superHero.body?.gameSprites[2];               
+                laserStartPoint.localPosition = new Vector3(laserStartPosition.x, laserStartPosition.y, -0.1f);
             }
             else
             {
-                body.sprite = superHero.body?.gameSprites[1];
-                laserStartPoint.localPosition = new Vector3(-0.1f, 0.375f, -0.1f);
+                body.sprite = superHero.body?.gameSprites[1];               
+                laserStartPoint.localPosition = new Vector3(-laserStartPosition.x, laserStartPosition.y, -0.1f);
             }
 
             Vector2 p1 = laserStartPoint.position;
@@ -117,12 +115,71 @@ namespace Immersive.SuperHero
             Vector2 p3 = Utils.GetNewPoint(p1, p2);
 
             trail.GetComponentInChildren<LaserTrail>().MoveTrail(p1, p2, p3, OnEnemyDestoryCallback);
+
+            StopAllCoroutines();
+            StartCoroutine(SetIdlePose()) ;
+        }
+
+        IEnumerator SetIdlePose()
+        {
+            yield return new WaitForSeconds(1);
+            body.sprite = superHero.body?.gameSprites[0];
         }
 
         void OnEnemyDestoryCallback()
         {
             AbstractImmersiveCamera.PlayAudio(explosionClip, 1);
             OnEnemyDestory();
+        }
+
+        Vector2 CheckSize(Sprite sprite, Transform obj)
+        {
+            float minX, maxX;
+            float minY, maxY;
+
+            float xSize = sprite.rect.width;
+            float ySize = sprite.rect.height;
+
+            minX = maxX = xSize / 2;
+            minY = maxY = ySize / 2;
+
+            for (int x = 0; x < xSize; x++)
+            {
+                for (int y = 0; y < ySize; y++)
+                {
+                    Color col = sprite.texture.GetPixel(x, y);
+
+                    if (col.a != 0)
+                    {
+                        if (x < minX)
+                            minX = x;
+
+                        if (x > maxX)
+                            maxX = x;
+
+                        if (y < minY)
+                            minY = y;
+
+                        if (y > maxY)
+                            maxY = y;
+                    }
+                }
+            }
+
+            float xPos = CalculateWorldPosOfPixelCoordinate((int)maxX, sprite.bounds.size.x, 0.5f, obj.localPosition.x, obj.localScale.x);
+            float yPos = CalculateWorldPosOfPixelCoordinate((int)maxY, sprite.bounds.size.y, 0.32f, obj.localPosition.y, obj.localScale.y);
+
+            Vector2 startPosition = new Vector2(xPos, yPos) - (Vector2.one) * 0.03f;
+
+            return startPosition;
+        }
+
+        float CalculateWorldPosOfPixelCoordinate(int coord, float boundsSize, float pivot, float position, float scale)
+        {
+            float PixelInWorldSpace = 1.0f / 1080;
+            float startPos = position - (boundsSize * pivot * scale);
+
+            return startPos + (PixelInWorldSpace * coord) * scale;
         }
     }
 }

@@ -18,7 +18,8 @@ namespace Immersive.SuperHero
         int enemyIndex;
         int totalEnemy;
 
-        
+        [Header("Popup Instructions")]
+        public GameObject[] PopupInstructions;
 
         new void Start()
         {
@@ -39,6 +40,17 @@ namespace Immersive.SuperHero
             if (wallType == WallType.Center)
             {
                 AbstractImmersiveCamera.PlayAudio(SuperHeroManager.Instance.superheroReadyClip, 1);
+                StartCoroutine(DisableIntroductionPopUp());
+            }
+        }
+
+        IEnumerator DisableIntroductionPopUp()
+        {
+            yield return new WaitForSeconds(SuperHeroManager.Instance.superheroReadyClip.length - 1);
+
+            foreach (var obj in PopupInstructions)
+            {
+                obj.SetActive(false);
             }
         }
 

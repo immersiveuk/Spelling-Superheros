@@ -20,7 +20,7 @@ namespace Immersive.SuperHero
         float transitionTime;
 
         public SuperHeroPart part;
-        public GameObject buttonsParent;
+        //public GameObject buttonsParent;
 
         public SpriteRenderer selected_Sprite;
 
@@ -28,7 +28,7 @@ namespace Immersive.SuperHero
 
         private void Awake()
         {
-            buttonsParent.SetActive(false);
+            //buttonsParent.SetActive(false);
 
             transitionTime = 1.0f;
             gapValue = 0.35f;
@@ -38,7 +38,7 @@ namespace Immersive.SuperHero
         public void SetScroll(List<SuperHeroParts> superHeroPart, Action action)
         {
             onScroll = action;
-            buttonsParent.SetActive(true);
+            //buttonsParent.SetActive(true);
             selected_Sprite.gameObject.SetActive(false);
 
             spriteIndex = 0;

@@ -22,16 +22,24 @@ namespace Immersive.SuperHero
         public HorizontalScroll bodiesPanel;
         public HorizontalScroll legsPanel;
 
+        [Header("Buttons")]
         public SpriteRenderer continueButton;
         public Sprite goSprite;
+        public Sprite waitingSprite;
         public GameObject startButton;
+        public GameObject nextButton;
+        public GameObject previousButton;
+        
+        [Header("Audio Clip")]
+        public AudioClip chooseHeadClip;
+        public AudioClip chooseBodyClip;
+        public AudioClip chooseLegClip;
 
-        SelectedSuperHero selectedSuperHero;
-
-        public AudioClip chooseHeadClip, chooseBodyClip, chooseLegClip;
-
+        [Header("Video")]
         public VideoPlayer videoPlayer;
         public VideoClip clip1, clip2;
+
+        SelectedSuperHero selectedSuperHero;
 
         void Start()
         {
@@ -51,7 +59,17 @@ namespace Immersive.SuperHero
         void SetSuperHero()
         {
             if (SuperHeroManager.Instance.currentStage != FillInTheBlankStages.None)
+            {
+                nextButton.SetActive(true);
+                previousButton.SetActive(true);
                 startButton.SetActive(false);
+            }
+            else
+            {
+                nextButton.SetActive(false);
+                previousButton.SetActive(false);
+                startButton.SetActive(true);
+            }
 
             switch (SuperHeroManager.Instance.currentStage)
             {
@@ -94,7 +112,6 @@ namespace Immersive.SuperHero
         void OnScroll()
         {
             SuperHeroManager.Instance.selectedWalls[wallType] = false;
-            continueButton.color = Color.white;
             continueButton.gameObject.SetActive(true);
         }
 
@@ -105,7 +122,7 @@ namespace Immersive.SuperHero
 
         public void ContinueButton()
         {
-            continueButton.color = Color.black;
+            continueButton.sprite = waitingSprite;
 
             switch (SuperHeroManager.Instance.currentStage)
             {
@@ -144,6 +161,41 @@ namespace Immersive.SuperHero
             videoPlayer.gameObject.SetActive(true);
             videoPlayer.clip = clip;
             videoPlayer.Play();
+        }
+
+        public void NextButton()
+        {
+            Move(true);
+        }
+
+        public void PreviousButton()
+        {
+            Move(false);
+        }
+
+        void Move(bool next)
+        {
+            HorizontalScroll panel = headsPanel;
+
+            switch (SuperHeroManager.Instance.currentStage)
+            {
+                case FillInTheBlankStages.Stage1:
+                    panel = headsPanel;
+                    break;
+
+                case FillInTheBlankStages.Stage2:
+                    panel = bodiesPanel;
+                    break;
+
+                case FillInTheBlankStages.Stage3:
+                    panel = legsPanel;
+                    break;
+            }
+
+            if (next)
+                panel.MoveNext();
+            else
+                panel.MovePrevious();
         }
     }
 }

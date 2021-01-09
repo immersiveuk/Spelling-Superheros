@@ -33,11 +33,14 @@ namespace Immersive.FillInTheBlank
         int totalQuestions = 0;
         int answerCount = 0;
 
+        [Header("Popup Instructions")]
+        public GameObject[] PopupInstructions;
+
+        [Header("Font Size")]
         public int fontSizeSimpleMode = 12;
         public int fotSizeAdvancedMode = 20;
 
         
-
         private void Awake()
         {
             Instance = this;
@@ -58,7 +61,10 @@ namespace Immersive.FillInTheBlank
             }
 
             if (SuperHeroManager.Instance.currentStage == FillInTheBlankStages.Stage1)
+            {
                 AbstractImmersiveCamera.PlayAudio(introClip, 1);
+                StartCoroutine(DisableIntroductionPopUp());
+            }                
         }
 
         private void OnDestroy()
@@ -66,6 +72,16 @@ namespace Immersive.FillInTheBlank
             foreach (var obj in FindObjectsOfType<FillInTheBlanksData>())
             {
                 obj.OnResultAction -= OnResultAction;
+            }
+        }
+
+        IEnumerator DisableIntroductionPopUp()
+        {
+            yield return new WaitForSeconds(introClip.length-1);
+
+            foreach (var obj in PopupInstructions)
+            {
+                obj.SetActive(false);
             }
         }
 

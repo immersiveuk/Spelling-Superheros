@@ -535,7 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 1814359248}
-  selected_Sprite: {fileID: 0}
+  default_Selected_Sprite: {fileID: 2009770286}
 --- !u!1001 &181524803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2226,7 +2226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 1913184714}
-  selected_Sprite: {fileID: 0}
+  default_Selected_Sprite: {fileID: 414088648}
 --- !u!1 &789519458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,7 +2618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 815687526}
-  selected_Sprite: {fileID: 0}
+  default_Selected_Sprite: {fileID: 1459005528}
 --- !u!1 &1075084522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +3024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 1826327287}
-  selected_Sprite: {fileID: 0}
+  default_Selected_Sprite: {fileID: 436680768}
 --- !u!1 &1258802493
 GameObject:
   m_ObjectHideFlags: 0
@@ -5933,7 +5933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 1502744534}
-  selected_Sprite: {fileID: 0}
+  default_Selected_Sprite: {fileID: 1606504978}
 --- !u!1 &1940208561
 GameObject:
   m_ObjectHideFlags: 0
@@ -6324,7 +6324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 0
   buttonsParent: {fileID: 838344493}
-  selected_Sprite: {fileID: 0}
+  default_Selected_Sprite: {fileID: 1734484299}
 --- !u!1 &2098710614
 GameObject:
   m_ObjectHideFlags: 0

@@ -95,6 +95,8 @@ namespace Immersive.SuperHero
             yield return new WaitForSeconds(levelUpClicp.length);
 
             PlayerPrefs.SetInt("GameMode", 1);
+            GameData.Instance.ResetManager();
+            GameData.Instance.LoadScene("Stage1");
         }
     }
 }

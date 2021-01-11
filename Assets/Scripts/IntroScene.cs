@@ -25,6 +25,7 @@ public class IntroScene : MonoBehaviour
 
     public void ContinueButton()
     {
+        PlayerPrefs.SetInt("GameMode", 0);
         GameData.Instance.currentStage = FillInTheBlankStages.None;
         GameData.Instance.LoadScene("Super Hero Creator");
     }

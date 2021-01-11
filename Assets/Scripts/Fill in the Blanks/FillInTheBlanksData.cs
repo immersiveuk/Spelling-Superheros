@@ -85,7 +85,10 @@ namespace Immersive.FillInTheBlank
             }
 
             if (questionNo >= spellings.Count)
+            {
+                GetComponent<FillInTheBlanksWall>().OnComplete();
                 return;
+            }
 
             spellings[questionNo].OnSelect();
 

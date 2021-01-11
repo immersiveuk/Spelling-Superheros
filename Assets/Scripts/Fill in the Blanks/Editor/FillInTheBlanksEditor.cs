@@ -41,6 +41,7 @@ namespace Immersive.FillInTheBlank
             EditorList.Show(spellings, EditorListOption.ListLabel);
             EditorGUILayout.Space();
             EditorList.Show(missingLetters, EditorListOption.ListLabel);
+
             serializedObject.ApplyModifiedProperties();
         }
 

@@ -34,7 +34,12 @@ namespace Immersive.FillInTheBlank
         int answerCount = 0;
 
         [Header("Popup Instructions")]
-        public GameObject[] PopupInstructions;
+        public GameObject[] instructionsPopup;
+
+        [Header("Popup Complete")]
+        public GameObject completePopupCenter;
+        public GameObject completePopupLeft;
+        public GameObject completePopupRight;
 
         [Header("Font Size")]
         public int fontSizeSimpleMode = 12;
@@ -60,7 +65,7 @@ namespace Immersive.FillInTheBlank
                 obj.OnResultAction += OnResultAction;
             }
 
-            if (SuperHeroManager.Instance.currentStage == FillInTheBlankStages.Stage1)
+            if (GameData.Instance.currentStage == FillInTheBlankStages.Stage1)
             {
                 AbstractImmersiveCamera.PlayAudio(introClip, 1);
                 StartCoroutine(DisableIntroductionPopUp());
@@ -79,7 +84,7 @@ namespace Immersive.FillInTheBlank
         {
             yield return new WaitForSeconds(introClip.length-1);
 
-            foreach (var obj in PopupInstructions)
+            foreach (var obj in instructionsPopup)
             {
                 obj.SetActive(false);
             }
@@ -102,8 +107,8 @@ namespace Immersive.FillInTheBlank
             if (answerCount >= 1)
             //if (answerCount >= totalQuestions)
             {
-                SuperHeroManager.Instance.currentStage = stage;
-                SuperHeroManager.Instance.LoadScene("Super Hero Creator");
+                GameData.Instance.currentStage = stage;
+                GameData.Instance.LoadScene("Super Hero Creator");
             }
         }
 

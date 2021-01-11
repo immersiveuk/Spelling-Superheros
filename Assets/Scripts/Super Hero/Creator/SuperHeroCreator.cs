@@ -45,20 +45,20 @@ namespace Immersive.SuperHero
         {
             this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
 
-            selectedSuperHero = SuperHeroManager.Instance.GetSuperHero(wallType);
+            selectedSuperHero = GameData.Instance.GetSuperHero(wallType);
 
             SetSuperHero();
             SetPosition();
 
             if (wallType == WallType.Center)
             {
-                SuperHeroManager.Instance.PlaySuperHeroLabMusic();
+                GameData.Instance.PlaySuperHeroLabMusic();
             }
         }
 
         void SetSuperHero()
         {
-            if (SuperHeroManager.Instance.currentStage != FillInTheBlankStages.None)
+            if (GameData.Instance.currentStage != FillInTheBlankStages.None)
             {
                 nextButton.SetActive(true);
                 previousButton.SetActive(true);
@@ -71,7 +71,7 @@ namespace Immersive.SuperHero
                 startButton.SetActive(true);
             }
 
-            switch (SuperHeroManager.Instance.currentStage)
+            switch (GameData.Instance.currentStage)
             {
                 case FillInTheBlankStages.Stage1:
                     headsPanel.SetScroll(superHero.heads, OnScroll);
@@ -106,12 +106,12 @@ namespace Immersive.SuperHero
                     break;
             }
 
-            SuperHeroManager.Instance.ResetWallSelected();
+            GameData.Instance.ResetWallSelected();
         }
 
         void OnScroll()
         {
-            SuperHeroManager.Instance.selectedWalls[wallType] = false;
+            GameData.Instance.selectedWalls[wallType] = false;
             continueButton.gameObject.SetActive(true);
         }
 
@@ -124,7 +124,7 @@ namespace Immersive.SuperHero
         {
             continueButton.sprite = waitingSprite;
 
-            switch (SuperHeroManager.Instance.currentStage)
+            switch (GameData.Instance.currentStage)
             {
                 case FillInTheBlankStages.Stage1:
                     selectedSuperHero.head = headsPanel.GetSelectedPart();
@@ -139,15 +139,15 @@ namespace Immersive.SuperHero
                     break;
             }
 
-            SuperHeroManager.Instance.PlaySelect();
-            SuperHeroManager.Instance.SetSuperHeroData(wallType, selectedSuperHero);
+            GameData.Instance.PlaySelect();
+            GameData.Instance.SetSuperHeroData(wallType, selectedSuperHero);
         }
 
         public void LoadFillInTheBlank()
         {
-            SuperHeroManager.Instance.PlaySelect();
-            SuperHeroManager.Instance.currentStage = FillInTheBlankStages.Stage1;
-            SuperHeroManager.Instance.LoadScene("Stage1");
+            GameData.Instance.PlaySelect();
+            GameData.Instance.currentStage = FillInTheBlankStages.Stage1;
+            GameData.Instance.LoadScene("Stage1");
         }
 
         void PlayVideo(VideoClip clip)
@@ -177,7 +177,7 @@ namespace Immersive.SuperHero
         {
             HorizontalScroll panel = headsPanel;
 
-            switch (SuperHeroManager.Instance.currentStage)
+            switch (GameData.Instance.currentStage)
             {
                 case FillInTheBlankStages.Stage1:
                     panel = headsPanel;

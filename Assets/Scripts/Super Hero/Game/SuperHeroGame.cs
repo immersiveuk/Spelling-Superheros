@@ -18,10 +18,6 @@ namespace Immersive.SuperHero
         public TrailRenderer prefabTrail;
         public Transform laserStartPoint;
 
-        [Header("SFX")]
-        public AudioClip laserBlastClip;
-        public AudioClip explosionClip;
-
         protected virtual void OnEnemyDestory() { }
         SelectedSuperHero superHero;
 
@@ -29,13 +25,12 @@ namespace Immersive.SuperHero
         {
             this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
            
-            SetWallTouchEvent();
             SetHero();
         }
 
         void SetHero()
         {
-            superHero = SuperHeroManager.Instance.GetSuperHero(wallType);
+            superHero = GameData.Instance.GetSuperHero(wallType);
 
             if (superHero != null)
             {
@@ -50,7 +45,7 @@ namespace Immersive.SuperHero
             }
         }
 
-        void SetWallTouchEvent()
+        public void AddWallTouchEvent()
         {
             switch (wallType)
             {
@@ -68,6 +63,24 @@ namespace Immersive.SuperHero
             }
 
             this.transform.position = new Vector3(AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[(int)wallType].transform.position.x, 0, 0);
+        }
+
+        public void RemoveWallTouchEvent()
+        {
+            switch (wallType)
+            {
+                case WallType.Left:
+                    AbstractImmersiveCamera.LeftScreenTouched.RemoveListener(WallTouched);
+                    break;
+
+                case WallType.Center:
+                    AbstractImmersiveCamera.CenterScreenTouched.RemoveListener(WallTouched);
+                    break;
+
+                case WallType.Right:
+                    AbstractImmersiveCamera.RightScreenTouched.RemoveListener(WallTouched);
+                    break;
+            }
         }
 
         private void WallTouched(Vector2 screenPosition, int cameraIndex, TouchPhase phase, int index)
@@ -88,7 +101,20 @@ namespace Immersive.SuperHero
 
         void CreateLaser(Vector2 screenPosition, int cameraIndex)
         {
-            AbstractImmersiveCamera.PlayAudio(laserBlastClip, 1);
+            var ray = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex].ScreenPointToRay(screenPosition);
+            RaycastHit rayInfo;
+
+            if (Physics.Raycast(ray, out rayInfo))
+            {
+                if (rayInfo.collider.gameObject.name.Equals("SuperHero"))
+                {
+                    Debug.Log(rayInfo.collider.gameObject.name);
+                    return;
+                }
+                    
+            }
+
+            AbstractImmersiveCamera.PlayAudio(SuperHeroGameManager.Instance.laserBlastClip, 1);
 
             Camera cam = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex];
             var p2 = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -0.1f));
@@ -128,7 +154,7 @@ namespace Immersive.SuperHero
 
         void OnEnemyDestoryCallback()
         {
-            AbstractImmersiveCamera.PlayAudio(explosionClip, 1);
+            AbstractImmersiveCamera.PlayAudio(SuperHeroGameManager.Instance.explosionClip, 1);
             OnEnemyDestory();
         }
 

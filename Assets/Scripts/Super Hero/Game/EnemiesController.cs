@@ -18,40 +18,19 @@ namespace Immersive.SuperHero
         int enemyIndex;
         int totalEnemy;
 
-        [Header("Popup Instructions")]
-        public GameObject[] PopupInstructions;
-
         new void Start()
         {
-            base.Start();
+            base.Start(); 
+        }
 
+        public void SetWall()
+        {
+            enemyIndex = 0;
             totalEnemy = enemies.EnemyList.Count;
             enemyRange = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[0].aspect / 3.0f;
-            
+
             CreateEnemy();
-
             Invoke("CreateEnemy", 2.0f);
-
-            PlayAudio();
-        }
-
-        void PlayAudio()
-        {
-            if (wallType == WallType.Center)
-            {
-                AbstractImmersiveCamera.PlayAudio(SuperHeroManager.Instance.superheroReadyClip, 1);
-                StartCoroutine(DisableIntroductionPopUp());
-            }
-        }
-
-        IEnumerator DisableIntroductionPopUp()
-        {
-            yield return new WaitForSeconds(SuperHeroManager.Instance.superheroReadyClip.length - 1);
-
-            foreach (var obj in PopupInstructions)
-            {
-                obj.SetActive(false);
-            }
         }
 
         void CreateEnemy()
@@ -81,7 +60,7 @@ namespace Immersive.SuperHero
 
             if (totalEnemy <= 0)
             {
-                SuperHeroManager.Instance.OnAllEnemiesDestroyedOfWall();
+                SuperHeroGameManager.Instance.OnAllEnemiesDestroyedOfWall();
             }
         }
     }

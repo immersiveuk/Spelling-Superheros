@@ -8,7 +8,7 @@ public enum FillInTheBlankStages { Stage1, Stage2, Stage3, None }
 
 namespace Immersive.SuperHero
 {
-    public class SuperHeroManager : Singleton<SuperHeroManager>
+    public class GameData : Singleton<GameData>
     {
         Dictionary<WallType, SelectedSuperHero> createdSuperHeros = new Dictionary<WallType, SelectedSuperHero>();
         public Dictionary<WallType, bool> selectedWalls = new Dictionary<WallType, bool>();
@@ -29,7 +29,6 @@ namespace Immersive.SuperHero
 
         public void ResetManager()
         {
-            wallCompleted = 0;
             currentStage = FillInTheBlankStages.Stage1;
             createdSuperHeros.Clear();
             selectedWalls.Clear();
@@ -79,19 +78,6 @@ namespace Immersive.SuperHero
         public void ResetWallSelected()
         {
             selectedWalls[WallType.Left] = selectedWalls[WallType.Center] = selectedWalls[WallType.Right] = false;
-        }
-        #endregion
-
-        #region SuperHero Game
-        int wallCompleted = 0;
-        public void OnAllEnemiesDestroyedOfWall()
-        {
-            wallCompleted++;
-
-            if (wallCompleted > 2)
-            {
-                LoadScene("End Scene");
-            }
         }
         #endregion
 

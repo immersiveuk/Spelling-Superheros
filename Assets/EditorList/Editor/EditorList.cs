@@ -53,6 +53,7 @@ public static class EditorList
 			//EditorGUILayout.PropertyField(list);
 			EditorGUI.indentLevel += 1;
 		}
+
 		if (!showListLabel || list.isExpanded)
 		{
 			SerializedProperty size = list.FindPropertyRelative("Array.size");

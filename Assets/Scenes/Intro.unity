@@ -534,7 +534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 0
-  buttonsParent: {fileID: 1814359248}
   selected_Sprite: {fileID: 0}
 --- !u!1001 &181524803
 PrefabInstance:
@@ -2225,7 +2224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 0
-  buttonsParent: {fileID: 1913184714}
   selected_Sprite: {fileID: 0}
 --- !u!1 &789519458
 GameObject:
@@ -2617,7 +2615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 0
-  buttonsParent: {fileID: 815687526}
   selected_Sprite: {fileID: 0}
 --- !u!1 &1075084522
 GameObject:
@@ -3023,7 +3020,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 0
-  buttonsParent: {fileID: 1826327287}
   selected_Sprite: {fileID: 0}
 --- !u!1 &1258802493
 GameObject:
@@ -3384,9 +3380,9 @@ MonoBehaviour:
   superheroReadyClip: {fileID: 8300000, guid: 31c9d3a99e38ff44889eeb64e6ec4b88, type: 3}
   selectClip: {fileID: 8300000, guid: c80fa5c2185d5494e8f7bf7f355fb0d2, type: 3}
   switchClip: {fileID: 8300000, guid: ff2e5c22a20e5ae4ea2a4c1180bf7f39, type: 3}
-  headMusicClip: {fileID: 8300000, guid: 31daee3893b6ae24f95181bfd58ce802, type: 3}
-  bodyMusicClip: {fileID: 8300000, guid: e6bd667589136c84a9e4a3f2da252542, type: 3}
-  legMusicClip: {fileID: 8300000, guid: 1291d7880bbd00d4daf9bc0c0fbb397d, type: 3}
+  headMusicClip: {fileID: 8300000, guid: e2b0e76647631b94a8d4e6f0281423f4, type: 3}
+  bodyMusicClip: {fileID: 8300000, guid: e2b0e76647631b94a8d4e6f0281423f4, type: 3}
+  legMusicClip: {fileID: 8300000, guid: e2b0e76647631b94a8d4e6f0281423f4, type: 3}
   audioSource: {fileID: 1297585293}
 --- !u!4 &1297585292
 Transform:
@@ -5932,7 +5928,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 0
-  buttonsParent: {fileID: 1502744534}
   selected_Sprite: {fileID: 0}
 --- !u!1 &1940208561
 GameObject:
@@ -6323,7 +6318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 0
-  buttonsParent: {fileID: 838344493}
   selected_Sprite: {fileID: 0}
 --- !u!1 &2098710614
 GameObject:

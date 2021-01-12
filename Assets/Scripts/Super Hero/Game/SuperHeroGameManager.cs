@@ -27,6 +27,8 @@ namespace Immersive.SuperHero
 
         private void Start()
         {
+            this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
+
             wallCompleted = 0;
             PlayAudio();
         }

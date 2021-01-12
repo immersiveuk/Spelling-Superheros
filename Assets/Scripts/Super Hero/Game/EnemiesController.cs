@@ -20,7 +20,21 @@ namespace Immersive.SuperHero
 
         new void Start()
         {
-            base.Start(); 
+            base.Start();
+
+            SetPosition();
+        }
+
+        void SetPosition()
+        {
+            if (wallType == WallType.Left)
+            {
+                this.transform.localPosition = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[0].transform.localPosition;
+            }
+            else if (wallType == WallType.Right)
+            {
+                this.transform.localPosition = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[2].transform.localPosition;
+            }
         }
 
         public void SetWall()

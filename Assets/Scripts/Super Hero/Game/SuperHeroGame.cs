@@ -18,6 +18,8 @@ namespace Immersive.SuperHero
         public TrailRenderer prefabTrail;
         public Transform laserStartPoint;
 
+        public GameObject laserIconHotspot;
+
         protected virtual void OnEnemyDestory() { }
         SelectedSuperHero superHero;
 
@@ -101,6 +103,9 @@ namespace Immersive.SuperHero
 
         void CreateLaser(Vector2 screenPosition, int cameraIndex)
         {
+            if (laserIconHotspot)
+                laserIconHotspot.SetActive(false);
+
             var ray = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex].ScreenPointToRay(screenPosition);
             RaycastHit rayInfo;
 

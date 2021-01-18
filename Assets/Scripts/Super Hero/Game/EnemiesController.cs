@@ -12,7 +12,7 @@ namespace Immersive.SuperHero
         public Transform enemyParent;
         public Enemies enemies;
         public Enemy prefabEnemy;
-        public TextMeshPro textEnemy;
+        
 
         float enemyRange;
         int enemyIndex;
@@ -49,7 +49,7 @@ namespace Immersive.SuperHero
 
         void CreateEnemy()
         {
-            Vector3 startPosition = new Vector3(Random.Range(-enemyRange, enemyRange), 1.5f, 0);
+            Vector3 startPosition = new Vector3(Random.Range(-enemyRange, enemyRange), 1.0f, 0);
             Vector3 endPosition = new Vector3(Random.Range(-enemyRange, enemyRange), Random.Range(0.2f, 0.4f), 0);
 
             Enemy objEnemy = Instantiate(prefabEnemy, enemyParent, false);
@@ -62,7 +62,10 @@ namespace Immersive.SuperHero
         }
 
         protected override void OnEnemyDestory()
-        {            
+        {
+            
+            
+
             if (enemyIndex < enemies.EnemyList.Count)
             {
                 CreateEnemy();
@@ -72,6 +75,7 @@ namespace Immersive.SuperHero
 
             textEnemy.text = "Enemy: " + (enemies.EnemyList.Count - totalEnemy);
 
+            Debug.Log(wallType + "    " + totalEnemy);
             if (totalEnemy <= 0)
             {
                 SuperHeroGameManager.Instance.OnAllEnemiesDestroyedOfWall();

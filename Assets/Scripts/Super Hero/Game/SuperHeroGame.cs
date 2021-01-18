@@ -1,6 +1,7 @@
 ﻿using Com.Immersive.Cameras;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Immersive.SuperHero
@@ -15,10 +16,13 @@ namespace Immersive.SuperHero
         public SpriteRenderer body;
         public SpriteRenderer leg;
 
+        public GameObject superHeroObj;
         public TrailRenderer prefabTrail;
         public Transform laserStartPoint;
 
         public GameObject laserIconHotspot;
+
+        public TextMeshPro textEnemy;
 
         protected virtual void OnEnemyDestory() { }
         SelectedSuperHero superHero;
@@ -211,6 +215,18 @@ namespace Immersive.SuperHero
             float startPos = position - (boundsSize * pivot * scale);
 
             return startPos + (PixelInWorldSpace * coord) * scale;
+        }
+
+        public void OnComplete()
+        {
+            superHeroObj.GetComponent<Animation>().enabled = false;
+            textEnemy.transform.parent.gameObject.SetActive(false);
+
+            iTween.MoveTo(superHeroObj.gameObject, iTween.Hash("x", superHeroObj.transform.localPosition.x, "y", 1, "z", 0, "islocal", true,
+                     "time", 2.0f, "easetype", iTween.EaseType.easeInOutQuad, "delay", 0, "oncomplete", (System.Action<object>)(newValue =>
+                     {
+                         superHeroObj.SetActive(false);
+                     })));
         }
     }
 }

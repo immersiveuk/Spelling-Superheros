@@ -53,6 +53,7 @@ namespace Immersive.SuperHero
 
         public void OnAllEnemiesDestroyedOfWall()
         {
+            Debug.Log("OnAllEnemiesDestroyedOfWall  "+wallCompleted);
             wallCompleted++;
 
             if (wallCompleted > 2)
@@ -78,6 +79,7 @@ namespace Immersive.SuperHero
             foreach (var wall in FindObjectsOfType<EnemiesController>())
             {
                 wall.RemoveWallTouchEvent();
+                wall.OnComplete();
             }
         }
 

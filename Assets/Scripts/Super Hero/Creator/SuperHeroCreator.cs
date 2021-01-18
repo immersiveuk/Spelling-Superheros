@@ -39,6 +39,8 @@ namespace Immersive.SuperHero
         public VideoPlayer videoPlayer;
         public VideoClip clip1, clip2;
 
+        public Animator animator;
+
         SelectedSuperHero selectedSuperHero;
 
         void Start()
@@ -66,6 +68,8 @@ namespace Immersive.SuperHero
             }
             else
             {
+                animator.SetInteger("Stats", 0);
+
                 nextButton.SetActive(false);
                 previousButton.SetActive(false);
                 startButton.SetActive(true);
@@ -76,8 +80,8 @@ namespace Immersive.SuperHero
                 case FillInTheBlankStages.Stage1:
                     headsPanel.SetScroll(superHero.heads, OnScroll);
 
-                    PlayVideo(clip1);                   
-
+                    //PlayVideo(clip1);                   
+                    animator.SetInteger("Stats",1);
                     if (chooseHeadClip)
                         AbstractImmersiveCamera.PlayAudio(chooseHeadClip, 1);
                     break;
@@ -86,7 +90,8 @@ namespace Immersive.SuperHero
                     headsPanel.SetSelectedSprite(selectedSuperHero.head);
                     bodiesPanel.SetScroll(superHero.bodies, OnScroll);
 
-                    PlayVideo(clip2);
+                    //PlayVideo(clip2);
+                    animator.SetInteger("Stats", 2);
 
                     if (chooseBodyClip)
                         AbstractImmersiveCamera.PlayAudio(chooseBodyClip, 1);
@@ -99,7 +104,8 @@ namespace Immersive.SuperHero
 
                     continueButton.sprite = goSprite;
 
-                    PlayVideo(null);
+                    //PlayVideo(null);
+                    animator.gameObject.SetActive(false);
 
                     if (chooseLegClip)
                         AbstractImmersiveCamera.PlayAudio(chooseLegClip, 1);

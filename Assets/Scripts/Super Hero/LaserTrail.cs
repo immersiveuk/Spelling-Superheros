@@ -45,7 +45,7 @@ namespace Immersive.SuperHero
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<Enemy>())
+            if (other.GetComponent<Enemy>() && other.transform.localPosition.y < 0.5f)
             {
                 onAnemyDestroy();
                 CreateExplosion(other);

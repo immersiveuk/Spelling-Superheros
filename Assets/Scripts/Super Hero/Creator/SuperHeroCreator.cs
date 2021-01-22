@@ -24,16 +24,14 @@ namespace Immersive.SuperHero
 
         [Header("Buttons")]
         public SpriteRenderer continueButton;
+        public SpriteRenderer choosePart;
+
         public Sprite goSprite;
         public Sprite waitingSprite;
         public GameObject startButton;
         public GameObject nextButton;
         public GameObject previousButton;
         
-        [Header("Audio Clip")]
-        public AudioClip chooseHeadClip;
-        public AudioClip chooseBodyClip;
-        public AudioClip chooseLegClip;
 
         [Header("Video")]
         public VideoPlayer videoPlayer;
@@ -52,9 +50,12 @@ namespace Immersive.SuperHero
             SetSuperHero();
             SetPosition();
 
+            SuperHeroCreatorManager.Instance.SetMonitor(choosePart);
+
             if (wallType == WallType.Center)
             {
                 GameData.Instance.PlaySuperHeroLabMusic();
+                SuperHeroCreatorManager.Instance.PlayIntroductionClip();
             }
         }
 
@@ -79,22 +80,15 @@ namespace Immersive.SuperHero
             {
                 case FillInTheBlankStages.Stage1:
                     headsPanel.SetScroll(superHero.heads, OnScroll);
-
-                    //PlayVideo(clip1);                   
+            
                     animator.SetInteger("Stats",1);
-                    if (chooseHeadClip)
-                        AbstractImmersiveCamera.PlayAudio(chooseHeadClip, 1);
                     break;
 
                 case FillInTheBlankStages.Stage2:
                     headsPanel.SetSelectedSprite(selectedSuperHero.head);
                     bodiesPanel.SetScroll(superHero.bodies, OnScroll);
 
-                    //PlayVideo(clip2);
                     animator.SetInteger("Stats", 2);
-
-                    if (chooseBodyClip)
-                        AbstractImmersiveCamera.PlayAudio(chooseBodyClip, 1);
                     break;
 
                 case FillInTheBlankStages.Stage3:
@@ -104,11 +98,7 @@ namespace Immersive.SuperHero
 
                     continueButton.sprite = goSprite;
 
-                    //PlayVideo(null);
                     animator.gameObject.SetActive(false);
-
-                    if (chooseLegClip)
-                        AbstractImmersiveCamera.PlayAudio(chooseLegClip, 1);
                     break;
             }
 

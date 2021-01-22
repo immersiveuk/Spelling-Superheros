@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 65012401}
   - component: {fileID: 65012402}
   m_Layer: 0
-  m_Name: monitor_Head (1)
+  m_Name: monitor_ChoosePart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125455108}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.05}
+  m_LocalPosition: {x: 0, y: 0, z: -0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2114055210}
@@ -576,7 +576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180762005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.172, z: -0.045}
+  m_LocalPosition: {x: 0, y: -0.172, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2009770285}
@@ -953,14 +953,12 @@ MonoBehaviour:
   bodiesPanel: {fileID: 125455110}
   legsPanel: {fileID: 2027797115}
   continueButton: {fileID: 211112533}
+  choosePart: {fileID: 584668919}
   goSprite: {fileID: 21300000, guid: 15e8a4f73e60b1b42a22ba509bafff34, type: 3}
   waitingSprite: {fileID: 21300000, guid: 5cc74bcd83300f74e9665844e049b1fa, type: 3}
   startButton: {fileID: 1995686020}
   nextButton: {fileID: 1735757542}
   previousButton: {fileID: 99737562}
-  chooseHeadClip: {fileID: 0}
-  chooseBodyClip: {fileID: 0}
-  chooseLegClip: {fileID: 0}
   videoPlayer: {fileID: 145748296}
   clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
   clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
@@ -1752,14 +1750,12 @@ MonoBehaviour:
   bodiesPanel: {fileID: 2038256274}
   legsPanel: {fileID: 180762007}
   continueButton: {fileID: 1212262860}
+  choosePart: {fileID: 1193065117}
   goSprite: {fileID: 21300000, guid: 15e8a4f73e60b1b42a22ba509bafff34, type: 3}
   waitingSprite: {fileID: 21300000, guid: 5cc74bcd83300f74e9665844e049b1fa, type: 3}
   startButton: {fileID: 2089248950}
   nextButton: {fileID: 232664399}
   previousButton: {fileID: 411891165}
-  chooseHeadClip: {fileID: 8300000, guid: 6fbf40a788e530749be2cb6fd6536281, type: 3}
-  chooseBodyClip: {fileID: 8300000, guid: 6b4d2740c1b0b674092446a31d2ddbaa, type: 3}
-  chooseLegClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
   videoPlayer: {fileID: 1268519617}
   clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
   clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
@@ -1820,7 +1816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 501016365}
   m_Layer: 0
-  m_Name: SuperHero Creato
+  m_Name: SuperHero Creator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1854,7 +1850,7 @@ GameObject:
   - component: {fileID: 584668918}
   - component: {fileID: 584668919}
   m_Layer: 0
-  m_Name: monitor_Head (1)
+  m_Name: monitor_ChoosePart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2194,7 +2190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014837157}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.172, z: -0.045}
+  m_LocalPosition: {x: 0, y: -0.172, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1459005527}
@@ -2471,7 +2467,7 @@ GameObject:
   - component: {fileID: 1193065116}
   - component: {fileID: 1193065117}
   m_Layer: 0
-  m_Name: monitor_Head
+  m_Name: monitor_ChoosePart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3529,6 +3525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561171999}
   - component: {fileID: 1561172000}
+  - component: {fileID: 1561172001}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -3573,18 +3570,34 @@ MonoBehaviour:
   bodiesPanel: {fileID: 1926550604}
   legsPanel: {fileID: 1014837159}
   continueButton: {fileID: 1434924207}
+  choosePart: {fileID: 65012402}
   goSprite: {fileID: 21300000, guid: 15e8a4f73e60b1b42a22ba509bafff34, type: 3}
   waitingSprite: {fileID: 21300000, guid: 5cc74bcd83300f74e9665844e049b1fa, type: 3}
   startButton: {fileID: 970286236}
   nextButton: {fileID: 1294016256}
   previousButton: {fileID: 284555928}
-  chooseHeadClip: {fileID: 0}
-  chooseBodyClip: {fileID: 0}
-  chooseLegClip: {fileID: 0}
   videoPlayer: {fileID: 1141951371}
   clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
   clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
   animator: {fileID: 1129980810}
+--- !u!114 &1561172001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561171998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7ec7db09b223a428f1d11663a8b5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chooseHeadClip: {fileID: 8300000, guid: 6fbf40a788e530749be2cb6fd6536281, type: 3}
+  chooseBodyClip: {fileID: 8300000, guid: 6b4d2740c1b0b674092446a31d2ddbaa, type: 3}
+  chooseLegClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
+  chooseHeadSprite: {fileID: 21300000, guid: feab4cc48afd2874ba3c96570382e24b, type: 3}
+  chooseBodySprite: {fileID: 21300000, guid: 4569c458fcf15aa4a8ee44888f74df94, type: 3}
+  chooseLegSprite: {fileID: 21300000, guid: 3f173236abe98144f8abdc4ed7c6382f, type: 3}
 --- !u!1 &1606504976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4228,7 +4241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926550602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.05}
+  m_LocalPosition: {x: 0, y: 0, z: -0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1606504977}
@@ -4630,7 +4643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027797113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.172, z: -0.045}
+  m_LocalPosition: {x: 0, y: -0.172, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1369625057}
@@ -4676,7 +4689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038256272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.05}
+  m_LocalPosition: {x: 0, y: 0, z: -0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1734484298}

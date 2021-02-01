@@ -1,6 +1,7 @@
 ﻿using Com.Immersive.Cameras;
 using Immersive.SuperHero;
 using Mono.Options;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,16 +37,14 @@ namespace Immersive.FillInTheBlank
         [Header("Popup Instructions")]
         public GameObject[] instructionsPopup;
 
-        [Header("Popup Complete")]
-        public GameObject completePopupCenter;
-        public GameObject completePopupLeft;
-        public GameObject completePopupRight;
-
         [Header("Font Size")]
         public int fontSizeSimpleMode = 12;
         public int fotSizeAdvancedMode = 20;
 
-        
+        public FillInTheBlanksData leftWallWords;
+        public FillInTheBlanksData centerWallWords;
+        public FillInTheBlanksData rightWallWords;
+
         private void Awake()
         {
             Instance = this;
@@ -53,6 +52,19 @@ namespace Immersive.FillInTheBlank
             {
                 Debug.Log("game Mode");
                 gameMode = (GameMode)PlayerPrefs.GetInt("GameMode");
+            }
+
+            SetWords();
+        }
+
+        void SetWords()
+        {
+            if (GameData.Instance && GameData.Instance.fillInTheBlanksDataStages.stage1.fillInTheBlanksCenter.Count > 0)
+            {
+                FillInTheBlanksDataStage words = GameData.Instance.GetWords();
+                leftWallWords.fillInTheBlanksList = words.fillInTheBlanksLeft;
+                centerWallWords.fillInTheBlanksList = words.fillInTheBlanksCenter;
+                rightWallWords.fillInTheBlanksList = words.fillInTheBlanksRight;
             }
         }
 

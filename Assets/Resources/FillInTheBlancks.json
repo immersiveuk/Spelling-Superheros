@@ -1,0 +1,408 @@
+{
+  "stage1": {
+    "fillInTheBlanksLeft": [
+      
+        {
+          "spelling": "RAIN",
+          "missingLettersPosition": [
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "missingLettersPairs": 1
+        },
+        {
+          "spelling": "SOIL",
+          "missingLettersPosition": [
+            {
+              "x": 1,
+              "y": 2
+            }
+          ],
+          "missingLettersPairs": 1
+        },
+        {
+          "spelling": "DAY",
+          "missingLettersPosition": [
+            {
+              "x": 2,
+              "y": 2
+            }
+          ],
+          "missingLettersPairs": 1
+        },
+        {
+          "spelling": "BOY",
+          "missingLettersPosition": [
+            {
+              "x": 1,
+              "y": 2
+            }
+          ],
+          "missingLettersPairs": 1
+        }
+      
+    ],
+    "fillInTheBlanksCenter": [
+      {
+        "spelling": "HOME",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 2
+      },
+      {
+        "spelling": "MADE",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 3,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 2
+      },
+      {
+        "spelling": "THESE",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          },
+          {
+            "x": 4,
+            "y": 4
+          }
+        ],
+        "missingLettersPairs": 2
+      },
+      {
+        "spelling": "FIVE",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 3,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 2
+      }
+    ],
+    "fillInTheBlanksRight": [
+      {
+        "spelling": "JUNE",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 2
+      },
+      {
+        "spelling": "CAR",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "TREE",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "MEAT",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      }
+    ]
+  },
+  "stage2": {
+    "fillInTheBlanksLeft": [
+      {
+        "spelling": "HER",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "GIRL",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "THURSDAY",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "FOOD",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      }
+    ],
+    "fillInTheBlanksCenter": [
+      {
+        "spelling": "NOW",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "SOUND",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "BOAT",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "TOE",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      }
+    ],
+    "fillInTheBlanksRight": [
+      {
+        "spelling": "SNOW",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "NEW",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "BLUE",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "PIE",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      }
+    ]
+  },
+  "stage3": {
+    "fillInTheBlanksLeft": [
+      {
+        "spelling": "NIGHT",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "BEFORE",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "CRAWL",
+        "missingLettersPosition": [
+          {
+            "x": 3,
+            "y": 4
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "FOR",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      }
+    ],
+    "fillInTheBlanksCenter": [
+      {
+        "spelling": "DINOSAUR",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "YEAR",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "OFF",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "HAIR",
+        "missingLettersPosition": [
+          {
+            "x": 1,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      }
+    ],
+    "fillInTheBlanksRight": [
+      {
+        "spelling": "WELL",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "MISS",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "CLIFF",
+        "missingLettersPosition": [
+          {
+            "x": 3,
+            "y": 4
+          }
+        ],
+        "missingLettersPairs": 1
+      },
+      {
+        "spelling": "BUZZ",
+        "missingLettersPosition": [
+          {
+            "x": 2,
+            "y": 3
+          }
+        ],
+        "missingLettersPairs": 1
+      }
+    ]
+  }
+}

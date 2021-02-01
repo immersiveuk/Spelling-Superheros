@@ -5082,11 +5082,11 @@ MonoBehaviour:
   moveBackClip: {fileID: 8300000, guid: ae04d78376d40b4489e1d6c3fb636d36, type: 3}
   introClip: {fileID: 0}
   instructionsPopup: []
-  completePopupCenter: {fileID: 0}
-  completePopupLeft: {fileID: 0}
-  completePopupRight: {fileID: 0}
   fontSizeSimpleMode: 12
   fotSizeAdvancedMode: 20
+  leftWallWords: {fileID: 1625291990}
+  centerWallWords: {fileID: 1631350095}
+  rightWallWords: {fileID: 702628323}
 --- !u!114 &1409697544 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4642325266701174795, guid: 7a4382405ec897846afe30894c258e3c,

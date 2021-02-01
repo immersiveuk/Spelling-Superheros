@@ -672,11 +672,11 @@ MonoBehaviour:
   - {fileID: 368837490}
   - {fileID: 1027681451}
   - {fileID: 499637806}
-  completePopupCenter: {fileID: 0}
-  completePopupLeft: {fileID: 0}
-  completePopupRight: {fileID: 0}
   fontSizeSimpleMode: 12
   fotSizeAdvancedMode: 20
+  leftWallWords: {fileID: 1625291990}
+  centerWallWords: {fileID: 1631350095}
+  rightWallWords: {fileID: 702628323}
 --- !u!1001 &308982481
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Com.Immersive.Cameras;
+using Newtonsoft.Json;
+using Immersive.SuperHero;
 
 namespace Immersive.FillInTheBlank
 {
@@ -22,6 +24,12 @@ namespace Immersive.FillInTheBlank
         public FillInTheBlanksMissingLetter.MissingLettersStats missingLettersStats = FillInTheBlanksMissingLetter.MissingLettersStats.CanPlace;
 
         private int questionNo = 0;
+
+        [ContextMenu("JSON")]
+        void CreateJson()
+        {
+            Debug.Log(JsonConvert.SerializeObject(fillInTheBlanksList));
+        }
 
         private void Start()
         {

@@ -39,6 +39,7 @@ namespace Immersive.SuperHero
 
         private void Start()
         {
+#if !UNITY_EDITOR
             string filePath = ReadParameters.Settings.FilePath;
             Debug.LogError(filePath);
 
@@ -46,7 +47,8 @@ namespace Immersive.SuperHero
             {
                 //Debug.LogError(jsonText);
                 fillInTheBlanksDataStages = JsonConvert.DeserializeObject<FillInTheBlanksDataStages>(jsonText);
-            });            
+            });      
+#endif
         }
 
         [ContextMenu("JSON")]

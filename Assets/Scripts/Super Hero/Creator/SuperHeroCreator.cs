@@ -31,7 +31,6 @@ namespace Immersive.SuperHero
         public GameObject startButton;
         public GameObject nextButton;
         public GameObject previousButton;
-        
 
         [Header("Video")]
         public VideoPlayer videoPlayer;
@@ -51,12 +50,6 @@ namespace Immersive.SuperHero
             SetPosition();
 
             SuperHeroCreatorManager.Instance.SetMonitor(choosePart);
-
-            if (wallType == WallType.Center)
-            {
-                GameData.Instance.PlaySuperHeroLabMusic();
-                SuperHeroCreatorManager.Instance.PlayIntroductionClip();
-            }
         }
 
         void SetSuperHero()

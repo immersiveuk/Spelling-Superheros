@@ -1815,6 +1815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501016365}
+  - component: {fileID: 501016366}
   m_Layer: 0
   m_Name: SuperHero Creator
   m_TagString: Untagged
@@ -1839,6 +1840,28 @@ Transform:
   m_Father: {fileID: 181524804}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &501016366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501016364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7ec7db09b223a428f1d11663a8b5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chooseHeadClip: {fileID: 8300000, guid: 6fbf40a788e530749be2cb6fd6536281, type: 3}
+  chooseBodyClip: {fileID: 8300000, guid: 6b4d2740c1b0b674092446a31d2ddbaa, type: 3}
+  chooseLegClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
+  chooseHeadSprite: {fileID: 21300000, guid: feab4cc48afd2874ba3c96570382e24b, type: 3}
+  chooseBodySprite: {fileID: 21300000, guid: 4569c458fcf15aa4a8ee44888f74df94, type: 3}
+  chooseLegSprite: {fileID: 21300000, guid: 3f173236abe98144f8abdc4ed7c6382f, type: 3}
+  headMusicClip: {fileID: 8300000, guid: 31daee3893b6ae24f95181bfd58ce802, type: 3}
+  bodyMusicClip: {fileID: 8300000, guid: e6bd667589136c84a9e4a3f2da252542, type: 3}
+  legMusicClip: {fileID: 8300000, guid: 1291d7880bbd00d4daf9bc0c0fbb397d, type: 3}
+  audioSource: {fileID: 1650221041}
 --- !u!1 &584668917
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,7 +3548,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1561171999}
   - component: {fileID: 1561172000}
-  - component: {fileID: 1561172001}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -3580,24 +3602,6 @@ MonoBehaviour:
   clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
   clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
   animator: {fileID: 1129980810}
---- !u!114 &1561172001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561171998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe7ec7db09b223a428f1d11663a8b5e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chooseHeadClip: {fileID: 8300000, guid: 6fbf40a788e530749be2cb6fd6536281, type: 3}
-  chooseBodyClip: {fileID: 8300000, guid: 6b4d2740c1b0b674092446a31d2ddbaa, type: 3}
-  chooseLegClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
-  chooseHeadSprite: {fileID: 21300000, guid: feab4cc48afd2874ba3c96570382e24b, type: 3}
-  chooseBodySprite: {fileID: 21300000, guid: 4569c458fcf15aa4a8ee44888f74df94, type: 3}
-  chooseLegSprite: {fileID: 21300000, guid: 3f173236abe98144f8abdc4ed7c6382f, type: 3}
 --- !u!1 &1606504976
 GameObject:
   m_ObjectHideFlags: 0

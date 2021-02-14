@@ -21,14 +21,8 @@ namespace Immersive.SuperHero
         public FillInTheBlankStages currentStage;
 
         [Header("SFX")]
-        public AudioClip superheroReadyClip;
         public AudioClip selectClip;
         public AudioClip switchClip;
-
-        [Header("Music")]
-        public AudioClip headMusicClip;
-        public AudioClip bodyMusicClip;
-        public AudioClip legMusicClip;
 
         public AudioSource audioSource;
         public AudioSource labAmbienceAudioSource;
@@ -140,29 +134,6 @@ namespace Immersive.SuperHero
                 audioSource.Stop();
 
             SceneManager.LoadScene(sceneName);
-        }
-
-        public void PlaySuperHeroLabMusic()
-        {
-            AudioClip music = null;
-
-            switch (currentStage)
-            {
-                case FillInTheBlankStages.Stage1:
-                    music = headMusicClip;
-                    break;
-
-                case FillInTheBlankStages.Stage2:
-                    music = bodyMusicClip;
-                    break;
-
-                case FillInTheBlankStages.Stage3:
-                    music = legMusicClip;
-                    break;
-            }
-
-            audioSource.clip = music;
-            audioSource.Play();
         }
 
         public void PlaySelect()

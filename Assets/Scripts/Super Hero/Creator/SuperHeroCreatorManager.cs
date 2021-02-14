@@ -18,9 +18,21 @@ namespace Immersive.SuperHero
         public Sprite chooseBodySprite;
         public Sprite chooseLegSprite;
 
+        [Header("Music")]
+        public AudioClip headMusicClip;
+        public AudioClip bodyMusicClip;
+        public AudioClip legMusicClip;
+
+        public AudioSource audioSource;
+
         private void Awake()
         {
             Instance = this;
+        }
+
+        private void Start()
+        {
+            
         }
 
         public void PlayIntroductionClip()
@@ -57,6 +69,29 @@ namespace Immersive.SuperHero
                     spriteRenderer.sprite = chooseLegSprite;
                     break;
             }
+        }
+
+        public void PlaySuperHeroLabMusic()
+        {
+            AudioClip music = null;
+
+            switch (GameData.Instance.currentStage)
+            {
+                case FillInTheBlankStages.Stage1:
+                    music = headMusicClip;
+                    break;
+
+                case FillInTheBlankStages.Stage2:
+                    music = bodyMusicClip;
+                    break;
+
+                case FillInTheBlankStages.Stage3:
+                    music = legMusicClip;
+                    break;
+            }
+
+            audioSource.clip = music;
+            audioSource.Play();
         }
     }
 }

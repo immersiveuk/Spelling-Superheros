@@ -14,9 +14,14 @@ namespace Immersive.SuperHero
         public GameObject levelUpButton;
 
         [Header("SFX")]
+        public AudioClip superheroReadyClip;
         public AudioClip laserBlastClip;
         public AudioClip explosionClip;
         public AudioClip levelUpClicp;
+        public AudioClip flyClip;
+        public AudioClip victoryClip;
+
+        public AudioSource audioSource;
 
         int wallCompleted = 0;
 
@@ -37,13 +42,13 @@ namespace Immersive.SuperHero
 
         void PlayAudio()
         {
-            AbstractImmersiveCamera.PlayAudio(GameData.Instance.superheroReadyClip, 1);
+            AbstractImmersiveCamera.PlayAudio(superheroReadyClip, 1);
             StartCoroutine(DisableIntroductionPopUp());
         }
 
         IEnumerator DisableIntroductionPopUp()
         {
-            yield return new WaitForSeconds(GameData.Instance.superheroReadyClip.length - 1);
+            yield return new WaitForSeconds(superheroReadyClip.length - 1);
 
             foreach (var obj in PopupInstructions)
             {
@@ -61,8 +66,9 @@ namespace Immersive.SuperHero
             if (wallCompleted > 2)
             {
                 levelUpButton.SetActive(true);
-                //GameData.Instance.LoadScene("End Scene");
-
+                audioSource.Stop();
+                audioSource.clip = victoryClip;
+                audioSource.Play();
                 RemoveEvent();
             }
         }
@@ -78,6 +84,8 @@ namespace Immersive.SuperHero
 
         void RemoveEvent()
         {
+            AbstractImmersiveCamera.PlayAudio(flyClip, 1);
+
             foreach (var wall in FindObjectsOfType<EnemiesController>())
             {
                 wall.RemoveWallTouchEvent();
@@ -97,6 +105,8 @@ namespace Immersive.SuperHero
 
         IEnumerator SetAdvancedMode()
         {
+            audioSource.Stop();
+
             AbstractImmersiveCamera.PlayAudio(levelUpClicp, 1);
             yield return new WaitForSeconds(levelUpClicp.length);
 

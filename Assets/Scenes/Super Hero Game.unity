@@ -1957,9 +1957,13 @@ MonoBehaviour:
   - {fileID: 907855515}
   - {fileID: 549827665}
   levelUpButton: {fileID: 169633636}
+  superheroReadyClip: {fileID: 8300000, guid: 31c9d3a99e38ff44889eeb64e6ec4b88, type: 3}
   laserBlastClip: {fileID: 8300000, guid: 9c7f19abbf9b3e249ba49a9af6a8fc5f, type: 3}
   explosionClip: {fileID: 8300000, guid: edc6e9c032db4b34cb27fb1b9d315404, type: 3}
   levelUpClicp: {fileID: 8300000, guid: 863dcce588c592141b190245d5988d2b, type: 3}
+  flyClip: {fileID: 8300000, guid: 638618751d99d1f46b7bf7800af9fb7e, type: 3}
+  victoryClip: {fileID: 8300000, guid: a680c25c2b32ed449a12d48ce716ef26, type: 3}
+  audioSource: {fileID: 1214495521}
 --- !u!1 &1039081433
 GameObject:
   m_ObjectHideFlags: 0

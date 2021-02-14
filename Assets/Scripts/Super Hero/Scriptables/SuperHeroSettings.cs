@@ -18,5 +18,14 @@ namespace Immersive.SuperHero
         public SuperHeroParts head;
         public SuperHeroParts body;
         public SuperHeroParts leg;
+
+        public SelectedSuperHero() { }
+
+        public SelectedSuperHero(SuperHeroSettings superHeroSetting)
+        {
+            this.head = superHeroSetting.heads[Random.Range(0, superHeroSetting.heads.Count)];
+            this.body = superHeroSetting.bodies[Random.Range(0, superHeroSetting.bodies.Count)];
+            this.leg = superHeroSetting.legs[Random.Range(0, superHeroSetting.legs.Count)];
+        }        
     }
 }

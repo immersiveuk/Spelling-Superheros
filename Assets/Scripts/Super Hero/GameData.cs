@@ -31,6 +31,7 @@ namespace Immersive.SuperHero
         public AudioClip legMusicClip;
 
         public AudioSource audioSource;
+        public AudioSource labAmbienceAudioSource;
 
         [Header("Testing")]
         public TextAsset json;
@@ -138,12 +139,6 @@ namespace Immersive.SuperHero
             if (audioSource)
                 audioSource.Stop();
 
-            SceneManager.LoadScene(sceneName);
-        }
-
-        IEnumerator LoadSceneCo(string sceneName, float waitTime)
-        {
-            yield return new WaitForSeconds(waitTime);
             SceneManager.LoadScene(sceneName);
         }
 

@@ -1,17 +1,21 @@
-﻿using System.Collections;
+﻿using Immersive.SuperHero;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TitleScene : MonoBehaviour
 {
-    public List<Animator> animators;
+
+    [Header("Settings")]
+    public SuperHeroSettings superHeroSettings;
+    public List<SuperHero> superHeros;
 
     void Start()
     {
-        foreach (var anim in animators)
+        for (int i=0; i<superHeros.Count; i++)
         {
-            //anim.SetTrigger("Full");
-            anim.SetInteger("Stats", 0);
+            SelectedSuperHero selected = new SelectedSuperHero(superHeroSettings);
+            superHeros[i].SetSuperHero(selected);
         }
     }
 }

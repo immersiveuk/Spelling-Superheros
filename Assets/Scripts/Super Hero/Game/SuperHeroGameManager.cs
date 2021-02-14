@@ -30,6 +30,8 @@ namespace Immersive.SuperHero
             this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
 
             wallCompleted = 0;
+            GameData.Instance.labAmbienceAudioSource.Stop();
+
             PlayAudio();
         }
 

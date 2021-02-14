@@ -63,9 +63,6 @@ namespace Immersive.SuperHero
 
         protected override void OnEnemyDestory()
         {
-            
-            
-
             if (enemyIndex < enemies.EnemyList.Count)
             {
                 CreateEnemy();

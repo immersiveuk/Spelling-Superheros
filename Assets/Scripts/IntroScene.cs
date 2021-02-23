@@ -22,7 +22,7 @@ public class IntroScene : MonoBehaviour
             anim.SetInteger("Stats", 0);
         }
 
-        Invoke("OpenDoor", 27);
+        Invoke("OpenDoor", 20);
     }
 
     void OpenDoor()

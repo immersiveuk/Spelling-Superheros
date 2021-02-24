@@ -69,7 +69,7 @@ namespace Immersive.SuperHero
                 audioSource.Stop();
                 audioSource.clip = victoryClip;
                 audioSource.Play();
-                StartCoroutine(RemoveEvent());
+                RemoveEvent();
             }
         }
 
@@ -82,9 +82,8 @@ namespace Immersive.SuperHero
             }
         }
 
-        IEnumerator RemoveEvent()
+        void RemoveEvent()
         {
-            yield return new WaitForSeconds(2);
             AbstractImmersiveCamera.PlayAudio(flyClip, 1);
 
             foreach (var wall in FindObjectsOfType<EnemiesController>())

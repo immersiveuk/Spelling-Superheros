@@ -32,8 +32,7 @@ namespace Immersive.SuperHero
 
         private void Start()
         {
-            PlayIntroductionClip();
-            PlaySuperHeroLabMusic();
+            
         }
 
         public void PlayIntroductionClip()

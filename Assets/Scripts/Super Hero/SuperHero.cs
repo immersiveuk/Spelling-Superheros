@@ -28,7 +28,7 @@ namespace Immersive.SuperHero
         public void FlyOut()
         {
             iTween.MoveTo(this.gameObject, iTween.Hash("x", this.transform.localPosition.x, "y", 1, "z", 0, "islocal", true,
-                     "time", 1.0f, "easetype", iTween.EaseType.easeInOutQuad, "delay", Random.Range(3.0f, 3.5f), "oncomplete", (System.Action<object>)(newValue =>
+                     "time", 1.0f, "easetype", iTween.EaseType.easeInOutQuad, "delay", Random.Range(3.5f, 4.0f), "oncomplete", (System.Action<object>)(newValue =>
                       {
                           this.gameObject.SetActive(false);
                       })));

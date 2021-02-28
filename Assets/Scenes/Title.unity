@@ -308,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 6256836606416145475, guid: 4de959eb471f73941969ea54b6479495,
         type: 3}
       propertyPath: buildDisplayMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4de959eb471f73941969ea54b6479495, type: 3}
@@ -474,6 +474,7 @@ MonoBehaviour:
   - {fileID: 1696537781}
   - {fileID: 2024974263}
   - {fileID: 1189406188}
+  titleAudio: {fileID: 0}
 --- !u!1 &516550343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,6 +1805,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2012789265}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2014529991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1321620828550561820, guid: 5bd68585edde5004cb91b678b7d7f3df,
+    type: 3}
+  m_PrefabInstance: {fileID: 625222205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2014529999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014529991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c6d77c46596a548ba13c9f0e05e7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickAreaType: 0
+  onClickSprite: {fileID: 0}
+  onClickAudio: {fileID: 0}
+  onClickAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1650221041}
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2024974261
 GameObject:
   m_ObjectHideFlags: 0

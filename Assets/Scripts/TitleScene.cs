@@ -9,6 +9,7 @@ public class TitleScene : MonoBehaviour
     [Header("Settings")]
     public SuperHeroSettings superHeroSettings;
     public List<SuperHero> superHeros;
+    public AudioSource titleAudio;
 
     void Start()
     {

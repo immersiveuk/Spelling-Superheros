@@ -17,7 +17,7 @@ namespace Immersive.SuperHero
                 head.GetComponent<AnimationScript>().Init(0.12f, superHero.head.gameSprites);
 
             if (superHero.body)
-                body.sprite = superHero.body?.gameSprites[0];
+                body.sprite = superHero.body?.gameSprites[Random.Range(1,3)];
 
             if (superHero.leg)
                 leg.sprite = superHero.leg?.gameSprites[0];

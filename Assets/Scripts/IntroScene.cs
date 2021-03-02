@@ -22,7 +22,8 @@ public class IntroScene : MonoBehaviour
             anim.SetInteger("Stats", 0);
         }
 
-        Invoke("OpenDoor", 27);
+        Invoke("OpenDoor", 20);
+        StartCoroutine(DisplayNewsPaper());
     }
 
     void OpenDoor()
@@ -41,20 +42,25 @@ public class IntroScene : MonoBehaviour
 
          })));
 
-        StartCoroutine(DisplayNewsPaper());
+        introSprite.gameObject.SetActive(false);
+
+        StartCoroutine(PlayLabAmbience());
     }
 
     IEnumerator DisplayNewsPaper()
     {
-        yield return new WaitForSeconds(1);
-        GameData.Instance.labAmbienceAudioSource.Play();
-        yield return new WaitForSeconds(1);
-
+        yield return new WaitForSeconds(2);
         iTween.RotateBy(introSprite.gameObject, Vector3.forward * 5, 2.0f);
         iTween.ScaleTo(introSprite.gameObject, Vector3.one * 0.8f, 2);
 
         yield return new WaitForSeconds(2);
         buttonConitnue.SetActive(true);
+    }
+
+    IEnumerator PlayLabAmbience()
+    {
+        yield return new WaitForSeconds(1);
+        GameData.Instance.labAmbienceAudioSource.Play();
     }
 
     public void ContinueButton()

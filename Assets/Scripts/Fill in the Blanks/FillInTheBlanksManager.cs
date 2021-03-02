@@ -37,6 +37,9 @@ namespace Immersive.FillInTheBlank
         [Header("Popup Instructions")]
         public GameObject[] instructionsPopup;
 
+        [Header("Popup Monitor")]
+        public GameObject[] monitors;
+
         [Header("Font Size")]
         public int fontSizeSimpleMode = 12;
         public int fotSizeAdvancedMode = 20;
@@ -81,7 +84,20 @@ namespace Immersive.FillInTheBlank
             {
                 AbstractImmersiveCamera.PlayAudio(introClip, 1);
                 StartCoroutine(DisableIntroductionPopUp());
-            }                
+
+                for (int i = 0; i < instructionsPopup.Length; i++)
+                {
+                    iTween.ScaleFrom(instructionsPopup[i], Vector3.zero, 1);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < monitors.Length; i++)
+                {
+                    iTween.ScaleFrom(monitors[i], Vector3.zero, 1);
+                }
+            }
+            
         }
 
         private void OnDestroy()
@@ -96,9 +112,10 @@ namespace Immersive.FillInTheBlank
         {
             yield return new WaitForSeconds(introClip.length-1);
 
-            foreach (var obj in instructionsPopup)
+            for (int i = 0; i < instructionsPopup.Length; i++)
             {
-                obj.SetActive(false);
+                instructionsPopup[i].SetActive(false);
+                monitors[i].SetActive(true);
             }
         }
 

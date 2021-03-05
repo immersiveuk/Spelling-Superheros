@@ -11,12 +11,20 @@ public class IntroScene : MonoBehaviour
     public GameObject introDoor_Top;
     public GameObject introDoor_Bottom;
 
+    [Header("SFX")]
+    public AudioClip selectClip;
     public AudioClip doorOpenClip;
 
     public List<Animator> animators;
+    public List<GameObject> startButtons;
 
     void Start()
     {
+        foreach (var obj in startButtons)
+        {
+            obj.SetActive(false);
+        }
+
         foreach (var anim in animators)
         {
             anim.SetInteger("Stats", 0);
@@ -65,8 +73,19 @@ public class IntroScene : MonoBehaviour
 
     public void ContinueButton()
     {
+        buttonConitnue.SetActive(false);
         PlayerPrefs.SetInt("GameMode", 0);
-        GameData.Instance.currentStage = FillInTheBlankStages.None;
-        GameData.Instance.LoadScene("Super Hero Creator");
+
+        foreach (var obj in startButtons)
+        {
+            obj.SetActive(true);
+        }
+    }
+
+    public void LoadFillInTheBlank()
+    {
+        AbstractImmersiveCamera.PlayAudio(selectClip);
+        GameData.Instance.currentStage = SuperHeroCreatorStages.Stage1;
+        GameData.Instance.LoadScene("Stage1");
     }
 }

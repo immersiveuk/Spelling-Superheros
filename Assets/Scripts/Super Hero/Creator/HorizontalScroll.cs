@@ -101,7 +101,7 @@ namespace Immersive.SuperHero
 
         void Scroll(int direction)
         {
-            GameData.Instance.PlaySwitch();
+            SuperHeroCreatorManager.Instance.PlaySwitch();
 
             onScroll();
 

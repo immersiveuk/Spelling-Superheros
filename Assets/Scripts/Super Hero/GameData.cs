@@ -7,7 +7,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum FillInTheBlankStages { Stage1, Stage2, Stage3, None }
+public enum SuperHeroCreatorStages { Stage1, Stage2, Stage3 }
 
 namespace Immersive.SuperHero
 {
@@ -15,14 +15,8 @@ namespace Immersive.SuperHero
     {
         private const string arg = "-wordsJSON=";
 
-        Dictionary<WallType, SelectedSuperHero> createdSuperHeros = new Dictionary<WallType, SelectedSuperHero>();
-        public Dictionary<WallType, bool> selectedWalls = new Dictionary<WallType, bool>();
 
-        public FillInTheBlankStages currentStage;
-
-        [Header("SFX")]
-        public AudioClip selectClip;
-        public AudioClip switchClip;
+        public SuperHeroCreatorStages currentStage;
 
         public AudioSource audioSource;
         public AudioSource labAmbienceAudioSource;
@@ -44,8 +38,18 @@ namespace Immersive.SuperHero
                 fillInTheBlanksDataStages = JsonConvert.DeserializeObject<FillInTheBlanksDataStages>(jsonText);
             });      
 #endif
+
+            SelectedSuperHeroData.OnSuperHeroPartSelectedEvent += OnSuperHeroPartSelected;
         }
 
+        private void OnDestroy()
+        {
+            SelectedSuperHeroData.OnSuperHeroPartSelectedEvent -= OnSuperHeroPartSelected;
+        }
+
+        /// <summary>
+        /// To Create JSON sample file from editor
+        /// </summary>
         [ContextMenu("JSON")]
         void CreateJson()
         {
@@ -54,20 +58,8 @@ namespace Immersive.SuperHero
 
         public void ResetManager()
         {
-            currentStage = FillInTheBlankStages.Stage1;
-            createdSuperHeros.Clear();
-            selectedWalls.Clear();
-        }
-
-        void Inisialize()
-        {
-            createdSuperHeros.Add(WallType.Left, new SelectedSuperHero());
-            createdSuperHeros.Add(WallType.Center, new SelectedSuperHero());
-            createdSuperHeros.Add(WallType.Right, new SelectedSuperHero());
-
-            selectedWalls.Add(WallType.Left, false);
-            selectedWalls.Add(WallType.Center, false);
-            selectedWalls.Add(WallType.Right, false);
+            currentStage = SuperHeroCreatorStages.Stage1;
+            SelectedSuperHeroData.Instance.ResetData();
         }
 
         public FillInTheBlanksDataStage GetWords()
@@ -76,57 +68,21 @@ namespace Immersive.SuperHero
 
             switch (currentStage)
             {
-                case FillInTheBlankStages.Stage1:
+                case SuperHeroCreatorStages.Stage1:
                     stage = fillInTheBlanksDataStages.stage1;
                     break;
 
-                case FillInTheBlankStages.Stage2:
+                case SuperHeroCreatorStages.Stage2:
                     stage = fillInTheBlanksDataStages.stage2;
                     break;
 
-                case FillInTheBlankStages.Stage3:
+                case SuperHeroCreatorStages.Stage3:
                     stage = fillInTheBlanksDataStages.stage3;
                     break;
             }
 
             return stage;
         }
-
-        public SelectedSuperHero GetSuperHero(WallType wallType)
-        {
-            if (createdSuperHeros.Count <= 0)
-            {
-                Inisialize();
-            }
-
-            return createdSuperHeros[wallType];
-        }
-
-        #region SuperHero Creator
-        public void SetSuperHeroData(WallType wallType, SelectedSuperHero selectedSuperHero)
-        {
-            createdSuperHeros[wallType] = selectedSuperHero;
-            selectedWalls[wallType] = true;
-
-            if(selectedWalls[WallType.Left] && selectedWalls[WallType.Center]&& selectedWalls[WallType.Right])
-            {
-                if(currentStage == FillInTheBlankStages.Stage3)
-                {
-                    LoadScene("Super Hero Game");
-                }
-                else
-                {
-                    currentStage++;
-                    LoadScene("" + currentStage);
-                }               
-            }
-        }
-
-        public void ResetWallSelected()
-        {
-            selectedWalls[WallType.Left] = selectedWalls[WallType.Center] = selectedWalls[WallType.Right] = false;
-        }
-        #endregion
 
         public void LoadScene(string sceneName)
         {
@@ -136,14 +92,14 @@ namespace Immersive.SuperHero
             SceneManager.LoadScene(sceneName);
         }
 
-        public void PlaySelect()
+        void OnSuperHeroPartSelected(SuperHeroCreatorStages stage, bool completed)
         {
-            AbstractImmersiveCamera.PlayAudio(selectClip);
-        }
+            currentStage = stage;
 
-        public void PlaySwitch()
-        {
-            AbstractImmersiveCamera.PlayAudio(switchClip);
+            if (!completed)
+                LoadScene("" + currentStage);
+            else
+                LoadScene("Super Hero Game");
         }
 
         private void OnApplicationQuit()

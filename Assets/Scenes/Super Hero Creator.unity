@@ -139,7 +139,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2089248951}
   - {fileID: 232664400}
   - {fileID: 411891166}
   - {fileID: 1212262859}
@@ -252,7 +251,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1995686021}
   - {fileID: 1735757543}
   - {fileID: 99737563}
   - {fileID: 211112532}
@@ -277,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &99737563
 Transform:
   m_ObjectHideFlags: 0
@@ -290,7 +288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 83816487}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &99737564
 BoxCollider:
@@ -785,7 +783,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 83816487}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &211112533
 SpriteRenderer:
@@ -874,28 +872,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1735757542}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 99737562}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   OnReleaseEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -954,9 +930,6 @@ MonoBehaviour:
   legsPanel: {fileID: 2027797115}
   continueButton: {fileID: 211112533}
   choosePart: {fileID: 584668919}
-  goSprite: {fileID: 21300000, guid: 15e8a4f73e60b1b42a22ba509bafff34, type: 3}
-  waitingSprite: {fileID: 21300000, guid: 5cc74bcd83300f74e9665844e049b1fa, type: 3}
-  startButton: {fileID: 1995686020}
   nextButton: {fileID: 1735757542}
   previousButton: {fileID: 99737562}
   videoPlayer: {fileID: 145748296}
@@ -981,7 +954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &232664400
 Transform:
   m_ObjectHideFlags: 0
@@ -995,7 +968,7 @@ Transform:
   m_Children:
   - {fileID: 1193065116}
   m_Father: {fileID: 56408364}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &232664401
 SpriteRenderer:
@@ -1194,7 +1167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &284555929
 Transform:
   m_ObjectHideFlags: 0
@@ -1207,7 +1180,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1154488743}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &284555930
 BoxCollider:
@@ -1422,7 +1395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &411891166
 Transform:
   m_ObjectHideFlags: 0
@@ -1435,7 +1408,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 56408364}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &411891167
 SpriteRenderer:
@@ -1751,9 +1724,6 @@ MonoBehaviour:
   legsPanel: {fileID: 180762007}
   continueButton: {fileID: 1212262860}
   choosePart: {fileID: 1193065117}
-  goSprite: {fileID: 21300000, guid: 15e8a4f73e60b1b42a22ba509bafff34, type: 3}
-  waitingSprite: {fileID: 21300000, guid: 5cc74bcd83300f74e9665844e049b1fa, type: 3}
-  startButton: {fileID: 2089248950}
   nextButton: {fileID: 232664399}
   previousButton: {fileID: 411891165}
   videoPlayer: {fileID: 1268519617}
@@ -1852,16 +1822,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7ec7db09b223a428f1d11663a8b5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chooseHeadClip: {fileID: 8300000, guid: 6fbf40a788e530749be2cb6fd6536281, type: 3}
-  chooseBodyClip: {fileID: 8300000, guid: 6b4d2740c1b0b674092446a31d2ddbaa, type: 3}
-  chooseLegClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
-  chooseHeadSprite: {fileID: 21300000, guid: feab4cc48afd2874ba3c96570382e24b, type: 3}
-  chooseBodySprite: {fileID: 21300000, guid: 4569c458fcf15aa4a8ee44888f74df94, type: 3}
-  chooseLegSprite: {fileID: 21300000, guid: 3f173236abe98144f8abdc4ed7c6382f, type: 3}
-  headMusicClip: {fileID: 8300000, guid: 31daee3893b6ae24f95181bfd58ce802, type: 3}
-  bodyMusicClip: {fileID: 8300000, guid: e6bd667589136c84a9e4a3f2da252542, type: 3}
-  legMusicClip: {fileID: 8300000, guid: 1291d7880bbd00d4daf9bc0c0fbb397d, type: 3}
+  continueSprite: {fileID: 21300000, guid: 376c1f5895b7cd243b5010d0aaaaa22f, type: 3}
+  goSprite: {fileID: 21300000, guid: 15e8a4f73e60b1b42a22ba509bafff34, type: 3}
+  waitingSprite: {fileID: 21300000, guid: 5cc74bcd83300f74e9665844e049b1fa, type: 3}
+  selectClip: {fileID: 8300000, guid: c80fa5c2185d5494e8f7bf7f355fb0d2, type: 3}
+  switchClip: {fileID: 8300000, guid: ff2e5c22a20e5ae4ea2a4c1180bf7f39, type: 3}
+  superHeroSceneDatas:
+  - Stage: 0
+    partSprite: {fileID: 21300000, guid: feab4cc48afd2874ba3c96570382e24b, type: 3}
+    introductionClip: {fileID: 8300000, guid: 6fbf40a788e530749be2cb6fd6536281, type: 3}
+    musicClip: {fileID: 8300000, guid: 31daee3893b6ae24f95181bfd58ce802, type: 3}
+  - Stage: 1
+    partSprite: {fileID: 21300000, guid: 4569c458fcf15aa4a8ee44888f74df94, type: 3}
+    introductionClip: {fileID: 8300000, guid: 6b4d2740c1b0b674092446a31d2ddbaa, type: 3}
+    musicClip: {fileID: 8300000, guid: e6bd667589136c84a9e4a3f2da252542, type: 3}
+  - Stage: 2
+    partSprite: {fileID: 21300000, guid: 3f173236abe98144f8abdc4ed7c6382f, type: 3}
+    introductionClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
+    musicClip: {fileID: 8300000, guid: 1291d7880bbd00d4daf9bc0c0fbb397d, type: 3}
   audioSource: {fileID: 1650221041}
+  isTamplate: 1
 --- !u!1 &584668917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,129 +2045,6 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
---- !u!1 &970286236
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 970286237}
-  - component: {fileID: 970286238}
-  - component: {fileID: 970286239}
-  - component: {fileID: 970286240}
-  m_Layer: 0
-  m_Name: Start Button
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &970286237
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970286236}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.52, y: 0, z: -0.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1154488743}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &970286238
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970286236}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2dbeaaf580c016b498408efa91ecd726, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.5555556, y: 0.37222221}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &970286239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970286236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd8a4b63ce472334888e460ff52b3649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnPressEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1561172000}
-        m_MethodName: LoadFillInTheBlank
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReleaseEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!65 &970286240
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970286236}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.268, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1014837157
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2329,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 970286237}
   - {fileID: 1294016257}
   - {fileID: 284555929}
   - {fileID: 1434924206}
@@ -2635,7 +2491,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 56408364}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1212262860
 SpriteRenderer:
@@ -2716,28 +2572,6 @@ MonoBehaviour:
       - m_Target: {fileID: 483158575}
         m_MethodName: ContinueButton
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 232664399}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 411891165}
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2958,7 +2792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1294016257
 Transform:
   m_ObjectHideFlags: 0
@@ -2972,7 +2806,7 @@ Transform:
   m_Children:
   - {fileID: 65012401}
   m_Father: {fileID: 1154488743}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1294016258
 BoxCollider:
@@ -3345,7 +3179,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1154488743}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1434924207
 SpriteRenderer:
@@ -3426,28 +3260,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1561172000}
         m_MethodName: ContinueButton
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1294016256}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 284555928}
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3593,9 +3405,6 @@ MonoBehaviour:
   legsPanel: {fileID: 1014837159}
   continueButton: {fileID: 1434924207}
   choosePart: {fileID: 65012402}
-  goSprite: {fileID: 21300000, guid: 15e8a4f73e60b1b42a22ba509bafff34, type: 3}
-  waitingSprite: {fileID: 21300000, guid: 5cc74bcd83300f74e9665844e049b1fa, type: 3}
-  startButton: {fileID: 970286236}
   nextButton: {fileID: 1294016256}
   previousButton: {fileID: 284555928}
   videoPlayer: {fileID: 1141951371}
@@ -4103,7 +3912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1735757543
 Transform:
   m_ObjectHideFlags: 0
@@ -4117,7 +3926,7 @@ Transform:
   m_Children:
   - {fileID: 584668918}
   m_Father: {fileID: 83816487}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1735757544
 BoxCollider:
@@ -4345,129 +4154,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!1 &1995686020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1995686021}
-  - component: {fileID: 1995686022}
-  - component: {fileID: 1995686024}
-  - component: {fileID: 1995686023}
-  m_Layer: 0
-  m_Name: Start Button
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1995686021
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995686020}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.52, y: 0, z: -0.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 83816487}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1995686022
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995686020}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2dbeaaf580c016b498408efa91ecd726, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.5555556, y: 0.37222221}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &1995686023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995686020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd8a4b63ce472334888e460ff52b3649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnPressEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 230898754}
-        m_MethodName: LoadFillInTheBlank
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReleaseEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!65 &1995686024
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995686020}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.268, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2009770284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4714,129 +4400,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: 1
   selected_Sprite: {fileID: 1734484299}
---- !u!1 &2089248950
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2089248951}
-  - component: {fileID: 2089248952}
-  - component: {fileID: 2089248953}
-  - component: {fileID: 2089248954}
-  m_Layer: 0
-  m_Name: Start Button
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2089248951
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089248950}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.52, y: 0, z: -0.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 56408364}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2089248952
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089248950}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2dbeaaf580c016b498408efa91ecd726, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.5555556, y: 0.37222221}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &2089248953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089248950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd8a4b63ce472334888e460ff52b3649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnPressEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 483158575}
-        m_MethodName: LoadFillInTheBlank
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReleaseEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!65 &2089248954
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089248950}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.268, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2098710614
 GameObject:
   m_ObjectHideFlags: 0

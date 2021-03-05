@@ -72,7 +72,6 @@ namespace Immersive.SuperHero
 
             textEnemy.text = "Enemy: " + (enemies.EnemyList.Count - totalEnemy);
 
-            Debug.Log(wallType + "    " + totalEnemy);
             if (totalEnemy <= 0)
             {
                 SuperHeroGameManager.Instance.OnAllEnemiesDestroyedOfWall();

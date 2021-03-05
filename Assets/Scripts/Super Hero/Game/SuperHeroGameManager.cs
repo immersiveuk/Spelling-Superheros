@@ -60,7 +60,6 @@ namespace Immersive.SuperHero
 
         public void OnAllEnemiesDestroyedOfWall()
         {
-            Debug.Log("OnAllEnemiesDestroyedOfWall  "+wallCompleted);
             wallCompleted++;
 
             if (wallCompleted > 2)

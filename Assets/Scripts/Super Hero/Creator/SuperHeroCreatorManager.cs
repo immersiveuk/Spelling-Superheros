@@ -1,4 +1,5 @@
 ﻿using Com.Immersive.Cameras;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,89 +10,69 @@ namespace Immersive.SuperHero
     {
         public static SuperHeroCreatorManager Instance;
 
-        [Header("Audio Clip")]
-        public AudioClip chooseHeadClip;
-        public AudioClip chooseBodyClip;
-        public AudioClip chooseLegClip;
+        [System.Serializable]
+        public class SuperHeroSceneData
+        {
+            public SuperHeroCreatorStages Stage;
+            public Sprite partSprite;
+            public AudioClip introductionClip;            
+            public AudioClip musicClip;
+        }
 
-        public Sprite chooseHeadSprite;
-        public Sprite chooseBodySprite;
-        public Sprite chooseLegSprite;
+        public Sprite continueSprite;
+        public Sprite goSprite;
+        public Sprite waitingSprite;
 
-        [Header("Music")]
-        public AudioClip headMusicClip;
-        public AudioClip bodyMusicClip;
-        public AudioClip legMusicClip;
+        [Header("SFX")]
+        public AudioClip selectClip;
+        public AudioClip switchClip;
+
+        public List<SuperHeroSceneData> superHeroSceneDatas = new List<SuperHeroSceneData>();
 
         public AudioSource audioSource;
+
+        public bool isTamplate;
 
         private void Awake()
         {
             Instance = this;
         }
 
-        private void Start()
+        public void SetScene(SpriteRenderer spriteRenderer)
         {
-            
-        }
+            SuperHeroSceneData sceneData = superHeroSceneDatas.Find(obj => obj.Stage == SelectedSuperHeroData.Instance.currentStage);
+            AbstractImmersiveCamera.PlayAudio(sceneData.introductionClip, 1);
 
-        public void PlayIntroductionClip()
-        {
-            switch (GameData.Instance.currentStage)
-            {
-                case FillInTheBlankStages.Stage1:
-                    AbstractImmersiveCamera.PlayAudio(chooseHeadClip, 1);
-                    break;
+            spriteRenderer.sprite = sceneData.partSprite;
 
-                case FillInTheBlankStages.Stage2:
-                    AbstractImmersiveCamera.PlayAudio(chooseBodyClip, 1);
-                    break;
-
-                case FillInTheBlankStages.Stage3:
-                    AbstractImmersiveCamera.PlayAudio(chooseLegClip, 1);
-                    break;
-            }
-        }
-
-        public void SetMonitor(SpriteRenderer spriteRenderer)
-        {
-            switch (GameData.Instance.currentStage)
-            {
-                case FillInTheBlankStages.Stage1:
-                    spriteRenderer.sprite = chooseHeadSprite;
-                    break;
-
-                case FillInTheBlankStages.Stage2:
-                    spriteRenderer.sprite = chooseBodySprite;
-                    break;
-
-                case FillInTheBlankStages.Stage3:
-                    spriteRenderer.sprite = chooseLegSprite;
-                    break;
-            }
-        }
-
-        public void PlaySuperHeroLabMusic()
-        {
-            AudioClip music = null;
-
-            switch (GameData.Instance.currentStage)
-            {
-                case FillInTheBlankStages.Stage1:
-                    music = headMusicClip;
-                    break;
-
-                case FillInTheBlankStages.Stage2:
-                    music = bodyMusicClip;
-                    break;
-
-                case FillInTheBlankStages.Stage3:
-                    music = legMusicClip;
-                    break;
-            }
-
-            audioSource.clip = music;
+            audioSource.clip = sceneData.musicClip;
             audioSource.Play();
         }
+
+        public void ChangeButtonSprite(SpriteRenderer spriteRenderer, ButtonState buttonState)
+        {
+            switch (buttonState)
+            {
+                case ButtonState.Continue:
+                    spriteRenderer.sprite = continueSprite;
+                    break;
+
+                case ButtonState.Waiting:
+                    spriteRenderer.sprite = waitingSprite;
+                    break;
+
+                case ButtonState.Ready:
+                    spriteRenderer.sprite = goSprite;
+                    break;
+
+            }
+        }
+
+        public void PlaySwitch()
+        {
+            AbstractImmersiveCamera.PlayAudio(switchClip);
+        }
+
+        public enum ButtonState { Continue, Waiting, Ready }
     }
 }

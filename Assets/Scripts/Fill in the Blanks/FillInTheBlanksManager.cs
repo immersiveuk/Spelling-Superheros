@@ -19,7 +19,7 @@ namespace Immersive.FillInTheBlank
         public enum GameMode { Simple,Advanced}
         public GameMode gameMode;
 
-        public FillInTheBlankStages stage;
+        public SuperHeroCreatorStages stage;
 
         [Header("Sounds")]
         public AudioClip positiveClip;
@@ -80,7 +80,7 @@ namespace Immersive.FillInTheBlank
                 obj.OnResultAction += OnResultAction;
             }
 
-            if (GameData.Instance.currentStage == FillInTheBlankStages.Stage1)
+            if (GameData.Instance.currentStage == SuperHeroCreatorStages.Stage1)
             {
                 AbstractImmersiveCamera.PlayAudio(introClip, 1);
                 StartCoroutine(DisableIntroductionPopUp());

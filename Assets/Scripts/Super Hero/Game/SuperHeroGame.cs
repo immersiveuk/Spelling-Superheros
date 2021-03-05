@@ -36,7 +36,7 @@ namespace Immersive.SuperHero
 
         void SetHero()
         {
-            superHero = GameData.Instance.GetSuperHero(wallType);
+            superHero = SelectedSuperHeroData.Instance.GetSuperHero(wallType);
 
             if (superHero != null)
             {

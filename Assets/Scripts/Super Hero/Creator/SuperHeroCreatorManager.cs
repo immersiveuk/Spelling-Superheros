@@ -10,6 +10,8 @@ namespace Immersive.SuperHero
     {
         public static SuperHeroCreatorManager Instance;
 
+        public enum CustomizationType { None, TamplateParts, TamplateFullBody }
+
         [System.Serializable]
         public class SuperHeroSceneData
         {
@@ -31,11 +33,14 @@ namespace Immersive.SuperHero
 
         public AudioSource audioSource;
 
-        public bool isTamplate;
+        public CustomizationType customizationType;
 
         private void Awake()
         {
             Instance = this;
+
+            if (customizationType == CustomizationType.TamplateFullBody)
+                SelectedSuperHeroData.Instance.currentStage = SuperHeroCreatorStages.Full;
         }
 
         public void SetScene(SpriteRenderer spriteRenderer)

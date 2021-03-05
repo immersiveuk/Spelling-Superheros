@@ -48,7 +48,7 @@ namespace Immersive.SuperHero
             if (selectedWalls[WallType.Left] && selectedWalls[WallType.Center] && selectedWalls[WallType.Right])
             {
                 bool completed = false;
-                if (currentStage == SuperHeroCreatorStages.Stage3)
+                if (currentStage == SuperHeroCreatorStages.Stage3 || currentStage == SuperHeroCreatorStages.Full)
                 {
                     completed = true;
                 }

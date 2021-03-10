@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum SuperHeroCreatorStages { Stage1, Stage2, Stage3, Full }
+
 namespace Immersive.SuperHero
 {
     public class SelectedSuperHeroData : Singleton<SelectedSuperHeroData>

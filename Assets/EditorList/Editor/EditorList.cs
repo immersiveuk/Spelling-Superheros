@@ -1,7 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System;
-using Immersive.FillInTheBlank;
 
 [Flags]
 public enum EditorListOption {
@@ -53,7 +52,7 @@ public static class EditorList
 			//EditorGUILayout.PropertyField(list);
 			EditorGUI.indentLevel += 1;
 		}
-
+		Debug.Log(list.isExpanded);
 		if (!showListLabel || list.isExpanded)
 		{
 			SerializedProperty size = list.FindPropertyRelative("Array.size");
@@ -105,7 +104,6 @@ public static class EditorList
 		}
 		if (showButtons && list.arraySize == 0 && GUILayout.Button(addButtonContent, EditorStyles.miniButton))
 		{
-			//FillInTheBlanksEditor.InsertArrayElementAtIndex(0);
 			if (OnInsertArrayElement != null)
 				OnInsertArrayElement(0);
 			list.arraySize += 1;
@@ -117,7 +115,6 @@ public static class EditorList
 		if (GUILayout.Button(moveButtonContent, EditorStyles.miniButtonLeft, miniButtonWidth))
 		{
 			list.MoveArrayElement(index, index + 1);
-			//FillInTheBlanksEditor.MoveArrayElement(index, index + 1);
 
 			if (OnMoveArrayElement != null)
 				OnMoveArrayElement(index, index+1);
@@ -126,7 +123,6 @@ public static class EditorList
 		if (GUILayout.Button(duplicateButtonContent, EditorStyles.miniButtonMid, miniButtonWidth))
 		{
 			list.InsertArrayElementAtIndex(index);
-			//FillInTheBlanksEditor.InsertArrayElementAtIndex(index);
 			if (OnInsertArrayElement != null)
 				OnInsertArrayElement(index);
 		}
@@ -136,7 +132,6 @@ public static class EditorList
 			int oldSize = list.arraySize;
 			list.DeleteArrayElementAtIndex(index);
 
-			//FillInTheBlanksEditor.DeleteArrayElementAtIndex(index);
 			if (OnDeleteArrayElement != null)
 				OnDeleteArrayElement(index);
 

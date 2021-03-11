@@ -7,7 +7,6 @@ using UnityEngine;
 public class IntroScene : MonoBehaviour
 {
     public SpriteRenderer introSprite;
-    public GameObject buttonConitnue;
     public GameObject introDoor_Top;
     public GameObject introDoor_Bottom;
 
@@ -62,24 +61,17 @@ public class IntroScene : MonoBehaviour
         iTween.ScaleTo(introSprite.gameObject, Vector3.one * 0.8f, 2);
 
         yield return new WaitForSeconds(2);
-        buttonConitnue.SetActive(true);
+
+        foreach (var obj in startButtons)
+        {
+            obj.SetActive(true);
+        }
     }
 
     IEnumerator PlayLabAmbience()
     {
         yield return new WaitForSeconds(1);
         GameData.Instance.labAmbienceAudioSource.Play();
-    }
-
-    public void ContinueButton()
-    {
-        buttonConitnue.SetActive(false);
-        PlayerPrefs.SetInt("GameMode", 0);
-
-        foreach (var obj in startButtons)
-        {
-            obj.SetActive(true);
-        }
     }
 
     public void LoadFillInTheBlank()

@@ -58,7 +58,7 @@ public class IntroScene : MonoBehaviour
     IEnumerator DisplayNewsPaper()
     {
         yield return new WaitForSeconds(3);
-        AbstractImmersiveCamera.PlayAudio(newspaperClip, 1);
+        AbstractImmersiveCamera.PlayAudio(newspaperClip, 0.5f);
         iTween.RotateBy(introSprite.gameObject, Vector3.forward * 5, 3);
         iTween.ScaleTo(introSprite.gameObject, Vector3.one * 0.8f, 3);
 

@@ -13,6 +13,7 @@ public class IntroScene : MonoBehaviour
     [Header("SFX")]
     public AudioClip selectClip;
     public AudioClip doorOpenClip;
+    public AudioClip newspaperClip;
 
     public List<Animator> animators;
     public List<GameObject> startButtons;
@@ -29,7 +30,7 @@ public class IntroScene : MonoBehaviour
             anim.SetInteger("Stats", 0);
         }
 
-        Invoke("OpenDoor", 20);
+        Invoke("OpenDoor", 23);
         StartCoroutine(DisplayNewsPaper());
     }
 
@@ -56,9 +57,10 @@ public class IntroScene : MonoBehaviour
 
     IEnumerator DisplayNewsPaper()
     {
-        yield return new WaitForSeconds(2);
-        iTween.RotateBy(introSprite.gameObject, Vector3.forward * 5, 2.0f);
-        iTween.ScaleTo(introSprite.gameObject, Vector3.one * 0.8f, 2);
+        yield return new WaitForSeconds(3);
+        AbstractImmersiveCamera.PlayAudio(newspaperClip, 1);
+        iTween.RotateBy(introSprite.gameObject, Vector3.forward * 5, 3);
+        iTween.ScaleTo(introSprite.gameObject, Vector3.one * 0.8f, 3);
 
         yield return new WaitForSeconds(2);
 

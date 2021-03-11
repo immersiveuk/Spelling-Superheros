@@ -903,11 +903,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introSprite: {fileID: 1367283695}
-  buttonConitnue: {fileID: 455055792}
   introDoor_Top: {fileID: 1913017194}
   introDoor_Bottom: {fileID: 1846581828}
   selectClip: {fileID: 8300000, guid: c80fa5c2185d5494e8f7bf7f355fb0d2, type: 3}
   doorOpenClip: {fileID: 8300000, guid: fbdbf948ad0234d41a18691db31bdd42, type: 3}
+  newspaperClip: {fileID: 8300000, guid: 22106159a18277c44bc51e1866361fb8, type: 3}
   animators:
   - {fileID: 331467944}
   - {fileID: 1682866882}
@@ -947,7 +947,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
+public enum WallType { Left, Center, Right }
+
 namespace Immersive.SuperHero
-{
-    public enum WallType { Left, Center, Right }
+{    
     public enum SuperHeroPart { Head, Body, Leg }
 
     public class SuperHeroCreator : MonoBehaviour
@@ -48,8 +49,6 @@ namespace Immersive.SuperHero
                 SelectedSuperHeroData.OnSuperHeroPartSelectedEvent += OnSuperHeroPartSelected;
             }
 
-            this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
-
             SetEvent();
             Inisialize();
         }
@@ -66,12 +65,6 @@ namespace Immersive.SuperHero
             selectedSuperHero = SelectedSuperHeroData.Instance.GetSuperHero(wallType);
 
             SetSuperHero();
-            SetPosition();
-        }
-
-        void SetPosition()
-        {
-            this.transform.position = new Vector3(AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[(int)wallType].transform.position.x, 0, 0);
         }
 
         void SetSuperHero()

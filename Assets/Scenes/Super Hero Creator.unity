@@ -1075,6 +1075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 230898753}
   - component: {fileID: 230898754}
+  - component: {fileID: 230898755}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -1127,6 +1128,19 @@ MonoBehaviour:
   clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
   clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
   animator: {fileID: 1702842044}
+--- !u!114 &230898755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230898752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933ba935e266f904090ac4eefbde3f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallType: 2
 --- !u!1 &232664399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483158574}
   - component: {fileID: 483158575}
+  - component: {fileID: 483158576}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -2191,6 +2206,19 @@ MonoBehaviour:
   clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
   clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
   animator: {fileID: 1676251502}
+--- !u!114 &483158576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483158573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933ba935e266f904090ac4eefbde3f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallType: 1
 --- !u!1 &499819346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,7 +2334,7 @@ MonoBehaviour:
     introductionClip: {fileID: 0}
     musicClip: {fileID: 8300000, guid: 1291d7880bbd00d4daf9bc0c0fbb397d, type: 3}
   audioSource: {fileID: 1650221041}
-  customizationType: 2
+  customizationType: 0
 --- !u!1 &575491496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,6 +4328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561171999}
   - component: {fileID: 1561172000}
+  - component: {fileID: 1561172001}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -4352,6 +4381,19 @@ MonoBehaviour:
   clip1: {fileID: 32900000, guid: b65ea780f1f4e3948aea524db889b104, type: 3}
   clip2: {fileID: 32900000, guid: b086d4b6bcc2b9248a6cdc08523142f1, type: 3}
   animator: {fileID: 1129980810}
+--- !u!114 &1561172001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561171998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933ba935e266f904090ac4eefbde3f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallType: 0
 --- !u!1 &1606504976
 GameObject:
   m_ObjectHideFlags: 0

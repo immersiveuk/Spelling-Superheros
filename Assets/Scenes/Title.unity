@@ -3348,6 +3348,11 @@ PrefabInstance:
       propertyPath: sceneLinkDataModel.popUpSetting.fadeOutAudio
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1003652519879711897, guid: 5bd68585edde5004cb91b678b7d7f3df,
+        type: 3}
+      propertyPath: sceneLinkDataModel.popUpSetting.fadeOutDuration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1321620828550561820, guid: 5bd68585edde5004cb91b678b7d7f3df,
         type: 3}
       propertyPath: m_Name

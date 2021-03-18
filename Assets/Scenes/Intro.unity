@@ -1646,7 +1646,8 @@ MonoBehaviour:
       - spelling: RAIN
         missingLettersPosition:
         - {x: 1, y: 1}
-        missingLettersPairs: 1
+        - {x: 3, y: 3}
+        missingLettersPairs: 2
       - spelling: SOIL
         missingLettersPosition:
         - {x: 1, y: 2}

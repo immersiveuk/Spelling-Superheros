@@ -2331,7 +2331,7 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: 1291d7880bbd00d4daf9bc0c0fbb397d, type: 3}
   - Stage: 3
     partSprite: {fileID: 21300000, guid: 3f173236abe98144f8abdc4ed7c6382f, type: 3}
-    introductionClip: {fileID: 0}
+    introductionClip: {fileID: 8300000, guid: 7866f9884a4c70f4295d1c3e78e4333a, type: 3}
     musicClip: {fileID: 8300000, guid: 1291d7880bbd00d4daf9bc0c0fbb397d, type: 3}
   audioSource: {fileID: 1650221041}
   customizationType: 0

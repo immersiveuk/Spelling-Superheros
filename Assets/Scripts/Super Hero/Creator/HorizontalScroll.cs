@@ -101,8 +101,6 @@ namespace Immersive.SuperHero
 
         void Scroll(int direction)
         {
-            SuperHeroCreatorManager.Instance.PlaySwitch();
-
             onScroll();
 
             scrolling = true;
@@ -118,7 +116,6 @@ namespace Immersive.SuperHero
             else
                 parts[1].GetComponent<SpriteRenderer>().sprite = superHeroParts[spriteIndex].creatorSprite;
 
-            //parts[1].GetComponent<SpriteRenderer>().sprite = superHeroParts[spriteIndex].creatorSprite;
             parts[1].localPosition = new Vector3(partIndex * gapValue, 0, 0);
 
             iTween.MoveBy(this.gameObject, iTween.Hash("x", direction * gapValue, "y", 0, "z", 0, "islocal", false, "time", transitionTime,

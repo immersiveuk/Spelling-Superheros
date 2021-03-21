@@ -8,7 +8,6 @@ namespace Immersive.SuperHero
 {
     public class SuperHeroCreatorManager : MonoBehaviour
     {
-        public static SuperHeroCreatorManager Instance;
 
         public enum CustomizationType { None, TamplateParts, TamplateFullBody }
 
@@ -17,6 +16,7 @@ namespace Immersive.SuperHero
         {
             public SuperHeroCreatorStages Stage;
             public Sprite partSprite;
+            public Sprite silhouetteParticle;
             public AudioClip introductionClip;            
             public AudioClip musicClip;
         }
@@ -37,8 +37,6 @@ namespace Immersive.SuperHero
 
         private void Awake()
         {
-            Instance = this;
-
             if (customizationType == CustomizationType.TamplateFullBody)
                 SelectedSuperHeroData.Instance.currentStage = SuperHeroCreatorStages.Full;
         }
@@ -71,6 +69,11 @@ namespace Immersive.SuperHero
                     break;
 
             }
+        }
+
+        public void ChangeSilhouetteParticleSprite(SpriteRenderer sprite, SuperHeroCreatorStages stage)
+        {
+            sprite.sprite = superHeroSceneDatas.Find(obj => obj.Stage == stage).silhouetteParticle;
         }
 
         public void PlaySwitch()

@@ -42,8 +42,6 @@ namespace Immersive.SuperHero
 
         public void SetSuperHeroData(WallType wallType, SelectedSuperHero selectedSuperHero)
         {
-            AbstractImmersiveCamera.PlayAudio(SuperHeroCreatorManager.Instance.selectClip);
-
             createdSuperHeros[wallType] = selectedSuperHero;
             selectedWalls[wallType] = true;
 

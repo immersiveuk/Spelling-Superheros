@@ -133,8 +133,8 @@ namespace Immersive.FillInTheBlank
             else
                 AbstractImmersiveCamera.PlayAudio(negativeClip);
 
-            if (answerCount >= 1)
-            //if (answerCount >= totalQuestions)
+            //if (answerCount >= 1) //for quick testing in Unity Editor it's set to one spelling
+            if (answerCount >= totalQuestions)
             {
                 GameData.Instance.currentStage = stage;
                 GameData.Instance.LoadScene("Super Hero Creator");

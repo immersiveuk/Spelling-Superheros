@@ -25,10 +25,12 @@ public class IntroScene : MonoBehaviour
             obj.SetActive(false);
         }
 
+        /*
         foreach (var anim in animators)
         {
             anim.SetInteger("Stats", 0);
         }
+        */
 
         Invoke("OpenDoor", 23);
         StartCoroutine(DisplayNewsPaper());

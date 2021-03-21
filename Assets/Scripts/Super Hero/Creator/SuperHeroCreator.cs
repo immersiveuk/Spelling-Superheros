@@ -29,13 +29,11 @@ namespace Immersive.SuperHero
 
         public GameObject panelBodyButtons, panelHeadButtons, panelLegButtons;
 
-        [Header("Video")]
-        public VideoPlayer videoPlayer;
-        public VideoClip clip1, clip2;
-
-        public Animator animator;
+        //public Animator animator;
+        public SpriteRenderer silhouetteParticle;
 
         SelectedSuperHero selectedSuperHero;
+        SuperHeroCreatorManager superHeroCreatorManager;
 
         private void OnDestroy()
         {
@@ -44,7 +42,9 @@ namespace Immersive.SuperHero
 
         void Start()
         {
-            if (SuperHeroCreatorManager.Instance.customizationType != SuperHeroCreatorManager.CustomizationType.None)
+            superHeroCreatorManager = FindObjectOfType<SuperHeroCreatorManager>();
+
+            if (superHeroCreatorManager.customizationType != SuperHeroCreatorManager.CustomizationType.None)
             {
                 SelectedSuperHeroData.OnSuperHeroPartSelectedEvent += OnSuperHeroPartSelected;
             }
@@ -61,7 +61,7 @@ namespace Immersive.SuperHero
 
         void Inisialize()
         {
-            SuperHeroCreatorManager.Instance.SetScene(choosePart);
+            superHeroCreatorManager.SetScene(choosePart);
             selectedSuperHero = SelectedSuperHeroData.Instance.GetSuperHero(wallType);
 
             SetSuperHero();
@@ -90,18 +90,21 @@ namespace Immersive.SuperHero
                 case SuperHeroCreatorStages.Stage1:
                     headsPanel.SetScroll(superHero.heads, OnScroll);
 
-                    SuperHeroCreatorManager.Instance.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Continue);
+                    superHeroCreatorManager.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Continue);
 
-                    animator.SetInteger("Stats",1);
+                    superHeroCreatorManager.ChangeSilhouetteParticleSprite(silhouetteParticle, SuperHeroCreatorStages.Stage1);
+
+                    //animator.SetInteger("Stats",1);
                     break;
 
                 case SuperHeroCreatorStages.Stage2:
                     headsPanel.SetSelectedSprite(selectedSuperHero.head);
                     bodiesPanel.SetScroll(superHero.bodies, OnScroll);
 
-                    SuperHeroCreatorManager.Instance.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Continue);
+                    superHeroCreatorManager.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Continue);
+                    superHeroCreatorManager.ChangeSilhouetteParticleSprite(silhouetteParticle, SuperHeroCreatorStages.Stage2);
 
-                    animator.SetInteger("Stats", 2);
+                    //animator.SetInteger("Stats", 2);
                     break;
 
                 case SuperHeroCreatorStages.Stage3:
@@ -109,9 +112,9 @@ namespace Immersive.SuperHero
                     bodiesPanel.SetSelectedSprite(selectedSuperHero.body);
                     legsPanel.SetScroll(superHero.legs, OnScroll);
 
-                    SuperHeroCreatorManager.Instance.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Ready);
+                    superHeroCreatorManager.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Ready);
 
-                    animator.gameObject.SetActive(false);
+                    silhouetteParticle.gameObject.SetActive(false);
                     break;
 
                 case SuperHeroCreatorStages.Full:
@@ -119,9 +122,9 @@ namespace Immersive.SuperHero
                     bodiesPanel.SetScroll(superHero.bodies, OnScroll);
                     legsPanel.SetScroll(superHero.legs, OnScroll);
 
-                    SuperHeroCreatorManager.Instance.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Ready);
+                    superHeroCreatorManager.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Ready);
 
-                    animator.gameObject.SetActive(false);
+                    silhouetteParticle.gameObject.SetActive(false);
                     break;
             }
 
@@ -130,6 +133,7 @@ namespace Immersive.SuperHero
 
         void OnScroll()
         {
+            superHeroCreatorManager.PlaySwitch();
             SelectedSuperHeroData.Instance.selectedWalls[wallType] = false;
             continueButton.gameObject.SetActive(true);
         }
@@ -140,7 +144,7 @@ namespace Immersive.SuperHero
             panelHeadButtons.SetActive(false);
             panelLegButtons.SetActive(false);
 
-            SuperHeroCreatorManager.Instance.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Waiting);
+            superHeroCreatorManager.ChangeButtonSprite(continueButton, SuperHeroCreatorManager.ButtonState.Waiting);
 
             switch (SelectedSuperHeroData.Instance.currentStage)
             {
@@ -162,7 +166,8 @@ namespace Immersive.SuperHero
                     selectedSuperHero.leg = legsPanel.GetSelectedPart();
                     break;
             }
-            
+
+            AbstractImmersiveCamera.PlayAudio(superHeroCreatorManager.selectClip);
             SelectedSuperHeroData.Instance.SetSuperHeroData(wallType, selectedSuperHero);
         }
 

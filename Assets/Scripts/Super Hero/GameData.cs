@@ -49,10 +49,22 @@ namespace Immersive.SuperHero
         /// <summary>
         /// To Create JSON sample file from editor
         /// </summary>
-        [ContextMenu("JSON")]
-        void CreateJson()
+        [ContextMenu("Load Json")]
+        void LoadJson()
         {
             //Debug.Log(JsonConvert.SerializeObject(fillInTheBlanksDataStages));
+            fillInTheBlanksDataStages = JsonConvert.DeserializeObject<FillInTheBlanksDataStages>(json.text);
+        }
+
+        /// <summary>
+        /// To Create JSON sample file from editor
+        /// </summary>
+        [ContextMenu("Create Json")]
+        void CreateJson()
+        {
+            Debug.Log(JsonConvert.SerializeObject(fillInTheBlanksDataStages));
+
+            System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "/FillInTheBlancks.json", JsonConvert.SerializeObject(fillInTheBlanksDataStages));
         }
 
         public void ResetManager()

@@ -112,10 +112,5 @@ namespace Immersive.SuperHero
             else
                 LoadScene("Super Hero Game");
         }
-
-        private void OnApplicationQuit()
-        {
-            PlayerPrefs.SetInt("GameMode", -1);
-        }
     }
 }

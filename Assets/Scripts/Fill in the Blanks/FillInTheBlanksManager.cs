@@ -51,11 +51,7 @@ namespace Immersive.FillInTheBlank
         private void Awake()
         {
             Instance = this;
-            if (PlayerPrefs.GetInt("GameMode", -1) != -1)
-            {
-                Debug.Log("game Mode");
-                gameMode = (GameMode)PlayerPrefs.GetInt("GameMode");
-            }
+            gameMode = (GameMode)PlayerPrefs.GetInt("GameMode");
 
             SetWords();
         }
@@ -154,11 +150,6 @@ namespace Immersive.FillInTheBlank
         public void PlayMoveBack()
         {
             AbstractImmersiveCamera.PlayAudio(moveBackClip);
-        }
-
-        private void OnApplicationQuit()
-        {
-            PlayerPrefs.SetInt("GameMode", -1);
         }
     }
 }

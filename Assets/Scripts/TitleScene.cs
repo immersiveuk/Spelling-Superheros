@@ -13,6 +13,8 @@ public class TitleScene : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("GameMode", 0);
+
         for (int i=0; i<superHeros.Count; i++)
         {
             SelectedSuperHero selected = new SelectedSuperHero(superHeroSettings);

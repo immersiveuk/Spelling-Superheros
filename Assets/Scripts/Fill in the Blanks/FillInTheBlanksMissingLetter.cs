@@ -27,6 +27,8 @@ namespace Immersive.FillInTheBlank
 
         protected virtual void Unhighlight() {}
 
+        protected virtual void Solved() { }
+
         public enum MissingLettersStats {NotPlace, Placing, Placed, CanPlace }
         MissingLettersStats letterStats = MissingLettersStats.NotPlace;
 
@@ -170,6 +172,7 @@ namespace Immersive.FillInTheBlank
             yield return new WaitForSeconds(1);
             selectedSpelling.OnCorrectAnswer();
             resultAction(true);
+            Solved();
         }
 
         void OnIncorrectAnswer(Vector2 targetPosition)

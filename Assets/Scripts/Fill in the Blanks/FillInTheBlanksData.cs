@@ -24,6 +24,7 @@ namespace Immersive.FillInTheBlank
         public FillInTheBlanksMissingLetter.MissingLettersStats missingLettersStats = FillInTheBlanksMissingLetter.MissingLettersStats.CanPlace;
 
         private int questionNo = 0;
+        private FillInTheBlanksSpelling currentSpelling;
 
         [ContextMenu("JSON")]
         void CreateJson()
@@ -92,13 +93,19 @@ namespace Immersive.FillInTheBlank
                 obj.OnDeselect();
             }
 
+            if (currentSpelling)
+            {
+                currentSpelling.OnSolved();
+            }
+
             if (questionNo >= spellings.Count)
             {
                 GetComponent<FillInTheBlanksWall>().OnComplete();
                 return;
             }
 
-            spellings[questionNo].OnSelect();
+            currentSpelling = spellings[questionNo];
+            currentSpelling.OnSelect();
 
             OnSpellingSelected(spellings[questionNo]);
 

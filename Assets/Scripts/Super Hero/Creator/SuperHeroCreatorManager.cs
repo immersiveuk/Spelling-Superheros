@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Immersive.SuperHero
@@ -34,11 +35,17 @@ namespace Immersive.SuperHero
         public AudioSource audioSource;
 
         public CustomizationType customizationType;
+        public TextMeshPro textLevel;
 
         private void Awake()
         {
             if (customizationType == CustomizationType.TamplateFullBody)
                 SelectedSuperHeroData.Instance.currentStage = SuperHeroCreatorStages.Full;
+        }
+
+        private void Start()
+        {
+            textLevel.text = "Level: " + ((int)SelectedSuperHeroData.Instance.currentStage + 1);
         }
 
         public void SetScene(SpriteRenderer spriteRenderer)

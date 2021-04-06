@@ -8,6 +8,7 @@ namespace Immersive.FillInTheBlank
     public class MissingLetterHighlighter : FillInTheBlanksMissingLetter
     {
         public TextMeshPro textGlow;
+        bool solved = false;
 
         private void Start()
         {
@@ -31,7 +32,15 @@ namespace Immersive.FillInTheBlank
         protected override void Unhighlight()
         {
             if (textGlow)
+            {
                 textGlow.enabled = false;
+            }
+        }
+
+        protected override void Solved()
+        {
+            solved = true;
+            textOption.color = Color.black;
         }
     }
 }

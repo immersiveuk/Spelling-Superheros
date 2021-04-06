@@ -2046,11 +2046,10 @@ MonoBehaviour:
         - {x: 1, y: 2}
         missingLettersPairs: 1
       fillInTheBlanksCenter:
-      - spelling: HOME
+      - spelling: BROTHER
         missingLettersPosition:
-        - {x: 1, y: 1}
-        - {x: 3, y: 3}
-        missingLettersPairs: 2
+        - {x: 2, y: 2}
+        missingLettersPairs: 1
       - spelling: HOME
         missingLettersPosition:
         - {x: 1, y: 1}

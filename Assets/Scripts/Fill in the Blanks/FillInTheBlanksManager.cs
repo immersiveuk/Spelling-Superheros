@@ -48,6 +48,8 @@ namespace Immersive.FillInTheBlank
         public FillInTheBlanksData centerWallWords;
         public FillInTheBlanksData rightWallWords;
 
+        public TextMeshPro textLevel;
+
         private void Awake()
         {
             Instance = this;
@@ -69,6 +71,7 @@ namespace Immersive.FillInTheBlank
 
         private void Start()
         {
+            textLevel.text = "Level: " + ((int)stage + 1);
 
             foreach (var obj in FindObjectsOfType<FillInTheBlanksData>())
             {

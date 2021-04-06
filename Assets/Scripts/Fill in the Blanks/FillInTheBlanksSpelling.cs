@@ -21,6 +21,8 @@ namespace Immersive.FillInTheBlank
 
         }
 
+        protected virtual void Solved() { }
+
         [HideInInspector]
         public FillInTheBlanksModel spellingData;
 
@@ -94,6 +96,11 @@ namespace Immersive.FillInTheBlank
         public void OnCorrectAnswer()
         {
             textSpelling.text = textSpelling.text.Replace("<u>", "").Replace("</u>", "");
+        }
+
+        public void OnSolved()
+        {
+            Solved();
         }
 
         /// <summary>

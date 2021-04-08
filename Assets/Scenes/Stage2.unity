@@ -5319,7 +5319,7 @@ MonoBehaviour:
   - {fileID: 592273081}
   - {fileID: 687714152}
   fontSizeSimpleMode: 12
-  fotSizeAdvancedMode: 20
+  fotSizeAdvancedMode: 12
   leftWallWords: {fileID: 1625291990}
   centerWallWords: {fileID: 1631350095}
   rightWallWords: {fileID: 702628323}

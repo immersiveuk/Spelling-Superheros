@@ -12,10 +12,12 @@ public class ObjectEvent : MonoBehaviour, IInteractableObject
     public void OnPress()
     {
         OnPressEvent.Invoke();
+        /*
         if (transform.childCount > 0 && transform.GetChild(0).transform.GetComponent<SpriteRenderer>())
         {
             transform.GetChild(0).gameObject.SetActive(false);
         }
+        */
     }
 
     public void OnRelease()

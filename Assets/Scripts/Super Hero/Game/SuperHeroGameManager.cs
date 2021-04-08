@@ -11,13 +11,15 @@ namespace Immersive.SuperHero
 
         [Header("Popup Instructions")]
         public GameObject[] PopupInstructions;
-        public GameObject levelUpButton;
+        public GameObject advanceModePanel;
+        public GameObject normalAdvanceModePanel;
 
         [Header("SFX")]
         public AudioClip superheroReadyClip;
         public AudioClip laserBlastClip;
         public AudioClip explosionClip;
-        public AudioClip levelUpClicp;
+        public AudioClip advanceModeLevelUpClip;
+        public AudioClip normalModeLevelUpClip;
         public AudioClip flyClip;
         public AudioClip victoryClip;
 
@@ -64,11 +66,22 @@ namespace Immersive.SuperHero
 
             if (wallCompleted > 2)
             {
-                levelUpButton.SetActive(true);
                 audioSource.Stop();
                 audioSource.clip = victoryClip;
                 audioSource.Play();
                 RemoveEvent();
+
+                if (PlayerPrefs.GetInt("GameMode") == 0)
+                {
+                    advanceModePanel.SetActive(true);
+                }
+                else
+                {
+                    audioSource.volume = 0.5f;
+                    AbstractImmersiveCamera.PlayAudio(normalModeLevelUpClip, 1);
+                    normalAdvanceModePanel.SetActive(true);
+                }     
+
             }
         }
 
@@ -92,26 +105,44 @@ namespace Immersive.SuperHero
             }
         }
 
-        public void ButtonLevelUp()
+        public void AdvanceModeButton()
         {
+            PlayerPrefs.SetInt("GameMode", 1);
+
+            StartCoroutine(SetAdvanceMode(advanceModeLevelUpClip));
+        }
+
+        IEnumerator SetAdvanceMode(AudioClip clip)
+        {
+            audioSource.Stop();
+
             foreach (var wall in FindObjectsOfType<EnemiesController>())
             {
                 wall.SetWall();
             }
 
-            StartCoroutine(SetAdvancedMode());
+            AbstractImmersiveCamera.PlayAudio(clip, 1);
+            yield return new WaitForSeconds(clip.length);
+
+            SetGameMode();
         }
 
-        IEnumerator SetAdvancedMode()
+        public void Level1Button()
         {
-            audioSource.Stop();
+            PlayerPrefs.SetInt("GameMode", 0);
+            SetGameMode();
+        }
 
-            AbstractImmersiveCamera.PlayAudio(levelUpClicp, 1);
-            yield return new WaitForSeconds(levelUpClicp.length);
-
+        public void Level2Button()
+        {
             PlayerPrefs.SetInt("GameMode", 1);
+            SetGameMode();
+        }
+
+        void SetGameMode()
+        {
             GameData.Instance.ResetManager();
             GameData.Instance.LoadScene("Stage1");
-        }
+        }        
     }
 }

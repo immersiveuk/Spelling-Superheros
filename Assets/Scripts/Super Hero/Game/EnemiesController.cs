@@ -49,6 +49,11 @@ namespace Immersive.SuperHero
 
         void CreateEnemy()
         {
+            if (enemyIndex >= enemies.EnemyList.Count)
+            {
+               return;
+            }
+
             Vector3 startPosition = new Vector3(Random.Range(-enemyRange, enemyRange), 1.0f, 0);
             Vector3 endPosition = new Vector3(Random.Range(-enemyRange, enemyRange), Random.Range(0.2f, 0.4f), 0);
 

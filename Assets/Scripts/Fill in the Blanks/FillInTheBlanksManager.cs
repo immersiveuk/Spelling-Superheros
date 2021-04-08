@@ -42,7 +42,7 @@ namespace Immersive.FillInTheBlank
 
         [Header("Font Size")]
         public int fontSizeSimpleMode = 12;
-        public int fotSizeAdvancedMode = 20;
+        public int fotSizeAdvancedMode = 12;
 
         public FillInTheBlanksData leftWallWords;
         public FillInTheBlanksData centerWallWords;
@@ -54,6 +54,9 @@ namespace Immersive.FillInTheBlank
         {
             Instance = this;
             gameMode = (GameMode)PlayerPrefs.GetInt("GameMode");
+
+            fontSizeSimpleMode = 12;
+            fotSizeAdvancedMode = 12;
 
             SetWords();
         }

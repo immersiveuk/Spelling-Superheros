@@ -32,7 +32,7 @@ public class IntroScene : MonoBehaviour
         }
         */
 
-        Invoke("OpenDoor", 23);
+        Invoke("OpenDoor", 27); //wait for Intro clip to say "Let us begin"
         StartCoroutine(DisplayNewsPaper());
     }
 

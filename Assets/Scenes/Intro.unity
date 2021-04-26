@@ -531,6 +531,16 @@ PrefabInstance:
       propertyPath: buildDisplayMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6256836606416145475, guid: 4de959eb471f73941969ea54b6479495,
+        type: 3}
+      propertyPath: displayAreaTouches
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256836606416145475, guid: 4de959eb471f73941969ea54b6479495,
+        type: 3}
+      propertyPath: displayTouchPoints
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4de959eb471f73941969ea54b6479495, type: 3}
 --- !u!1 &331467942

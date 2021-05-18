@@ -12,7 +12,7 @@ namespace Immersive.FillInTheBlank
 
         private void Start()
         {
-            if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
+            if (FillInTheBlanksManager.Instance.gameMode == GameMode.Simple)
                 textGlow.fontSize = FillInTheBlanksManager.Instance.fontSizeSimpleMode;
             else
                 textGlow.fontSize = FillInTheBlanksManager.Instance.fotSizeAdvancedMode;

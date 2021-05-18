@@ -20,6 +20,14 @@ namespace Immersive.SuperHero
         public AudioSource audioSource;
         public AudioSource labAmbienceAudioSource;
 
+        [Header("Level")]
+        public SpriteRenderer levelLeft;
+        public SpriteRenderer levelCenter;
+        public SpriteRenderer levelRight;
+
+        public Sprite level_1;
+        public Sprite level_2;
+
         [Header("Testing")]
         public TextAsset json;
 
@@ -39,6 +47,22 @@ namespace Immersive.SuperHero
 #endif
 
             SelectedSuperHeroData.OnSuperHeroPartSelectedEvent += OnSuperHeroPartSelected;
+
+            SetLevel();
+        }
+
+        public void SetLevel()
+        {
+            if((GameMode)PlayerPrefs.GetInt("GameMode") == GameMode.Simple)
+            {
+                levelLeft.sprite = levelCenter.sprite = levelRight.sprite = level_1;
+            }
+            else
+            {
+                levelLeft.sprite = levelCenter.sprite = levelRight.sprite = level_2;
+            }
+
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
         private void OnDestroy()

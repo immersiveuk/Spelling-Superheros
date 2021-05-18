@@ -35,7 +35,7 @@ namespace Immersive.SuperHero
         public AudioSource audioSource;
 
         public CustomizationType customizationType;
-        public TextMeshPro textLevel;
+        //public TextMeshPro textLevel;
 
         private void Awake()
         {
@@ -45,7 +45,7 @@ namespace Immersive.SuperHero
 
         private void Start()
         {
-            textLevel.text = "Level: " + ((int)SelectedSuperHeroData.Instance.currentStage + 1);
+            //textLevel.text = "Level: " + ((int)SelectedSuperHeroData.Instance.currentStage + 1);
         }
 
         public void SetScene(SpriteRenderer spriteRenderer)

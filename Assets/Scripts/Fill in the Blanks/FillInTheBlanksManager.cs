@@ -12,11 +12,12 @@ using UnityEngine.SceneManagement;
 
 namespace Immersive.FillInTheBlank
 {
+    public enum GameMode { Simple, Advanced }
+
     public class FillInTheBlanksManager : MonoBehaviour
     {
         public static FillInTheBlanksManager Instance;
-
-        public enum GameMode { Simple,Advanced}
+       
         public GameMode gameMode;
 
         public SuperHeroCreatorStages stage;
@@ -48,7 +49,7 @@ namespace Immersive.FillInTheBlank
         public FillInTheBlanksData centerWallWords;
         public FillInTheBlanksData rightWallWords;
 
-        public TextMeshPro textLevel;
+        //public TextMeshPro textLevel;
 
         private void Awake()
         {
@@ -74,7 +75,7 @@ namespace Immersive.FillInTheBlank
 
         private void Start()
         {
-            textLevel.text = "Level: " + ((int)stage + 1);
+            //textLevel.text = "Level: " + ((int)stage + 1);
 
             foreach (var obj in FindObjectsOfType<FillInTheBlanksData>())
             {
@@ -135,8 +136,8 @@ namespace Immersive.FillInTheBlank
             else
                 AbstractImmersiveCamera.PlayAudio(negativeClip);
 
-            //if (answerCount >= 1) //for quick testing in Unity Editor it's set to one spelling
-            if (answerCount >= totalQuestions)
+            if (answerCount >= 1) //for quick testing in Unity Editor it's set to one spelling
+            //if (answerCount >= totalQuestions)
             {
                 GameData.Instance.currentStage = stage;
                 GameData.Instance.LoadScene("Super Hero Creator");

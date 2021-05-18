@@ -143,6 +143,7 @@ namespace Immersive.SuperHero
         {
             GameData.Instance.ResetManager();
             GameData.Instance.LoadScene("Stage1");
+            GameData.Instance.SetLevel();
         }        
     }
 }

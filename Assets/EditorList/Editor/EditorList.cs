@@ -52,7 +52,7 @@ public static class EditorList
 			//EditorGUILayout.PropertyField(list);
 			EditorGUI.indentLevel += 1;
 		}
-		Debug.Log(list.isExpanded);
+
 		if (!showListLabel || list.isExpanded)
 		{
 			SerializedProperty size = list.FindPropertyRelative("Array.size");

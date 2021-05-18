@@ -64,7 +64,7 @@ namespace Immersive.FillInTheBlank
             data.missingLetters = option;
             textOption.text = option;
 
-            if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
+            if (FillInTheBlanksManager.Instance.gameMode == GameMode.Simple)
                 textOption.fontSize = FillInTheBlanksManager.Instance.fontSizeSimpleMode;
             else
                 textOption.fontSize = FillInTheBlanksManager.Instance.fotSizeAdvancedMode;
@@ -237,7 +237,7 @@ namespace Immersive.FillInTheBlank
    
         Vector2 GetPositionOfCharacter(TMP_TextInfo textInfo, int index, bool isLeft)
         {
-            if (FillInTheBlanksManager.Instance.gameMode == FillInTheBlanksManager.GameMode.Simple)
+            if (FillInTheBlanksManager.Instance.gameMode == GameMode.Simple)
                 index += selectedSpelling.spellingData.spelling.Length + 3;
 
             int materialIndex = textInfo.characterInfo[index].materialReferenceIndex;

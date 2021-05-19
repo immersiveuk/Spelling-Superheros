@@ -161,7 +161,7 @@ namespace Immersive.SuperHero
             body.sprite = superHero.body?.gameSprites[0];
         }
 
-        void OnEnemyDestoryCallback()
+        public void OnEnemyDestoryCallback()
         {
             AbstractImmersiveCamera.PlayAudio(SuperHeroGameManager.Instance.explosionClip, 1);
             OnEnemyDestory();

@@ -47,7 +47,8 @@ namespace Immersive.SuperHero
         {
             if (other.GetComponent<Enemy>() && other.transform.localPosition.y < 0.5f)
             {
-                onAnemyDestroy();
+                //onAnemyDestroy();
+                other.GetComponentInParent<SuperHeroGame>().OnEnemyDestoryCallback();
                 CreateExplosion(other);
             }
         }

@@ -3080,7 +3080,7 @@ MonoBehaviour:
     missingLettersPosition:
     - {x: 1, y: 2}
     missingLettersPairs: 1
-  - spelling: TREE
+  - spelling: Tree
     missingLettersPosition:
     - {x: 2, y: 3}
     missingLettersPairs: 1
@@ -3098,6 +3098,7 @@ MonoBehaviour:
   - {fileID: 949581113}
   - {fileID: 918612535}
   - {fileID: 655983570}
+  letterCase: 3
   missingLettersStats: 3
 --- !u!114 &702628324
 MonoBehaviour:
@@ -6591,6 +6592,7 @@ MonoBehaviour:
   - {fileID: 1417426931}
   - {fileID: 1085366085}
   - {fileID: 587637303}
+  letterCase: 2
   missingLettersStats: 3
 --- !u!114 &1625291991
 MonoBehaviour:
@@ -6710,6 +6712,7 @@ MonoBehaviour:
   - {fileID: 1428702829}
   - {fileID: 500962579}
   - {fileID: 1137519611}
+  letterCase: 1
   missingLettersStats: 3
 --- !u!114 &1631350096
 MonoBehaviour:

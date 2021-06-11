@@ -9,12 +9,14 @@ namespace Immersive.FillInTheBlank
     [CustomEditor(typeof(FillInTheBlanksData)), CanEditMultipleObjects]
     public class FillInTheBlanksEditor : Editor
     {
+        private SerializedProperty letterCase;
         static SerializedProperty fillInTheBlanks;
         static SerializedProperty spellings;
         static SerializedProperty missingLetters;
 
         private void OnEnable()
         {
+            letterCase = serializedObject.FindProperty(nameof(letterCase));
             fillInTheBlanks = serializedObject.FindProperty("fillInTheBlanksList");
             spellings = serializedObject.FindProperty("spellings");
             missingLetters = serializedObject.FindProperty("missingLetters");
@@ -33,7 +35,14 @@ namespace Immersive.FillInTheBlank
 
         public override void OnInspectorGUI()
         {
+            EditorGUILayout.Space();
             serializedObject.Update();
+
+            EditorGUILayout.PropertyField(letterCase);
+
+            EditorGUILayout.Space();
+
+            
             EditorGUILayout.Space();
             EditorGUILayout.Space();
             EditorList.Show(fillInTheBlanks, EditorListOption.Buttons);

@@ -48,10 +48,16 @@ public static class EditorList
 
 		if (showListLabel)
 		{
+			list.isExpanded = true;
 			EditorGUILayout.LabelField(list.displayName);
-			//EditorGUILayout.PropertyField(list);
-			EditorGUI.indentLevel += 1;
+            //EditorGUILayout.PropertyField(list);
+            EditorGUI.indentLevel += 1;
 		}
+
+        if (showListLabel)
+        {
+
+        }
 
 		if (!showListLabel || list.isExpanded)
 		{

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Immersive.FillInTheBlank;
+using System;
+using System.Collections.Generic;
 
 public static class IListExtensions
 {
@@ -17,4 +19,24 @@ public static class IListExtensions
             ts[r] = tmp;
         }
     }
+
+    //public static string FormateWord(this string word)
+    //{
+    //    switch (letterCase)
+    //    {
+    //        case LetterCase.Upper:
+    //            word = word.ToUpper();
+    //            break;
+    //        case LetterCase.Lower:
+    //            word = word.ToLower();
+    //            break;
+    //        case LetterCase.Capital:
+    //            word = Char.ToLowerInvariant(word[0]) + word.Substring(1).ToLower();
+    //            break;
+    //        default:
+    //            return word;
+    //    }
+
+    //    return word;
+    //}
 }

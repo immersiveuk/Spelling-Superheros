@@ -9,6 +9,7 @@ using Immersive.SuperHero;
 
 namespace Immersive.FillInTheBlank
 {
+    public enum LetterCase { Upper, Lower, Capital, EditorSetting}
     public class FillInTheBlanksData : MonoBehaviour
     {
         public delegate void ResultAction(bool result);
@@ -20,6 +21,8 @@ namespace Immersive.FillInTheBlank
         public List<FillInTheBlanksModel> fillInTheBlanksList;
         public List<FillInTheBlanksSpelling> spellings;
         public List<FillInTheBlanksMissingLetter> missingLetters;
+
+        public LetterCase letterCase;
 
         public FillInTheBlanksMissingLetter.MissingLettersStats missingLettersStats = FillInTheBlanksMissingLetter.MissingLettersStats.CanPlace;
 
@@ -51,6 +54,8 @@ namespace Immersive.FillInTheBlank
         {
             for (int i = 0; i < spellings.Count; i++)
             {
+                fillInTheBlanksList[i].FormateSpelling(letterCase);
+                //spellings[i].spellingData.spelling = FormateWord(spellings[i].spellingData.spelling);
                 spellings[i].SetText(fillInTheBlanksList[i]);
             }
         }
@@ -62,9 +67,29 @@ namespace Immersive.FillInTheBlank
             lettrsToShuffle.Shuffle();
 
             for (int i = 0; i < missingLetters.Count; i++)
-            {
+            {                
                 missingLetters[i].SetText(lettrsToShuffle[i], this, OnResultCallback);
             }
+        }
+
+        public string FormateWord(string word)
+        {
+            switch (letterCase)
+            {
+                case LetterCase.Upper:
+                    word = word.ToUpper();
+                    break;
+                case LetterCase.Lower:
+                    Debug.Log(word);
+                    word = word.ToLower();
+                    Debug.Log(word);
+                    break;
+                case LetterCase.Capital:
+                    word = word[0].ToString().ToUpper() + word.Substring(1).ToLower();
+                    break;
+            }
+
+            return word;
         }
 
         /// <summary>

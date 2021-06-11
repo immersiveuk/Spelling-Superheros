@@ -16,6 +16,22 @@ namespace Immersive.FillInTheBlank
 
         [Range(1, 5)]
         public int missingLettersPairs = 1;
+
+        public void FormateSpelling(LetterCase letterCase)
+        {
+            switch (letterCase)
+            {
+                case LetterCase.Upper:
+                    spelling = spelling.ToUpper();
+                    break;
+                case LetterCase.Lower:
+                    spelling = spelling.ToLower();
+                    break;
+                case LetterCase.Capital:
+                    spelling = spelling[0].ToString().ToUpper() + spelling.Substring(1).ToLower();
+                    break;
+            }
+        }
     }
 
     [System.Serializable]

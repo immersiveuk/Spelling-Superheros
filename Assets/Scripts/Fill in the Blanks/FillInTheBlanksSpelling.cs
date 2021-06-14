@@ -34,7 +34,7 @@ namespace Immersive.FillInTheBlank
         {
             this.spellingData = data;
 
-            string spelling = SplitSpelling(data.spelling, data.missingLettersPosition);
+            string spelling = SplitSpelling(spellingData.spelling, spellingData.missingLettersPosition);
 
             if (FillInTheBlanksManager.Instance.gameMode == GameMode.Simple)
             {

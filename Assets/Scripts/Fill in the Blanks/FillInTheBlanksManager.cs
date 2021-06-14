@@ -64,13 +64,16 @@ namespace Immersive.FillInTheBlank
 
         void SetWords()
         {
-            if (GameData.Instance && GameData.Instance.fillInTheBlanksDataStages.stage1.fillInTheBlanksCenter.Count > 0)
-            {
-                FillInTheBlanksDataStage words = GameData.Instance.GetWords();
+            FillInTheBlanksDataStage words = GameData.Instance.GetWords();
+
+            if (GameData.Instance && words != null)
+            {                
                 leftWallWords.fillInTheBlanksList = words.fillInTheBlanksLeft;
                 centerWallWords.fillInTheBlanksList = words.fillInTheBlanksCenter;
                 rightWallWords.fillInTheBlanksList = words.fillInTheBlanksRight;
             }
+
+            //leftWallWords.letterCase = centerWallWords.letterCase = centerWallWords.letterCase = GameData.Instance.letterCase;
         }
 
         private void Start()

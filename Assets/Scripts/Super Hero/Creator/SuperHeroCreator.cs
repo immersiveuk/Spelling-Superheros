@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-public enum WallType { Left, Center, Right }
+public enum WallType { Left, Center, Right, CenterWithoutScaleParent }
 
 namespace Immersive.SuperHero
 {    

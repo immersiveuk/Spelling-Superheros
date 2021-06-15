@@ -25,7 +25,9 @@ namespace Immersive.SuperHero
 
         public AudioSource audioSource;
 
-        int wallCompleted = 0;
+        //int wallCompleted = 0;
+
+        public int totalEnemies;
 
         private void Awake()
         {
@@ -36,7 +38,7 @@ namespace Immersive.SuperHero
         {
             this.transform.localScale = new Vector3(1 / FindObjectOfType<Stage>().transform.localScale.x, 1, 1);
 
-            wallCompleted = 0;
+            //wallCompleted = 0;
             GameData.Instance.labAmbienceAudioSource.Stop();
 
             PlayAudio();
@@ -62,9 +64,10 @@ namespace Immersive.SuperHero
 
         public void OnAllEnemiesDestroyedOfWall()
         {
-            wallCompleted++;
+            //wallCompleted++;
+            totalEnemies--;
 
-            if (wallCompleted > 2)
+            if (totalEnemies <= 0)
             {
                 audioSource.Stop();
                 audioSource.clip = victoryClip;
@@ -87,10 +90,12 @@ namespace Immersive.SuperHero
 
         void AddEvent()
         {
+            totalEnemies = 0;
             foreach (var wall in FindObjectsOfType<EnemiesController>())
             {
                 wall.AddWallTouchEvent();
                 wall.SetWall();
+                totalEnemies += wall.GetTotalEnemies();
             }
         }
 

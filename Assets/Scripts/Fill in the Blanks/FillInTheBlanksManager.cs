@@ -116,7 +116,7 @@ namespace Immersive.FillInTheBlank
 
         IEnumerator DisableIntroductionPopUp()
         {
-            yield return new WaitForSeconds(introClip.length-1);
+            yield return new WaitForSeconds(introClip.length + 1);
 
             for (int i = 0; i < instructionsPopup.Length; i++)
             {

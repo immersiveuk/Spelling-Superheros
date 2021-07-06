@@ -5871,7 +5871,7 @@ MonoBehaviour:
   - {fileID: 2129757464}
   - {fileID: 2102933866}
   - {fileID: 2105883603}
-  letterCase: 0
+  letterCase: 1
   missingLettersStats: 3
 --- !u!114 &1631350096
 MonoBehaviour:

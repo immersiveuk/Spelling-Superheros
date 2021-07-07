@@ -24,7 +24,7 @@ namespace Immersive.SuperHero
 
         public TextMeshPro textEnemy;
 
-        protected virtual void OnEnemyDestory() { }
+        protected virtual void UpdateScore() { }
         SelectedSuperHero superHero;
 
         public void Start()
@@ -164,7 +164,7 @@ namespace Immersive.SuperHero
         public void OnEnemyDestoryCallback()
         {
             AbstractImmersiveCamera.PlayAudio(SuperHeroGameManager.Instance.explosionClip, 1);
-            OnEnemyDestory();
+            UpdateScore();
         }
 
         Vector2 CheckSize(Sprite sprite, Transform obj)

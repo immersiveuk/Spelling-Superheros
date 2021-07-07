@@ -485,7 +485,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169633636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.09, z: 0.025000002}
+  m_LocalPosition: {x: 0, y: -0.14150001, z: 0.025000002}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1664702675}
@@ -619,7 +619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180513284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08, y: -0.0915, z: 0.025000002}
+  m_LocalPosition: {x: -0.08, y: -0.1415, z: 0.025000002}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 682037414}
@@ -1989,7 +1989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893303054}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -0.0915, z: 0.025000002}
+  m_LocalPosition: {x: 0.08, y: -0.1415, z: 0.025000002}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 682037414}
@@ -2331,6 +2331,7 @@ MonoBehaviour:
   flyClip: {fileID: 8300000, guid: 638618751d99d1f46b7bf7800af9fb7e, type: 3}
   victoryClip: {fileID: 8300000, guid: a680c25c2b32ed449a12d48ce716ef26, type: 3}
   audioSource: {fileID: 1214495521}
+  totalEnemies: 0
 --- !u!1 &1039081433
 GameObject:
   m_ObjectHideFlags: 0

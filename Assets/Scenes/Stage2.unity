@@ -2492,21 +2492,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillInTheBlanksList:
-  - spelling: SNOW
+  - spelling: watch
     missingLettersPosition:
-    - {x: 2, y: 3}
+    - {x: 1, y: 1}
     missingLettersPairs: 1
-  - spelling: NEW
+  - spelling: world
     missingLettersPosition:
     - {x: 1, y: 2}
     missingLettersPairs: 1
-  - spelling: BLUE
+  - spelling: nicer
     missingLettersPosition:
-    - {x: 2, y: 3}
+    - {x: 3, y: 4}
     missingLettersPairs: 1
-  - spelling: PIE
+  - spelling: playful
     missingLettersPosition:
-    - {x: 1, y: 2}
+    - {x: 4, y: 6}
     missingLettersPairs: 1
   spellings:
   - {fileID: 1182820921}
@@ -5685,21 +5685,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillInTheBlanksList:
-  - spelling: HER
+  - spelling: pencil
     missingLettersPosition:
-    - {x: 2, y: 2}
+    - {x: 4, y: 5}
     missingLettersPairs: 1
-  - spelling: GIRL
+  - spelling: July
     missingLettersPosition:
-    - {x: 1, y: 2}
+    - {x: 3, y: 3}
     missingLettersPairs: 1
-  - spelling: THURSDAY
+  - spelling: ball
     missingLettersPosition:
-    - {x: 2, y: 3}
+    - {x: 1, y: 3}
     missingLettersPairs: 1
-  - spelling: FOOD
+  - spelling: hiking
     missingLettersPosition:
-    - {x: 1, y: 2}
+    - {x: 3, y: 5}
     missingLettersPairs: 1
   spellings:
   - {fileID: 185642212}
@@ -5800,21 +5800,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillInTheBlanksList:
-  - spelling: NOW
+  - spelling: hiked
     missingLettersPosition:
-    - {x: 2, y: 2}
+    - {x: 3, y: 4}
     missingLettersPairs: 1
-  - spelling: SOUND
+  - spelling: shiny
     missingLettersPosition:
-    - {x: 1, y: 2}
+    - {x: 4, y: 4}
     missingLettersPairs: 1
-  - spelling: BOAT
+  - spelling: mother
     missingLettersPosition:
-    - {x: 2, y: 3}
+    - {x: 1, y: 1}
     missingLettersPairs: 1
-  - spelling: TOE
+  - spelling: donkey
     missingLettersPosition:
-    - {x: 1, y: 2}
+    - {x: 4, y: 5}
     missingLettersPairs: 1
   spellings:
   - {fileID: 28711561}

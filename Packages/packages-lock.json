@@ -1,5 +1,29 @@
 {
   "dependencies": {
+    "com.immersiveinteractive.animation": {
+      "version": "https://github.com/immersiveuk/Immersive-Animation-Package.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dc5f39962c5462bdb5d969847b55a85d5419f7b5"
+    },
+    "com.immersiveinteractive.editortools": {
+      "version": "https://github.com/immersiveuk/Immersive-Editor-Tools-Package.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "15243c6558c5b4c5419d5778aed06326227ed373"
+    },
+    "com.immersiveinteractive.immersivejsonandassetmanagement": {
+      "version": "https://github.com/immersiveuk/Immersive-Asset-Management-Package.git?path=/com.immersiveinteractive.immersivejsonandassetmanagement",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0",
+        "com.unity.textmeshpro": "2.0.1"
+      },
+      "hash": "a82e8d1f5935b11d3b421f782df4e5c3f98205b1"
+    },
     "com.immersiveinteractive.packagemanager": {
       "version": "https://github.com/immersiveuk/Immersive-Package-Manager.git#SDK-1",
       "depth": 0,
@@ -9,6 +33,13 @@
         "com.unity.editorcoroutines": "1.0.0"
       },
       "hash": "7d64155e88f3e9ffb3cc714f8d2129044601cfa3"
+    },
+    "com.immersiveinteractive.resusablecomponents": {
+      "version": "https://github.com/immersiveuk/Immersive-Reusable-Components.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "5838c836816e0bccf6a0eaf649479acfcb636162"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -52,7 +83,7 @@
     },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -90,8 +121,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.nuget.newtonsoft-json": {
-      "version": "2.0.0",
-      "depth": 1,
+      "version": "2.0.2",
+      "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

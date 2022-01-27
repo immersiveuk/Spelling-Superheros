@@ -267,7 +267,7 @@ namespace Com.Immersive.Cameras
         private void HandleTouch(Vector3 blobCenter, Camera cam, TouchPhase phase, int blobId)
         {
             var hitUIObject = immersiveCamera.RaycastOnClickEventsToUI(cam, blobCenter, phase);
-            if (!hitUIObject) immersiveCamera.HandleTouchOrClick(blobCenter, phase, blobId);
+            immersiveCamera.HandleTouchOrClick(blobCenter, phase, blobId, hitUIObject);
         }
 
         /// <summary>
@@ -578,8 +578,8 @@ namespace Com.Immersive.Cameras
             }
             catch (SocketException socketException)
             {
-                //print("Could Not Connect to Touch Sensor on Port " + port);
-                //print(socketException);
+                print("Could Not Connect to Touch Sensor on Port " + port);
+                print(socketException);
             }
         }
 

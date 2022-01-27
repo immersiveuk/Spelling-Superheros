@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be2c4941476e9941aa223d7bf41e72f, type: 3}
+  m_Name: Matching Pair Quiz PopUp Spawner
+  m_EditorClassIdentifier: 
+  popUpPrefab: {fileID: -4910873038712943329, guid: 16db3aa173ebfc94ea0df6dc84ad078c,
+    type: 3}
+  popUpSettings:
+    controlPanelWidth: 150
+    popUpPosition: 1
+    popUpPositionOffset: {x: 0, y: 0}
+    controlPanelSide: 2
+    overrideDefaultCloseButton: 0
+    addGlowToButtons: 0
+    glowColor: {r: 1, g: 1, b: 1, a: 1}
+    closeButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    sizeOption: 0
+    size: {x: 1313, y: 855}
+    percentage: 0
+    padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    indexChangedAudioClip:
+      audioUrl: 
+      audioClip: {fileID: 0}
+      audioVolume: 1
+    useCustomButtons: 0
+    controlPanelStyle: 0
+    nextButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    previousButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    matchingPairQuestions:
+    - question:
+        text: Match the followings
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 1, g: 0.3443396, b: 0.3443396, a: 0}
+        alignment: 1
+        size: 50
+      pairs:
+      - leftPart: Lock
+        rightPart: Key
+      - leftPart: Hands
+        rightPart: Feet
+      - leftPart: Knife
+        rightPart: Fork
+      - leftPart: Knife
+        rightPart: Fork
+    - question:
+        text: Match the followings
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0, g: 0, b: 0, a: 0}
+        alignment: 0
+        size: 50
+      pairs:
+      - leftPart: Pots
+        rightPart: Pans
+      - leftPart: Shoes
+        rightPart: Socks
+      - leftPart: Rain
+        rightPart: Shine
+    disableCloseButton: 0
+    enableTimer: 1
+    duration: 97
+    correctClip: {fileID: 0}
+    incorrectClip: {fileID: 0}
+    timesUpClip: {fileID: 0}

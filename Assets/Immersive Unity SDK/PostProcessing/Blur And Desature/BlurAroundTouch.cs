@@ -22,12 +22,14 @@ public class BlurAroundTouch : MonoBehaviour
     private float radius = 0;
     private float increment = 0.003f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        AbstractImmersiveCamera.AnyWallTouched.AddListener(WallTouched);
-    }
+    private void OnEnable() => AbstractImmersiveCamera.AnySurfaceTouchedEvent.AddListener(OnSurfaceTouched);
+    private void OnDisable() => AbstractImmersiveCamera.AnySurfaceTouchedEvent.RemoveListener(OnSurfaceTouched);
 
+    private void OnSurfaceTouched(SurfaceTouchedEventArgs args)
+    {
+        BlurAndDesaturate.CurrentBlurAndDesaturate.SetFocalPoint(args.ScreenPoint, args.RenderingCameraIndex);
+    }
+     
     // Update is called once per frame
     void Update()
     {
@@ -59,11 +61,5 @@ public class BlurAroundTouch : MonoBehaviour
             BlurAndDesaturate.CurrentBlurAndDesaturate.SetFocalRadius(radius);
         }
 
-    }
-
-    private void WallTouched(Vector2 pos, int cameraIndex, TouchPhase phase, int index)
-    {
-
-        BlurAndDesaturate.CurrentBlurAndDesaturate.SetFocalPoint(pos, cameraIndex);
     }
 }

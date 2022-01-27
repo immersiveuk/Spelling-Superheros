@@ -61,20 +61,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hotspotDataModel:
-    hotspotPosition: 0
-    hotspotPositionOffset: {x: 0, y: 0}
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
     actionType: 0
     clickAction: 1
+    hotspotType: 0
     playAudioOnAction: 0
-    audioUrl: 
-    audioClip: {fileID: 0}
-    audioVolume: 1
+    clickAudio:
+      audioUrl: 
+      audioClip: {fileID: 0}
+      audioVolume: 1
   imagePopUpDataModel:
     hotspotSetting:
-      position: {x: 0, y: 0}
-      scale: {x: 0, y: 0}
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
     popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0}
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -101,10 +115,22 @@ MonoBehaviour:
       maintainAspectRatio: 1
   imageSequencePopUpDataModel:
     hotspotSetting:
-      position: {x: 0, y: 0}
-      scale: {x: 0, y: 0}
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
     popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0}
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -142,10 +168,22 @@ MonoBehaviour:
         type: 0
   videoPopUpDataModel:
     hotspotSetting:
-      position: {x: 0, y: 0}
-      scale: {x: 0, y: 0}
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
     popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0}
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -166,12 +204,40 @@ MonoBehaviour:
       closeAfterPlay: 0
       loop: 0
       controlPanelStyle: 0
+      useCustomButtons: 0
+      pauseButtonImage:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      playButtonImage:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      restartButtonImage:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
   textPopUpDataModel:
     hotspotSetting:
-      position: {x: 0, y: 0}
-      scale: {x: 0, y: 0}
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
     popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0}
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -191,6 +257,7 @@ MonoBehaviour:
         font: {fileID: 0}
         color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
         size: 50
+      space: 0
       body:
         text: 'Default Text
 
@@ -208,10 +275,22 @@ MonoBehaviour:
         type: 0
   quizPopUpDataModel:
     hotspotSetting:
-      position: {x: 0, y: 0}
-      scale: {x: 0, y: 0}
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
     popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0}
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -264,10 +343,22 @@ MonoBehaviour:
         incorrectAudioURL: 
   audioPopUpDataModel:
     hotspotSetting:
-      position: {x: 0, y: 0}
-      scale: {x: 0, y: 0}
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
     popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0}
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -294,10 +385,22 @@ MonoBehaviour:
       controlPanelStyle: 0
   sceneLinkDataModel:
     hotspotSetting:
-      position: {x: 0, y: 0}
-      scale: {x: 0, y: 0}
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
     popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0}
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -318,23 +421,35 @@ MonoBehaviour:
       fadeOutAudio: 1
   splitPopupDataModel:
     hotspotSetting:
-      position: {x: 0, y: 0}
-      scale: {x: 0, y: 0}
-    popupSettings:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpSetting:
+      popUpPosition: 0
+      popUpPositionOffset: {x: 0, y: 0}
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
         color: {r: 1, g: 1, b: 1, a: 1}
         type: 0
       sizeOption: 0
-      size: {x: 1000, y: 500}
-      percentage: 50
+      size: {x: 500, y: 500}
+      percentage: 0
       padding:
-        m_Left: 20
-        m_Right: 20
-        m_Top: 20
-        m_Bottom: 20
+        m_Left: 0
+        m_Right: 0
+        m_Top: 0
+        m_Bottom: 0
       title:
         text: Default Text
         fontName: 
@@ -342,11 +457,7 @@ MonoBehaviour:
         color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
         size: 50
       body:
-        text: 'Default Text
-
-          Default Text
-
-          Default Text'
+        text: Default Text
         fontName: 
         font: {fileID: 0}
         color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -359,17 +470,41 @@ MonoBehaviour:
       mediaType: 0
       image:
         imageUrl: 
-        sprite: {fileID: 21300000, guid: b4dde062ac51b4b48a59e266732df6b9, type: 3}
+        sprite: {fileID: 0}
         color: {r: 1, g: 1, b: 1, a: 1}
         type: 0
       video:
         videoSource: 0
         videoURL: 
-        videoClip: {fileID: 32900000, guid: 42cb1f58bee273841becbce0ae294e7c, type: 3}
+        videoClip: {fileID: 0}
+      mediaMask:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
       loopVideo: 1
       fixedPopupSizeImageOffset: 0
       separation: 0
       mediaPosition: 0
+  quizPopUpDataModel_V2:
+    hotspotSetting:
+      position: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      actionType: 0
+      clickAction: 0
+      hotspotType: 0
+      playAudioOnAction: 0
+      clickAudio:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+    popUpPosition: 0
+    popUpPositionOffset: {x: 0, y: 0}
+    duration: 0
+    popUpSetting: []
+    correctClip: {fileID: 0}
+    incorrectClip: {fileID: 0}
+    timesUpClip: {fileID: 0}
   objectsToHide:
   - {fileID: 0}
   objectsToReveal:
@@ -388,6 +523,7 @@ MonoBehaviour:
     type: 3}
   splitPopupPrefab: {fileID: 5257635607679965786, guid: 73910849afdf59a4ebbf2b663a4041c2,
     type: 3}
+  quizPopUpPrefab_V2: {fileID: 0}
 --- !u!33 &1321620828550561808
 MeshFilter:
   m_ObjectHideFlags: 0

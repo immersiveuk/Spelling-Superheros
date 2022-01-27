@@ -4,10 +4,11 @@
  * Written by Luke Bissell <luke@immersive.co.uk>, July 2019
  */
 
+using Com.Immersive.Cameras;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Automatically positions a background that has been split into two parts.
@@ -15,68 +16,73 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class TwoPartBackground : MonoBehaviour
 {
-    private Sprite _left = null;
-    private Sprite _right = null;
-    public Sprite backgroundLeft;
-    public Sprite backgroundRight;
+    [SerializeField, FormerlySerializedAs("backgroundLeft")] Sprite leftSprite = null;
+    [SerializeField, FormerlySerializedAs("backgroundRight")] Sprite rightSprite = null;
 
-    private SpriteRenderer leftRenderer;
-    private SpriteRenderer rightRenderer;
+    [SerializeField] SpriteRenderer leftSpriteRenderer = null;
+    [SerializeField] SpriteRenderer rightSpriteRenderer = null;
 
+    [SerializeField] Material material = null;
+    [SerializeField] bool includesBackWall = false;
+
+    private float GetSpriteWidthInWorldSpace(Sprite sprite) => sprite.rect.width / sprite.pixelsPerUnit;
+
+    private float BackWallOffset
+    {
+
+        get
+        {
+            if (!includesBackWall)
+                return 0;
+            var immersiveCam = AbstractImmersiveCamera.CurrentImmersiveCamera;
+            if (immersiveCam is ImmersiveCamera2D)
+                return ((ImmersiveCamera2D)immersiveCam).TargetAspectRatioFloat;
+            return 0;
+        }
+    }
 
     private void Start()
     {
-        leftRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        rightRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        UpdateSettings();
     }
 
-    private void Update()
+    public void UpdateSettings()
     {
-        if (_left != backgroundLeft)
+        if (leftSpriteRenderer == null ||
+            rightSpriteRenderer == null)
         {
-            _left = backgroundLeft;
-            PositionLeftBackground();
-        }
-        else if (_right != backgroundRight)
-        {
-            _right = backgroundRight;
-            PositionRightBackground();
-        }
-    }
-
-    private void PositionLeftBackground()
-    {
-        if (leftRenderer == null)
-        {
-            Debug.LogError("Left Sprite Renderer is missing.");
+            Debug.LogError("Left and Right SpriteRenderers must be set in Referenced Objects");
             return;
         }
 
-        if (backgroundLeft)
+        leftSpriteRenderer.sprite = leftSprite;
+        rightSpriteRenderer.sprite = rightSprite;
+
+        PositionRightSpriteRenderer();
+        PositionLeftSpriteRenderer();
+
+        if (material != null)
         {
-            //Position Sprite
-            var leftOffset = -(backgroundLeft.rect.width / backgroundLeft.pixelsPerUnit) / 2;
-            leftRenderer.transform.localPosition = new Vector3(leftOffset, 0, 0);
+            leftSpriteRenderer.sharedMaterial = material;
+            rightSpriteRenderer.sharedMaterial = material;
         }
-        //Set sprite
-        leftRenderer.sprite = backgroundLeft;
     }
 
-    private void PositionRightBackground()
+    private void PositionLeftSpriteRenderer()
     {
-        if (rightRenderer == null)
+        if (leftSprite)
         {
-            Debug.LogError("Right Sprite Renderer is missing.");
-            return;
+            var leftOffset = BackWallOffset - GetSpriteWidthInWorldSpace(leftSprite) / 2;
+            leftSpriteRenderer.transform.localPosition = new Vector3(leftOffset, 0, 0);
         }
+    }
 
-        if (backgroundRight)
+    private void PositionRightSpriteRenderer()
+    {
+        if (rightSprite)
         {
-            //Position Sprite
-            var rightOffset = (backgroundRight.rect.width / backgroundRight.pixelsPerUnit) / 2;
-            rightRenderer.transform.localPosition = new Vector3(rightOffset, 0, 0);
+            var rightOffset = BackWallOffset + GetSpriteWidthInWorldSpace(rightSprite) / 2;
+            rightSpriteRenderer.transform.localPosition = new Vector3(rightOffset, 0, 0);
         }
-        //Set sprite
-        rightRenderer.sprite = backgroundRight;
     }
 }

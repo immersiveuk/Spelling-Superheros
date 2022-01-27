@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEditor;
+using Immersive.Properties;
 
 namespace Com.Immersive.Hotspots
 {
@@ -65,11 +66,11 @@ namespace Com.Immersive.Hotspots
         public void SetText()
         {
             textHotspot.font = fontAsset;
-            textHotspot.text = textProperty.text;
-            textHotspot.fontSize = textProperty.size;
-            textHotspot.color = textProperty.color;
+            textHotspot.text = textProperty.Text;
+            textHotspot.fontSize = textProperty.FontSize;
+            textHotspot.color = textProperty.Color;
 
-            textGlow.text = "<material=\"" + fontAsset.name + " Glow\">" + textProperty.text + "</material >"; //set glow material preset for the Glow Text. Preset need to be created from Unity editor
+            textGlow.text = "<material=\"" + fontAsset.name + " Glow\">" + textProperty.Text + "</material >"; //set glow material preset for the Glow Text. Preset need to be created from Unity editor
             textGlow.fontSize = textHotspot.fontSize;
             textGlow.font = fontAsset;
 
@@ -97,7 +98,7 @@ namespace Com.Immersive.Hotspots
                         spriteRendererBackground.drawMode = SpriteDrawMode.Sliced;
                     }
 
-                    Vector2 textSize = (textHotspot.bounds.size * spriteRendererBackground.sprite.pixelsPerUnit) + Vector3.one * margine * textProperty.size;
+                    Vector2 textSize = (textHotspot.bounds.size * spriteRendererBackground.sprite.pixelsPerUnit) + Vector3.one * margine * textProperty.FontSize;
                     Vector2 spriteSize = spriteRendererBackground.sprite.rect.size;
 
                     spriteRendererBackground.transform.localScale = new Vector3(textSize.x / spriteSize.x, textSize.y / spriteSize.y, 1);

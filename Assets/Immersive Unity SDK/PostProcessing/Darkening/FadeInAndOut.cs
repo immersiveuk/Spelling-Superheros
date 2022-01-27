@@ -77,6 +77,10 @@ namespace Com.Immersive.Cameras.PostProcessing
                     FadeIn(FadeInSceneInfo.Item2, FadeInCompletionHandler);
                     FadeInSceneInfo = (false, 0, Color.black, true);
                 }
+                else
+                {
+                    AudioListener.volume = 1;
+                }
             }
         }
 

@@ -15,22 +15,6 @@ public class StartupSequence : MonoBehaviour
         }
     }
 
-    private bool isFirst = true;
-    private void Update()
-    {
-        if (isFirst)
-        {
-            DarkenBackground.CurrentDarkenBackground.TurnOn(0.7f);
-            HotspotController.DisableHotspotForAllControllers();
-            isFirst = false;
-        }
-    }
-
-    public void TurnOffDarkenedBackground()
-    {
-        DarkenBackground.CurrentDarkenBackground.TurnOff();
-    }
-
     public void EnableHotspots()
     {
         HotspotController.EnableHotspotsForAllControllers();

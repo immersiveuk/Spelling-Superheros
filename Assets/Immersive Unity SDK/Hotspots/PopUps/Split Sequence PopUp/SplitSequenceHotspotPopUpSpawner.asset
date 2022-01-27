@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80afb50d4565174f8342a7bcd7154ec, type: 3}
+  m_Name: SplitSequenceHotspotPopUpSpawner
+  m_EditorClassIdentifier: 
+  popUpPrefab: {fileID: 7319704625155474871, guid: 354d6022b14cd124589463f98122e63e,
+    type: 3}
+  popUpSettings:
+    controlPanelWidth: 150
+    popUpPosition: 0
+    popUpPositionOffset: {x: 0, y: 0}
+    controlPanelSide: 0
+    overrideDefaultCloseButton: 0
+    addGlowToButtons: 0
+    glowColor: {r: 1, g: 1, b: 1, a: 1}
+    closeButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    sizeOption: 1
+    size: {x: 1344, y: 756}
+    percentage: 70
+    padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    indexChangedAudioClip:
+      audioUrl: 
+      audioClip: {fileID: 0}
+      audioVolume: 1
+    useCustomButtons: 0
+    controlPanelStyle: 0
+    nextButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    previousButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    keepSameMedia: 1
+    splitPopups:
+    - includeTitle: 1
+      title:
+        text: Title
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0.6696333, g: 0.6696333, b: 0.8301887, a: 0}
+        alignment: 1
+        size: 50
+      space: 0
+      body:
+        text: 'Body Text
+
+          Body Text'
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 1, g: 0.43867922, b: 0.43867922, a: 0}
+        alignment: 2
+        size: 50
+      mediaType: 1
+      image:
+        imageUrl: 
+        sprite: {fileID: 21300000, guid: b4dde062ac51b4b48a59e266732df6b9, type: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      video:
+        videoSource: 0
+        videoURL: 
+        videoClip: {fileID: 32900000, guid: 42cb1f58bee273841becbce0ae294e7c, type: 3}
+      loopVideo: 0
+      videoControl: 0
+    - includeTitle: 0
+      title:
+        text: 
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0, g: 0, b: 0, a: 0}
+        alignment: 0
+        size: 0
+      space: 0
+      body:
+        text: 'Body Text
+
+          Body Text'
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0.8254717, g: 0.8254717, b: 1, a: 0}
+        alignment: 0
+        size: 0
+      mediaType: 0
+      image:
+        imageUrl: 
+        sprite: {fileID: 21300000, guid: b4dde062ac51b4b48a59e266732df6b9, type: 3}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      video:
+        videoSource: 0
+        videoURL: 
+        videoClip: {fileID: 0}
+      loopVideo: 0
+      videoControl: 1
+    - includeTitle: 1
+      title:
+        text: 
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 1, g: 0.8726415, b: 0.8726415, a: 0}
+        alignment: 0
+        size: 0
+      space: 0
+      body:
+        text: 'Body Text
+
+          Body Text'
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 0}
+        alignment: 0
+        size: 0
+      mediaType: 1
+      image:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 0, g: 0, b: 0, a: 0}
+        type: 0
+      video:
+        videoSource: 0
+        videoURL: 
+        videoClip: {fileID: 32900000, guid: 42cb1f58bee273841becbce0ae294e7c, type: 3}
+      loopVideo: 0
+      videoControl: 1
+    textBackground:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    mediaMask:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    mediaPosition: 0
+    separation: 0
+    fixedPopupSizeImageOffset: 0

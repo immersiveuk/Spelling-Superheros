@@ -8,7 +8,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
 namespace Com.Immersive.Cameras
 {
     public class MoveLeftTrigger : EventTrigger

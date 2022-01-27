@@ -82,9 +82,13 @@ MonoBehaviour:
         audioClip: {fileID: 0}
         audioVolume: 1
     popUpSetting:
+      controlPanelWidth: 125
       popUpPosition: 0
       popUpPositionOffset: {x: 0, y: 0}
+      controlPanelSide: 0
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -108,6 +112,11 @@ MonoBehaviour:
         sprite: {fileID: 0}
         color: {r: 1, g: 1, b: 1, a: 1}
         type: 0
+      mediaMask:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
       maintainAspectRatio: 1
   imageSequencePopUpDataModel:
     hotspotSetting:
@@ -122,9 +131,13 @@ MonoBehaviour:
         audioClip: {fileID: 0}
         audioVolume: 1
     popUpSetting:
+      controlPanelWidth: 125
       popUpPosition: 0
       popUpPositionOffset: {x: 0, y: 0}
+      controlPanelSide: 0
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -138,6 +151,22 @@ MonoBehaviour:
         m_Right: 0
         m_Top: 0
         m_Bottom: 0
+      indexChangedAudioClip:
+        audioUrl: 
+        audioClip: {fileID: 0}
+        audioVolume: 1
+      useCustomButtons: 0
+      controlPanelStyle: 0
+      nextButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      previousButton:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
       border:
         imageUrl: 
         sprite: {fileID: 0}
@@ -148,14 +177,7 @@ MonoBehaviour:
         sprite: {fileID: 21300000, guid: b4dde062ac51b4b48a59e266732df6b9, type: 3}
         color: {r: 1, g: 1, b: 1, a: 1}
         type: 0
-      customButtons: 0
-      controlPanelStyle: 0
-      nextButton:
-        imageUrl: 
-        sprite: {fileID: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-        type: 0
-      previousButton:
+      mediaMask:
         imageUrl: 
         sprite: {fileID: 0}
         color: {r: 1, g: 1, b: 1, a: 1}
@@ -173,9 +195,13 @@ MonoBehaviour:
         audioClip: {fileID: 0}
         audioVolume: 1
     popUpSetting:
+      controlPanelWidth: 125
       popUpPosition: 0
       popUpPositionOffset: {x: 0, y: 0}
+      controlPanelSide: 0
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -193,9 +219,35 @@ MonoBehaviour:
         videoSource: 0
         videoURL: 
         videoClip: {fileID: 32900000, guid: 42cb1f58bee273841becbce0ae294e7c, type: 3}
+      border:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      mediaMask:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
       closeAfterPlay: 0
       loop: 0
       controlPanelStyle: 0
+      useCustomButtons: 0
+      pauseButtonImage:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      playButtonImage:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
+      restartButtonImage:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
   textPopUpDataModel:
     hotspotSetting:
       position: {x: 0, y: 0, z: 0}
@@ -209,9 +261,13 @@ MonoBehaviour:
         audioClip: {fileID: 0}
         audioVolume: 1
     popUpSetting:
+      controlPanelWidth: 125
       popUpPosition: 0
       popUpPositionOffset: {x: 0, y: 0}
+      controlPanelSide: 0
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -225,27 +281,32 @@ MonoBehaviour:
         m_Right: 40
         m_Top: 40
         m_Bottom: 40
+      includeTitle: 0
       title:
-        text: Default Text
-        fontName: 
+        text: Title
         font: {fileID: 0}
-        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        color: {r: 0, g: 0, b: 0, a: 1}
+        alignment: 0
         size: 50
+        useDefaultable: 0
+      space: 0
       body:
         text: 'Default Text
 
           Default Text
 
           Default Text'
-        fontName: 
         font: {fileID: 0}
-        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+        alignment: 0
         size: 50
+        useDefaultable: 0
       background:
         imageUrl: 
         sprite: {fileID: 0}
         color: {r: 1, g: 1, b: 1, a: 1}
         type: 0
+      isRightToLeftText: 0
   quizPopUpDataModel:
     hotspotSetting:
       position: {x: 0, y: 0, z: 0}
@@ -259,9 +320,13 @@ MonoBehaviour:
         audioClip: {fileID: 0}
         audioVolume: 1
     popUpSetting:
+      controlPanelWidth: 125
       popUpPosition: 0
       popUpPositionOffset: {x: 0, y: 0}
+      controlPanelSide: 0
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -277,10 +342,11 @@ MonoBehaviour:
         m_Bottom: 40
       question:
         text: What is the question?
-        fontName: 
         font: {fileID: 0}
-        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        color: {r: 0, g: 0, b: 0, a: 1}
+        alignment: 0
         size: 50
+        useDefaultable: 0
       background:
         imageUrl: 
         sprite: {fileID: 0}
@@ -289,7 +355,7 @@ MonoBehaviour:
       options:
         fontName: 
         font: {fileID: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
         size: 40
         options:
         - Answer 1
@@ -298,20 +364,24 @@ MonoBehaviour:
       result:
         correctAnswer:
           text: Well Done
-          fontName: 
           font: {fileID: 0}
-          color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+          color: {r: 0, g: 0, b: 0, a: 1}
+          alignment: 0
           size: 50
+          useDefaultable: 0
         incorrectAnswer:
           text: Incorrect
-          fontName: 
           font: {fileID: 0}
-          color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+          color: {r: 0, g: 0, b: 0, a: 1}
+          alignment: 0
           size: 50
+          useDefaultable: 0
         correctAudio: {fileID: 0}
         correctAudioURL: 
         incorrectAudio: {fileID: 0}
         incorrectAudioURL: 
+      isRightToLeftText: 0
+      tryAgainText: Try Again
   audioPopUpDataModel:
     hotspotSetting:
       position: {x: 0, y: 0, z: 0}
@@ -325,9 +395,13 @@ MonoBehaviour:
         audioClip: {fileID: 0}
         audioVolume: 1
     popUpSetting:
+      controlPanelWidth: 125
       popUpPosition: 0
       popUpPositionOffset: {x: 0, y: 0}
+      controlPanelSide: 0
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -364,23 +438,7 @@ MonoBehaviour:
         audioUrl: 
         audioClip: {fileID: 0}
         audioVolume: 1
-    popUpSetting:
-      popUpPosition: 0
-      popUpPositionOffset: {x: 0, y: 0}
-      overrideDefaultCloseButton: 0
-      closeButton:
-        imageUrl: 
-        sprite: {fileID: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-        type: 0
-      sizeOption: 0
-      size: {x: 500, y: 500}
-      percentage: 0
-      padding:
-        m_Left: 0
-        m_Right: 0
-        m_Top: 0
-        m_Bottom: 0
+    sceneLinkSettings:
       linkName: 
       fadeOut: 0
       fadeOutDuration: 3
@@ -399,9 +457,13 @@ MonoBehaviour:
         audioClip: {fileID: 0}
         audioVolume: 1
     popUpSetting:
+      controlPanelWidth: 125
       popUpPosition: 0
       popUpPositionOffset: {x: 0, y: 0}
+      controlPanelSide: 0
       overrideDefaultCloseButton: 0
+      addGlowToButtons: 0
+      glowColor: {r: 1, g: 1, b: 1, a: 1}
       closeButton:
         imageUrl: 
         sprite: {fileID: 0}
@@ -409,24 +471,32 @@ MonoBehaviour:
         type: 0
       sizeOption: 0
       size: {x: 500, y: 500}
-      percentage: 0
+      percentage: 50
       padding:
         m_Left: 0
         m_Right: 0
         m_Top: 0
         m_Bottom: 0
+      includeTitle: 1
       title:
-        text: Default Text
-        fontName: 
+        text: Default Title
         font: {fileID: 0}
-        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        color: {r: 0, g: 0, b: 0, a: 1}
+        alignment: 0
         size: 50
+        useDefaultable: 0
+      space: 0
       body:
-        text: Default Text
-        fontName: 
+        text: 'Default Text
+
+          Default Text
+
+          Default Textw'
         font: {fileID: 0}
-        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+        alignment: 0
         size: 50
+        useDefaultable: 0
       textBackground:
         imageUrl: 
         sprite: {fileID: 0}
@@ -442,14 +512,159 @@ MonoBehaviour:
         videoSource: 0
         videoURL: 
         videoClip: {fileID: 0}
+      mediaMask:
+        imageUrl: 
+        sprite: {fileID: 0}
+        color: {r: 1, g: 1, b: 1, a: 1}
+        type: 0
       loopVideo: 1
+      videoControl: 1
       fixedPopupSizeImageOffset: 0
       separation: 0
       mediaPosition: 0
+      isRightToLeftText: 0
+  quizPopUpDataModel_V2:
+    controlPanelWidth: 125
+    popUpPosition: 0
+    popUpPositionOffset: {x: 0, y: 0}
+    controlPanelSide: 0
+    overrideDefaultCloseButton: 0
+    addGlowToButtons: 0
+    glowColor: {r: 1, g: 1, b: 1, a: 1}
+    closeButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    sizeOption: 0
+    size: {x: 500, y: 500}
+    percentage: 0
+    padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    indexChangedAudioClip:
+      audioUrl: 
+      audioClip: {fileID: 0}
+      audioVolume: 1
+    useCustomButtons: 0
+    controlPanelStyle: 0
+    nextButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    previousButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    questions:
+    - question:
+        text: What is the Question?
+        font: {fileID: 0}
+        color: {r: 0, g: 0, b: 0, a: 0}
+        alignment: 0
+        size: 50
+        useDefaultable: 0
+      options:
+        fontName: 
+        font: {fileID: 0}
+        color: {r: 0, g: 0, b: 0, a: 0}
+        size: 50
+        options:
+        - Answer 1
+        - Answer 2
+        - Answer 3
+        - Answer 4
+        correctAnswer: Answer 1
+    disableCloseButton: 0
+    duration: 30
+    randomiseQuestions: 0
+    randomiseOption: 0
+    correctClip: {fileID: 0}
+    incorrectClip: {fileID: 0}
+    timesUpClip: {fileID: 0}
+    isRightToLeftText: 0
+    font: {fileID: 0}
+  textSequencePopUpDataModel:
+    controlPanelWidth: 125
+    popUpPosition: 0
+    popUpPositionOffset: {x: 0, y: 0}
+    controlPanelSide: 0
+    overrideDefaultCloseButton: 0
+    addGlowToButtons: 0
+    glowColor: {r: 1, g: 1, b: 1, a: 1}
+    closeButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    sizeOption: 0
+    size: {x: 500, y: 500}
+    percentage: 50
+    padding:
+      m_Left: 40
+      m_Right: 40
+      m_Top: 40
+      m_Bottom: 40
+    indexChangedAudioClip:
+      audioUrl: 
+      audioClip: {fileID: 0}
+      audioVolume: 1
+    useCustomButtons: 0
+    controlPanelStyle: 0
+    nextButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    previousButton:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    textPopups:
+    - includeTitle: 0
+      title:
+        text: Default Title
+        font: {fileID: 0}
+        color: {r: 0, g: 0, b: 0, a: 1}
+        alignment: 0
+        size: 50
+        useDefaultable: 0
+      space: 0
+      body:
+        text: 'Default Text
+
+          Default Text
+
+          Default Text'
+        font: {fileID: 0}
+        color: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+        alignment: 0
+        size: 50
+        useDefaultable: 0
+    background:
+      imageUrl: 
+      sprite: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      type: 0
+    includePageCount: 0
+    pageCountSettings:
+      font: {fileID: 0}
+      color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+      alignment: 0
+      size: 50
   objectsToHide:
   - {fileID: 0}
   objectsToReveal:
   - {fileID: 0}
+  hotspotEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  customPopUpSpawner: {fileID: 0}
   videoPopUpPrefab: {fileID: 3780994360810749212, guid: d69104669f3a943c5852062a0c02d0e5,
     type: 3}
   imagePopUpPrefab: {fileID: 3323182103187656857, guid: 88fcc62294739ea49aff4d47c1a5d268,
@@ -463,6 +678,10 @@ MonoBehaviour:
   audioPopUpPrefab: {fileID: 473562725366449742, guid: bdbfa00b68c3a4ba391cedf3a46d60ea,
     type: 3}
   splitPopupPrefab: {fileID: 5257635607679965786, guid: 73910849afdf59a4ebbf2b663a4041c2,
+    type: 3}
+  quizPopUpPrefab_V2: {fileID: 7382702674630263856, guid: c8bddf1267b3823498c2663a7ce2a295,
+    type: 3}
+  textSequencePopUpPrefab: {fileID: -4091171646687548416, guid: b7eec870319ceaf4abff2c6be318488d,
     type: 3}
 --- !u!212 &4617837352575005662
 SpriteRenderer:
@@ -478,10 +697,12 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a7179d0f0f769904087b747400e78f43, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -489,6 +710,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

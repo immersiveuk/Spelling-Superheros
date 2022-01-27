@@ -58,7 +58,6 @@ namespace Com.Immersive.Cameras
                 //For explanation https://docs.unity3d.com/Manual/ObliqueFrustum.html
                 if (surface.position == SurfacePosition.Left || surface.position == SurfacePosition.Right)
                 {
-                    Matrix4x4 mat = cam.projectionMatrix;
 
                     //How much to shift cameras
                     var obliqueness = 0f;
@@ -74,8 +73,7 @@ namespace Com.Immersive.Cameras
 
                     if (surface.rect.x > centerSurface.rect.x) obliqueness *= -1f;
 
-                    mat[0, 2] = obliqueness;
-                    cam.projectionMatrix = mat;
+                    SetCameraObliqueness(cam, obliqueness / 2, 0, surface.aspectRatio);
                 }
             }
 
@@ -104,16 +102,23 @@ namespace Com.Immersive.Cameras
             cam.fieldOfView = vFOVFloor;
 
             // 3. Obliqueness of floor
-            Matrix4x4 mat = cam.projectionMatrix;
 
             ////How much to shift cameras
             //Cannot remember why this works but it does.
             var a = (Mathf.Deg2Rad * (90f - vFOVWalls / 2));
             var b = (Mathf.Deg2Rad * vFOVFloor) / 2f;
-            var obliqueness = (Mathf.Tan(b) - Mathf.Tan(a)) / (Mathf.Tan(b));
+            var obliqueness = -(Mathf.Tan(b) - Mathf.Tan(a)) / (Mathf.Tan(b));
 
-            mat[1, 2] = -obliqueness;
-            cam.projectionMatrix = mat;
+            SetCameraObliqueness(cam, 0, obliqueness / 2, floor.aspectRatio);
+        }
+
+        private void SetCameraObliqueness(Camera cam, float xShift, float yShift, float surfaceAspectRatio)
+        {
+            float fov = cam.fieldOfView;
+            cam.usePhysicalProperties = true;
+            cam.sensorSize = new Vector2(surfaceAspectRatio, 1);
+            cam.lensShift = new Vector2(xShift, yShift);
+            cam.fieldOfView = fov;
         }
 
         private void PositionFloorOrthographic(Camera cam, SurfaceInfo floor)

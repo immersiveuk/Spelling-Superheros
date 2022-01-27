@@ -46,15 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotspotControllerPrefab: {fileID: 403448657889546742, guid: af4144a4291bd034c8a0d618665a2e5f,
     type: 3}
-  videoPlayerPrefab: {fileID: 4387612283383616819, guid: a219ff5ae5428c24bb2e188f564442fc,
-    type: 3}
   splitBackgroundPrefab: {fileID: 3523730662242845245, guid: 9ca7279d425169143806914bfed06cce,
     type: 3}
   introSequencePrefab: {fileID: 4177982756128502073, guid: c4af0dcb2ab636c4281cbbfc58bd7f92,
-    type: 3}
-  scatterSystemPrefab: {fileID: 917282435106080556, guid: 1add69d35db12f64cacda5083d4dea40,
-    type: 3}
-  wipeToRevealPrefab: {fileID: 5406009302178076304, guid: 20c600610f7294507a88a80d28a41f8f,
     type: 3}
 --- !u!114 &1503368341561759461
 MonoBehaviour:
@@ -91,4 +85,4 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 3efff7ab51e6e01489b7560b27840ae3, type: 3}
   fontList:
   - fontName: LiberationSans SDF
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    font: {fileID: 11400000, guid: 0f49f6f611f38484f9f5becb4d58d3d7, type: 2}

@@ -5,12 +5,16 @@ The script and prefabs in this directory provide the support for Immersive Space
 
 These camera prefabs support "Virtual Room Mode". This allows content to be tested in simulated rooms with different sizes and and layouts. 
 
+The recommended Unity 2018 and above are supported. The recommended version is Unity 2019.4 (LTS).
+
 ## Getting Started
-Once you have imported the UnityPackage Immersive Unity SDK you must manually import TextMesh Pro by going to Packages > TextMesh Pro > Package Resources and double click on TMP Essential Resources. 
+Once you have imported the UnityPackage Immersive Unity SDK you should run through the setup process. In the menu bar select Immersive Interactive > Setup. This should open the Setup window.
+
+From the setup window you can easily import TextMeshPro Essentials (Required for hotspots), set the defualt texture importer to import Sprites (useful if creating a 2D project), and automatically add .gitignore and .gitattribute files to the projects root which are designed for use with Unity Projects and Git LFS.
 
 It is also recommended to change the Player settings. Go to Edit > Project Settings > Player. In the top right corner choose slider button next to the gear and select the Player setting preset provided. This will change these settings to be optimal for an Immersive Experience. You should leave the Product name as Immersive Application.
 
-When creating new scenes, there are shortcuts which will automatically instantiate scenes with an Immersive Camera System automatically present. To access these open Immersive Interactive from the menu bar. Select New 2D Scene for a 2D cameras system or New 3D Scene for a 3D Camera system.
+When creating new scenes, there are shortcuts which will automatically instantiate scenes with an Immersive Camera System automatically present. To access these right click in the Project view, and choose Create > Immersive Interactive and choose 2D Scene or 3D Scene.
 
 ### Run Shortcuts
 When testing within the Unity Editor you can use Editor Only Settings to determine how you wish to test software. When running software from the Immersive Player it will automatically tell the program about the room layout and surface sizes and will be displayed correctly. If however you wish to test your software in an actual Immersive Space without running it from the Immersive Player, a series of batch files which act as run shortcuts are provided which will run the experience targetting different layouts and surface sizes. 
@@ -112,18 +116,3 @@ Every time a surface is touched, an event is raised. You can subscribe to these 
     + The index of the touch.
 
     In order to listen to one of these events you need a method which takes all of the arguments described above. You at a method, New_Method, to listen for an event by calling AbstractImmersiveCamera.WallTouchedEvent.AddListener().
-
-## Weather Effects
-Weather effects can be added to the screen, for example rain or frost. These are based on the Asset Store toolkit *RainDropEffect2*. In order to add a weather effect to scene, add the Weather Effect component to the camera in that scene. The component allows you to provide an Effect Prefab. A library of these can be found in the folder Immersive Camera > Weather Effects. Further effects can be constructed using the *RainDropEffect2* toolkit. You may also provide reference to a game object with an AudioSource attached. If this is the case the audio source will be turned on and off when the weather effect is turned on or off. Finally there is a public variable EffectOnOff which can be used to enable of disable the effect.
-
-
-
-## Version History
-
-### 1.0.0 (Beta 2)
-+ AbstractImmersiveCamera now has two public variables: worldInteractionOn and canvasInteractionOn. These allow you to manually turn off interaction to either world objects or canvas objects. 
-+ DisableWorldInteractionWhileActive can be used to turn off world interaction while using something such as an Intro Sequence.
-
-### 1.0.0 (Beta 4)
-+ Fixed bugs in FloorFootprintSystem
-+ Added optional Media mask to split hotspot.

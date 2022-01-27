@@ -13,7 +13,7 @@ using UnityEngine.Serialization;
 /// The component allows you to add sounds which will play when different images in the image sequence are displayed.
 /// If you don't want a sound to be displayed for a given image, leave that element empty.
 /// </summary>
-public class PlaySoundOnImageSequence : MonoBehaviour, IImageSequenceIndexChangeHandler
+public class PlaySoundOnImageSequence : MonoBehaviour, ISequencePopUpIndexChangeHandler
 {
     public AudioClip[] clips;
     public float volume = 1;

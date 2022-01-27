@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Com.Immersive.Hotspots;
+using Immersive.Properties;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -147,9 +148,9 @@ public class CustomJsonConverter
             TextProperty textPropertyJson = serializer.Deserialize<TextProperty>(reader);
 
             TextProperty newText = new TextProperty();
-            newText.text = textPropertyJson.text;
-            newText.color = textPropertyJson.color;
-            newText.size = textPropertyJson.size == 0 ? 50 : textPropertyJson.size;
+            newText.Text = textPropertyJson.Text;
+            newText.Color = textPropertyJson.Color;
+            newText.FontSize = textPropertyJson.FontSize == 0 ? 50 : textPropertyJson.FontSize;
 
             return newText;
         }

@@ -241,11 +241,11 @@ Preset:
     value: -1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: iosAppInBackgroundBehavior
-    value: 0
+    propertyPath: displayResolutionDialog
+    value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: displayResolutionDialog
+    propertyPath: iosUseCustomAppBackgroundBehavior
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
@@ -449,6 +449,10 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: xboxOneEnableTypeOptimization
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: xboxOnePresentImmediateThreshold
     value: 0
     objectReference: {fileID: 0}
@@ -475,6 +479,14 @@ Preset:
   - target: {fileID: 0}
     propertyPath: switchNVNOtherPoolsGranularity
     value: 16777216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: switchNVNMaxPublicTextureIDCount
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: switchNVNMaxPublicSamplerIDCount
+    value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: vulkanEnableSetSRGBWrite
@@ -581,6 +593,18 @@ Preset:
     value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: vrSettings.oculus.lowOverheadMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: vrSettings.oculus.protectedContext
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: vrSettings.oculus.v2Signing
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: vrSettings.enable360StereoCapture
     value: 0
     objectReference: {fileID: 0}
@@ -634,7 +658,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: AndroidMinSdkVersion
-    value: 16
+    value: 19
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: AndroidTargetSdkVersion
@@ -694,7 +718,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: iOSTargetOSVersionString
-    value: 9.0
+    value: 10.0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tvOSSdkVersion
@@ -706,7 +730,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tvOSTargetOSVersionString
-    value: 9.0
+    value: 10.0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: uIPrerenderedIcon
@@ -1689,6 +1713,10 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: switchRatingsInt_12
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: switchLocalCommunicationIds_0
     value: 
     objectReference: {fileID: 0}
@@ -1913,6 +1941,10 @@ Preset:
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: ps4ExtraSceSysFile
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: ps4NPtitleDatPath
     value: 
     objectReference: {fileID: 0}
@@ -2071,6 +2103,14 @@ Preset:
   - target: {fileID: 0}
     propertyPath: ps4contentSearchFeaturesUsed
     value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ps4CompatibilityPS5
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ps4GPU800MHz
+    value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: ps4attribEyeToEyeDistanceSettingVR
@@ -2426,7 +2466,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: xboxOneScriptCompiler
-    value: 1
+    value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: XboxOneOverrideIdentityName
@@ -2486,7 +2526,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: facebookSdkVersion
-    value: 7.9.4
+    value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: facebookAppId

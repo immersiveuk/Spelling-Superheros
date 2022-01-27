@@ -1,1 +1,0 @@
-"..\Immersive Application.exe" -layout="1" -surfaces="[0,0,1280,800]"

@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "com.immersiveinteractive.packagemanager": {
+      "version": "https://github.com/immersiveuk/Immersive-Package-Manager.git#SDK-1",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0",
+        "com.unity.editorcoroutines": "1.0.0"
+      },
+      "hash": "7d64155e88f3e9ffb3cc714f8d2129044601cfa3"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -38,6 +48,13 @@
         "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.services.core": "1.0.1"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.editorcoroutines": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {

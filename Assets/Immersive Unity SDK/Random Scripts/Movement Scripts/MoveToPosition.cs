@@ -23,6 +23,8 @@ public class MoveToPosition : MonoBehaviour, IInteractableObject
     public Vector3 targetPosition = new Vector3(1, 0, 0);
     public float moveDuration = 3;
 
+    [SerializeField] bool loop = false;
+
     //PRIVATE VARIABLES
     private bool canBeMoved = true;
     private float timeRemaining = 0;
@@ -62,14 +64,23 @@ public class MoveToPosition : MonoBehaviour, IInteractableObject
         {
             timeRemaining -= Time.deltaTime;
 
-            if (timeRemaining == 0)
+            if (timeRemaining <= 0)
             {
                 transform.position = targetPosition;
+                
+                if (loop)
+                {
+                    timeRemaining = moveDuration;
+                    canBeMoved = false;
+                }
                 return;
             }
 
-            var lerpValue = 1 - (timeRemaining / moveDuration);
-            transform.position = Vector3.Lerp(startPosition, targetPosition, lerpValue);
+            else
+            {
+                var lerpValue = 1 - (timeRemaining / moveDuration);
+                transform.position = Vector3.Lerp(startPosition, targetPosition, lerpValue);
+            }
         }
     }
 

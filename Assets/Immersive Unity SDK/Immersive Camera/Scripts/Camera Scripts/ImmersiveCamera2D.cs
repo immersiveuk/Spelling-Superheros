@@ -34,7 +34,7 @@ namespace Com.Immersive.Cameras
         public enum AspectRatio { _16x9, _16x10, _4x3 };
         public enum CAGType { Exterior, Interior };
 
-        private float TargetAspectRatioFloat
+        public float TargetAspectRatioFloat
         {
             get
             {

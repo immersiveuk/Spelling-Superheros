@@ -28,37 +28,32 @@ public class DisplayParticlesOnTouch : MonoBehaviour
 
     private Dictionary<int, ParticleSystem> particleSystems = new Dictionary<int, ParticleSystem>();
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable() => AbstractImmersiveCamera.AnySurfaceTouchedEvent.AddListener(OnSurfaceTouched);
+    private void OnDisable() => AbstractImmersiveCamera.AnySurfaceTouchedEvent.RemoveListener(OnSurfaceTouched);
+       
+    private void OnSurfaceTouched(SurfaceTouchedEventArgs args)
     {
-        AbstractImmersiveCamera.AnyWallTouched.AddListener(OnWallTouched);
-    }
+        if (!activeSurfaces.HasFlag(args.TouchedSurfacePosition)) return;
 
-    private void OnWallTouched(Vector2 screenPosition, int cameraIndex, TouchPhase phase, int touchIndex)
-    {
-        
-        if (!activeSurfaces.HasFlag(AbstractImmersiveCamera.CurrentImmersiveCamera.GetSurfacePositionFromIndex(cameraIndex))) return;
-
-        var cam = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex];
-        var viewportPosition = cam.ScreenToViewportPoint(screenPosition);
+        var viewportPosition = args.ViewportPosition;
         if (viewportPosition.y < minHeight ||
             viewportPosition.y > maxHeight)
             return;
 
-        switch (phase)
+        switch (args.Phase)
         {
             case TouchPhase.Began:
-                CreateParticleSystem(touchIndex);
-                PositionParticleSystem(screenPosition, cameraIndex, touchIndex);
+                CreateParticleSystem(args.TouchIndex);
+                PositionParticleSystem(args);
                 break;
 
             case TouchPhase.Moved:
-                PositionParticleSystem(screenPosition, cameraIndex, touchIndex);
+                PositionParticleSystem(args);
                 break;
 
             case TouchPhase.Ended:
             case TouchPhase.Canceled:
-                DisableParticleSystem(touchIndex);
+                DisableParticleSystem(args.TouchIndex);
                 break;
         }
     }
@@ -71,23 +66,19 @@ public class DisplayParticlesOnTouch : MonoBehaviour
 
     private void CreateParticleSystem(int touchIndex)
     {
-        if (particleSystems.ContainsKey(touchIndex))
-        {
-            particleSystems[touchIndex].Play();
-        }
-        else
+        if (!particleSystems.ContainsKey(touchIndex))
         {
             var particleSystem = Instantiate(particlesPrefab, transform);
             particleSystems[touchIndex] = particleSystem;
         }
+        else
+            particleSystems[touchIndex].Play();
     }
 
-    private void PositionParticleSystem(Vector2 screenPosition, int cameraIndex, int touchIndex)
+    private void PositionParticleSystem(SurfaceTouchedEventArgs args)
     {
-        var cam = AbstractImmersiveCamera.CurrentImmersiveCamera.cameras[cameraIndex];
-        var position = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, distanceFromCamera));
-
-        var particleSystem = particleSystems[touchIndex];
+        var position = args.GetWorldPoint(distanceFromCamera);
+        var particleSystem = particleSystems[args.TouchIndex];
         particleSystem.transform.position = position;
     }
 }

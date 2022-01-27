@@ -16,6 +16,8 @@ using System.Collections.Generic;
 using System.Collections;
 
 using System;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Com.Immersive.Hotspots
 {
@@ -26,43 +28,42 @@ namespace Com.Immersive.Hotspots
     /// </summary>
     public class HotspotScript : MonoBehaviour, IHotspot
     {
-
-
         private Canvas canvas;
         private Camera cam;
 
         //-------SETTINGS--------
 
         public HotspotDataModel hotspotDataModel;
-
         //Image
         public ImagePopUpDataModel imagePopUpDataModel;
-
         //Image Sequence
         public ImageSequencePopUpDataModel imageSequencePopUpDataModel;
-
         //Video
         public VideoPopUpDataModel videoPopUpDataModel;
-
         //Text
         public TextPopUpDataModel textPopUpDataModel;
-
         //Q & A
         public QuizPopUpDataModel quizPopUpDataModel;
-
         //Audio popup
         public AudioPopUpDataModel audioPopUpDataModel;
-
         //SceneLink
         public SceneLinkDataModel sceneLinkDataModel;
-
         //Split Popup
         public SplitPopUpDataModel splitPopupDataModel;
+        //Quiz V2
+        public QuizPopUpSetting_V2 quizPopUpDataModel_V2; //To-DO
+        //TextMulti
+        public TextSequencePopUpSetting textSequencePopUpDataModel;
 
         //Reveal And Hide Objects
         public GameObject[] objectsToHide;
         public GameObject[] objectsToReveal;
 
+        //Event
+        public UnityEvent hotspotEvent;
+
+        //Custom PopUp
+        public CustomPopUpSpawner customPopUpSpawner = null;
 
         //-------POPUP PREFABS--------
         public VideoHotspotPopUp videoPopUpPrefab;
@@ -72,15 +73,15 @@ namespace Com.Immersive.Hotspots
         public QuizHotspotPopUp qAndAPopUpPrefab;
         public AudioHotspotPopUp audioPopUpPrefab;
         public SplitPopup splitPopupPrefab;
+        public QuizHotspotPopUp_V2 quizPopUpPrefab_V2;
+        public TextSequenceHotspotPopUp textSequencePopUpPrefab;
 
         //-------PRIVATE VARIABLES--------
 
-        //public bool isInteractable = true;
         private bool firstOpen = true;
-        private bool restoreOutlineOnEnable = false;
 
         public bool IsInteractable { get; set; } = true;
-        public bool IsPopupHotspot => (hotspotDataModel.actionType == ActionType.ImagePopup || hotspotDataModel.actionType == ActionType.VideoPopup || hotspotDataModel.actionType == ActionType.TextPopup || hotspotDataModel.actionType == ActionType.QuizPopup || hotspotDataModel.actionType == ActionType.ImageSequencePopup || hotspotDataModel.actionType == ActionType.AudioPopup || hotspotDataModel.actionType == ActionType.SplitPopup);
+        public bool IsPopupHotspot => (hotspotDataModel.actionType == ActionType.ImagePopup || hotspotDataModel.actionType == ActionType.VideoPopup || hotspotDataModel.actionType == ActionType.TextPopup || hotspotDataModel.actionType == ActionType.QuizPopup || hotspotDataModel.actionType == ActionType.ImageSequencePopup || hotspotDataModel.actionType == ActionType.AudioPopup || hotspotDataModel.actionType == ActionType.SplitPopup || hotspotDataModel.actionType == ActionType.QuizPopup_V2 || hotspotDataModel.actionType == ActionType.TextSequencePopup);
 
         private IHotspotActionCompleteHandler[] actionCompleteHandlers;
 
@@ -105,82 +106,16 @@ namespace Com.Immersive.Hotspots
         public void EnableInteractivity()
         {
             IsInteractable = true;
-            if (restoreOutlineOnEnable)
-            {
-                AddOutline(highlightColour, highlightWidth);
-                restoreOutlineOnEnable = false;
-            }
         }
 
         public void DisableInteractivity()
         {
             IsInteractable = false;
-            if (isOutlined)
-            {
-                restoreOutlineOnEnable = true;
-                RemoveOutline();
-            }
-        }
-
-
-        private bool isOutlined = false;
-        private float angle = 0;
-        private Color highlightColour = Color.yellow;
-        private int highlightWidth = 0;
-
-        public void AddOutline(Color highlightColour, int highlightWidth)
-        {
-            isOutlined = true;
-            this.highlightColour = highlightColour;
-            this.highlightWidth = highlightWidth;
-
-            //Outline Sprite
-            var spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.material.SetFloat("_OutlineEnabled", 1);
-                spriteRenderer.material.SetColor("_GradientOutline1", highlightColour);
-                spriteRenderer.material.SetFloat("_Thickness", highlightWidth);
-
-                //Scale so that the image remains the same size
-                var resolution = spriteRenderer.sprite.rect.size;
-                var newResolution = new Vector2();
-                newResolution.x = resolution.x + highlightWidth * 2;
-                newResolution.y = resolution.y + highlightWidth * 2;
-                var scale = transform.localScale;
-                scale.x *= (newResolution.x / resolution.x);
-                scale.y *= (newResolution.y / resolution.y);
-                transform.localScale = scale;
-            }
-        }
-
-        public void RemoveOutline()
-        {
-            isOutlined = false;
-
-            //Outline Sprite
-            var spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.material.SetFloat("_OutlineEnabled", 0);
-
-                //Scale so that the image remains the same size
-                var resolution = spriteRenderer.sprite.rect.size;
-                var newResolution = new Vector2();
-                newResolution.x = resolution.x - 16;
-                newResolution.y = resolution.y - 16;
-                var scale = transform.localScale;
-                scale.x *= (newResolution.x / resolution.x);
-                scale.y *= (newResolution.y / resolution.y);
-                transform.localScale = scale;
-            }
         }
 
         //==============================================================
         //SETUP
         //==============================================================
-
-
 
         public void Start()
         {
@@ -238,13 +173,6 @@ namespace Com.Immersive.Hotspots
                 (cam, canvas) = AbstractImmersiveCamera.CurrentImmersiveCamera.FindRenderingCameraAndCanvas(gameObject);
             }
 
-            if (isOutlined)
-            {
-                angle += 1;
-                GetComponent<Renderer>().material.SetFloat("_Angle", angle);
-            }
-
-
             // If in place hotspot mode, Ensure that hotspots face correct camera.
 #if UNITY_EDITOR
             if (EditorPrefs.HasKey("PlaceHotspotMode"))
@@ -276,27 +204,39 @@ namespace Com.Immersive.Hotspots
 
             //Inform Hotspot controller that popup has been opened
             if (controller != null) controller.PopUpOpened();
-             
-//#if UNITY_WEBGL && !UNITY_EDITOR
-//            WebGLCommunication._instance.CallWeb("" + hotspotDataModel.actionType);
-//#endif
+
+            //#if UNITY_WEBGL && !UNITY_EDITOR
+            //            WebGLCommunication._instance.CallWeb("" + hotspotDataModel.actionType);
+            //#endif
             //Select and instantiate the correct pop up type
             switch (hotspotDataModel.actionType)
             {
                 case ActionType.ImagePopup:
-                    InstantiateImagePopUp();
+                    InstantiatePopUp(imagePopUpPrefab, imagePopUpDataModel.popUpSetting);
                     break;
                 case ActionType.ImageSequencePopup:
-                    InstantiateImageSequencePopUp();
+                    InstantiatePopUp(imageSequencePopUpPrefab, imageSequencePopUpDataModel.popUpSetting);
                     break;
-                case ActionType.VideoPopup:
-                    InstantiateVideoPopUp();
+                case ActionType.VideoPopup: 
+                    InstantiatePopUp(videoPopUpPrefab, videoPopUpDataModel.popUpSetting);
                     break;
                 case ActionType.TextPopup:
-                    InstantiateTextPopUp();
+                    InstantiatePopUp(textPopUpPrefab, textPopUpDataModel.popUpSetting);
                     break;
                 case ActionType.QuizPopup:
-                    InstantiateQAndAPopUp();
+                    InstantiatePopUp(qAndAPopUpPrefab, quizPopUpDataModel.popUpSetting);
+                    break;
+                case ActionType.AudioPopup:
+                    InstantiatePopUp(audioPopUpPrefab, audioPopUpDataModel.popUpSetting);
+                    break;
+                case ActionType.SplitPopup:
+                    InstantiatePopUp(splitPopupPrefab, splitPopupDataModel.popUpSetting);
+                    break;
+                case ActionType.QuizPopup_V2:
+                    InstantiatePopUp(quizPopUpPrefab_V2, quizPopUpDataModel_V2);
+                    break;
+                case ActionType.TextSequencePopup:
+                    InstantiatePopUp(textSequencePopUpPrefab, textSequencePopUpDataModel);
                     break;
                 case ActionType.SceneLink:
                     ChangeScene();
@@ -304,17 +244,18 @@ namespace Com.Immersive.Hotspots
                 case ActionType.ActivateAndHideObjects:
                     HideOrRevealObjects();
                     break;
-                case ActionType.AudioPopup:
-                    InstantiateAudioPopUp();
+                case ActionType.Event:
+                    CallHotspotEvent();
                     break;
-                case ActionType.SplitPopup:
-                    InstantiateSplitPopup();
+
+                case ActionType.CustomPopUp:
+                    customPopUpSpawner?.InstantiatePopUp(cam, canvas, transform.position, ActionComplete, GetComponents);
                     break;
             }
 
             if (presentingMultiHotspot != null) presentingMultiHotspot.ChildHotspotOpened(this, hotspotDataModel.clickAction);
 
-            if (IsPopupHotspot) HideDeleteOrDisableOnClick();
+            if (IsPopupHotspot) StartCoroutine(HideDeleteOrDisableOnClick());
         }
 
 
@@ -324,8 +265,9 @@ namespace Com.Immersive.Hotspots
         /// Delete permenantly deletes the hotspot.
         /// Disable leaves hotspots visible however is cannot be clicked until the popup is closed.
         /// </summary>
-        private void HideDeleteOrDisableOnClick()
+        private IEnumerator HideDeleteOrDisableOnClick()
         {
+            yield return new WaitForEndOfFrame();
             switch (hotspotDataModel.clickAction)
             {
                 case OnClickAction.Disable:
@@ -337,6 +279,7 @@ namespace Com.Immersive.Hotspots
                     break;
             }
         }
+
 
         public void ActionComplete()
         {
@@ -391,7 +334,7 @@ namespace Com.Immersive.Hotspots
             switch (hotspotDataModel.clickAction)
             {
                 case OnClickAction.Disable:
-                    IsInteractable = true;
+                    IsInteractable = false;
                     break;
                 case OnClickAction.Hide:
                     gameObject.SetActive(true);
@@ -404,137 +347,59 @@ namespace Com.Immersive.Hotspots
             }
         }
 
+        //private PopUpPositioner GetPopUpPositioner(PopUpSettings popUpSettings)
+        //{
+        //    switch (popUpSettings.popUpPosition)
+        //    {
+        //        case PopUpPosition.SurfaceCenterTop:
+        //            return new PopUpPositionerCentredOnCanvasTop(canvas);
+        //        case PopUpPosition.SurfaceCenter:
+        //            return new PopUpPositionerCentredOnCanvas(canvas);
+        //        case PopUpPosition.SameAsHotspot:
+        //            return new PopUpPositionerCentredOnHotspot(transform.position, cam, canvas);
+        //        case PopUpPosition.Custom:
+        //            return new PopUpPositionerOffsetFromHotspot(transform.position, cam, popUpSettings.popUpPositionOffset, canvas);
+        //        default:
+        //            Debug.LogError("Could create IPopUpPositioner for "+popUpSettings.popUpPosition);
+        //            return null;
+        //    }
+        //}
 
-
-        //-------QUESTION POPUP--------
-        private void InstantiateQAndAPopUp()
+        private void InstantiatePopUp<TPopUp, TPopUpSettings>(TPopUp prefab, TPopUpSettings popUpSettings) where TPopUp : HotspotPopUp<TPopUpSettings> where TPopUpSettings : PopUpSettings
         {
-            var popUp = Instantiate(qAndAPopUpPrefab, canvas.transform) as QuizHotspotPopUp;
-            popUp.SpawningHotspot = this.gameObject;
+            TPopUp popUp = Instantiate(prefab, canvas.transform);
+            PopUpPositioner positioner = popUpSettings.GetPopUpPositioner(cam, canvas, transform.position);//GetPopUpPositioner(popUpSettings);
 
-            popUp.ActionComplete = ActionComplete;
-            popUp.PlacePopUp = PlacePopUp;
+            //NOTE: This allows the Hotspot Controller to define the close button. This is a bit of a hack.
+            if (popUpSettings.overrideDefaultCloseButton == false && controller != null && controller.closeButton != null)
+            {
+                popUpSettings.overrideDefaultCloseButton = true;
+                popUpSettings.closeButton = controller.closeButton;
+            }
 
-            popUp.Init(quizPopUpDataModel);
-            var popUpRect = popUp.GetComponent<RectTransform>();
-
-            // NOTE: The positioning of the pop up is called by the pop up itself. 
-        }
-
-        //-------TEXT POPUP--------
-        public TextHotspotPopUp InstantiateTextPopUp()
-        {
-            var popUp = Instantiate(textPopUpPrefab, canvas.transform) as TextHotspotPopUp;
-            popUp.SpawningHotspot = this.gameObject;
-            //Set the text of the pop up.
-
-            popUp.ActionComplete = ActionComplete;
-            popUp.PlacePopUp = PlacePopUp;
-
-            popUp.Init(textPopUpDataModel);
-            var popUpRect = popUp.GetComponent<RectTransform>();
-
-            // NOTE: The positioning of the pop up is called by the pop up itself.
-
-            return popUp;
-        }
-
-        //-------IMAGE POPUP--------
-        private void InstantiateImagePopUp()
-        {
-            var popUp = Instantiate(imagePopUpPrefab, canvas.transform) as ImageHotspotPopUp;
-            popUp.SpawningHotspot = this.gameObject;
-            //Set the image colour and scale of the pop up.
-
-            popUp.ActionComplete = ActionComplete;
-            popUp.PlacePopUp = PlacePopUp;
-
-            popUp.Init(imagePopUpDataModel);
-
-            var popUpRect = popUp.GetComponent<RectTransform>();
-
-            //Position PopUp
-            PlacePopUp(popUpRect);
-        }
-
-        //-------IMAGE SEQUENCE POPUP--------
-        private void InstantiateImageSequencePopUp()
-        {
-            var popUp = Instantiate(imageSequencePopUpPrefab, canvas.transform) as ImageSequenceHotspotPopup;
-            popUp.SpawningHotspot = this.gameObject;
-
-            popUp.ActionComplete = ActionComplete;
-            popUp.PlacePopUp = PlacePopUp;
-
-            //Set the image colour and scale of the pop up.
-            popUp.Init(imageSequencePopUpDataModel);
-
-            var popUpRect = popUp.GetComponent<RectTransform>();
-
-            //Position PopUp
-            PlacePopUp(popUpRect);
-        }
-
-        //-------VIDEO POPUP--------
-        private void InstantiateVideoPopUp()
-        {
-            var popUp = Instantiate(videoPopUpPrefab, canvas.transform) as VideoHotspotPopUp;
-            popUp.SpawningHotspot = this.gameObject;
-
-            popUp.ActionComplete = ActionComplete;
-            popUp.PlacePopUp = PlacePopUp;
-
-            popUp.Init(videoPopUpDataModel);
-
-            // NOTE: The positioning of the pop up is called by the pop up itself. 
-            // This is because the size is not known until the video is prepared. 
-        }
-
-        //-------AUDIO POPUP--------
-
-        private void InstantiateAudioPopUp()
-        {
-            var popUp = Instantiate(audioPopUpPrefab, canvas.transform) as AudioHotspotPopUp;
-            popUp.SpawningHotspot = this.gameObject;
-
-            popUp.ActionComplete = ActionComplete;
-            popUp.PlacePopUp = PlacePopUp;
-
-            popUp.Init(audioPopUpDataModel);
-        }
-
-        //-------SPLIT POPUP--------
-        private void InstantiateSplitPopup()
-        {
-            var popup = Instantiate(splitPopupPrefab, canvas.transform) as SplitPopup;
-            popup.SpawningHotspot = gameObject;
-
-            popup.ActionComplete = ActionComplete;
-            popup.PlacePopUp = PlacePopUp;
-
-            popup.Init(splitPopupDataModel);
+            popUp.Initialize(popUpSettings, positioner, ActionComplete, GetComponents);
         }
 
         //-------SCENE LINK--------
 
         private void ChangeScene()
         {
-            if (sceneLinkDataModel.popUpSetting.fadeOut)
+            if (sceneLinkDataModel.sceneLinkSettings.fadeOut)
             {
                 FadeInAndOut.CurrentFadeInAndOut.active = true;
-                FadeInAndOut.CurrentFadeInAndOut.FadeOut(sceneLinkDataModel.popUpSetting.fadeOutDuration, sceneLinkDataModel.popUpSetting.fadeColor, sceneLinkDataModel.popUpSetting.fadeOutAudio, ChangeSceneCompletionHandler);
-                FadeInAndOut.FadeInNextScene(sceneLinkDataModel.popUpSetting.fadeOutDuration, sceneLinkDataModel.popUpSetting.fadeColor, sceneLinkDataModel.popUpSetting.fadeOutAudio);
+                FadeInAndOut.CurrentFadeInAndOut.FadeOut(sceneLinkDataModel.sceneLinkSettings.fadeOutDuration, sceneLinkDataModel.sceneLinkSettings.fadeColor, sceneLinkDataModel.sceneLinkSettings.fadeOutAudio, ChangeSceneCompletionHandler);
+                FadeInAndOut.FadeInNextScene(sceneLinkDataModel.sceneLinkSettings.fadeOutDuration, sceneLinkDataModel.sceneLinkSettings.fadeColor, sceneLinkDataModel.sceneLinkSettings.fadeOutAudio);
                 AbstractImmersiveCamera.CurrentImmersiveCamera.interactionOn = false;
             }
             else
             {
-                SceneManager.LoadScene(sceneLinkDataModel.popUpSetting.linkName);
+                SceneManager.LoadScene(sceneLinkDataModel.sceneLinkSettings.linkName);
             }
         }
 
         private void ChangeSceneCompletionHandler()
         {
-            SceneManager.LoadScene(sceneLinkDataModel.popUpSetting.linkName);
+            SceneManager.LoadScene(sceneLinkDataModel.sceneLinkSettings.linkName);
         }
 
         //-------HIDE OR REVEAL--------
@@ -554,6 +419,13 @@ namespace Com.Immersive.Hotspots
             ActionComplete();
         }
 
+        //-------HOTSPOT EVENT--------
+
+        private void CallHotspotEvent()
+        {
+            hotspotEvent.Invoke();
+            ActionComplete();
+        }
 
 
         IEnumerator DestroyOnEndOfFrame()
@@ -561,109 +433,6 @@ namespace Com.Immersive.Hotspots
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
             Destroy(gameObject);
-        }
-
-
-        //-------PLACE POPUPS--------
-        public void PlacePopUp(RectTransform popUpRect)
-        {
-            switch (GetPopUpSetting().popUpPosition)
-            {
-                case PopUpPosition.SameAsHotspot: PlacePopupOnCanvas(popUpRect); break;
-                case PopUpPosition.SurfaceCenter: PlacePopupAtCanvasCenter(popUpRect); break;
-                case PopUpPosition.SurfaceCenterTop: PlacePopupAtCanvasCenterTop(popUpRect); break;
-                case PopUpPosition.Custom: PlacePopupCustomPosition(popUpRect); break;
-            }
-
-            var popUp = popUpRect.GetComponent<HotspotPopUp>();
-            var canvasRect = canvas.GetComponent<RectTransform>().rect;
-
-            if (popUpRect.anchoredPosition.x > canvas.pixelRect.width / 2) popUp.DisplayCloseButtonLeft();
-            else popUp.DisplayCloseButtonRight();
-
-            popUp.SetControlPanelYOffset(canvasRect.height / 2 - popUpRect.anchoredPosition.y);
-        }
-
-        private void PlacePopupCustomPosition(RectTransform popUpRect)
-        {
-            var canvasRect = canvas.GetComponent<RectTransform>().rect;
-
-            var popUpPosition = cam.WorldToViewportPoint(transform.position);
-            popUpPosition = new Vector3(popUpPosition.x * canvasRect.width, popUpPosition.y * canvasRect.height, popUpPosition.z);
-
-            popUpPosition.x += GetPopUpSetting().popUpPositionOffset.x;
-            popUpPosition.y += GetPopUpSetting().popUpPositionOffset.y;
-            popUpRect.anchoredPosition = popUpPosition;
-        }
-
-        private void PlacePopupAtCanvasCenter(RectTransform popUpRect)
-        {
-            var canvasRect = canvas.GetComponent<RectTransform>().rect;
-            popUpRect.anchoredPosition = new Vector2(canvasRect.width / 2, canvasRect.height / 2);
-        }
-
-        private void PlacePopupAtCanvasCenterTop(RectTransform popUpRect)
-        {
-            var canvasRect = canvas.GetComponent<RectTransform>().rect;
-            var yPos = canvasRect.height - popUpRect.rect.height / 2 - 50;
-            popUpRect.anchoredPosition = new Vector2(canvasRect.width / 2, yPos);
-        }
-
-        private void PlacePopupOnCanvas(RectTransform popUpRect)
-        {
-            var canvasRect = canvas.GetComponent<RectTransform>().rect;
-
-            var popUpPosition = cam.WorldToViewportPoint(transform.position);
-            popUpPosition = new Vector3(popUpPosition.x * canvasRect.width, popUpPosition.y * canvasRect.height, popUpPosition.z);
-
-            //Stop going over edge.
-            // X-Axis
-            if (popUpPosition.x - popUpRect.rect.width / 2 < 0) popUpPosition.x = popUpRect.rect.width / 2;
-            if (popUpPosition.x + popUpRect.rect.width / 2 > canvasRect.width) popUpPosition.x = canvasRect.width - popUpRect.rect.width / 2;
-
-            //Y-Axis
-            if (popUpPosition.y - popUpRect.rect.height / 2 < 0) popUpPosition.y = popUpRect.rect.height / 2;
-            if (popUpPosition.y + popUpRect.rect.height / 2 > canvasRect.height) popUpPosition.y = canvasRect.height - popUpRect.rect.height / 2;
-
-            popUpRect.anchoredPosition = new Vector2(popUpPosition.x, popUpPosition.y);
-        }
-
-        PopUpSetting GetPopUpSetting()
-        {
-            PopUpSetting popUpSetting = new PopUpSetting();
-
-            switch (hotspotDataModel.actionType)
-            {
-                case ActionType.ImagePopup:
-                    popUpSetting = imagePopUpDataModel.popUpSetting;
-                    break;
-                case ActionType.ImageSequencePopup:
-                    popUpSetting = imageSequencePopUpDataModel.popUpSetting;
-                    break;
-                case ActionType.VideoPopup:
-                    popUpSetting = videoPopUpDataModel.popUpSetting;
-                    break;
-                case ActionType.TextPopup:
-                    popUpSetting = textPopUpDataModel.popUpSetting;
-                    break;
-                case ActionType.QuizPopup:
-                    popUpSetting = quizPopUpDataModel.popUpSetting;
-                    break;
-                case ActionType.SceneLink:
-                    popUpSetting = sceneLinkDataModel.popUpSetting;
-                    break;
-                case ActionType.ActivateAndHideObjects:
-
-                    break;
-                case ActionType.AudioPopup:
-                    popUpSetting = audioPopUpDataModel.popUpSetting;
-                    break;
-                case ActionType.SplitPopup:
-                    popUpSetting = splitPopupDataModel.popUpSetting;
-                    break;
-            }
-
-            return popUpSetting;
         }
     }
 }

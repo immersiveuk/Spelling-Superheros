@@ -7,7 +7,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Experimental.PlayerLoop;
 
 namespace Com.Immersive.Cameras
 {

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 158eb61a2e9ac79439522c9499e7e232
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - moveLeftButtonPrefab: {fileID: 3403322599438248357, guid: 90b1b7511c1caae43811f2c7ab83511c,
+      type: 3}
+  - moveRightButtonPrefab: {fileID: 2529948786061517735, guid: 7f50dfd51b9a9cc4a9eb0ddc699753ef,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

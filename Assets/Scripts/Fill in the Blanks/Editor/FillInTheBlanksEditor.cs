@@ -6,31 +6,26 @@ using UnityEngine;
 
 namespace Immersive.FillInTheBlank
 {
+    
     [CustomEditor(typeof(FillInTheBlanksData)), CanEditMultipleObjects]
     public class FillInTheBlanksEditor : Editor
     {
         private SerializedProperty letterCase;
-        static SerializedProperty fillInTheBlanks;
-        static SerializedProperty spellings;
-        static SerializedProperty missingLetters;
+        static SerializedProperty fillInTheBlankProperty;
+        static SerializedProperty spellingsCells;
+        static SerializedProperty missingLettersCells;
+        private SerializedProperty spellings;
+
+        private const int minNumberOfSpellings = 4;
+        private const int maxNumberOfSpellings = 4;
 
         private void OnEnable()
         {
             letterCase = serializedObject.FindProperty(nameof(letterCase));
-            fillInTheBlanks = serializedObject.FindProperty("fillInTheBlanksList");
-            spellings = serializedObject.FindProperty("spellings");
-            missingLetters = serializedObject.FindProperty("missingLetters");
-
-            EditorList.OnMoveArrayElement += MoveArrayElement;
-            EditorList.OnInsertArrayElement += InsertArrayElementAtIndex;
-            EditorList.OnDeleteArrayElement += DeleteArrayElementAtIndex;
-        }
-
-        private void OnDisable()
-        {
-            EditorList.OnMoveArrayElement -= MoveArrayElement;
-            EditorList.OnInsertArrayElement -= InsertArrayElementAtIndex;
-            EditorList.OnDeleteArrayElement -= DeleteArrayElementAtIndex;
+            fillInTheBlankProperty = serializedObject.FindProperty("fillInTheBlanksList");
+            spellingsCells = serializedObject.FindProperty("spellings");
+            missingLettersCells = serializedObject.FindProperty("missingLetters");
+            spellings = fillInTheBlankProperty.FindPropertyRelative(nameof(spellings));
         }
 
         public override void OnInspectorGUI()
@@ -41,43 +36,78 @@ namespace Immersive.FillInTheBlank
             EditorGUILayout.PropertyField(letterCase);
 
             EditorGUILayout.Space();
+            DrawOptions();
 
-            
+            EditorList.Show(spellingsCells, EditorListOption.ListLabel);
             EditorGUILayout.Space();
-            EditorGUILayout.Space();
-            EditorList.Show(fillInTheBlanks, EditorListOption.Buttons);
-            EditorGUILayout.Space();
-            EditorList.Show(spellings, EditorListOption.ListLabel);
-            EditorGUILayout.Space();
-            EditorList.Show(missingLetters, EditorListOption.ListLabel);
+            EditorList.Show(missingLettersCells, EditorListOption.ListLabel);
 
             serializedObject.ApplyModifiedProperties();
         }
 
-        static void MoveArrayElement(int from, int to)
+        protected void DrawOptions()
         {
-            spellings.MoveArrayElement(from,to);
-            missingLetters.MoveArrayElement(from, to);
-        }
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
 
-        void InsertArrayElementAtIndex(int index)
-        {
-            spellings.InsertArrayElementAtIndex(index);
-            missingLetters.InsertArrayElementAtIndex(index);
-        }
-
-        void DeleteArrayElementAtIndex(int index)
-        {
-
-            int oldSize = spellings.arraySize;
-            spellings.DeleteArrayElementAtIndex(index);
-            missingLetters.DeleteArrayElementAtIndex(index);
-
-            if (spellings.arraySize == oldSize)
+            //EditorGUI.BeginDisabledGroup(spellings.arraySize >= maxNumberOfSpellings);
+            if (GUILayout.Button("+", GUILayout.Width(30)))
             {
-                spellings.DeleteArrayElementAtIndex(index);
-                missingLetters.DeleteArrayElementAtIndex(index);
+                AddPairElement();
             }
+            //EditorGUI.EndDisabledGroup();
+
+            //EditorGUI.BeginDisabledGroup(spellings.arraySize <= minNumberOfSpellings);
+            if (GUILayout.Button("-", GUILayout.Width(30)))
+            {
+                DeletePairElement();
+            }
+            //EditorGUI.EndDisabledGroup();
+
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.PropertyField(fillInTheBlankProperty, new GUIContent("Spellings"), true);
+        }
+
+        /// <summary>
+        /// Add new pair to the list on Plus button click
+        /// </summary>
+        /// <param name="pairs"></param>
+        void AddPairElement()
+        {
+            int newIndex = spellings.arraySize;
+            spellings.InsertArrayElementAtIndex(newIndex);
+
+            if (spellings.arraySize > spellingsCells.arraySize)
+            {
+                spellingsCells.InsertArrayElementAtIndex(spellingsCells.arraySize);
+                spellingsCells.GetArrayElementAtIndex(spellingsCells.arraySize - 1).objectReferenceValue = null;
+            }
+
+            if (spellings.arraySize > missingLettersCells.arraySize)
+            {
+                missingLettersCells.InsertArrayElementAtIndex(missingLettersCells.arraySize);
+                missingLettersCells.GetArrayElementAtIndex(spellingsCells.arraySize - 1).objectReferenceValue = null;
+            }
+        }
+
+
+        /// <summary>
+        /// Remove last pair on Minus button click 
+        /// </summary>
+        /// <param name="pairs"></param>
+        void DeletePairElement()
+        {
+            if (spellings.arraySize > 0)
+            {
+                int newIndex = spellings.arraySize - 1;
+                spellings.DeleteArrayElementAtIndex(newIndex);
+            }
+
+            if (spellings.arraySize < spellingsCells.arraySize)
+                spellingsCells.DeleteArrayElementAtIndex(spellingsCells.arraySize - 1);
+
+            if (spellings.arraySize < missingLettersCells.arraySize)
+                missingLettersCells.DeleteArrayElementAtIndex(missingLettersCells.arraySize - 1);
         }
     }
 }

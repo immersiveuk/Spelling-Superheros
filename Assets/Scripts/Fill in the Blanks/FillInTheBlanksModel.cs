@@ -5,17 +5,43 @@ using System;
 
 namespace Immersive.FillInTheBlank
 {
-    [Serializable]
-    public class FillInTheBlanksModel
+    [System.Serializable]
+    public class MissingLettersPair
     {
+        Action OnChanged;
+
+        public int startIndex;
+        public int endIndex;
+
+        public void SetOnChangedEvent(Action action)
+        {
+            this.OnChanged = action;
+        }
+
+        public void SetStartIndex(int newValue)
+        {
+            startIndex = newValue;
+            OnChanged?.Invoke();
+        }
+
+        public void SetEndIndex(int newValue)
+        {
+            endIndex = newValue;
+            OnChanged?.Invoke();
+        }
+    }
+
+    [Serializable]
+    public class SpellingSettings
+    {
+        Action OnChanged;
+
         public string spelling;
-        public Vector2Int[] missingLettersPosition;
 
         [NonSerialized]
         public string missingLetters;
 
-        [Range(1, 5)]
-        public int missingLettersPairs = 1;
+        public List<MissingLettersPair> missingLettersPairs = new List<MissingLettersPair>();
 
         public void FormateSpelling(LetterCase letterCase)
         {
@@ -32,14 +58,39 @@ namespace Immersive.FillInTheBlank
                     break;
             }
         }
+
+        public void SetSpelling(string newValue)
+        {
+            spelling = newValue;
+            OnChanged?.Invoke();
+        }
+
+        public void SetOnChangedEvent(Action action)
+        {
+            this.OnChanged = action;
+        }
+    }
+
+    [Serializable]
+    public class FillInTheBlanksModel
+    {
+        public List<SpellingSettings> spellings = new List<SpellingSettings>();
+
+        public void SetOnChangedEvent(Action action)
+        {
+            foreach (var op in spellings)
+            {
+                op.SetOnChangedEvent(action);
+            }
+        }
     }
 
     [System.Serializable]
     public class FillInTheBlanksDataStage
     {
-        public List<FillInTheBlanksModel> fillInTheBlanksLeft = new List<FillInTheBlanksModel>();
-        public List<FillInTheBlanksModel> fillInTheBlanksCenter = new List<FillInTheBlanksModel>();
-        public List<FillInTheBlanksModel> fillInTheBlanksRight = new List<FillInTheBlanksModel>();
+        public FillInTheBlanksModel fillInTheBlanksLeft = new FillInTheBlanksModel();
+        public FillInTheBlanksModel fillInTheBlanksCenter = new FillInTheBlanksModel();
+        public FillInTheBlanksModel fillInTheBlanksRight = new FillInTheBlanksModel();
     }
 
     [System.Serializable]

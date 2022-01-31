@@ -53,12 +53,12 @@ namespace Immersive.FillInTheBlank
         /// It is to set "Missing Letter" text value to TextMesh pro and Highlighter Text.
         /// </summary>
         /// <param name="data"></param>
-        public void SetText(FillInTheBlanksModel data, FillInTheBlanksData controller, Action<bool> resultAction)
+        public void SetText(SpellingSettings data, FillInTheBlanksData controller, Action<bool> resultAction)
         {
             fillInTheBlanksController = controller;
             controller.OnSpellingSelected += OnSpellingSelected;
 
-            string option = SplitSpelling(data.spelling, data.missingLettersPosition);
+            string option = SplitSpelling(data.spelling, data.missingLettersPairs);
 
             this.resultAction = resultAction;
             data.missingLetters = option;
@@ -72,51 +72,26 @@ namespace Immersive.FillInTheBlank
             OnSelect();
         }
 
-        string SplitSpelling(string spelling, Vector2Int[] missingLettersPosition)
+        string SplitSpelling(string spelling, List<MissingLettersPair> missingLettersPairs)
         {
-            List<SpellingParts> spellingParts = new List<SpellingParts>();
+            if (string.IsNullOrEmpty(spelling) || missingLettersPairs.Count == 0)
+                return "";
 
-            for (int i = 0; i < missingLettersPosition.Length; i++)
+            for (int i = missingLettersPairs.Count - 1; i >= 0; i--)
             {
-                Vector2Int position = missingLettersPosition[i];
+                MissingLettersPair position = missingLettersPairs[i];
 
-                if (i == 0 && position.x > 0)
-                    spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(0, position.x)));
-
-                spellingParts.Add(new SpellingParts("Option", spelling.Substring(position.x, position.y - position.x + 1)));
-
-                if (i < missingLettersPosition.Length - 1)
-                    spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(position.y + 1, missingLettersPosition[i + 1].x - position.y - 1)));
+                spelling = spelling.Insert(position.endIndex + 1, "<#00000000>");
+                spelling = spelling.Insert(position.startIndex, "</color>");
             }
 
-            spellingParts.Add(new SpellingParts("Spelling", spelling.Substring(missingLettersPosition[missingLettersPosition.Length - 1].y + 1, spelling.Length - missingLettersPosition[missingLettersPosition.Length - 1].y - 1)));
+            spelling = spelling.Insert(0, "<#00000000>");
+            spelling = spelling.Insert(spelling.Length, "</color>");
 
-            return ApplyTransperancy(spellingParts);
-        }
+            spelling = spelling.Remove(0, spelling.IndexOf("/") + 7);
+            spelling = spelling.Remove(spelling.LastIndexOf("#") - 1);
 
-        string ApplyTransperancy(List<SpellingParts> spellingParts)
-        {
-            string option = "";
-
-            for (int i = 0; i < spellingParts.Count; i++)
-            {
-                if (!string.IsNullOrEmpty(spellingParts[i].value))
-                {
-                    if (i == 0 && spellingParts[0].type.Contains("Spelling") || i == spellingParts.Count - 1 && spellingParts[spellingParts.Count - 1].type.Contains("Spelling"))
-                        continue;
-
-                    if (spellingParts[i].type.Contains("Spelling"))
-                    {
-                        option += "<#00000000>" + spellingParts[i].value + "</color>";
-                    }
-                    else
-                    {
-                        option += spellingParts[i].value;
-                    }
-                }
-            }
-
-            return option;
+            return spelling;
         }
 
         private void OnSpellingSelected(FillInTheBlanksSpelling spelling)
@@ -224,8 +199,8 @@ namespace Immersive.FillInTheBlank
 
             Vector2 centerPosition;
 
-            Vector3 bottomLeft = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.missingLettersPosition[0].x, true);
-            Vector3 bottomRight = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.missingLettersPosition[selectedSpelling.spellingData.missingLettersPosition.Length-1].y, false);
+            Vector3 bottomLeft = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.missingLettersPairs[0].startIndex, true);
+            Vector3 bottomRight = GetPositionOfCharacter(textInfo, selectedSpelling.spellingData.missingLettersPairs[selectedSpelling.spellingData.missingLettersPairs.Count - 1].endIndex, false);
 
             centerPosition = (bottomLeft + bottomRight) / 2;
 

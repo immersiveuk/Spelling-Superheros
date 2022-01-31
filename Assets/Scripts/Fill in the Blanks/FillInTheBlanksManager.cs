@@ -59,7 +59,7 @@ namespace Immersive.FillInTheBlank
             fontSizeSimpleMode = 12;
             fotSizeAdvancedMode = 12;
 
-            SetWords();
+            //SetWords();
         }
 
         void SetWords()
@@ -82,7 +82,7 @@ namespace Immersive.FillInTheBlank
 
             foreach (var obj in FindObjectsOfType<FillInTheBlanksData>())
             {
-                totalQuestions += obj.fillInTheBlanksList.Count;
+                totalQuestions += obj.fillInTheBlanksList.spellings.Count;
                 obj.OnResultAction += OnResultAction;
             }
 

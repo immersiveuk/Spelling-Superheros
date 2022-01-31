@@ -12,18 +12,21 @@ namespace Immersive.FillInTheBlank
     public enum LetterCase { Upper, Lower, Capital, EditorSetting}
     public class FillInTheBlanksData : MonoBehaviour
     {
+        [Space(10)]
+        public LetterCase letterCase;        
+
         public delegate void ResultAction(bool result);
         public event ResultAction OnResultAction;
 
         public delegate void SpellingSelected(FillInTheBlanksSpelling spelling);
         public event SpellingSelected OnSpellingSelected;
 
-        public List<FillInTheBlanksModel> fillInTheBlanksList;
+        [Space(20)]
+        public FillInTheBlanksModel fillInTheBlanksList;
         public List<FillInTheBlanksSpelling> spellings;
         public List<FillInTheBlanksMissingLetter> missingLetters;
 
-        public LetterCase letterCase;
-
+        [HideInInspector]
         public FillInTheBlanksMissingLetter.MissingLettersStats missingLettersStats = FillInTheBlanksMissingLetter.MissingLettersStats.CanPlace;
 
         private int questionNo = 0;
@@ -35,35 +38,40 @@ namespace Immersive.FillInTheBlank
             Debug.Log(JsonConvert.SerializeObject(fillInTheBlanksList));
         }
 
+        private void Awake()
+        {
+            fillInTheBlanksList.SetOnChangedEvent(SetLayout);
+        }
+
         private void Start()
         {
-            SetLayout();
+            //SetLayout();
         }
 
         /// <summary>
         /// Set Layout of Spelling and Missing Layout based on <FillInTheBlanksData>
         /// </summary>
-        void SetLayout()
+        public void SetLayout()
         {
+            Debug.Log("it should call last");
             SetSpellings();
             SetMissingLetters();
-            SelectNextSpelling();
+            SelectFirstSpelling();
         }
 
         void SetSpellings()
         {
             for (int i = 0; i < spellings.Count; i++)
             {
-                fillInTheBlanksList[i].FormateSpelling(letterCase);
-                //spellings[i].spellingData.spelling = FormateWord(spellings[i].spellingData.spelling);
-                spellings[i].SetText(fillInTheBlanksList[i]);
+                fillInTheBlanksList.spellings[i].FormateSpelling(letterCase);
+                spellings[i].SetText(fillInTheBlanksList.spellings[i]);
             }
         }
 
         void SetMissingLetters()
         {
-            List<FillInTheBlanksModel> lettrsToShuffle = new List<FillInTheBlanksModel>();
-            lettrsToShuffle.AddRange(fillInTheBlanksList);
+            List<SpellingSettings> lettrsToShuffle = new List<SpellingSettings>();
+            lettrsToShuffle.AddRange(fillInTheBlanksList.spellings);
             lettrsToShuffle.Shuffle();
 
             for (int i = 0; i < missingLetters.Count; i++)
@@ -106,6 +114,14 @@ namespace Immersive.FillInTheBlank
             {
                 SelectNextSpelling();
             }
+        }
+
+        void SelectFirstSpelling()
+        {
+            currentSpelling = spellings[0];
+            currentSpelling.OnSelect();
+
+            OnSpellingSelected(spellings[0]);
         }
 
         /// <summary>

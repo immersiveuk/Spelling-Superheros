@@ -1,0 +1,343 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d273202b5aa03ea4081231b1ca12dfbb, type: 3}
+  m_Name: UserEditables Settings
+  m_EditorClassIdentifier: 
+  useUserEditablesInEditor: 1
+  flexMagicTemplateStr: "{\r\n  \"settingsTabs\": [\r\n    {\r\n      \"label\":
+    \"Settings\",\r\n      \"groups\": [\r\n        {\r\n          \"label\": \"Stage
+    - 1 - Right Wall - apple Spelling Settings\",\r\n          \"inline\": true,\r\n         
+    \"settings\": [\r\n            {\r\n              \"id\": \"312d1cc9-19c1-4198-97ba-79c1bc7dc152\",\r\n             
+    \"label\": \"Spelling\",\r\n              \"type\": \"text\",\r\n             
+    \"value\": \"apple\"\r\n            },\r\n            {\r\n              \"id\":
+    \"cc6e66a2-889a-4df5-ba1d-a63eed692486\",\r\n              \"label\": \"Pair
+    1 Start Index\",\r\n              \"type\": \"int\",\r\n              \"value\":
+    3\r\n            },\r\n            {\r\n              \"id\": \"bce96b7c-cef7-4bb2-a26b-eacb6b42d548\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - Right Wall - tunnel Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"39db938f-3e47-4441-83d6-67ce3721299a\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"tunnel\"\r\n            },\r\n            {\r\n              \"id\": \"0ff690b8-b9f9-4add-bb8b-61347888a6af\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"c8ddbefd-f42d-49b8-800a-365db2b73b34\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - Right Wall - animal Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"6e73fcab-335d-4dd7-947a-cf5a669314d4\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"animal\"\r\n            },\r\n            {\r\n              \"id\": \"ab90c29e-ff72-4392-8e3c-14d15d3fd0e6\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"46a2ccaa-b948-4e3f-9b9f-7a21c8cb3817\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - Right Wall - brother Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"64319c00-bda8-4a2e-9062-a9d972d06dfb\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"brother\"\r\n            },\r\n            {\r\n              \"id\": \"19a49232-7a40-4414-b512-8dc617cc26e5\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            },\r\n            {\r\n              \"id\": \"bb334a96-56bf-41a9-b9a5-a7f04c227e8e\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - LeftWall - giraffe Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"6b66d049-b617-40fc-8942-5fa28cdb1bf5\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"vijay\"\r\n            },\r\n            {\r\n              \"id\": \"b4997b70-5b6b-4d55-8eca-be96f5660421\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 0\r\n            },\r\n            {\r\n              \"id\": \"095248da-7323-40f1-9d5f-ce5b1704cc67\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - LeftWall - badge Spelling Settings\",\r\n          \"inline\":
+    true,\r\n          \"settings\": [\r\n            {\r\n              \"id\":
+    \"6c777d20-5617-4313-9b91-c4d376b49d98\",\r\n              \"label\": \"Spelling\",\r\n             
+    \"type\": \"text\",\r\n              \"value\": \"umesh\"\r\n            },\r\n           
+    {\r\n              \"id\": \"6b7bd47b-4970-4a6b-aba8-604581c2ef0e\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            },\r\n            {\r\n              \"id\": \"13e1622a-a1b7-461e-92e7-fbcbc322ac88\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - LeftWall - huge Spelling Settings\",\r\n          \"inline\":
+    true,\r\n          \"settings\": [\r\n            {\r\n              \"id\":
+    \"f3012f2f-6959-42f6-9e97-e5be48703729\",\r\n              \"label\": \"Spelling\",\r\n             
+    \"type\": \"text\",\r\n              \"value\": \"kamlesh\"\r\n            },\r\n           
+    {\r\n              \"id\": \"229e0075-c5dd-4a2f-a894-db8bdc235a67\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            },\r\n            {\r\n              \"id\": \"2049b318-22a2-40a2-817c-effb77aa6741\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - LeftWall - race Spelling Settings\",\r\n          \"inline\":
+    true,\r\n          \"settings\": [\r\n            {\r\n              \"id\":
+    \"57542ee3-f54c-4ef9-a653-56d5f015844a\",\r\n              \"label\": \"Spelling\",\r\n             
+    \"type\": \"text\",\r\n              \"value\": \"rajesh\"\r\n            },\r\n           
+    {\r\n              \"id\": \"11a5ee02-23ea-4c74-ad77-cb4375729f46\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            },\r\n            {\r\n              \"id\": \"deba63ea-087b-47aa-9991-71a30ba34889\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - Center Wall - knee Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"d97a609b-3014-401a-8d8f-57a30b3b1743\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"knee\"\r\n            },\r\n            {\r\n              \"id\": \"eef2a0e8-597e-41b1-8e88-1b8f9d53d9cf\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 0\r\n            },\r\n            {\r\n              \"id\": \"93da8c77-d80e-40ee-a205-239680a7c8a1\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - Center Wall - jacket Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"1c17e587-7205-4283-bd54-e3dec0f12e2a\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"jacket\"\r\n            },\r\n            {\r\n              \"id\": \"a9c53230-c371-41b2-b000-8ea54d737737\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 0\r\n            },\r\n            {\r\n              \"id\": \"8d0b6f35-eee9-4e34-8ce6-f2f0ca82cd33\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 0\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - Center Wall - gnaw Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"bdc19c1a-f9cc-4a32-b10a-dd25919ed8ed\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"gnaw\"\r\n            },\r\n            {\r\n              \"id\": \"9c2a6f76-da07-46c3-b634-15f6ea00a5e2\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 0\r\n            },\r\n            {\r\n              \"id\": \"c51c538e-debf-435b-bf11-d1de1b78bc40\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 1 - Center Wall - wrong Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"0a0c6844-196d-456d-8301-7fbec3fb07c9\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"wrong\"\r\n            },\r\n            {\r\n              \"id\": \"f2a03f14-2195-4e96-b3dc-74e1b567afae\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 0\r\n            },\r\n            {\r\n              \"id\": \"f427244a-f4ab-41c6-96a8-2e067a7e1e61\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Right Wall - watch Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"bb4ef7c4-ed19-4c6a-9ad3-2d27d9ea6273\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"watch\"\r\n            },\r\n            {\r\n              \"id\": \"9f89137d-7db8-4b15-9be9-cca91d64e4d1\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            },\r\n            {\r\n              \"id\": \"c372a951-0d2c-446a-bf5c-89418804453a\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Right Wall - world Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"13a757a3-6cb5-4e63-8f98-2f5866df098e\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"world\"\r\n            },\r\n            {\r\n              \"id\": \"3bc3d0e5-3e41-40ce-897e-fab666d77d15\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            },\r\n            {\r\n              \"id\": \"05a64be4-67fd-4d02-ad88-20904bb2a3c2\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Right Wall - nicer Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"8ecb68ee-6cc9-4dd3-99b1-c0623d029c6c\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"nicer\"\r\n            },\r\n            {\r\n              \"id\": \"77234233-1650-4f1f-aae4-ad0e9b1bafa7\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            },\r\n            {\r\n              \"id\": \"0eedadbc-c97c-4f21-bc29-791eeebe41ea\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Right Wall - playful Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"bd3d3083-6207-4b52-b85c-9562c57fc380\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"playful\"\r\n            },\r\n            {\r\n              \"id\": \"d887e5b1-e8cf-4ec1-8ebe-b622ae4bd9ad\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"fc447a19-7af3-421b-8079-a7bd0ac0896d\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 6\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Left Wall - pencil Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"48ed4938-f40b-454d-9a1c-27adee240540\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"pencil\"\r\n            },\r\n            {\r\n              \"id\": \"5b6615a9-a31d-43b7-9343-ecd3889da6f8\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"ff6033c2-4bae-4b2b-a646-32af0874e06d\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Left Wall - July Spelling Settings\",\r\n          \"inline\":
+    true,\r\n          \"settings\": [\r\n            {\r\n              \"id\":
+    \"10b19e1b-5f09-4cda-b1b3-9eced2d88738\",\r\n              \"label\": \"Spelling\",\r\n             
+    \"type\": \"text\",\r\n              \"value\": \"July\"\r\n            },\r\n           
+    {\r\n              \"id\": \"402b244e-8064-4714-a073-f9c2d9450504\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            },\r\n            {\r\n              \"id\": \"6adddff0-c005-4201-ba3a-6198af9e7c73\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Left Wall - ball Spelling Settings\",\r\n          \"inline\":
+    true,\r\n          \"settings\": [\r\n            {\r\n              \"id\":
+    \"78f57161-b4d2-481d-8abb-a7e595d9a816\",\r\n              \"label\": \"Spelling\",\r\n             
+    \"type\": \"text\",\r\n              \"value\": \"ball\"\r\n            },\r\n           
+    {\r\n              \"id\": \"ef450d5d-0aea-4287-b100-fad8f74dccd4\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            },\r\n            {\r\n              \"id\": \"d5b6f6af-0818-45e0-a8b7-b0c0d76c07a4\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Left Wall - hiking Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"821bdc8e-9f04-4260-8214-198799d9a94d\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"hiking\"\r\n            },\r\n            {\r\n              \"id\": \"13d555b0-33d5-4900-907c-99baa5bd6884\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            },\r\n            {\r\n              \"id\": \"0fb0377a-754d-4206-a185-ad23ff2c4c97\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Center Wall - hiked Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"8a90d573-3064-4d75-8e98-c830201a8a41\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"hiked\"\r\n            },\r\n            {\r\n              \"id\": \"b74f9619-7ec5-461c-9d6b-6117ba7c6d5f\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            },\r\n            {\r\n              \"id\": \"02243db5-a7a3-4c1c-b157-33dd0b8dcfb8\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Center Wall - shiny Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"6a0e5219-fafc-4e0a-b008-bee75bf4e9a8\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"shiny\"\r\n            },\r\n            {\r\n              \"id\": \"9ac20ce7-3437-4d65-92d8-2b417e3b07d3\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"dfa4aaad-dfe2-4a18-a606-7101208b6ca9\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Center Wall - mother Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"cb161bf7-53bf-45a5-9b94-1bb0039f2d31\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"mother\"\r\n            },\r\n            {\r\n              \"id\": \"05caad14-c47c-4d25-b444-6f1ba3bc6c86\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            },\r\n            {\r\n              \"id\": \"3ac7a782-5a63-4ce6-8b17-ac41350ca9b1\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Center Wall - donkey Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"9283f1ea-1210-4183-88ea-dfaa7dea3de5\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"donkey\"\r\n            },\r\n            {\r\n              \"id\": \"b860e7e4-ca1e-43f7-a253-b53f722fe17d\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"0f1dbd4b-4988-43c3-90ae-b83d4945a826\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Right Wall - runner Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"0c9cf987-beea-4994-9a44-4fb61251b285\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"runner\"\r\n            },\r\n            {\r\n              \"id\": \"211026ce-cb99-4d9e-a56f-8642f1ede496\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"aa7db973-84b5-4617-b4b2-944d474fc52d\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Right Wall - happily Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"5837936c-e769-4037-a404-64a893a75298\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"happily\"\r\n            },\r\n            {\r\n              \"id\": \"d98b648c-ff13-48df-b720-6253860b9b76\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            },\r\n            {\r\n              \"id\": \"53657e16-80db-429e-b985-fa1101be2a08\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 6\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Right Wall - penniless Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"582354a8-9b77-46e2-80de-685b10065f5b\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"penniless\"\r\n            },\r\n            {\r\n              \"id\": \"da9b80c1-5213-4321-be0f-2b96246172bb\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            },\r\n            {\r\n              \"id\": \"b9911466-5fe6-48a7-868e-2cd3feba96e1\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 8\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Right Wall - bridge Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"32a71898-977e-47af-9216-f860637eda37\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"bridge\"\r\n            },\r\n            {\r\n              \"id\": \"5e640027-5642-429c-adb7-c1586cf89be3\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            },\r\n            {\r\n              \"id\": \"8e82299d-ca5b-4323-9898-94a3516bb03e\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Center Wall - treasure Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"835c484f-a691-46fa-bde5-d44f18885be8\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"treasure\"\r\n            },\r\n            {\r\n              \"id\": \"8a43f0d2-f3e8-40b4-a89f-a4df7968e8b7\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"14ac1cc0-7fb1-4a7e-8056-6fa56757955a\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Center Wall - station Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"95617d9c-fe31-4948-8643-e3bf2440224a\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"station\"\r\n            },\r\n            {\r\n              \"id\": \"4adcaafe-1c4c-481c-b05c-2cc000990142\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            },\r\n            {\r\n              \"id\": \"d677a862-5b74-4838-bfba-26feb67ff38c\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 6\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Center Wall - saddest Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"665248ec-7318-4091-9a13-dd1b5b706ef2\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"saddest\"\r\n            },\r\n            {\r\n              \"id\": \"30651125-35b3-430a-af2c-0f817dd28455\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"b1692a92-ea8c-477c-b47d-1f84f0b5932a\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 6\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Center Wall - hummed Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"90127b03-b044-40e5-a016-b22381ae7d14\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"hummed\"\r\n            },\r\n            {\r\n              \"id\": \"5443e372-08ee-494f-b78c-d7cf3544e43c\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 4\r\n            },\r\n            {\r\n              \"id\": \"5d773ea3-99ce-423d-a4e2-c4b0427530df\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Left Wall - squash Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"da8a434a-c78e-41e1-929e-96fcd662cb34\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"squash\"\r\n            },\r\n            {\r\n              \"id\": \"0b5edff9-620b-4478-a159-944bca93e9bb\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            },\r\n            {\r\n              \"id\": \"25e3711b-5f42-490e-a509-ce177738642e\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Left Wall - warm Spelling Settings\",\r\n          \"inline\":
+    true,\r\n          \"settings\": [\r\n            {\r\n              \"id\":
+    \"983115a1-f9f6-461f-a0c9-e01ca3b72c53\",\r\n              \"label\": \"Spelling\",\r\n             
+    \"type\": \"text\",\r\n              \"value\": \"warm\"\r\n            },\r\n           
+    {\r\n              \"id\": \"df2bae96-23da-4cbf-a1d8-afd7dc70c31e\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 1\r\n            },\r\n            {\r\n              \"id\": \"e27166ac-58ab-402a-a05e-f258e153ed79\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 2\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Left Wall - enjoyment Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"d0e9771e-3765-4758-8c58-46abefef2b65\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"enjoyment\"\r\n            },\r\n            {\r\n              \"id\": \"9ddc98cd-a159-418b-8ed6-ebd55278e346\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            },\r\n            {\r\n              \"id\": \"03a4ef91-4022-4c9f-8d08-8e0ab5ac5da6\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 8\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"label\": \"Stage - 2 - Left Wall - nicest Spelling Settings\",\r\n         
+    \"inline\": true,\r\n          \"settings\": [\r\n            {\r\n             
+    \"id\": \"fd74d7ec-e2fc-4519-9d71-cbdae74fea00\",\r\n              \"label\":
+    \"Spelling\",\r\n              \"type\": \"text\",\r\n              \"value\":
+    \"nicest\"\r\n            },\r\n            {\r\n              \"id\": \"0e5bda1d-af39-4fe5-9ba8-4d325e3ded1b\",\r\n             
+    \"label\": \"Pair 1 Start Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 3\r\n            },\r\n            {\r\n              \"id\": \"009f8e35-aa05-4a5b-b0d5-8d132f3b7926\",\r\n             
+    \"label\": \"Pair 1 End Index\",\r\n              \"type\": \"int\",\r\n             
+    \"value\": 5\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n 
+    ]\r\n}"
+  numberOfHotspots: 1

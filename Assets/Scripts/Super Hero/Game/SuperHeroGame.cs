@@ -219,7 +219,7 @@ namespace Immersive.SuperHero
 
         public void OnComplete()
         {
-            superHeroObj.GetComponent<Animation>().enabled = false;
+            superHeroObj.GetComponent<UnityEngine.Animation>().enabled = false;
             textEnemy.transform.parent.gameObject.SetActive(false);
 
             iTween.MoveTo(superHeroObj.gameObject, iTween.Hash("x", superHeroObj.transform.localPosition.x, "y", 1, "z", 0, "islocal", true,

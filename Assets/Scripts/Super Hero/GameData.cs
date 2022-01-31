@@ -105,15 +105,15 @@ namespace Immersive.SuperHero
             switch (currentStage)
             {
                 case SuperHeroCreatorStages.Stage1:
-                    stage = fillInTheBlanksDataStages.stage1.fillInTheBlanksCenter.Count == 0 ? null : fillInTheBlanksDataStages.stage1;
+                    stage = fillInTheBlanksDataStages.stage1.fillInTheBlanksCenter.spellings.Count == 0 ? null : fillInTheBlanksDataStages.stage1;
                     break;
 
                 case SuperHeroCreatorStages.Stage2:
-                    stage = fillInTheBlanksDataStages.stage2.fillInTheBlanksCenter.Count == 0 ? null : fillInTheBlanksDataStages.stage2;
+                    stage = fillInTheBlanksDataStages.stage2.fillInTheBlanksCenter.spellings.Count == 0 ? null : fillInTheBlanksDataStages.stage2;
                     break;
 
                 case SuperHeroCreatorStages.Stage3:
-                    stage = fillInTheBlanksDataStages.stage3.fillInTheBlanksCenter.Count == 0 ? null : fillInTheBlanksDataStages.stage3;
+                    stage = fillInTheBlanksDataStages.stage3.fillInTheBlanksCenter.spellings.Count == 0 ? null : fillInTheBlanksDataStages.stage3;
                     break;
             }
 

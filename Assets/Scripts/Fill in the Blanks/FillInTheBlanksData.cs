@@ -53,7 +53,6 @@ namespace Immersive.FillInTheBlank
         /// </summary>
         public void SetLayout()
         {
-            Debug.Log("it should call last");
             SetSpellings();
             SetMissingLetters();
             SelectFirstSpelling();
@@ -122,6 +121,8 @@ namespace Immersive.FillInTheBlank
             currentSpelling.OnSelect();
 
             OnSpellingSelected(spellings[0]);
+
+            questionNo = 1;
         }
 
         /// <summary>

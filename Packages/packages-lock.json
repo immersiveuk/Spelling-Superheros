@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "15243c6558c5b4c5419d5778aed06326227ed373"
+      "hash": "3815a502a3a40c995b73e3af66241d2531fa3da8"
     },
     "com.immersiveinteractive.immersivejsonandassetmanagement": {
       "version": "https://github.com/immersiveuk/Immersive-Asset-Management-Package.git?path=/com.immersiveinteractive.immersivejsonandassetmanagement",
@@ -22,7 +22,7 @@
         "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.textmeshpro": "2.0.1"
       },
-      "hash": "a82e8d1f5935b11d3b421f782df4e5c3f98205b1"
+      "hash": "967b0c79492d5be2b31d07efb497f4c94e38952f"
     },
     "com.immersiveinteractive.packagemanager": {
       "version": "https://github.com/immersiveuk/Immersive-Package-Manager.git#SDK-1",
@@ -39,7 +39,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "5838c836816e0bccf6a0eaf649479acfcb636162"
+      "hash": "f8a6be88b9682027e0fec4551a8e349019bc260b"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -63,7 +63,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.analytics": {
-      "version": "3.6.11",
+      "version": "3.6.12",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -72,11 +72,10 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "1.13.5",
+      "version": "1.15.15",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.services.core": "1.0.1"
       },
       "url": "https://packages.unity.com"
@@ -105,7 +104,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.11",
+      "version": "2.0.14",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -114,7 +113,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
-      "version": "1.2.4",
+      "version": "1.2.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -128,7 +127,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.purchasing": {
-      "version": "4.0.3",
+      "version": "4.1.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -151,7 +150,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.29",
+      "version": "1.1.31",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -192,7 +191,7 @@
       }
     },
     "com.unity.xr.legacyinputhelpers": {
-      "version": "2.1.8",
+      "version": "2.1.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {

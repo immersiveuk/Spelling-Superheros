@@ -7,12 +7,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Com.Immersive.Cameras.AbstractImmersiveCamera;
+
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.SceneManagement;
+#endif
 
 namespace Com.Immersive.Cameras
 {
@@ -197,7 +201,7 @@ namespace Com.Immersive.Cameras
                 if (EditorPrefs.HasKey("ImmersiveCameraLayout"))
                 {
                     layout = (SurfacePosition)EditorPrefs.GetInt("ImmersiveCameraLayout");
-                } 
+                }
 #endif
             }
             if (layout == SurfacePosition.None)
@@ -300,44 +304,11 @@ namespace Com.Immersive.Cameras
         protected List<Rect> GenerateSurfaceRectsInEditor(List<SurfacePosition> surfacePositions)
         {
 
-            var surfaceRects = new List<Rect>();
-            var xOffset = 0;
-
-            Dictionary<ScreenSizes, Dictionary<SurfacePosition, int>> defaultResolutions = new Dictionary<ScreenSizes, Dictionary<SurfacePosition, int>>();
-            defaultResolutions.Add(ScreenSizes.Standard, CreateLayoutResolutions(1920, 1920, 1920, 1920, 1920));
-            defaultResolutions.Add(ScreenSizes.WideFront, CreateLayoutResolutions(1920, 3840, 1920, 3840, 1920));
-            defaultResolutions.Add(ScreenSizes.Wide, CreateLayoutResolutions(3840, 3840, 3840, 3840, 1920));
-            defaultResolutions.Add(ScreenSizes.Assymetric, CreateLayoutResolutions(960, 3840, 1920, 3840, 1920));
-            defaultResolutions.Add(ScreenSizes.Tunnel, CreateLayoutResolutions(3840, 1920, 3840, 1920, 1920));
-            defaultResolutions.Add(ScreenSizes.Standard4x3, CreateLayoutResolutions(1440, 1440, 1440, 1440, 1400));
-            defaultResolutions.Add(ScreenSizes.Standard16x10, CreateLayoutResolutions(1728, 1728, 1728, 1728, 1728));
-            defaultResolutions.Add(ScreenSizes.WideFront16x10, CreateLayoutResolutions(1728, 3456, 1728, 3456, 1728));
-            defaultResolutions.Add(ScreenSizes.Wide16x10, CreateLayoutResolutions(3456, 3456, 3456, 3456, 3456));
-
-            foreach (SurfacePosition position in surfacePositions)
-            {
-
-                var width = defaultResolutions[screenSize][position];
-                surfaceRects.Add(new Rect(xOffset, 0, width, 1080));
-                xOffset += width;
-            }
-
-            return surfaceRects;
-        }
-
-        private Dictionary<SurfacePosition, int> CreateLayoutResolutions(int left, int center, int right, int back, int floor)
-        {
-            var layoutResolutions = new Dictionary<SurfacePosition, int>();
-            layoutResolutions.Add(SurfacePosition.Left, left);
-            layoutResolutions.Add(SurfacePosition.Center, center);
-            layoutResolutions.Add(SurfacePosition.Right, right);
-            layoutResolutions.Add(SurfacePosition.Back, back);
-            layoutResolutions.Add(SurfacePosition.Floor, floor);
-            return layoutResolutions;
+            return GenerateSurfaceResolutionsInEditor.GenerateSurfaceRects(screenSize, surfacePositions, 1920);
         }
 
         //-------------------
-        // 5. Create a unified list of surfaces, 
+        // 5. Create a unified list of surfaces,
         //    containing their resolution and layout position and store reference to main surface
         //-------------------
 
@@ -396,23 +367,86 @@ namespace Com.Immersive.Cameras
         // 6. Activates the required displays for Target Display Mode or Spanning Display Mode
         //-------------------
 
-        private void ActicateDisplays()
+        private Rect windowRect;
+        /// <summary>
+        /// Calculates a rect for the entire window.
+        /// </summary>
+        private void CalculateWindowRect()
         {
+            windowRect = surfaces[0].rect;
+            foreach (var surface in surfaces)
+            {
+                if (surface.rect.xMin < windowRect.xMin)
+                    windowRect.xMin = surface.rect.xMin;
+                if (surface.rect.yMin < windowRect.yMin)
+                    windowRect.yMin = surface.rect.yMin;
+                if (surface.rect.xMax > windowRect.xMax)
+                    windowRect.xMax = surface.rect.xMax;
+                if (surface.rect.yMax > windowRect.yMax)
+                    windowRect.yMax = surface.rect.yMax;
+            }
+        }
 
-#if UNITY_EDITOR
+        private Rect CalculateViewportRect(SurfaceInfo surfaceInfo)
+        {
+            Rect viewportRect = new Rect
+            {
+                xMin = Mathf.InverseLerp(windowRect.xMin, windowRect.xMax, surfaceInfo.rect.xMin),
+                xMax = Mathf.InverseLerp(windowRect.xMin, windowRect.xMax, surfaceInfo.rect.xMax),
+                yMin = Mathf.InverseLerp(windowRect.yMin, windowRect.yMax, surfaceInfo.rect.yMin),
+                yMax = Mathf.InverseLerp(windowRect.yMin, windowRect.yMax, surfaceInfo.rect.yMax)
+            };
+
+            //Note: This is to fix an ensure that the floor aligns to the top of the window.
+            //      This was an issue when the floor was lower resolution than the other surfaces.
+            viewportRect.y = 1 - viewportRect.height - viewportRect.y;
+
+            return viewportRect;
+        }
+
+        private void CalculateDisplayModeBuild()
+        {
+            if (buildDisplayMode == BuildDisplayMode.VirtualRoom || ReadParameters.Settings.VirtualRoom) displayMode = DisplayMode.VirtualRoom;
+            else if (buildDisplayMode == BuildDisplayMode.Panning || ReadParameters.Settings.PanningPreview) displayMode = DisplayMode.PanningView;
+            else
+            {
+                displayMode = DisplayMode.BorderlessWindow;
+//#if UNITY_2019_1_OR_NEWER
+//#else
+//                displayMode = (Display.displays.Length >= walls.Count) ? DisplayMode.TargetDisplay : DisplayMode.SpanningDisplay;
+//#endif
+            }
+        }
+
+        private void CalculateDisplayModeEditor()
+        {
             if (editorDisplayMode == EditorDisplayMode.VirtualRoom) displayMode = DisplayMode.VirtualRoom;
             else displayMode = DisplayMode.PanningView;
+        }
 
-            //#elif UNITY_WEBGL
-            //            displayMode = DisplayMode.WebGL;
-
+        private void ActicateDisplays()
+        {
+#if UNITY_EDITOR
+            CalculateDisplayModeEditor();
 #else
-            if (buildDisplayMode == BuildDisplayMode.VirtualRoom ||  ReadParameters.Settings.VirtualRoom) displayMode = DisplayMode.VirtualRoom;
-            else if (buildDisplayMode == BuildDisplayMode.Panning || ReadParameters.Settings.PanningPreview) displayMode = DisplayMode.PanningView;
-            else displayMode = (Display.displays.Length >= walls.Count) ? DisplayMode.TargetDisplay : DisplayMode.SpanningDisplay;
+            CalculateDisplayModeBuild();
 #endif
 
+            Application.targetFrameRate = 60;
+
             // 2. Activate Displays
+
+            //Borderless Window
+            if (displayMode == DisplayMode.BorderlessWindow)
+            {
+                CalculateWindowRect();
+                if (IsFirstScene)
+                {
+                    Screen.fullScreen = false;
+                    Screen.fullScreenMode = FullScreenMode.Windowed;
+                    BorderlessWindow.SetWindowRect(windowRect);
+                }
+            }
 
             //Target Display
             if (IsFirstScene && displayMode == DisplayMode.TargetDisplay)
@@ -440,12 +474,18 @@ namespace Com.Immersive.Cameras
             //Virtual Room
             if (displayMode == DisplayMode.VirtualRoom)
             {
+
+#if UNITY_STANDALONE
+                Screen.SetResolution(Display.displays[0].systemWidth, Display.displays[0].systemWidth, true);
+                Screen.fullScreen = true;
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+#endif
                 virtualRoom = Instantiate(virtualRoomPrefab, new Vector3(0, -500, -500), Quaternion.identity).GetComponent<VirtualRoomController>();
                 renderTextures = new List<RenderTexture>();
                 for (var i = 0; i < surfaces.Count; i++)
                 {
                     var size = surfaces[i].rect.size;
-                    var renderTexture = new RenderTexture((int)size.x, (int)size.y, 24);
+                    var renderTexture = new RenderTexture((int)size.x, (int)size.y, 16);
                     renderTextures.Add(renderTexture);
 
                     switch (surfaces[i].position)
@@ -471,7 +511,7 @@ namespace Com.Immersive.Cameras
             }
             if (displayMode == DisplayMode.PanningView)
             {
-                panningView = Instantiate(panningViewPrefab, new Vector3(0,-500, -500), Quaternion.identity).GetComponent<PanViewController>();
+                panningView = Instantiate(panningViewPrefab, new Vector3(0, -500, -500), Quaternion.identity).GetComponent<PanViewController>();
 
                 renderTextures = new List<RenderTexture>();
                 for (var i = 0; i < surfaces.Count; i++)
@@ -564,8 +604,15 @@ namespace Com.Immersive.Cameras
 
                 cam.transform.localPosition = mainCamera.transform.localPosition;
                 cam.transform.localRotation = mainCamera.transform.localRotation;
-                               
+
                 // 4. Setup displays
+
+                //Borderless Window
+                if (displayMode == DisplayMode.BorderlessWindow)
+                {
+                    cam.rect = CalculateViewportRect(surface);
+                }
+
                 // Target Displays
                 if (displayMode == DisplayMode.TargetDisplay)
                 {
@@ -639,8 +686,15 @@ namespace Com.Immersive.Cameras
             cam.name = String.Format("{0} - Camera", floor.position.ToString());
             cameras.Add(cam);
 
+
             // 3. Setup Display Mode
-            if (displayMode == DisplayMode.TargetDisplay)
+
+            //Borderless Window
+            if (displayMode == DisplayMode.BorderlessWindow)
+            {
+                cam.rect = CalculateViewportRect(floor);
+            }
+            else if (displayMode == DisplayMode.TargetDisplay)
             {
                 cam.targetDisplay = walls.Count;
                 Debug.LogError("Floor Target Display: " + cam.targetDisplay);
@@ -738,7 +792,7 @@ namespace Com.Immersive.Cameras
                 }
 
                 // Spanning Display
-                else if (displayMode == DisplayMode.SpanningDisplay)
+                else if (displayMode == DisplayMode.SpanningDisplay || displayMode == DisplayMode.BorderlessWindow)
                 {
                     switch (surface.position)
                     {
@@ -893,14 +947,14 @@ namespace Com.Immersive.Cameras
             //----------Input----------
             if (interactionOn && pointTouchesOn)
             {
-                    
+
 
                 if (displayMode == DisplayMode.VirtualRoom || displayMode == DisplayMode.PanningView)
                 {
                     //Mouse Released
                     if (Input.GetMouseButtonUp(0))
                     {
-                        
+
                         HandleClickVirtualRoom(Input.mousePosition, TouchPhase.Ended);
                     }
                     //Mouse Pressed
@@ -921,39 +975,58 @@ namespace Com.Immersive.Cameras
                     for (var i = 0; i < Input.touchCount; i++)
                     {
                         Touch touch = Input.GetTouch(i);
-                        var position = Display.RelativeMouseAt(touch.position);
+                        var position = GetPositionInCameraSpace(touch.position);
                         HandleTouchOrClick(position, touch.phase, i);
                     }
 
                     //Mouse released
                     if (Input.GetMouseButtonUp(0))
                     {
-                        var position = Input.mousePosition;
-#if !UNITY_EDITOR && !UNITY_WEBGL
-                        position = Display.RelativeMouseAt(Input.mousePosition);
-#endif
+                        var position = GetCurrentMousePosition();
                         HandleTouchOrClick(position, TouchPhase.Ended, -1);
                     }
                     //Mouse Pressed
                     else if (Input.GetMouseButtonDown(0))
                     {
-                        var position = Input.mousePosition;
-#if !UNITY_EDITOR && !UNITY_WEBGL
-                        position = Display.RelativeMouseAt(Input.mousePosition);
-#endif
+                        var position = GetCurrentMousePosition();
                         HandleTouchOrClick(position, TouchPhase.Began, -1);
                     }
                     //Mouse Held
                     else if (Input.GetMouseButton(0))
                     {
-                        var position = Input.mousePosition;
-#if !UNITY_EDITOR && !UNITY_WEBGL
-                        position = Display.RelativeMouseAt(Input.mousePosition);
-#endif
+                        var position = GetCurrentMousePosition();
                         HandleTouchOrClick(position, TouchPhase.Moved, -1);
                     }
                 }
             }
+        }
+
+        private Vector3 GetCurrentMousePosition()
+        {
+            var position = Input.mousePosition;
+            if (displayMode == DisplayMode.BorderlessWindow)
+                return GetPositionInCameraSpace(position);
+#if !UNITY_EDITOR && !UNITY_WEBGL
+            if (displayMode != DisplayMode.BorderlessWindow)
+                position = Display.RelativeMouseAt(Input.mousePosition);
+#endif
+            return position;
+
+
+        }
+        private Vector3 GetPositionInCameraSpace(Vector3 position)
+        {
+            for (int i = 0; i < cameras.Count; i++)
+            {
+                var viewportPosition = cameras[i].ScreenToViewportPoint(position);
+                if (viewportPosition.x >= 0 && viewportPosition.x < 1 &&
+                    viewportPosition.y >= 0 && viewportPosition.y < 1)
+                {
+                    position = new Vector3(viewportPosition.x * cameras[i].pixelWidth, viewportPosition.y * cameras[i].pixelHeight, i);
+                    return position;
+                }
+            }
+            return position;
         }
 
         private void LateUpdate()
@@ -968,28 +1041,26 @@ namespace Com.Immersive.Cameras
             objectsTouchedCurrentFrame = new List<IInteractableObject>();
 
 
-            //Find Buttons which the user the user is no longer touching.
+            //Find UI Object which the user the user is no longer touching.
             PointerEventData ped = new PointerEventData(EventSystem.current);
-            foreach (var button in buttonsTouchedLastFrame)
+            foreach (var exitHandler in pointerExitHandlersTouchedLastFrame)
             {
-                //button.OnPointerUp(ped);
-                if (button != null)
-                {
-                    button.OnPointerExit(ped);
-                }
+                if (exitHandler != null && !exitHandler.Equals(null))
+                    exitHandler.OnPointerExit(ped);
             }
+            pointerExitHandlersTouchedLastFrame = pointerExitHandlersTouchedCurrentFrame;
+            pointerExitHandlersTouchedCurrentFrame = new List<IPointerExitHandler>();
 
-            buttonsTouchedLastFrame = buttonsTouchedCurrentFrame;
-            buttonsTouchedCurrentFrame = new List<Button>();
+            pointerEnterHandlersTouchedLastFrame = pointerEnterHandlersTouchedCurrentFrame;
+            pointerEnterHandlersTouchedCurrentFrame = new List<IPointerEnterHandler>();
         }
-
-
 
         /// <summary>
         /// arg1: Vector2     - Touch position.
         /// arg2: CameraIndex - Camera index associated with the touch.
         /// arg3: TouchPhase  - The phase of touch.
         /// arg4: int         - The index of the touch. -1 if its a click.
+        /// private void OnWallTouched(Vector2 touchPosition, int cameraIndex, TouchPhase touchPhase, int touchIndex)
         /// </summary>
         public class WallTouchEvent : UnityEvent<Vector2, int, TouchPhase, int>
         {
@@ -997,14 +1068,57 @@ namespace Com.Immersive.Cameras
             {
                 throw new NotImplementedException();
             }
+
+            internal void Invoke(SurfaceTouchedEventArgs surfaceTouchedEventArgs)
+            {
+                Invoke(surfaceTouchedEventArgs.ScreenPoint, surfaceTouchedEventArgs.RenderingCameraIndex, surfaceTouchedEventArgs.Phase, surfaceTouchedEventArgs.TouchIndex);
+            }
         }
 
+        [Obsolete("Please use AnySurfaceTouchedEvent instead")]
         public static WallTouchEvent AnyWallTouched = new WallTouchEvent();
+        [Obsolete("Please use LeftSurfaceTouchedEvent instead")]
         public static WallTouchEvent LeftScreenTouched = new WallTouchEvent();
+        [Obsolete("Please use CentreSurfaceTouchedEvent instead")]
         public static WallTouchEvent CenterScreenTouched = new WallTouchEvent();
+        [Obsolete("Please use RightSurfaceTouchedEvent instead")]
         public static WallTouchEvent RightScreenTouched = new WallTouchEvent();
+        [Obsolete("Please use BackSurfaceTouchedEvent instead")]
         public static WallTouchEvent BackScreenTouched = new WallTouchEvent();
+        [Obsolete("Please use FloorSurfaceTouchedEvent instead")]
         public static WallTouchEvent FloorTouched = new WallTouchEvent();
+
+        public static SurfaceTouchedEvent AnySurfaceTouchedEvent = new SurfaceTouchedEvent();
+        public static SurfaceTouchedEvent LeftSurfaceTouchedEvent = new SurfaceTouchedEvent();
+        public static SurfaceTouchedEvent CentreSurfaceTouchedEvent = new SurfaceTouchedEvent();
+        public static SurfaceTouchedEvent RightSurfaceTouchedEvent = new SurfaceTouchedEvent();
+        public static SurfaceTouchedEvent BackSurfaceTouchedEvent = new SurfaceTouchedEvent();
+        public static SurfaceTouchedEvent FloorSurfaceTouchedEvent = new SurfaceTouchedEvent();
+
+        private void SendSurfaceTouchedEvents(SurfaceTouchedEventArgs surfaceTouchedEventArgs)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            AnyWallTouched.Invoke(surfaceTouchedEventArgs);
+            switch (surfaceTouchedEventArgs.TouchedSurfacePosition)
+            {
+                case SurfacePosition.Left: LeftScreenTouched.Invoke(surfaceTouchedEventArgs); break;
+                case SurfacePosition.Center: CenterScreenTouched.Invoke(surfaceTouchedEventArgs); break;
+                case SurfacePosition.Right: RightScreenTouched.Invoke(surfaceTouchedEventArgs); break;
+                case SurfacePosition.Back: BackScreenTouched.Invoke(surfaceTouchedEventArgs); break;
+                case SurfacePosition.Floor: FloorTouched.Invoke(surfaceTouchedEventArgs); break;
+            }
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            AnySurfaceTouchedEvent.Invoke(surfaceTouchedEventArgs);
+            switch (surfaceTouchedEventArgs.TouchedSurfacePosition)
+            {
+                case SurfacePosition.Left: LeftSurfaceTouchedEvent.Invoke(surfaceTouchedEventArgs); break;
+                case SurfacePosition.Center: CentreSurfaceTouchedEvent.Invoke(surfaceTouchedEventArgs); break;
+                case SurfacePosition.Right: RightSurfaceTouchedEvent.Invoke(surfaceTouchedEventArgs); break;
+                case SurfacePosition.Back: BackSurfaceTouchedEvent.Invoke(surfaceTouchedEventArgs); break;
+                case SurfacePosition.Floor: FloorSurfaceTouchedEvent.Invoke(surfaceTouchedEventArgs); break;
+            }
+        }
 
         public static WallTouchEvent PlaceHotspotsWallTouchEvent = new WallTouchEvent();
 
@@ -1084,29 +1198,27 @@ namespace Com.Immersive.Cameras
                         return;
                     }
 
-                    if (worldInteractionOn)
-                    {
-                        AnyWallTouched.Invoke(position, cameraIndex, phase, -1);
-                        switch (virtualScreen.surface)
-                        {
-                            case SurfacePosition.Left: LeftScreenTouched.Invoke(position, cameraIndex, phase, -1); break;
-                            case SurfacePosition.Center: CenterScreenTouched.Invoke(position, cameraIndex, phase, -1); break;
-                            case SurfacePosition.Right: RightScreenTouched.Invoke(position, cameraIndex, phase, -1); break;
-                            case SurfacePosition.Back: BackScreenTouched.Invoke(position, cameraIndex, phase, -1); break;
-                            case SurfacePosition.Floor: FloorTouched.Invoke(position, cameraIndex, phase, -1); break;
-                        }
-                    }
-
                     // 7. Pass clicks onto UI
                     var hitUIObject = RaycastOnClickEventsToUI(cam, position, phase);
 
-                    // 8. Raycast from associated camera and trigger interactive object
-                    if (!hitUIObject) RaycastToInteractiveObject(cam, new Vector3(position.x, position.y), phase);
+                    if (worldInteractionOn)
+                    {
+                        // 8. Raycast from associated camera and trigger interactive object
+                        ImmersiveRaycastHit raycastHit;
+                        if (!hitUIObject)
+                            raycastHit = RaycastToInteractiveObject(cam, new Vector3(position.x, position.y), phase);
+                        else
+                            raycastHit = new ImmersiveRaycastHit();
 
-                    // 9. Show touch icon 
+                        SurfaceTouchedEventArgs args = new SurfaceTouchedEventArgs(position, cameraIndex, cam, phase, -1, virtualScreen.surface, raycastHit, this);
+                        SendSurfaceTouchedEvents(args);
+                    }
+
+                    // 9. Show touch icon
                     if (displayTouchPoints && (phase == TouchPhase.Began || phase == TouchPhase.Moved || phase == TouchPhase.Stationary))
                     {
-                        DisplayTouchIcon(position, cam);
+                        var scale = 1080f / cam.pixelHeight;
+                        DisplayTouchIcon(position * scale, cam);
                     }
                 }
             }
@@ -1117,24 +1229,26 @@ namespace Com.Immersive.Cameras
         /// </summary>
         /// <param name="position">A Vector3 representing the position of the click.</param>
         /// <param name="phase"></param>
-        public void HandleTouchOrClick(Vector3 position, TouchPhase phase, int touchIndex)
+        public void HandleTouchOrClick(Vector3 position, TouchPhase phase, int touchIndex, bool didHitUIObject = false)
         {
             // 1. Calculates the position of the touch relative the display which was touched
             //if (!Application.isEditor)
             //{
             //    position = Display.RelativeMouseAt(position);
             //}
+
+
             // 2. Calculate the index of the camera corresponding to touch area
             var cameraIndex = (int)position.z;
 
             //The position in a surface space as defined in arguments.
             var positionInSurfacePixelSpace = position;
+
             //In spanning mode which section of screen touched.
             if (displayMode == DisplayMode.SpanningDisplay && cameraIndex == 0)
             {
                 var xNormalised = position.x / (float)Display.displays[0].renderingWidth;
-
-                 for (var i = 0; i < walls.Count; i++)
+                for (var i = 0; i < walls.Count; i++)
                 {
                     var surface = walls[i];
                     //If touch is in screen zone corresponding to surface
@@ -1155,26 +1269,31 @@ namespace Com.Immersive.Cameras
 
             if (worldInteractionOn)
             {
-                // 3. Invoke Surface touched event
-                AnyWallTouched.Invoke(position/*positionInSurfacePixelSpace*/, cameraIndex, phase, touchIndex);
-                switch (surfaces[cameraIndex].position)
+                ImmersiveRaycastHit raycastHit = CreateImmersiveRaycastHit(cam, position, phase);
+
+                if (!didHitUIObject)
+                    PassEventsToInteractableObjects(raycastHit, phase);
+
+                // 4. Invoke Surface touched event
+
+                position = GetScreenPositions(position, cam);
+                SurfaceTouchedEventArgs surfaceTouchedEventArgs = new SurfaceTouchedEventArgs(position, cameraIndex, cam, phase, touchIndex, surfaces[cameraIndex].position, raycastHit, this);
+                SendSurfaceTouchedEvents(surfaceTouchedEventArgs);
+
+
+                Vector2 GetScreenPositions(Vector2 position2, Camera cam2)
                 {
-                    case SurfacePosition.Left: LeftScreenTouched.Invoke(position/*positionInSurfacePixelSpace*/, cameraIndex, phase, touchIndex); break;
-                    case SurfacePosition.Center: CenterScreenTouched.Invoke(position/*positionInSurfacePixelSpace*/, cameraIndex, phase, touchIndex); break;
-                    case SurfacePosition.Right: RightScreenTouched.Invoke(position/*positionInSurfacePixelSpace*/, cameraIndex, phase, touchIndex); break;
-                    case SurfacePosition.Back: BackScreenTouched.Invoke(position/*positionInSurfacePixelSpace*/, cameraIndex, phase, touchIndex); break;
-                    case SurfacePosition.Floor: FloorTouched.Invoke(position/*positionInSurfacePixelSpace*/, cameraIndex, phase, touchIndex); break;
+                    var viewportPosition = new Vector2(position2.x / cam2.pixelWidth, position2.y / cam2.pixelHeight);
+                    return cam2.ViewportToScreenPoint(viewportPosition);
                 }
             }
 
-            // 4. Raycast from associated camera and trigger interactive object
-            RaycastToInteractiveObject(cam, position, phase);
 
-            // 5. Show touch icon 
+            // 5. Show touch icon
             if (displayTouchPoints && (phase == TouchPhase.Began || phase == TouchPhase.Moved || phase == TouchPhase.Stationary))
             {
                 var scale = 1080f / cam.pixelHeight;
-                DisplayTouchIcon(positionInSurfacePixelSpace*scale, cam);
+                DisplayTouchIcon(positionInSurfacePixelSpace * scale, cam);
             }
         }
 
@@ -1188,6 +1307,8 @@ namespace Com.Immersive.Cameras
                 case "Left - Camera": uiCam = leftUICamera; break;
                 case "Center - Camera": uiCam = centerUICamera; break;
                 case "Right - Camera": uiCam = rightUICamera; break;
+                case "Back - Camera": uiCam = backUICamera; break;
+                case "Floor - Camera": uiCam = floorUICamera; break;
             }
             if (uiCam == null) return;
             Canvas canvas = uiCam.GetComponent<UICamera>().canvas;
@@ -1201,32 +1322,49 @@ namespace Com.Immersive.Cameras
 
         private List<IInteractableObject> objectsTouchedLastFrame = new List<IInteractableObject>();
         private List<IInteractableObject> objectsTouchedCurrentFrame = new List<IInteractableObject>();
-        private void RaycastToInteractiveObject(Camera cam, Vector3 position, TouchPhase phase)
-        {
-            //If world interactions are not on.
-            if (!worldInteractionOn) return;
 
+        private ImmersiveRaycastHit CreateImmersiveRaycastHit(Camera cam, Vector3 position, TouchPhase phase)
+        {
+            var viewportPosition = new Vector3(position.x / cam.pixelWidth, position.y / cam.pixelHeight, 0);
+            Ray ray = cam.ViewportPointToRay(viewportPosition);
             //Sprites only work with 2D raycasting therefore must work with both 2D and 3D
-            RaycastHit2D hit2D = Physics2D.GetRayIntersection(cam.ScreenPointToRay(new Vector2(position.x, position.y)));
-            Ray ray = cam.ScreenPointToRay(position);
+            RaycastHit2D hit2D = Physics2D.GetRayIntersection(ray);
 
             bool hit3DSuccess = Physics.Raycast(ray, out RaycastHit hit3D);
-            Transform hitTransform = null;
+
+            ImmersiveRaycastHit immersiveRaycast;
+
             if (hit3DSuccess && hit2D)
             {
-                if (hit3D.distance < hit2D.distance) hitTransform = hit3D.transform;
-                else hitTransform = hit2D.transform;
+                if (hit3D.distance < hit2D.distance)
+                    immersiveRaycast = new ImmersiveRaycastHit(hit3D);
+                else
+                    immersiveRaycast = new ImmersiveRaycastHit(hit2D);
             }
-            else if (hit3DSuccess) hitTransform = hit3D.transform;
-            else if (hit2D) hitTransform = hit2D.transform;
+            else if (hit3DSuccess)
+                immersiveRaycast = new ImmersiveRaycastHit(hit3D);
+            else if (hit2D)
+                immersiveRaycast = new ImmersiveRaycastHit(hit2D);
+            else
+                immersiveRaycast = new ImmersiveRaycastHit();
+            return immersiveRaycast;
+        }
 
-            //Handle Hit
-            if (hitTransform != null)
+        private void PassEventsToInteractableObjects(ImmersiveRaycastHit immersiveRaycast, TouchPhase phase)
+        {
+            if (immersiveRaycast.HitTransform != null)
             {
-                IInteractableObject[] ios = hitTransform.GetComponents<IInteractableObject>();
+                IInteractableObject[] ios;
+
+                if (immersiveRaycast.HitTransform.GetComponent<Rigidbody>())
+                    ios = immersiveRaycast.HitTransform.GetComponentsInChildren<IInteractableObject>();
+
+                else
+                    ios = immersiveRaycast.HitTransform.GetComponents<IInteractableObject>();
+
                 foreach (var io in ios)
                 {
-                    if (io != null)
+                    if (io != null && ((MonoBehaviour)io).isActiveAndEnabled)
                     {
                         switch (phase)
                         {
@@ -1248,8 +1386,20 @@ namespace Com.Immersive.Cameras
             }
         }
 
-        private List<Button> buttonsTouchedLastFrame = new List<Button>();
-        private List<Button> buttonsTouchedCurrentFrame = new List<Button>();
+        private ImmersiveRaycastHit RaycastToInteractiveObject(Camera cam, Vector3 position, TouchPhase phase)
+        {
+            ImmersiveRaycastHit immersiveRaycast = CreateImmersiveRaycastHit(cam, position, phase);
+            PassEventsToInteractableObjects(immersiveRaycast, phase);
+            return immersiveRaycast;
+        }
+
+        private List<IPointerEnterHandler> pointerEnterHandlersTouchedLastFrame = new List<IPointerEnterHandler>();
+        private List<IPointerEnterHandler> pointerEnterHandlersTouchedCurrentFrame = new List<IPointerEnterHandler>();
+
+        private List<IPointerExitHandler> pointerExitHandlersTouchedLastFrame = new List<IPointerExitHandler>();
+        private List<IPointerExitHandler> pointerExitHandlersTouchedCurrentFrame = new List<IPointerExitHandler>();
+
+
         // This will pass raycasts to UI through to canvases
         public bool RaycastOnClickEventsToUI(Camera cam, Vector3 position, TouchPhase phase)
         {
@@ -1285,115 +1435,82 @@ namespace Com.Immersive.Cameras
             GraphicRaycaster raycaster = canvas.GetComponent<GraphicRaycaster>();
             PointerEventData ped = new PointerEventData(EventSystem.current);
 
-            if (displayMode == DisplayMode.VirtualRoom || displayMode == DisplayMode.PanningView) ped.position = position;
-            else ped.position = new Vector2(position.x + offset, position.y);
+            if (displayMode == DisplayMode.VirtualRoom ||
+                displayMode == DisplayMode.PanningView ||
+                displayMode == DisplayMode.BorderlessWindow)
+                ped.position = position;
+            else
+                ped.position = new Vector2(position.x + offset, position.y);
 
+            var viewportPosition = new Vector3(position.x / cam.pixelWidth, position.y / cam.pixelHeight, 0);
+            ped.position = cam.ViewportToScreenPoint(viewportPosition);
 
             //Create a list of Raycast Results
             List<RaycastResult> results = new List<RaycastResult>();
             raycaster.Raycast(ped, results);
 
-
             bool didHitObject = false;
             foreach (RaycastResult result in results)
             {
-                Button button = result.gameObject.GetComponent<Button>();
-                EventTrigger et = result.gameObject.GetComponent<EventTrigger>();
-                IPointerClickHandler clickHandler = result.gameObject.GetComponent<IPointerClickHandler>();
-
-                IBeginDragHandler bdh = result.gameObject.GetComponent<IBeginDragHandler>();
-                IEndDragHandler edh = result.gameObject.GetComponent<IEndDragHandler>();
-                IDragHandler dh = result.gameObject.GetComponent<IDragHandler>();
-
-                if (clickHandler != null && phase == TouchPhase.Ended)
+                switch (phase)
                 {
-                    clickHandler.OnPointerClick(ped);
-                }
+                    case TouchPhase.Began:
+                        //Pointer Down
+                        IPointerDownHandler pointerDownHandler = result.gameObject.GetComponent<IPointerDownHandler>();
+                        if (pointerDownHandler != null)
+                            pointerDownHandler.OnPointerDown(ped);
 
-                //IBeginDragHandler
-                if (bdh != null)
-                {
-                    switch (phase)
-                    {
-                        case TouchPhase.Began:
+                        //Begin Drag
+                        IBeginDragHandler bdh = result.gameObject.GetComponent<IBeginDragHandler>();
+                        if (bdh != null)
                             bdh.OnBeginDrag(ped);
-                            break;
-                    }
-                }
 
-                //IDragHandler
-                if (dh != null)
-                {
-                    switch (phase)
-                    {
-                        case TouchPhase.Moved:
+                        break;
+
+                    case TouchPhase.Moved:
+                        //Drag
+                        IDragHandler dh = result.gameObject.GetComponent<IDragHandler>();
+                        if (dh != null)
                             dh.OnDrag(ped);
-                            break;
-                    }
-                }
+                        break;
 
-                //IEndDragHandler
-                if (edh != null)
-                {
-                    switch (phase)
-                    {
-                        case TouchPhase.Ended:
+                    case TouchPhase.Ended:
+                        //Pointer Up
+                        IPointerUpHandler pointerUpHandler = result.gameObject.GetComponent<IPointerUpHandler>();
+                        if (pointerUpHandler != null)
+                            pointerUpHandler.OnPointerUp(ped);
+
+                        //Pointer Click
+                        IPointerClickHandler pointerClickHandler = result.gameObject.GetComponent<IPointerClickHandler>();
+                        if (pointerClickHandler != null)
+                            pointerClickHandler.OnPointerClick(ped);
+
+                        //Drag Ended
+                        IEndDragHandler edh = result.gameObject.GetComponent<IEndDragHandler>();
+                        if (edh != null)
                             edh.OnEndDrag(ped);
-                            break;
-                    }
+                        break;
                 }
 
-                //Event Trigger
-                if (et != null)
+
+                //Pointer Entered
+                IPointerEnterHandler pointerEnterHandler = result.gameObject.GetComponent<IPointerEnterHandler>();
+                if (pointerEnterHandler != null)
                 {
-                    switch (phase)
-                    {
-                        case TouchPhase.Ended:
-                            et.OnPointerClick(ped);
-                            et.OnPointerUp(ped);
-                            break;
-                        case TouchPhase.Began:
-                            et.OnPointerEnter(ped);
-                            et.OnPointerDown(ped);
-                            break;
-                        case TouchPhase.Moved:
-                            //If touch moves into object
-                            if (!buttonsTouchedLastFrame.Contains(button))
-                            {
-                                et.OnPointerEnter(ped);
-                            }
+                    if (!pointerEnterHandlersTouchedLastFrame.Contains(pointerEnterHandler))
+                        pointerEnterHandler.OnPointerEnter(ped);
 
-                            break;
-                    }
-
+                    pointerEnterHandlersTouchedCurrentFrame.Add(pointerEnterHandler);
                 }
 
-                //Button
-                if (button != null)
+                //Pointer Exit
+                IPointerExitHandler pointerExitHandler = result.gameObject.GetComponent<IPointerExitHandler>();
+                if (pointerEnterHandler != null)
                 {
-                    switch (phase)
-                    {
-                        case TouchPhase.Ended:
-                            button.OnPointerClick(ped);
-                            button.OnPointerUp(ped);
-                            break;
-                        case TouchPhase.Began:
-                            button.OnPointerEnter(ped);
-                            button.OnPointerDown(ped);
-                            break;
-                        case TouchPhase.Moved:
-                            //If touch moves into object
-                            if (!buttonsTouchedLastFrame.Contains(button))
-                            {
-                                button.OnPointerEnter(ped);
-                            }
-                            break;
-                    }
-
-                    //Used to find objects that are no longer being touched.
-                    buttonsTouchedCurrentFrame.Add(button);
-                    buttonsTouchedLastFrame.Remove(button);
+                    pointerExitHandlersTouchedCurrentFrame.Add(pointerExitHandler);
+                    pointerExitHandlersTouchedLastFrame.Remove(pointerExitHandler);
                 }
+
                 didHitObject = true;
             }
             return didHitObject;
@@ -1464,6 +1581,34 @@ namespace Com.Immersive.Cameras
         //==============================================================
 
         /// <summary>
+        /// Determines whether a renderer is visible on the walls.
+        /// </summary>
+        public bool IsVisibleOnWalls(Renderer renderer)
+        {
+            foreach (Camera cam in wallCameras)
+            {
+                if (IsRendererVisibleFromCamera(renderer, cam))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Determines whether the provided renderer is visible on the floor.
+        /// </summary>
+        public bool IsVisibleOnFloor(Renderer renderer)
+        {
+            return floorCamera != null && IsRendererVisibleFromCamera(renderer, floorCamera);
+        }
+
+        private static bool IsRendererVisibleFromCamera(Renderer renderer, Camera camera)
+        {
+            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+            return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
+        }
+
+
+        /// <summary>
         /// Finds the camera within whose frustrum an a given object is located.
         /// </summary>
         /// <param name="target">The target object.</param>
@@ -1514,6 +1659,8 @@ namespace Com.Immersive.Cameras
                         case "Left - Camera": return (cam, leftUICamera.GetComponent<UICamera>().canvas);
                         case "Center - Camera": return (cam, centerUICamera.GetComponent<UICamera>().canvas);
                         case "Right - Camera": return (cam, rightUICamera.GetComponent<UICamera>().canvas);
+                        case "Back - Camera": return (cam, backUICamera.GetComponent<UICamera>().canvas);
+                        case "Floor - Camera": return (cam, floorUICamera.GetComponent<UICamera>().canvas);
                     }
 
 
@@ -1534,7 +1681,7 @@ namespace Com.Immersive.Cameras
             {
                 if (surfaces[i].position == position) return i;
             }
-            Debug.LogError("Cannot Find Index of Surface: " + position + ", "+surfaces.Count);
+            Debug.LogError("Cannot Find Index of Surface: " + position + ", " + surfaces.Count);
 
             return -1;
         }
@@ -1592,6 +1739,34 @@ namespace Com.Immersive.Cameras
             }
         }
 
+        private Canvas GetCanvasOfUICamera(Camera uiCamera)
+        {
+            if (uiCamera == null)
+                return null;
+            return uiCamera.GetComponent<UICamera>().canvas;
+        }
+        public Canvas LeftCanvas => GetCanvasOfUICamera(leftUICamera);
+        public Canvas CentreCanvas => GetCanvasOfUICamera(centerUICamera);
+        public Canvas RightCanvas => GetCanvasOfUICamera(rightUICamera);
+        public Canvas BackCanvas => GetCanvasOfUICamera(backUICamera);
+        public Canvas FloorCanvas => GetCanvasOfUICamera(floorUICamera);
+
+        public List<Canvas> GetAllCanvases()
+        {
+            List<Canvas> canvases = new List<Canvas>();
+            if (LeftCanvas != null)
+                canvases.Add(LeftCanvas);
+            if (CentreCanvas != null)
+                canvases.Add(CentreCanvas);
+            if (RightCanvas != null)
+                canvases.Add(RightCanvas);
+            if (BackCanvas != null)
+                canvases.Add(BackCanvas);
+            if (FloorCanvas != null)
+                canvases.Add(FloorCanvas);
+            return canvases;
+        }
+
         //----------Add Stage-----------
 #if UNITY_EDITOR
         public void AddStage()
@@ -1612,7 +1787,7 @@ namespace Com.Immersive.Cameras
 
         /// <summary>
         /// Target Display is used when there is a "Virtual Display" available for each actual display.
-        /// Spanning Display is used when the side walls are all combined into a single virtual display. 
+        /// Spanning Display is used when the side walls are all combined into a single virtual display.
         /// Floor will always be a seperate display
         /// </summary>
         public enum DisplayMode
@@ -1621,7 +1796,8 @@ namespace Com.Immersive.Cameras
             SpanningDisplay,
             VirtualRoom,
             PanningView,
-            WebGL
+            WebGL,
+            BorderlessWindow
         }
 
 
@@ -1629,13 +1805,11 @@ namespace Com.Immersive.Cameras
         {
             Standard,           //All Screens are 16x9
             WideFront,          //Front screen is double width eg. 32x9
-            Wide,               //All screens are double width eg. 32x9 
-            Assymetric,         //Left screen is 8x9, Center 32x9 and right 16x9
-            Tunnel,             //Left and right screens are 32x9, center is 16x9
-            Standard4x3,        //All screens are 4x3    
-            Standard16x10,      //All screens are 16x10    
+            Wide,               //All screens are double width eg. 32x9
+            Standard4x3,        //All screens are 4x3
+            Standard16x10,      //All screens are 16x10
             WideFront16x10,
-            Wide16x10           //All screens are 16x10    
+            Wide16x10           //All screens are 16x10
         }
     }
 
@@ -1652,7 +1826,7 @@ namespace Com.Immersive.Cameras
 
         private int currentTab = 0;
 
-        private EditorDisplayMode editorDisplayMode = EditorDisplayMode.VirtualRoom; 
+        private EditorDisplayMode editorDisplayMode = EditorDisplayMode.VirtualRoom;
         private SerializedProperty buildDisplayMode;
 
         private AbstractImmersiveCamera.ScreenSizes screenSize = AbstractImmersiveCamera.ScreenSizes.Standard;
@@ -1698,13 +1872,11 @@ namespace Com.Immersive.Cameras
         //Create Prefabs
         private SerializedProperty stagePrefab;
 
-
         private void OnEnable()
         {
             immersiveCamera = (AbstractImmersiveCamera)target;
 
             AbstractImmersiveCamera.CurrentImmersiveCamera = immersiveCamera;
-
 
             if (EditorPrefs.HasKey("ImmersiveCameraScreenSize")) screenSize = (AbstractImmersiveCamera.ScreenSizes)EditorPrefs.GetInt("ImmersiveCameraScreenSize");
 
@@ -1777,13 +1949,36 @@ namespace Com.Immersive.Cameras
 
             OnInspectorGUICameraSpecificSettings();
 
+            DrawJumpToCanvasButtons();
+
             //Add Stage if its not present
             if (immersiveCamera.stage == null && immersiveCamera.gameObject.scene.IsValid())
             {
-                immersiveCamera.AddStage();
+                if (!EditorSceneManager.IsPreviewSceneObject(target))
+                    immersiveCamera.AddStage();
             }
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        private void DrawJumpToCanvasButtons()
+        {
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginVertical("box");
+            EditorGUILayout.LabelField("Show Canvas", new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleCenter });
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Left"))
+                Selection.activeObject = immersiveCamera.LeftCanvas;
+            if (GUILayout.Button("Centre"))
+                Selection.activeObject = immersiveCamera.CentreCanvas;
+            if (GUILayout.Button("Right"))
+                Selection.activeObject = immersiveCamera.RightCanvas;
+            if (GUILayout.Button("Back"))
+                Selection.activeObject = immersiveCamera.BackCanvas;
+            if (GUILayout.Button("Floor"))
+                Selection.activeObject = immersiveCamera.FloorCanvas;
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
         }
 
         /// <summary>

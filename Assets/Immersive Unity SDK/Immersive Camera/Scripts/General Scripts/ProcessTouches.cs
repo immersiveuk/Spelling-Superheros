@@ -163,10 +163,12 @@ namespace Com.Immersive.Cameras
                 var distance = blobWidth * blobWidth + blobHeight * blobHeight;
 
                 //Small Blob
-                /*if (distance < maxBlobPixelSize * maxBlobPixelSize) */smallBlobs.Add(blob);
+                /*if (distance < maxBlobPixelSize * maxBlobPixelSize) */
+                smallBlobs.Add(blob);
 
                 //Large Blob
-                /*else */largeBlobs.Add(blob);
+                /*else */
+                largeBlobs.Add(blob);
             }
         }
 
@@ -200,10 +202,7 @@ namespace Com.Immersive.Cameras
         /// </summary>
         private Vector2 ConvertPointToPixelCoord(Vector2 originalPoint)
         {
-            var xOffset = cam.rect.x * (cam.pixelWidth / cam.rect.width);                       //This will be 0 unless in a spanning mode
-            var yOffset = ((1 - cam.rect.height) * cam.pixelHeight) / (2 * cam.rect.height);    //This will be 0 unless the image is letterboxed.
-
-            return new Vector2(cam.pixelWidth * originalPoint.x + xOffset, cam.pixelHeight * (1 - originalPoint.y) + yOffset);
+            return new Vector2(cam.pixelWidth * originalPoint.x, cam.pixelHeight * (1 - originalPoint.y));
         }
 
         /// <summary>
@@ -267,7 +266,7 @@ namespace Com.Immersive.Cameras
         private void HandleTouch(Vector3 blobCenter, Camera cam, TouchPhase phase, int blobId)
         {
             var hitUIObject = immersiveCamera.RaycastOnClickEventsToUI(cam, blobCenter, phase);
-            if (!hitUIObject) immersiveCamera.HandleTouchOrClick(blobCenter, phase, blobId);
+            immersiveCamera.HandleTouchOrClick(blobCenter, phase, blobId, hitUIObject);
         }
 
         /// <summary>
@@ -359,9 +358,12 @@ namespace Com.Immersive.Cameras
 
                 for (int i = 0; i < points.Length; i++)
                 {
-                    var nearPos = cam.ScreenToWorldPoint(new Vector3(points[i].x, points[i].y, cam.nearClipPlane));
-                    var farPos = cam.ScreenToWorldPoint(new Vector3(points[i].x, points[i].y, cam.farClipPlane));
+                    var viewportPoint = new Vector2(points[i].x / cam.pixelWidth, points[i].y / cam.pixelHeight);
 
+                    var nearPos = cam.ViewportToWorldPoint(new Vector3(viewportPoint.x, viewportPoint.y, cam.nearClipPlane * 1.0001f));
+                    var farPos = cam.ViewportToWorldPoint(new Vector3(viewportPoint.x, viewportPoint.y, cam.farClipPlane));
+
+                    //Debug.LogError($"Point {i}:{cam.name} {points[i]}, {nearPos}");
                     nearPositions[i] = nearPos;
 
                     combinedPositions[i] = nearPos;
@@ -578,8 +580,8 @@ namespace Com.Immersive.Cameras
             }
             catch (SocketException socketException)
             {
-                //print("Could Not Connect to Touch Sensor on Port " + port);
-                //print(socketException);
+                print("Could Not Connect to Touch Sensor on Port " + port);
+                print(socketException);
             }
         }
 
